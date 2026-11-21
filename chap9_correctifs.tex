@@ -43,7 +43,7 @@ Ce chapitre rassemble les solutions complètes, rigoureuses et commentées de to
     \item \textbf{Pour $g(x) = \sqrt{2x+3} - x$ :}
     \begin{itemize}
         \item \textbf{CE :} $2x + 3 \ge 0 \iff x \ge -\frac{3}{2}$, d'où $\boxed{\D = \left[-\frac{3}{2}, +\infty\right[}$.
-        \item \textbf{Racines :} $g(x) = 0 \iff \sqrt{2x+3} = x \iff \begin{cases} x \ge 0 \\ 2x + 3 = x^2 \end{cases} \iff \begin{cases} x \ge 0 \\ x^2 - 2x - 3 = (x-3)(x+1) = 0 \end{cases}$.
+        \item \textbf{Racines :} $g(x) = 0 \iff \sqrt{2x+3} = x$, ce qui équivaut à $x \ge 0$ et $2x + 3 = x^2 \iff (x-3)(x+1) = 0$.
         La valeur $x = -1 < 0$ est une racine parasite (car $\sqrt{1} = 1 \neq -1$). L'unique racine est donc $\boxed{x = 3}$.
     \end{itemize}
     \item \textbf{Pour $h(x) = \dfrac{x^2}{2}\left(\ln^2(x) - \ln(x) + \dfrac{1}{2}\right)$ (Septembre 2026, Q1) :}
@@ -70,9 +70,10 @@ Par conséquent, $x_0$ est bien racine de la fonction $g$. \hfill $\square$
         f_3(-x) = \ln\left(\frac{1-x}{1+x}\right) = \ln\left(\left(\frac{1+x}{1-x}\right)^{-1}\right) = -\ln\left(\frac{1+x}{1-x}\right) = -f_3(x) \implies f_3 \text{ est \textbf{impaire}}.
     \]
     \item Comme $\sqrt{1+x^2} > \sqrt{x^2} = |x| \ge -x$, on a $x + \sqrt{1+x^2} > 0$ pour tout $x \in \R$, donc $\D_4 = \R$. En multipliant par le binôme conjugué :
-    \[
-        f_4(-x) = \ln\bigl(\sqrt{1+x^2} - x\bigr) = \ln\left(\frac{(\sqrt{1+x^2}-x)(\sqrt{1+x^2}+x)}{\sqrt{1+x^2}+x}\right) = \ln\left(\frac{1}{\sqrt{1+x^2}+x}\right) = -\ln\bigl(x + \sqrt{1+x^2}\bigr) = -f_4(x).
-    \]
+    \begin{align*}
+        f_4(-x) &= \ln\bigl(\sqrt{1+x^2} - x\bigr) = \ln\left(\frac{(\sqrt{1+x^2}-x)(\sqrt{1+x^2}+x)}{\sqrt{1+x^2}+x}\right) \\
+        &= \ln\left(\frac{1}{\sqrt{1+x^2}+x}\right) = -\ln\bigl(x + \sqrt{1+x^2}\bigr) = -f_4(x).
+    \end{align*}
     La fonction $f_4$ (qui est l'argument sinus hyperbolique $\operatorname{argsinh}(x)$) est donc \textbf{impaire} sur $\R$.
 \end{enumerate}
 
@@ -80,7 +81,7 @@ Par conséquent, $x_0$ est bien racine de la fonction $g$. \hfill $\square$
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{CE :} $e^{2x} - 1 > 0 \iff e^{2x} > 1 \iff x > 0$ (ce qui assure aussi $1 - e^{-x} > 0$). Pour tout $x > 0$, factorisons $e^{2x} - 1 = (e^x - 1)(e^x + 1)$ et écrivons $1 - e^{-x} = 1 - \frac{1}{e^x} = \frac{e^x - 1}{e^x}$ :
     \[
-        A(x) = \ln\left(\frac{(e^x-1)\cancel{(e^x+1)}}{\cancel{e^x+1}}\right) - \ln\left(\frac{e^x - 1}{e^x}\right) = \cancel{\ln(e^x - 1)} - \Bigl[\cancel{\ln(e^x - 1)} - \ln(e^x)\Bigr] = \ln(e^x) = \boxed{x}.
+        A(x) = \ln\left(\frac{(e^x-1)\cancel{(e^x+1)}}{\cancel{e^x+1}}\right) - \ln\left(\frac{e^x - 1}{e^x}\right) = \cancel{\ln(e^x - 1)} - \cancel{\ln(e^x - 1)} + \ln(e^x) = \boxed{x}.
     \]
     \item En posant $u = e^x > 0$, l'équation devient $u^2 - 3u - 4 = (u - 4)(u + 1) = 0$. Comme $u = e^x > 0$, la racine négative $u = -1$ est impossible, et il reste $e^x = 4 \iff \boxed{x = \ln(4) = 2\ln(2)}$.
     \item \textbf{CE :} $x + 3 > 0$ et $x - 1 > 0 \iff \mathbf{x > 1}$. Sous cette condition, $\ln(x+3) + \ln(x-1) = \ln(5) \iff \ln\bigl((x+3)(x-1)\bigr) = \ln(5) \iff x^2 + 2x - 3 = 5 \iff x^2 + 2x - 8 = (x+4)(x-2) = 0$. La valeur $x = -4$ est rejetée par la CE ($x > 1$), d'où l'unique solution $\boxed{x = 2}$.
@@ -137,7 +138,7 @@ Par conséquent, $x_0$ est bien racine de la fonction $g$. \hfill $\square$
     \[
         \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)} = \left(\lim_{x \to 0} \frac{\sin(x^2)}{x^2}\right) \cdot \left(\lim_{x \to 0} \frac{x}{\tan(x)}\right) = 1 \cdot 1 = \boxed{1}.
     \]
-    \item Forme $[0 \cdot (-\infty)]$. Écrivons $x\ln(\sin x) = x\ln\left(x\cdot\frac{\sin x}{x}\right) = x\ln(x) + x\ln\left(\frac{\sin x}{x}\right)$. Or $\lim_{x \to 0^+} x\ln(x) = 0$ (croissance comparée) et $\lim_{x \to 0^+} \frac{\sin x}{x} = 1 \implies \lim_{x \to 0^+} x\ln\left(\frac{\sin x}{x}\right) = 0 \cdot \ln(1) = 0$, d'où la limite $\boxed{0}$.
+    \item Forme $[0 \cdot (-\infty)]$. On décompose $x\ln(\sin x) = x\ln(x) + x\ln\left(\frac{\sin x}{x}\right)$. Or $\lim_{x \to 0^+} x\ln(x) = 0$ (croissance comparée) et $\lim_{x \to 0^+} \frac{\sin x}{x} = 1$, donc $\lim_{x \to 0^+} x\ln\left(\frac{\sin x}{x}\right) = 0 \cdot \ln(1) = 0$, d'où la limite $\boxed{0}$.
 \end{enumerate}
 
 \paragraph{Corrigé de l'Exercice 2.3 (Définition formelle de la limite $\varepsilon$-$M$) :}
@@ -157,7 +158,7 @@ Par conséquent, $x_0$ est bien racine de la fonction $g$. \hfill $\square$
 \paragraph{Corrigé de l'Exercice 2.4 (Continuité et prolongement par continuité) :}
 Calculons la limite à gauche et la limite à droite de $f$ en $x = 0$ :
 \[
-    \lim_{x \to 0^-} f(x) = \lim_{x \to 0^-} \left(3\cdot\frac{\sin(3x)}{3x}\right) = 3 \cdot 1 = 3, \qquad \lim_{x \to 0^+} f(x) = \lim_{x \to 0^+} \bigl(\sqrt{1 + bx} + 2\bigr) = \sqrt{1 + 0} + 2 = 3.
+    \lim_{x \to 0^-} f(x) = \lim_{x \to 0^-} \left(3\cdot\frac{\sin(3x)}{3x}\right) = 3, \qquad \lim_{x \to 0^+} f(x) = \lim_{x \to 0^+} \bigl(\sqrt{1 + bx} + 2\bigr) = 3.
 \]
 Les limites à gauche et à droite sont égales à $3$ quelle que soit la valeur de $b \in \R$. Pour que $f$ soit continue en $0$, il faut et il suffit que $f(0) = a$ soit égal à cette limite commune : $\boxed{a = 3 \text{ et } b \in \R \text{ quelconque}}$.
 
@@ -170,8 +171,8 @@ Les limites à gauche et à droite sont égales à $3$ quelle que soit la valeur
     \end{itemize}
     \item \textbf{Pour $f_2(x) = \sqrt{x^2 + 2x}$ :} $x(x+2) \ge 0 \iff \D_2 = \,]-\infty, -2] \cup [0, +\infty[$. Pas d'AV (la fonction est continue et nulle aux bornes fermées $-2$ et $0$). En $\pm\infty$, complétons le carré : $x^2 + 2x = (x+1)^2 - 1$.
     \begin{itemize}
-        \item En $+\infty$ : $m = \lim_{x \to +\infty} \frac{\sqrt{x^2+2x}}{x} = 1$, et $p = \lim_{x \to +\infty} \bigl(\sqrt{x^2+2x} - x\bigr) = \lim_{x \to +\infty} \frac{2x}{\sqrt{x^2+2x}+x} = 1 \implies \boxed{\text{AO}_{+\infty} \equiv y = x + 1}$.
-        \item En $-\infty$ (attention : pour $x < 0$, $\sqrt{x^2} = |x| = -x$ !) : $m = \lim_{x \to -\infty} \frac{|x|\sqrt{1+2/x}}{x} = -1$, et $p = \lim_{x \to -\infty} \bigl(\sqrt{x^2+2x} + x\bigr) = \lim_{x \to -\infty} \frac{2x}{\sqrt{x^2+2x}-x} = \frac{2}{-1 - 1} = -1 \implies \boxed{\text{AO}_{-\infty} \equiv y = -x - 1}$.
+        \item En $+\infty$ : on a $m = \lim_{x \to +\infty} \frac{\sqrt{x^2+2x}}{x} = 1$, puis $p = \lim_{x \to +\infty} \bigl(\sqrt{x^2+2x} - x\bigr) = \lim_{x \to +\infty} \frac{2x}{\sqrt{x^2+2x}+x} = 1$, d'où $\boxed{\text{AO}_{+\infty} \equiv y = x + 1}$.
+        \item En $-\infty$ (attention : pour $x < 0$, $\sqrt{x^2} = |x| = -x$ !) : $m = \lim_{x \to -\infty} \frac{|x|\sqrt{1+2/x}}{x} = -1$, et $p = \lim_{x \to -\infty} \bigl(\sqrt{x^2+2x} + x\bigr) = \lim_{x \to -\infty} \frac{2x}{\sqrt{x^2+2x}-x} = -1$, d'où $\boxed{\text{AO}_{-\infty} \equiv y = -x - 1}$.
     \end{itemize}
     \item \textbf{Pour $f_3(x) = \dfrac{e^x - 1}{e^x + 1}$ :} $\D_3 = \R$ (car $e^x + 1 > 1 > 0$). Pas d'AV.
     \begin{itemize}
@@ -209,7 +210,7 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \]
     \item \textbf{Pour $f_3(x) = \dfrac{1 - x^2}{\cos^2(x)}$ (Septembre 2024, Q1b) :} Par la règle du quotient :
     \[
-        f'_3(x) = \frac{-2x\cos^2(x) - (1 - x^2)\cdot 2\cos(x)\bigl(-\sin(x)\bigr)}{\cos^4(x)} = \frac{-2x\cos(x) + 2(1-x^2)\sin(x)}{\cos^3(x)} = \frac{g(x)}{\cos^2(x)},
+        f'_3(x) = \frac{-2x\cos^2(x) + 2(1 - x^2)\cos(x)\sin(x)}{\cos^4(x)} = \frac{-2x\cos(x) + 2(1-x^2)\sin(x)}{\cos^3(x)} = \frac{g(x)}{\cos^2(x)},
     \]
     avec $\boxed{g(x) = 2\Bigl(\tan(x)\bigl(1 - x^2\bigr) - x\Bigr)}$.
     \item \textbf{Pour $f_4(x) = \dfrac{x^2}{2}\left(\ln^2(x) - \ln(x) + \dfrac{1}{2}\right)$ (Septembre 2026, Q1b-c) :} Vu à l'Étude 5 du Chapitre 4 :
@@ -239,16 +240,17 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
 \begin{enumerate}[label=(\alph*)]
     \item Trois applications successives de la règle de L'Hospital (formes $\left[\frac{0}{0}\right]$ à chaque étape) donnent :
     \[
-        \lim_{x \to 0} \frac{e^x - e^{-x} - 2x}{x - \sin(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x + e^{-x} - 2}{1 - \cos(x)} \quad \left[\frac{0}{0}\right] \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x - e^{-x}}{\sin(x)} \quad \left[\frac{0}{0}\right] \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x + e^{-x}}{\cos(x)} = \frac{1 + 1}{1} = \boxed{2}.
+        \lim_{x \to 0} \frac{e^x - e^{-x} - 2x}{x - \sin(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x + e^{-x} - 2}{1 - \cos(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x - e^{-x}}{\sin(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{e^x + e^{-x}}{\cos(x)} = \frac{1 + 1}{1} = \boxed{2}.
     \]
     \item Forme $\left[\frac{0}{0}\right]$ en $x = \frac{\pi}{2}$. Deux applications de la règle de L'Hospital donnent :
     \[
-        \lim_{x \to \pi/2} \frac{\ln(\sin x)}{(\pi - 2x)^2} \stackrel{\text{H}}{=} \lim_{x \to \pi/2} \frac{\dfrac{\cos x}{\sin x}}{-4(\pi - 2x)} = \lim_{x \to \pi/2} \left(\frac{1}{\sin x} \cdot \frac{\cos x}{-4(\pi - 2x)}\right) \stackrel{\text{H}}{=} 1 \cdot \lim_{x \to \pi/2} \frac{-\sin x}{8} = \boxed{-\frac{1}{8}}.
+        \lim_{x \to \pi/2} \frac{\ln(\sin x)}{(\pi - 2x)^2} \stackrel{\text{H}}{=} \lim_{x \to \pi/2} \left(\frac{1}{\sin x} \cdot \frac{\cos x}{-4(\pi - 2x)}\right) \stackrel{\text{H}}{=} 1 \cdot \lim_{x \to \pi/2} \frac{-\sin x}{8} = \boxed{-\frac{1}{8}}.
     \]
     \item Forme $[0^0]$. Écrivons $x^{\sin(x)} = e^{\sin(x)\ln(x)}$ et calculons la limite de l'exposant par L'Hospital :
     \[
-        \lim_{x \to 0^+} \sin(x)\ln(x) = \lim_{x \to 0^+} \left(\frac{\sin(x)}{x} \cdot \frac{\ln(x)}{1/x}\right) \stackrel{\text{H}}{=} 1 \cdot \lim_{x \to 0^+} \frac{1/x}{-1/x^2} = \lim_{x \to 0^+} (-x) = 0 \implies \lim_{x \to 0^+} x^{\sin(x)} = e^0 = \boxed{1}.
+        \lim_{x \to 0^+} \sin(x)\ln(x) = \lim_{x \to 0^+} \left(\frac{\sin(x)}{x} \cdot \frac{\ln(x)}{1/x}\right) \stackrel{\text{H}}{=} 1 \cdot \lim_{x \to 0^+} \frac{1/x}{-1/x^2} = 0,
     \]
+    ce qui entraîne $\lim_{x \to 0^+} x^{\sin(x)} = e^0 = \boxed{1}$.
     \item Forme $[1^\infty]$. Écrivons $\left(1 + \frac{y}{x}\right)^x = e^{x\ln(1 + y/x)}$. En posant $u = \frac{1}{x} \to 0^+$ (ou par L'Hospital sur $\frac{\ln(1+y/x)}{1/x}$) :
     \[
         \lim_{x \to +\infty} x\ln\left(1 + \frac{y}{x}\right) = \lim_{u \to 0^+} \frac{\ln(1 + yu)}{u} \stackrel{\text{H}}{=} \lim_{u \to 0^+} \frac{y}{1 + yu} = y \implies \boxed{\lim_{x \to +\infty} \left(1 + \frac{y}{x}\right)^x = e^y}.
@@ -263,9 +265,9 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \item $w(x) = x - x^5$ : \textbf{OUI} -- $w$ est un polynôme donc continue sur $[-1, 1]$ et dérivable sur $]-1, 1[$, et $w(-1) = -1 - (-1) = 0 = 1 - 1 = w(1)$.
 \end{enumerate}
 
-\paragraph{Corrigé de l'Exercice 3.5 (Application de Rolle et du TVI au polynôme $P(x) = x^4 - 4x + 1$) :}
+\paragraph{Corrigé de l'Exercice 3.5 (Rolle et TVI pour $P(x) = x^4 - 4x + 1$) :}
 \begin{enumerate}[label=(\alph*)]
-    \item Supposons par l'absurde que $P(x)$ possède au moins $3$ racines réelles distinctes $r_1 < r_2 < r_3$. Comme $P$ est un polynôme (continu et dérivable partout), le théorème de Rolle appliqué sur $[r_1, r_2]$ et sur $[r_2, r_3]$ impliquerait l'existence de deux racines distinctes $c_1 \in \,]r_1, r_2[$ et $c_2 \in \,]r_2, r_3[$ de la dérivée $P'(x)$. Or $P'(x) = 4x^3 - 4 = 4(x^3 - 1)$ ne s'annule qu'en \textbf{un seul point réel} ($x = 1$) ! Cette contradiction prouve que $P$ a au plus $2$ racines réelles.
+    \item Supposons par l'absurde que $P(x)$ possède au moins $3$ racines réelles distinctes $r_1 < r_2 < r_3$. Comme $P$ est un polynôme (continu et dérivable partout), le théorème de Rolle appliqué sur $[r_1, r_2]$ et sur $[r_2, r_3]$ impliquerait l'existence de deux racines distinctes $c_1 \in \,]r_1, r_2[$ et $c_2 \in \,]r_2, r_3[$ de la dérivée $P'(x)$. Or $P'(x) = 4x^3 - 4 = 4(x^3 - 1)$ ne s'annule qu'en \textbf{un seul point réel} ($x = 1$). Cette contradiction prouve que $P$ a au plus $2$ racines réelles.
     \item Comme $P(0) = 1 > 0$, $P(1) = 1 - 4 + 1 = -2 < 0$ et $P(2) = 16 - 8 + 1 = 9 > 0$, le théorème des valeurs intermédiaires garantit une première racine dans $]0, 1[$ et une seconde racine dans $]1, 2[$. Il y en a donc exactement deux.
 \end{enumerate}
 
@@ -305,22 +307,23 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
         \boxed{f'(x) = \frac{\sin(x)}{1 + \cos(x)} = \tan\left(\frac{x}{2}\right)},
     \]
     \[
-        \boxed{f''(x) = \frac{\cos(x)(1+\cos x) - \sin(x)(-\sin x)}{(1+\cos x)^2} = \frac{\cos(x) + \cos^2(x) + \sin^2(x)}{(1+\cos x)^2} = \frac{1 + \cos(x)}{(1+\cos x)^2} = \frac{1}{1 + \cos(x)} \ge \frac{1}{2} > 0}.
+        \boxed{f''(x) = \frac{\cos(x)(1+\cos x) - \sin(x)(-\sin x)}{(1+\cos x)^2} = \frac{1 + \cos(x)}{(1+\cos x)^2} = \frac{1}{1 + \cos(x)} \ge \frac{1}{2} > 0}.
     \]
     \item \textbf{Extrema et tableau sur $]-\pi, \pi[$ :} $f'(x) = 0 \text{ dans } \D \iff \sin(x) = 0 \text{ et } \cos(x) \neq -1 \iff \boxed{x = 2k\pi}$. Comme $f''(x) > 0$ partout sur $\D$, la concavité est toujours positive ($\cup$), il n'y a pas de maximum, et les points $x = 2k\pi$ sont des \textbf{minima locaux} de valeur $f(0) = -\ln(2) \simeq -0,693$. Sur $]-\pi, \pi[$, $f$ décroît de $+\infty$ (AV en $-\pi$) jusqu'à $-\ln(2)$ en $x=0$ (en s'annulant en $-\frac{\pi}{2}$), puis remonte à $+\infty$ (AV en $\pi$) en s'annulant en $\frac{\pi}{2}$.
 \end{itemize}
 
-\paragraph{Corrigé de l'Exercice 4.3 (UCLouvain -- Juillet 2023 -- Série 1, Q1 -- $f(x) = x^2\sin(x^2)+\cos(x^2)$) :}
+\paragraph{Corrigé de l'Exercice 4.3 (UCLouvain -- Juillet 2023, Série 1, Q1) :}
 \begin{enumerate}[label=(\alph*)]
-    \item $f$ est définie et paire sur $\R$. D'après l'Exercice 3.1a, $\boxed{f'(x) = 2x^3\cos(x^2)}$. Les points critiques ($f'(x) = 0$) sont :
+    \item La fonction $f(x) = x^2\sin(x^2)+\cos(x^2)$ est définie et paire sur $\R$. D'après l'Exercice 3.1a, $\boxed{f'(x) = 2x^3\cos(x^2)}$. Les points critiques ($f'(x) = 0$) sont :
     \[
-        x = 0 \quad \text{ou} \quad \cos(x^2) = 0 \iff x^2 = \frac{\pi}{2} + k\pi = (2n-1)\frac{\pi}{2} \;\;(n \in \N_0) \iff \boxed{x = 0 \;\text{ ou }\; x = \pm\sqrt{(2n-1)\frac{\pi}{2}} \;\;(n \in \N_0)}.
+        x = 0 \;\text{ ou }\; \cos(x^2) = 0 \iff \boxed{x = 0 \;\text{ ou }\; x = \pm\sqrt{(2n-1)\frac{\pi}{2}} \;\;(n \in \N_0)}.
     \]
     \item Dérivée seconde : $\boxed{f''(x) = 2x^2\bigl(3\cos(x^2) - 2x^2\sin(x^2)\bigr)}$.
     \item \textbf{Tableau sur $[0, 2\sqrt{\pi}]$ :} Sur cet intervalle, $x^2$ varie de $0$ à $4\pi$, donc $\cos(x^2)$ s'annule en $x^2 \in \left\{\frac{\pi}{2}, \frac{3\pi}{2}, \frac{5\pi}{2}, \frac{7\pi}{2}\right\}$. En ces points où $\cos(x^2) = 0$ et $\sin(x^2) = (-1)^{n-1} = \pm 1$, on a $f(x) = \pm x^2$ et $f''(x) = \mp 4x^4$ :
     \begin{center}
+    {\footnotesize
     \renewcommand{\arraystretch}{1.4}
-    \setlength{\tabcolsep}{4pt}
+    \setlength{\tabcolsep}{2.8pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
     \hline
     $x^2$ & $0$ & & $\dfrac{\pi}{2}$ & & $\dfrac{3\pi}{2}$ & & $\dfrac{5\pi}{2}$ & & $\dfrac{7\pi}{2}$ & $4\pi$ \\ \hline
@@ -329,11 +332,12 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     $f''(x)$ & $0$ & & $-\pi^2 < 0$ & & $+(3\pi)^2 > 0$ & & $-(5\pi)^2 < 0$ & & $+(7\pi)^2 > 0$ & $+$ \\ \hline
     $f(x)$ & $\mathbf{1}$ (min plat) & $\nearrow$ & $\mathbf{\dfrac{\pi}{2}}$ (max) & $\searrow$ & $\mathbf{-\dfrac{3\pi}{2}}$ (min) & $\nearrow$ & $\mathbf{\dfrac{5\pi}{2}}$ (max) & $\searrow$ & $\mathbf{-\dfrac{7\pi}{2}}$ (min) & $\nearrow\; 1$ \\ \hline
     \end{tabular}
+    }
     \end{center}
     (En $x = 0$, par parité, $f'(x) = 2x^3\cos(x^2)$ est négative à gauche de $0$ et positive à droite de $0$, donc $x = 0$ est bien un minimum local très plat de valeur $f(0) = 1$).
 \end{enumerate}
 
-\paragraph{Corrigé de l'Exercice 4.4 (UCLouvain -- Juillet 2023 -- Série 2, Q1 -- $f(x) = 3\cos(x) - \cos^3(x)$) :}
+\paragraph{Corrigé de l'Exercice 4.4 (UCLouvain -- Juillet 2023 -- Série 2, Q1 : $3\cos(x) - \cos^3(x)$) :}
 \begin{enumerate}[label=(\alph*)]
     \item $f$ est définie, paire et $2\pi$-périodique sur $\R$. D'après l'Exercice 3.1b, $\boxed{f'(x) = -3\sin^3(x)}$.
     \begin{itemize}
@@ -343,8 +347,9 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \item Dérivée seconde : $\boxed{f''(x) = -9\sin^2(x)\cos(x)}$. Elle s'annule en $x = k\pi$ (sans changer de signe car $\sin^2(x) \ge 0$, ce qui explique que les extrema en $k\pi$ sont « très plats » avec $f' = f'' = 0$ !) et en $x = \frac{\pi}{2} + k\pi$ (en changeant de signe : \textbf{points d'inflexion} qui coïncident avec les racines de $f$, de pente $f'(\frac{\pi}{2}+k\pi) = \mp 3$).
     \item \textbf{Tableau sur $[0, 3\pi]$ :}
     \begin{center}
+    {\scriptsize
     \renewcommand{\arraystretch}{1.35}
-    \setlength{\tabcolsep}{4.2pt}
+    \setlength{\tabcolsep}{2.2pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
     $x$ & $0$ & & $\dfrac{\pi}{2}$ & & $\pi$ & & $\dfrac{3\pi}{2}$ & & $2\pi$ & & $\dfrac{5\pi}{2}$ & & $3\pi$ \\ \hline\hline
@@ -352,6 +357,7 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     $f''(x)$ & $0$ & $-$ & $0$ & $+$ & $0$ & $+$ & $0$ & $-$ & $0$ & $-$ & $0$ & $+$ & $0$ \\ \hline
     $f(x)$ & $\mathbf{2}$ (max) & $\searrow\cap$ & $\mathbf{0}$ (PI) & $\searrow\cup$ & $\mathbf{-2}$ (min) & $\nearrow\cup$ & $\mathbf{0}$ (PI) & $\nearrow\cap$ & $\mathbf{2}$ (max) & $\searrow\cap$ & $\mathbf{0}$ (PI) & $\searrow\cup$ & $\mathbf{-2}$ (min) \\ \hline
     \end{tabular}
+    }
     \end{center}
 \end{enumerate}
 
@@ -382,8 +388,8 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \[
         f'(x) = -2x\ln(1-x) + (1-x^2)\frac{-1}{1-x} + 1 = -2x\ln(1-x) - (1+x) + 1 = \boxed{-x\bigl(2\ln(1-x) + 1\bigr)}.
     \]
-    $f'(x) = 0 \iff x = 0 \;\text{ ou }\; \ln(1-x) = -\frac{1}{2} \iff \boxed{x_1 = 0 \;\text{ ou }\; x_2 = 1 - e^{-1/2} \simeq 1 - 0,6065 = 0,3935}$.
-    (De plus, $\lim_{x \to 1^-} f'(x) = -1(2(-\infty)+1) = +\infty$ : demi-tangente verticale au point limite $(1, 1)$).
+    On a $f'(x) = 0 \iff x = 0 \;\text{ ou }\; \ln(1-x) = -\frac{1}{2}$, ce qui donne les deux points critiques $\boxed{x_1 = 0}$ et $\boxed{x_2 = 1 - e^{-1/2} \simeq 1 - 0,6065 = 0,3935}$.
+    De plus, $\lim_{x \to 1^-} f'(x) = +\infty$ (demi-tangente verticale en $(1, 1)$).
     \item \textbf{Dérivée seconde $f''(x)$ :} En dérivant $f'(x) = -2x\ln(1-x) - x$ :
     \[
         f''(x) = -2\ln(1-x) - 2x\frac{-1}{1-x} - 1 = \boxed{\frac{2x}{1-x} - \bigl(2\ln(1-x) + 1\bigr)}.
@@ -395,15 +401,17 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
         \item En $x_2 = 1 - e^{-1/2} \simeq 0,3935$ : comme $2\ln(1-x_2) + 1 = 0$, on a $f'(x_2) = 0$, $f''(x_2) = \frac{2x_2}{1-x_2} = 2(e^{1/2} - 1) \simeq 1,2976 > 0$ (minimum local), et $f(x_2) = -\frac{1}{2}(1-x_2^2) + x_2 \simeq -0,0291 < 0$.
     \end{itemize}
     \begin{center}
+    {\footnotesize
     \renewcommand{\arraystretch}{1.35}
-    \setlength{\tabcolsep}{4pt}
+    \setlength{\tabcolsep}{3.0pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|}
     \hline
     $x$ & $-1$ & & $x_1 = 0$ & & $x_2 \simeq 0,3935$ & & $1$ \\ \hline\hline
     $f'(x)$ & $2,386$ & $+$ & $0$ & $-$ & $0$ & $+$ & $\lim = +\infty$ \\ \hline
     $f''(x)$ & $-3,386$ & $-$ & $-1$ & $-\;0\;+$ & $+1,298$ & $+$ & $\lim = +\infty$ \\ \hline
-    $f(x)$ & $-1$ & $\nearrow\;\cap$ & $\mathbf{0}$ (max \& racine) & $\searrow\;(\text{PI})$ & $\mathbf{-0,0291}$ (min) & $\nearrow\;\cup$ & $\lim = 1$ (2\ieme{} racine entre $x_2$ et $1$) \\ \hline
+    $f(x)$ & $-1$ & $\nearrow\;\cap$ & $\mathbf{0}$ (max \& racine) & $\searrow\;(\text{PI})$ & $\mathbf{-0,0291}$ (min) & $\nearrow\;\cup$ & $\lim = 1$ (2\ieme{} racine) \\ \hline
     \end{tabular}
+    }
     \end{center}
 \end{itemize}
 
@@ -416,11 +424,11 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \item Comme $x(t) = vt$, l'altitude $H$ est atteinte à l'instant $\boxed{T = \dfrac{H}{v}}$.
     \item Intégrons la puissance instantanée $Q(t) = K + \dfrac{Cv^3}{vt + x_0}$ entre $t = 0$ et $t = T = \dfrac{H}{v}$ :
     \[
-        E(v) = \int_0^{H/v} \left(K + \frac{Cv^3}{vt + x_0}\right)\dd t = \left[Kt + Cv^2\ln(vt + x_0)\right]_0^{H/v} = \boxed{K\frac{H}{v} + Cv^2\ln\left(1 + \frac{H}{x_0}\right)}.
+        E(v) = \int_0^{H/v} \left(K + \frac{Cv^3}{vt + x_0}\right)\dd t = \boxed{K\frac{H}{v} + Cv^2\ln\left(1 + \frac{H}{x_0}\right)}.
     \]
     \item Dérivons $E(v)$ par rapport à la vitesse $v > 0$ (les constantes $K, C, H, x_0$ étant fixées) :
     \[
-        E'(v) = -\frac{KH}{v^2} + 2Cv\ln\left(1 + \frac{H}{x_0}\right) = 0 \iff v^3 = \frac{KH}{2C\ln(1 + H/x_0)} \iff \boxed{v^* = \sqrt[3]{\frac{KH}{2C\ln(1 + H/x_0)}}}.
+        E'(v) = -\frac{KH}{v^2} + 2Cv\ln\left(1 + \frac{H}{x_0}\right) = 0 \iff \boxed{v^* = \sqrt[3]{\frac{KH}{2C\ln(1 + H/x_0)}}}.
     \]
     Comme $E''(v) = \frac{2KH}{v^3} + 2C\ln(1+H/x_0) > 0$, il s'agit bien d'un minimum, et la consommation minimale vaut :
     \[
@@ -432,8 +440,8 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
 \begin{enumerate}[label=(\alph*)]
     \item Sur $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, $\ell'(t) = b\cos(t) \ge 0$ (car $b > 0$ et $\cos t \ge 0$), donc $|\ell'(t)| = \ell'(t)$. Ainsi :
     \begin{align*}
-        \bar{c}(a) &= \frac{1}{\pi}\int_{-\pi/2}^{\pi/2} \left(a + b + b\sin(t) + \frac{\ell'(t)}{\ell(t)}\right)\dd t = \frac{1}{\pi}\Bigl[(a+b)t - b\cos(t) + \ln\bigl(a + b(1+\sin t)\bigr)\Bigr]_{-\pi/2}^{\pi/2} \\
-        &= \frac{1}{\pi}\Bigl[(a+b)\pi - 0 + \ln(a + 2b) - \ln(a)\Bigr] = \boxed{a + b + \frac{1}{\pi}\bigl(\ln(a + 2b) - \ln(a)\bigr)}.
+        \bar{c}(a) &= \frac{1}{\pi}\int_{-\pi/2}^{\pi/2} \left(a + b + b\sin(t) + \frac{\ell'(t)}{\ell(t)}\right)\dd t \\
+        &= \frac{1}{\pi}\Bigl[(a+b)t - b\cos(t) + \ln\bigl(a + b(1+\sin t)\bigr)\Bigr]_{-\pi/2}^{\pi/2} = \boxed{a + b + \frac{1}{\pi}\bigl(\ln(a + 2b) - \ln(a)\bigr)}.
     \end{align*}
     \item Dérivons $\bar{c}(a)$ par rapport à $a > 0$ :
     \[
@@ -454,7 +462,7 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \]
     Comme calculé à l'Exemple du Chapitre 1, cela donne :
     \[
-        t_{\max} = \frac{1}{\alpha - \beta}\ln\left(\frac{\alpha}{\beta}\right) = \frac{\ln(5)}{0,8} \simeq \frac{1,61}{0,8} = 2,0125\text{ h} = 2,0125 \times 60 = 120,75\text{ min} \simeq 121\text{ minutes}.
+        t_{\max} = \frac{1}{\alpha - \beta}\ln\left(\frac{\alpha}{\beta}\right) = \frac{\ln(5)}{0,8} \simeq \frac{1,61}{0,8} = 2,0125\text{ h} = 120,75\text{ min} \simeq 121\text{ minutes}.
     \]
     Pour que ce pic (qui a lieu $121\text{ min}$ après avoir bu le café) se produise $60\text{ min}$ après le début de l'examen, il faut boire le café $121 - 60 = \boxed{61\text{ minutes avant le début de l'examen}}$.
     \item La dérivée seconde en $t_{\max}$ vaut, en remplaçant $\alpha e^{-\alpha t_{\max}} = \beta e^{-\beta t_{\max}}$ :
@@ -473,7 +481,7 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     \]
     \item Dérivons par rapport à $A$ :
     \[
-        D'(A) = \frac{1}{560^2}\left(126\,A - \frac{3}{10}A^2\right) = \frac{A}{560^2}\left(126 - \frac{3}{10}A\right) = 0 \implies A = 0 \text{ (min)} \;\text{ ou }\; \boxed{A^* = \frac{1260}{3} = 420\text{ bitcoins}},
+        D'(A) = \frac{A}{560^2}\left(126 - \frac{3}{10}A\right) = 0 \implies A = 0 \text{ (min)} \;\text{ ou }\; \boxed{A^* = \frac{1260}{3} = 420\text{ bitcoins}},
     \]
     d'où $\boxed{V^* = 560 - 420 = 140\text{ bitcoins}}$ (avec $D''(420) = \frac{-126}{560^2} < 0$, donc maximum).
     \item La durée de vie maximale vaut $D(420) = \left(7 + \frac{140}{10}\right)\left(\frac{420}{560}\right)^2 = 21 \times \left(\frac{3}{4}\right)^2 = \boxed{\dfrac{189}{16}\text{ jours}}$.
@@ -489,7 +497,7 @@ Posons $h(x) = \cos(x) - x$, définie et continue sur $\R$.
     Comme $\frac{\mathrm{d}A}{\mathrm{d}F} > 0$ pour $F < F_c$ et $< 0$ pour $F > F_c$, c'est un maximum global. Convertissons en $\text{kg/min}$ : $100\text{ g/s} = 100 \times 60\text{ g/min} = 6000\text{ g/min} = \boxed{6\text{ kg/min}}$.
     \item Pour $A(F) = k\,V_{\max}\,F\,\exp\bigl[-(F/F_c)^{1/2}\bigr]$, la règle du produit et de la chaîne donne :
     \[
-        \frac{\mathrm{d}A}{\mathrm{d}F} = k V_{\max}\left(1 - \frac{1}{2}\left(\frac{F}{F_c}\right)^{1/2}\right)\exp\bigl[-(F/F_c)^{1/2}\bigr] = 0 \iff \left(\frac{F}{F_c}\right)^{1/2} = 2 \iff \boxed{F^* = 4F_c = 400\text{ g/s}}.
+        \frac{\mathrm{d}A}{\mathrm{d}F} = k V_{\max}\left(1 - \frac{1}{2}\left(\frac{F}{F_c}\right)^{1/2}\right)e^{-(F/F_c)^{1/2}} = 0 \iff \boxed{F^* = 4F_c = 400\text{ g/s}}.
     \]
 \end{enumerate}
 
@@ -499,7 +507,7 @@ Remplaçons directement $r^2$ dans le volume du cylindre $V = \pi r^2 h$ pour ob
 \[
     V(h) = \pi\left(R^2 h - \frac{h^3}{4}\right) \implies V'(h) = \pi\left(R^2 - \frac{3h^2}{4}\right) = 0 \iff \boxed{h^* = \frac{2R}{\sqrt{3}}},
 \]
-(avec $V''(h) = -\frac{3\pi}{2}h < 0$, donc maximum), d'où $r^* = \sqrt{R^2 - \frac{R^2}{3}} = \boxed{R\sqrt{\frac{2}{3}}}$ et $\boxed{V_{\max} = \frac{4\pi R^3}{3\sqrt{3}} = \frac{1}{\sqrt{3}}V_{\text{sphère}}}$.
+avec $V''(h) = -\frac{3\pi}{2}h < 0$ (maximum). On en déduit le rayon optimal $r^* = \sqrt{R^2 - \frac{R^2}{3}} = \boxed{R\sqrt{\frac{2}{3}}}$ et le volume maximal $\boxed{V_{\max} = \frac{4\pi R^3}{3\sqrt{3}} = \frac{1}{\sqrt{3}}V_{\text{sphère}}}$.
 
 % ----------------------------------------------------------------------------
 \section{Corrigés du Chapitre 6 (Calcul Intégral et Primitives)}
@@ -521,7 +529,7 @@ Remplaçons directement $r^2$ dans le volume du cylindre $V = \pi r^2 h$ pour ob
 \textbf{CE :} $(e^x)^2 \neq 1 \iff e^x \neq 1$ (car $e^x > 0$) $\iff \mathbf{x \neq 0}$.
 Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. Par décomposition en fractions simples :
 \[
-    \int \frac{2e^x}{(e^x)^2 - 1}\dd x = \int \frac{2}{y^2 - 1}\dd y = \int \left(\frac{1}{y - 1} - \frac{1}{y + 1}\right)\dd y = \ln(|y - 1|) - \ln(y + 1) + C = \boxed{\ln\left(\frac{|e^x - 1|}{e^x + 1}\right) + C}.
+    \int \frac{2e^x}{(e^x)^2 - 1}\dd x = \int \frac{2}{y^2 - 1}\dd y = \int \left(\frac{1}{y - 1} - \frac{1}{y + 1}\right)\dd y = \boxed{\ln\left(\frac{|e^x - 1|}{e^x + 1}\right) + C}.
 \]
 
 \paragraph{Corrigé de l'Exercice 6.3 (Primitives par intégration par parties) :}
@@ -536,7 +544,7 @@ Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. 
     \]
     \item IPP avec $u = 2x + 1 \implies \mathrm{d}u = 2\dd x$ et $\mathrm{d}v = e^{-x}\dd x \implies v = -e^{-x}$ :
     \[
-        \int (2x + 1)e^{-x}\dd x = -(2x + 1)e^{-x} + 2\int e^{-x}\dd x = -(2x + 1)e^{-x} - 2e^{-x} + C = \boxed{-(2x + 3)e^{-x} + C}.
+        \int (2x + 1)e^{-x}\dd x = -(2x + 1)e^{-x} + 2\int e^{-x}\dd x = \boxed{-(2x + 3)e^{-x} + C}.
     \]
     \item IPP avec $u = \ln(x) \implies \mathrm{d}u = \frac{1}{x}\dd x$ et $\mathrm{d}v = x^2\dd x \implies v = \frac{x^3}{3}$ :
     \[
@@ -560,7 +568,7 @@ Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. 
 \begin{enumerate}[label=(\alph*)]
     \item Puissance impaire de $\sin(x)$ : posons $u = \cos(x) \implies \mathrm{d}u = -\sin(x)\dd x$ avec $\sin^2(x) = 1 - u^2$ :
     \[
-        \int (1 - \cos^2 x)\cos^2(x)\sin(x)\dd x = -\int (1 - u^2)u^2\dd u = \int (u^4 - u^2)\dd u = \boxed{\frac{\cos^5(x)}{5} - \frac{\cos^3(x)}{3} + C}.
+        \int (1 - \cos^2 x)\cos^2(x)\sin(x)\dd x = \int (u^4 - u^2)\dd u = \boxed{\frac{\cos^5(x)}{5} - \frac{\cos^3(x)}{3} + C}.
     \]
     \item Par duplication $\sin(x)\cos(x) = \frac{1}{2}\sin(2x)$, puis Carnot $\sin^2(2x) = \frac{1 - \cos(4x)}{2}$ :
     \[
@@ -579,11 +587,11 @@ Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. 
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{Par substitution $u = x^2 + 1$ ($\mathrm{d}u = 2x\dd x$ et $x^2 = u - 1$) :}
     \[
-        \int \frac{x^2}{(x^2+1)^3}\,x\dd x = \frac{1}{2}\int \frac{u - 1}{u^3}\dd u = \frac{1}{2}\int \bigl(u^{-2} - u^{-3}\bigr)\dd u = -\frac{1}{2u} + \frac{1}{4u^2} + C_1 = \boxed{-\frac{2x^2 + 1}{4(x^2 + 1)^2} + C_1}.
+        \int \frac{x^2}{(x^2+1)^3}\,x\dd x = \frac{1}{2}\int \frac{u - 1}{u^3}\dd u = -\frac{1}{2u} + \frac{1}{4u^2} + C_1 = \boxed{-\frac{2x^2 + 1}{4(x^2 + 1)^2} + C_1}.
     \]
     \item \textbf{Par intégration par parties :} Posons $p = x^2 \implies \mathrm{d}p = 2x\dd x$ et $\mathrm{d}q = \frac{x}{(x^2+1)^3}\dd x \implies q = -\frac{1}{4(x^2+1)^2}$ :
     \[
-        \int \frac{x^3}{(x^2+1)^3}\dd x = -\frac{x^2}{4(x^2+1)^2} + \frac{1}{2}\int \frac{x}{(x^2+1)^2}\dd x = -\frac{x^2}{4(x^2+1)^2} - \frac{1}{4(x^2+1)} + C_2 = \boxed{-\frac{2x^2 + 1}{4(x^2 + 1)^2} + C_2}.
+        \int \frac{x^3}{(x^2+1)^3}\dd x = -\frac{x^2}{4(x^2+1)^2} + \frac{1}{2}\int \frac{x}{(x^2+1)^2}\dd x = \boxed{-\frac{2x^2 + 1}{4(x^2 + 1)^2} + C_2}.
     \]
     Les deux méthodes conduisent exactement à la même expression !
 \end{enumerate}
@@ -626,7 +634,7 @@ Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. 
     \item \textbf{Étape 1 :} Pour tout $s \ge 0$, $\cos(s) \le 1$. En intégrant sur $[0, x]$ ($x \ge 0$) : $\int_0^x \cos(s)\dd s \le \int_0^x 1\dd s \iff \boxed{\sin(x) \le x}$.
     \item \textbf{Étape 2 :} Pour tout $s \ge 0$, $\sin(s) \le s$. En intégrant sur $[0, x]$ ($x \ge 0$) :
     \[
-        \int_0^x \sin(s)\dd s \le \int_0^x s\dd s \iff \Bigl[-\cos(s)\Bigr]_0^x \le \frac{x^2}{2} \iff 1 - \cos(x) \le \frac{x^2}{2} \iff \boxed{1 - \frac{x^2}{2} \le \cos(x) \le 1}.
+        \int_0^x \sin(s)\dd s \le \int_0^x s\dd s \iff 1 - \cos(x) \le \frac{x^2}{2} \iff \boxed{1 - \frac{x^2}{2} \le \cos(x) \le 1}.
     \]
     \item \textbf{Étape 3 :} Intégrons à nouveau $1 - \frac{s^2}{2} \le \cos(s)$ sur $[0, x]$ ($x \ge 0$) :
     \[
@@ -637,7 +645,7 @@ Posons le changement de variable $y = e^x > 0 \implies \mathrm{d}y = e^x\dd x$. 
 \paragraph{Corrigé de l'Exercice 7.4 (Aire comprise entre une parabole et une droite) :}
 Cherchons d'abord les points d'intersection des deux courbes : $4 - x^2 = x + 2 \iff x^2 + x - 2 = (x + 2)(x - 1) = 0 \iff x = -2$ ou $x = 1$. Sur $[-2, 1]$, la parabole $y_{\text{haut}} = 4 - x^2$ est au-dessus de la droite $y_{\text{bas}} = x + 2$. L'aire vaut donc :
 \[
-    \mathcal{A} = \int_{-2}^1 \bigl((4 - x^2) - (x + 2)\bigr)\dd x = \int_{-2}^1 \bigl(2 - x - x^2\bigr)\dd x = \left[2x - \frac{x^2}{2} - \frac{x^3}{3}\right]_{-2}^1 = \left(2 - \frac{1}{2} - \frac{1}{3}\right) - \left(-4 - 2 + \frac{8}{3}\right) = \boxed{\frac{9}{2}}.
+    \mathcal{A} = \int_{-2}^1 \bigl(2 - x - x^2\bigr)\dd x = \left[2x - \frac{x^2}{2} - \frac{x^3}{3}\right]_{-2}^1 = \left(2 - \frac{1}{2} - \frac{1}{3}\right) - \left(-4 - 2 + \frac{8}{3}\right) = \boxed{\frac{9}{2}}.
 \]
 
 \paragraph{Corrigé de l'Exercice 7.5 (Volumes du cône, de la sphère et de la calotte sphérique) :}
@@ -648,11 +656,11 @@ Cherchons d'abord les points d'intersection des deux courbes : $4 - x^2 = x + 2 
     \]
     \item \textbf{Sphère de rayon $R$ :} Engendrée par la rotation du demi-cercle $y(x) = \sqrt{R^2 - x^2}$ sur $[-R, R]$ (fonction paire) :
     \[
-        V_{\text{sphère}} = \pi \int_{-R}^R \bigl(R^2 - x^2\bigr)\dd x = 2\pi \int_0^R \bigl(R^2 - x^2\bigr)\dd x = 2\pi\left[R^2 x - \frac{x^3}{3}\right]_0^R = 2\pi\left(R^3 - \frac{R^3}{3}\right) = \boxed{\frac{4}{3}\pi R^3}.
+        V_{\text{sphère}} = 2\pi \int_0^R \bigl(R^2 - x^2\bigr)\dd x = 2\pi\left[R^2 x - \frac{x^3}{3}\right]_0^R = 2\pi\left(R^3 - \frac{R^3}{3}\right) = \boxed{\frac{4}{3}\pi R^3}.
     \]
     \item \textbf{Calotte sphérique de hauteur $h$ (entre $x = R - h$ et $x = R$) :}
     \[
-        V_{\text{calotte}} = \pi \int_{R-h}^R \bigl(R^2 - x^2\bigr)\dd x = \pi\left[R^2 x - \frac{x^3}{3}\right]_{R-h}^R = \pi\left[\frac{2}{3}R^3 - R^2(R-h) + \frac{(R-h)^3}{3}\right] = \boxed{\pi h^2\left(R - \frac{h}{3}\right)}.
+        V_{\text{calotte}} = \pi \int_{R-h}^R \bigl(R^2 - x^2\bigr)\dd x = \pi\left[\frac{2}{3}R^3 - R^2(R-h) + \frac{(R-h)^3}{3}\right] = \boxed{\pi h^2\left(R - \frac{h}{3}\right)}.
     \]
 \end{enumerate}
 

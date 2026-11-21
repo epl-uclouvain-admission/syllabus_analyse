@@ -38,8 +38,9 @@ Si $f$ est dérivable en $x_0 \in \D$, alors le graphe de $f$ admet au point $P\
 \begin{attention}[Lien fondamental entre dérivabilité et continuité]
 \textbf{Toute fonction dérivable en un point $a$ est nécessairement continue en $a$ :}
 \[
-    \boxed{f \text{ dérivable en } a \implies f \text{ continue en } a} \qquad \text{et par contraposée :} \qquad \boxed{f \text{ non continue en } a \implies f \text{ non dérivable en } a}.
+    \boxed{f \text{ dérivable en } a \implies f \text{ continue en } a}
 \]
+et par contraposée : $\boxed{f \text{ non continue en } a \implies f \text{ non dérivable en } a}$.\\
 \textbf{Attention : la réciproque est FAUSSE !} Une fonction peut être parfaitement continue en un point $a$ sans y être dérivable. Les deux contre-exemples classiques à connaître par cœur (notamment pour tester les hypothèses du théorème de Rolle, comme en \textbf{Juillet 2023 -- Série 1, Question 5}) sont :
 \begin{itemize}
     \item $x \mapsto |x|$ en $x = 0$ (continue en $0$, mais point anguleux : pente $-1$ à gauche et $+1$ à droite).
@@ -82,7 +83,7 @@ Si $f$ est dérivable en $x_0 \in \D$, alors le graphe de $f$ admet au point $P\
     \]
     Pour que $f'$ soit continue en $0$, il faut que $\lim_{x \to 0} f'(x) = f'(0) = 0$. Calculons cette limite (de forme $\frac{0}{0}$) par la règle de L'Hospital :
     \[
-        \lim_{x \to 0} f'(x) = \lim_{x \to 0} \frac{x\cos(x) - \sin(x)}{x^2} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{\bigl(\cos(x) - x\sin(x)\bigr) - \cos(x)}{2x} = \lim_{x \to 0} \frac{-\cancel{x}\sin(x)}{2\cancel{x}} = \lim_{x \to 0} \frac{-\sin(x)}{2} = 0 = f'(0).
+        \lim_{x \to 0} f'(x) = \lim_{x \to 0} \frac{x\cos(x) - \sin(x)}{x^2} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{-x\sin(x)}{2x} = \lim_{x \to 0} \frac{-\sin(x)}{2} = 0 = f'(0).
     \]
     La dérivée $f'$ est donc bien continue en $0$ (on dit que $f$ est au moins de classe $C^1$ sur $\R$).
 \end{enumerate}
@@ -121,7 +122,9 @@ Soient $u$ et $v$ deux fonctions dérivables et $c \in \R$ une constante :
 
 \begin{theoreme}[Tableau des dérivées des fonctions élémentaires et composées]
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
+{\small
+\renewcommand{\arraystretch}{1.55}
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Fonction simple $f(x)$} & \textbf{Dérivée $f'(x)$} & \textbf{Version composée $\bigl(f(u(x))\bigr)'$} \\
@@ -135,13 +138,14 @@ $a^x = e^{x\ln a} \quad (a > 0)$ & $(\ln a)\,a^x$ & $\bigl(a^{u(x)}\bigr)' = (\l
 $\ln(x)$ (ou $\ln(|x|)$) & $\dfrac{1}{x}$ & $\Bigl(\ln\bigl(|u(x)|\bigr)\Bigr)' = \dfrac{u'(x)}{u(x)}$ \\
 $\sin(x)$ & $\cos(x)$ & $\bigl(\sin(u(x))\bigr)' = u'(x)\,\cos\bigl(u(x)\bigr)$ \\
 $\cos(x)$ & $-\sin(x)$ & $\bigl(\cos(u(x))\bigr)' = -u'(x)\,\sin\bigl(u(x)\bigr)$ \\
-$\tan(x)$ & $\dfrac{1}{\cos^2(x)} = 1 + \tan^2(x)$ & $\bigl(\tan(u(x))\bigr)' = \dfrac{u'(x)}{\cos^2(u(x))} = u'(x)\bigl(1+\tan^2(u(x))\bigr)$ \\
+$\tan(x)$ & $\dfrac{1}{\cos^2(x)} = 1 + \tan^2(x)$ & $\bigl(\tan(u)\bigr)' = \dfrac{u'(x)}{\cos^2(u)} = u'(x)\bigl(1+\tan^2(u)\bigr)$ \\
 $\cot(x)$ & $-\dfrac{1}{\sin^2(x)} = -\bigl(1 + \cot^2(x)\bigr)$ & $\bigl(\cot(u(x))\bigr)' = -\dfrac{u'(x)}{\sin^2(u(x))}$ \\
 $\arcsin(x) \quad (|x| < 1)$ & $\dfrac{1}{\sqrt{1 - x^2}}$ & $\bigl(\arcsin(u(x))\bigr)' = \dfrac{u'(x)}{\sqrt{1 - u(x)^2}}$ \\
 $\arccos(x) \quad (|x| < 1)$ & $-\dfrac{1}{\sqrt{1 - x^2}}$ & $\bigl(\arccos(u(x))\bigr)' = -\dfrac{u'(x)}{\sqrt{1 - u(x)^2}}$ \\
 $\arctan(x) \quad (x \in \R)$ & $\dfrac{1}{1 + x^2}$ & $\bigl(\arctan(u(x))\bigr)' = \dfrac{u'(x)}{1 + u(x)^2}$ \\
 \bottomrule
 \end{tabular}
+}
 \end{center}
 \end{theoreme}
 
@@ -171,7 +175,7 @@ C'est exactement cette méthode qui a été demandée en \textbf{Septembre 2026 
     \]
     d'où, pour tout $y > -e^{-1}$ (c'est-à-dire $W_0(y) > -1$) :
     \[
-        \boxed{W'_0(y) = \frac{e^{-W_0(y)}}{1 + W_0(y)} = \bigl(1 + W_0(y)\bigr)^{-1} e^{-W_0(y)}} \quad \left(\text{ou encore } \frac{1}{e^{W_0(y)} + y} = \frac{W_0(y)}{y(1+W_0(y))} \text{ pour } y \neq 0\right).
+        \boxed{W'_0(y) = \frac{e^{-W_0(y)}}{1 + W_0(y)} = \bigl(1 + W_0(y)\bigr)^{-1} e^{-W_0(y)}} = \frac{1}{e^{W_0(y)} + y} = \frac{W_0(y)}{y\bigl(1+W_0(y)\bigr)}.
     \]
     \item \emph{Méthode 2 (Formule de la dérivée d'une fonction réciproque) :} Comme $f(x) = x\,e^x$, on a $f'(x) = (1+x)e^x$. La formule $g'(y) = \frac{1}{f'(g(y))}$ appliquée à $g = W_0$ donne directement :
     \[
@@ -204,9 +208,9 @@ Ces trois superbes questions d'examen reposent toutes sur le même principe : \t
         \]
         Sa dérivée étant identiquement nulle sur l'intervalle $I$, la fonction $f^2(x) + f'^2(x)$ est constante sur $I$, et cette constante est positive ou nulle comme somme de deux carrés : $f^2(x) + f'^2(x) = k^2$.
         \item On pose $g(x) = \arcsin\left(\dfrac{f(x)}{k}\right)$ (pour $k > 0$). Calculer et simplifier $g'(x)$, puis en déduire $f(x)$.\\
-        \emph{Résolution :} Par la dérivée composée de $\arcsin(u(x))$ :
+        \emph{Résolution :} Par la dérivée composée de $\arcsin(u(x))$ et comme $f'(x) \ge 0 \implies \sqrt{f'^2(x)} = f'(x)$ :
         \[
-            g'(x) = \frac{1}{\sqrt{1 - \left(\dfrac{f(x)}{k}\right)^2}} \cdot \frac{f'(x)}{k} = \frac{f'(x)}{\sqrt{k^2 - f^2(x)}} = \frac{f'(x)}{\sqrt{f'^2(x)}} = \frac{f'(x)}{f'(x)} = \boxed{1} \quad \bigl(\text{car } f'(x) \ge 0 \implies \sqrt{f'^2(x)} = f'(x)\bigr).
+            g'(x) = \frac{1}{\sqrt{1 - \left(\dfrac{f(x)}{k}\right)^2}} \cdot \frac{f'(x)}{k} = \frac{f'(x)}{\sqrt{k^2 - f^2(x)}} = \frac{f'(x)}{\sqrt{f'^2(x)}} = \frac{f'(x)}{f'(x)} = \boxed{1}.
         \]
         Dès lors, $g'(x) = 1 \implies g(x) = \arcsin\left(\frac{f(x)}{k}\right) = x + C \implies \boxed{f(x) = k\sin(x + C)}$.
     \end{enumerate}
@@ -217,7 +221,7 @@ Ces trois superbes questions d'examen reposent toutes sur le même principe : \t
     \]
     En intégrant entre $0$ et $x$ avec $f(0) = 1$ et $g(0) = 1$ ($\ln(g(0)) = \ln(1) = 0$), il vient :
     \[
-        \ln\bigl(g(x)\bigr) - \ln\bigl(g(0)\bigr) = \frac{1}{2}\bigl(f^2(x) - f^2(0)\bigr) \iff \ln\bigl(g(x)\bigr) = \frac{1}{2}\bigl(f^2(x) - 1\bigr) \implies \boxed{g(x) = e^{\frac{1}{2}(f^2(x) - 1)}}.
+        \ln\bigl(g(x)\bigr) - \ln\bigl(g(0)\bigr) = \frac{1}{2}\bigl(f^2(x) - f^2(0)\bigr) = \frac{1}{2}\bigl(f^2(x) - 1\bigr) \implies \boxed{g(x) = e^{\frac{1}{2}(f^2(x) - 1)}}.
     \]
     Comme $f(x) > 0 \implies f^2(x) > 0$, la croissance stricte de l'exponentielle donne $g(x) > e^{\frac{1}{2}(0-1)} = \boxed{e^{-1/2} = \dfrac{1}{\sqrt{e}}}$ (donc $C = e^{-1/2}$).
 \end{itemize}
@@ -248,7 +252,7 @@ et si la limite du quotient des dérivées $\lim_{x \to a} \dfrac{f'(x)}{g'(x)}$
     \item \textbf{Simplifiez algébriquement entre deux applications de L'Hospital !} Avant de réappliquer L'Hospital une deuxième fois, nettoyez l'expression $\frac{f'(x)}{g'(x)}$ (mettez au même dénominateur, remplacez $\lim \cos(x) = 1$, utilisez les propriétés de $\ln$...) : cela évite une explosion de dérivées de produits ou de quotients.
     \item \textbf{Transformez un produit $[0 \cdot \infty]$ en quotient avant L'Hospital :} Pour calculer $\lim_{x \to 0^+} x\ln^2(x)$ (Septembre 2025 Q1a) par L'Hospital, on fait passer $x$ au dénominateur sous la forme $1/x$ (jamais $\ln(x)$ au dénominateur !) :
     \[
-        \lim_{x \to 0^+} x\ln^2(x) = \lim_{x \to 0^+} \frac{\ln^2(x)}{1/x} \quad \left[\frac{\infty}{\infty}\right] \stackrel{\text{H}}{=} \lim_{x \to 0^+} \frac{2\ln(x)\cdot \frac{1}{x}}{-1/x^2} = \lim_{x \to 0^+} \frac{-2\ln(x)}{1/x} \quad \left[\frac{\infty}{\infty}\right] \stackrel{\text{H}}{=} \lim_{x \to 0^+} \frac{-2/x}{-1/x^2} = \lim_{x \to 0^+} 2x = 0.
+        \lim_{x \to 0^+} x\ln^2(x) = \lim_{x \to 0^+} \frac{\ln^2(x)}{1/x} \stackrel{\text{H}}{=} \lim_{x \to 0^+} \frac{2\ln(x)/x}{-1/x^2} = \lim_{x \to 0^+} \frac{-2\ln(x)}{1/x} \stackrel{\text{H}}{=} \lim_{x \to 0^+} 2x = 0.
     \]
 \end{enumerate}
 \end{attention}
@@ -278,7 +282,7 @@ Simplifions d'abord le numérateur par la propriété du logarithme d'un produit
 \]
 Calculons les dérivées $f'(x)$ et $g'(x)$ pour tout $x > -1$ :
 \[
-    f'(x) = \frac{1}{2\sqrt{1+x}} - 1 \qquad \text{et} \qquad g'(x) = \frac{1}{2\sqrt{1 + \sqrt{1+x}}} \cdot \frac{1}{2\sqrt{1+x}} - 1 = \frac{1}{4\sqrt{1+\sqrt{1+x}}\,\sqrt{1+x}} - 1.
+    f'(x) = \frac{1}{2\sqrt{1+x}} - 1 \quad \text{et} \quad g'(x) = \frac{1}{2\sqrt{1 + \sqrt{1+x}}} \cdot \frac{1}{2\sqrt{1+x}} - 1 = \frac{1}{4\sqrt{1+\sqrt{1+x}}\,\sqrt{1+x}} - 1.
 \]
 Or, en $x = x_0$, par définition de la racine $x_0$, on a $\sqrt{1+x_0} = x_0$ et $\sqrt{1 + \sqrt{1+x_0}} = \sqrt{1+x_0} = x_0$ ! En remplaçant chaque radical en $x_0$ par $x_0$, les deux dérivées se simplifient merveilleusement :
 \[
@@ -296,7 +300,7 @@ En effectuant le quotient et en simplifiant par $(1 - 2x_0) \neq 0$ et par $2x_0
 \begin{itemize}
     \item \emph{Méthode 1 (par la règle de L'Hospital deux fois) :} C'est une forme $\left[\frac{0}{0}\right]$.
     \[
-        \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2x\cos(x^2)}{\tan(x) + \dfrac{x}{\cos^2(x)}} \quad \left[\frac{0}{0}\right] \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2\cos(x^2) - 4x^2\sin(x^2)}{\dfrac{2}{\cos^2(x)} + \dfrac{2x\sin(x)}{\cos^3(x)}} = \frac{2 \cdot 1 - 0}{\dfrac{2}{1} + 0} = \boxed{1}.
+        \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2x\cos(x^2)}{\tan(x) + \dfrac{x}{\cos^2(x)}} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2\cos(x^2) - 4x^2\sin(x^2)}{\dfrac{2}{\cos^2(x)} + \dfrac{2x\sin(x)}{\cos^3(x)}} = \frac{2}{2} = \boxed{1}.
     \]
     \item \emph{Méthode 2 (beaucoup plus rapide : décomposition en limites fondamentales ou L'Hospital séparé) :} En multipliant et divisant par $x$ :
     \[
@@ -420,7 +424,7 @@ Alors il existe \textbf{au moins un} réel $c \in \,]a, b[$ tel que :
     Puisque $a < r_1 < b < r_2 < c$, on a $r_1 \neq r_2$ : $f'$ possède bien deux racines distinctes.
     \item \emph{Méthode 2 (par le TVI sur $f'$) :} Par la règle du produit, $f'(x) = (x-b)(x-c) + (x-a)(x-c) + (x-a)(x-b)$. Évaluons le signe de $f'$ en $a, b, c$ (sachant que $a < b < c$) :
     \[
-        f'(a) = \underbrace{(a-b)}_{<0}\underbrace{(a-c)}_{<0} > 0, \qquad f'(b) = \underbrace{(b-a)}_{>0}\underbrace{(b-c)}_{<0} < 0, \qquad f'(c) = \underbrace{(c-a)}_{>0}\underbrace{(c-b)}_{>0} > 0.
+        f'(a) = \underbrace{(a-b)}_{<0}\underbrace{(a-c)}_{<0} > 0, \;\; f'(b) = \underbrace{(b-a)}_{>0}\underbrace{(b-c)}_{<0} < 0, \;\; f'(c) = \underbrace{(c-a)}_{>0}\underbrace{(c-b)}_{>0} > 0.
     \]
     La fonction continue $f'$ change de signe sur $[a, b]$ et sur $[b, c]$ : par le TVI, elle s'annule dans $]a, b[$ et dans $]b, c[$.
     \item \emph{Méthode 3 (algébrique par le discriminant $\Delta$) :} En développant $f'(x) = 3x^2 - 2(a+b+c)x + (ab+bc+ac)$, son discriminant vaut $\Delta = 4(a+b+c)^2 - 12(ab+bc+ac) = 2\bigl[(a-b)^2 + (b-c)^2 + (a-c)^2\bigr] > 0$ car $a < b < c$.
@@ -449,7 +453,7 @@ Alors il existe \textbf{au moins un} réel $c \in \,]a, b[$ tel que :
 \emph{Aide :} examiner la valeur de $f$ pour certains entiers de l'intervalle.\\
 \emph{Résolution :} Le dénominateur $x^3 + 1$ ne s'annule qu'en $x = -1 \notin \left[-\frac{1}{2}, 2\right]$. La fraction rationnelle $f$ est donc de classe $C^\infty$ (continue et indéfiniment dérivable) sur $\left[-\frac{1}{2}, 2\right]$. Calculons les valeurs de $f$ aux bornes $-\frac{1}{2}$ et $2$, ainsi qu'aux entiers $0$ et $1$ de l'intervalle :
 \[
-    f\left(-\frac{1}{2}\right) = \frac{\frac{1}{4} - \frac{1}{2} + 2}{-\frac{1}{8} + 1} = \frac{7/4}{7/8} = 2, \qquad f(0) = \frac{2}{1} = 2, \qquad f(1) = \frac{1+1+2}{1+1} = \frac{4}{2} = 2, \qquad f(2) = \frac{4+2+2}{8+1} = \frac{8}{9}.
+    f\left(-\frac{1}{2}\right) = \frac{\frac{1}{4} - \frac{1}{2} + 2}{-\frac{1}{8} + 1} = \frac{7/4}{7/8} = 2, \quad f(0) = \frac{2}{1} = 2, \quad f(1) = \frac{4}{2} = 2, \quad f(2) = \frac{8}{9}.
 \]
 \begin{itemize}
     \item \textbf{(1)} Appliquons le \textbf{théorème des accroissements finis} à $f$ sur l'intervalle complet $\left[-\frac{1}{2}, 2\right]$ : il existe $c_1 \in \left]-\frac{1}{2}, 2\right[$ tel que :

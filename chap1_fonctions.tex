@@ -266,16 +266,19 @@ Pour éviter toute confusion entre la réciproque pour la composition et l'inver
 Bien qu'étudiées en détail dans le syllabus de Trigonométrie, les fonctions réciproques des fonctions trigonométriques interviennent régulièrement en Analyse (dans les calculs de primitives ou d'équations différentielles, comme en Septembre 2021 Q3b ou Septembre 2023 Q4). Retenons leur carte d'identité :
 
 \begin{center}
+{\small
 \renewcommand{\arraystretch}{1.45}
+\setlength{\tabcolsep}{4.5pt}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Fonction} & \textbf{Domaine $\D$} & \textbf{Ensemble image} & \textbf{Sens de variation} & \textbf{Relation de définition} \\
+\textbf{Fonction} & \textbf{Domaine $\D$} & \textbf{Image} & \textbf{Sens de variation} & \textbf{Relation de définition} \\
 \midrule
-$y = \arcsin(x)$ & $[-1, 1]$ & $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$ & Strictement croissante & $\sin(y) = x \text{ et } y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ \\
-$y = \arccos(x)$ & $[-1, 1]$ & $[0, \pi]$ & Strictement décroissante & $\cos(y) = x \text{ et } y \in [0, \pi]$ \\
-$y = \arctan(x)$ & $\R$ & $\left]-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right[$ & Strictement croissante & $\tan(y) = x \text{ et } y \in \left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ \\
+$y = \arcsin(x)$ & $[-1, 1]$ & $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$ & Strict. croissante & $\sin(y) = x \text{ et } y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ \\
+$y = \arccos(x)$ & $[-1, 1]$ & $[0, \pi]$ & Strict. décroissante & $\cos(y) = x \text{ et } y \in [0, \pi]$ \\
+$y = \arctan(x)$ & $\R$ & $\left]-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right[$ & Strict. croissante & $\tan(y) = x \text{ et } y \in \left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ \\
 \bottomrule
 \end{tabular}
+}
 \end{center}
 
 % ----------------------------------------------------------------------------
@@ -447,7 +450,7 @@ Comme le soulignent les solutionnaires officiels de l'UCLouvain (Juillet 2021 Q1
 \]
 En prenant le logarithme népérien des deux membres et en utilisant $\ln\left(\frac{\beta}{\alpha}\right) = -\ln\left(\frac{\alpha}{\beta}\right)$ :
 \[
-    (-\alpha + \beta)t = \ln\left(\frac{\beta}{\alpha}\right) \iff t = \frac{1}{\alpha - \beta}\ln\left(\frac{\alpha}{\beta}\right) = \frac{1}{1,0 - 0,2}\ln\left(\frac{1,0}{0,2}\right) = \frac{\ln(5)}{0,8} \simeq \frac{1,61}{0,8} = 2,0125\text{ heures}.
+    (-\alpha + \beta)t = \ln\left(\frac{\beta}{\alpha}\right) \iff t = \frac{1}{\alpha - \beta}\ln\left(\frac{\alpha}{\beta}\right) = \frac{1}{1,0 - 0,2}\ln\left(\frac{1,0}{0,2}\right) = \frac{\ln(5)}{0,8} \simeq 2,0125\text{ h}.
 \]
 \end{exemple}
 
@@ -497,6 +500,6 @@ En prenant le logarithme népérien des deux membres et en utilisant $\ln\left(\
     La fonction de Lambert, notée $W_0(y)$, est définie comme la fonction réciproque de la fonction $f(x) = x\,e^x$ restreinte à l'intervalle $I = [-1, +\infty[$. Ainsi, pour tout $x \in [-1, +\infty[$, on a $W_0(y) = x \iff y = x\,e^x$, et donc $W_0(y)\,e^{W_0(y)} = y$.
     \begin{enumerate}
         \item Sans calculatrice, déterminer les valeurs exactes de $W_0(0)$, $W_0(e)$ et $W_0(-e^{-1})$.
-        \item Sachant que $f(x) = x\,e^x$ est strictement croissante sur $I = [-1, +\infty[$ et que $\lim_{x \to +\infty} x\,e^x = +\infty$, déterminer le domaine de définition $D$ de $W_0(y)$, son sens de variation et préciser si $W_0$ est continue sur $D$.
+        \item Sachant que $f(x) = x\,e^x$ est strictement croissante sur l'intervalle $I = [-1, +\infty[$ et que $\lim_{x \to +\infty} x\,e^x = +\infty$, déterminer le domaine de définition $D$ de $W_0(y)$, son sens de variation et préciser si $W_0$ est continue sur $D$.
     \end{enumerate}
 \end{enumerate}

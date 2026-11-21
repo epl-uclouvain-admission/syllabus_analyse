@@ -40,7 +40,7 @@ Soit $f$ une fonction dérivable sur un intervalle ouvert $I \subset \D$ et soit
 \begin{enumerate}
     \item \textbf{Condition nécessaire du 1\ier{} ordre (Théorème de Fermat) :}
     \[
-        \boxed{\text{Si } f \text{ admet un extremum local en un point intérieur } x^* \in I, \text{ alors nécessairement } f'(x^*) = 0}.
+        \boxed{\text{Si } f \text{ a un extremum local en un point intérieur } x^* \in I, \text{ alors } f'(x^*) = 0}.
     \]
     \item \textbf{Condition suffisante du 1\ier{} ordre (changement de signe de $f'$) :} Soit $x^* \in I$ tel que $f'(x^*) = 0$ :
     \begin{itemize}
@@ -66,12 +66,12 @@ Soit $f$ une fonction deux fois dérivable sur un intervalle $I$ :
 \begin{enumerate}
     \item \textbf{Concavité positive (tournée vers le haut $\cup$, fonction convexe) :}
     \[
-        \boxed{f''(x) > 0 \text{ sur } I \implies f' \text{ est croissante} \implies \text{la concavité de } f \text{ est tournée vers le haut } (\cup)}.
+        \boxed{f''(x) > 0 \text{ sur } I \implies f' \text{ croissante} \implies \text{concavité tournée vers le haut } (\cup)}.
     \]
     Géométriquement, la courbe est située \textbf{au-dessus de toutes ses tangentes} sur $I$.
     \item \textbf{Concavité négative (tournée vers le bas $\cap$, fonction concave) :}
     \[
-        \boxed{f''(x) < 0 \text{ sur } I \implies f' \text{ est décroissante} \implies \text{la concavité de } f \text{ est tournée vers le bas } (\cap)}.
+        \boxed{f''(x) < 0 \text{ sur } I \implies f' \text{ décroissante} \implies \text{concavité tournée vers le bas } (\cap)}.
     \]
     Géométriquement, la courbe est située \textbf{en dessous de toutes ses tangentes} sur $I$.
     \item \textbf{Point d'inflexion (PI) :} Un point $x_0 \in \D$ (où $f$ est continue) est un \textbf{point d'inflexion} du graphe de $f$ si la fonction \textbf{change de sens de concavité} en passant par $x_0$ (c'est-à-dire si la dérivée seconde $f''(x)$ \textbf{s'annule en $x_0$ en changeant de signe} de part et d'autre de $x_0$). En un point d'inflexion, la courbe \textbf{traverse sa droite tangente}.
@@ -79,32 +79,32 @@ Soit $f$ une fonction deux fois dérivable sur un intervalle $I$ :
 \end{definition}
 
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=0.88, >=Stealth]
     % Concavité vers le haut (minimum)
     \begin{scope}[shift={(0,0)}]
         \draw[very thick, uclblue, domain=-1.5:1.5, samples=60] plot (\x, {0.65*(\x)^2 + 0.4});
         \draw[thick, defgreen] (-1.2,0.4) -- (1.2,0.4);
-        \fill[defgreen] (0,0.4) circle (2pt) node[below] {\small Min ($f'=0, f''>0$)};
-        \node[above, uclblue, font=\bfseries\small] at (0,2.1) {Concavité positive ($f'' > 0, \cup$)};
-        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {Courbe au-dessus de ses tangentes};
+        \fill[defgreen] (0,0.4) circle (2pt) node[below] {\footnotesize Min ($f'=0, f''>0$)};
+        \node[above, uclblue, font=\bfseries\footnotesize] at (0,2.1) {Concavité positive ($f'' > 0, \cup$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {Au-dessus des tangentes};
     \end{scope}
 
     % Concavité vers le bas (maximum)
-    \begin{scope}[shift={(5.3,0)}]
+    \begin{scope}[shift={(5.0,0)}]
         \draw[very thick, warnred, domain=-1.5:1.5, samples=60] plot (\x, {1.85 - 0.65*(\x)^2});
         \draw[thick, defgreen] (-1.2,1.85) -- (1.2,1.85);
-        \fill[defgreen] (0,1.85) circle (2pt) node[above] {\small Max ($f'=0, f''<0$)};
-        \node[above, warnred, font=\bfseries\small] at (0,2.4) {Concavité négative ($f'' < 0, \cap$)};
-        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {Courbe en dessous de ses tangentes};
+        \fill[defgreen] (0,1.85) circle (2pt) node[above] {\footnotesize Max ($f'=0, f''<0$)};
+        \node[above, warnred, font=\bfseries\footnotesize] at (0,2.4) {Concavité négative ($f'' < 0, \cap$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {En dessous des tangentes};
     \end{scope}
 
     % Point d'inflexion
-    \begin{scope}[shift={(10.6,0.9)}]
+    \begin{scope}[shift={(10.0,0.9)}]
         \draw[very thick, exorange, domain=-1.45:1.45, samples=60] plot (\x, {0.42*(\x)^3 + 0.15*\x});
         \draw[thick, dashed, darkgray] (-1.3,-0.195) -- (1.3,0.195);
-        \fill[exorange] (0,0) circle (2.2pt) node[below right] {\small PI ($f''=0$ change de signe)};
-        \node[above, exorange, font=\bfseries\small] at (0,1.5) {Point d'inflexion ($\cap \to \cup$)};
-        \node[below, darkgray, font=\footnotesize] at (0,-1.15) {La courbe traverse sa tangente};
+        \fill[exorange] (0,0) circle (2.2pt) node[below right] {\footnotesize PI ($f''=0$)};
+        \node[above, exorange, font=\bfseries\footnotesize] at (0,1.5) {Point d'inflexion ($\cap \to \cup$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-1.15) {Traverse sa tangente};
     \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -179,7 +179,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     \begin{itemize}
         \item Les énoncés récents (2025--2026) demandent explicitement de présenter les lignes du tableau dans l'\textbf{ordre logique} :
         \[
-            \mathbf{1.\; x} \quad \longrightarrow \quad \mathbf{2.\; f'(x)} \;\;(\text{signe et zéros}) \quad \longrightarrow \quad \mathbf{3.\; f''(x)} \;\;(\text{signe et zéros}) \quad \longrightarrow \quad \mathbf{4.\; f(x)} \;\;(\text{valeurs, } \nearrow\searrow \text{ et } \cup\cap).
+            \mathbf{1.\; x} \;\to\; \mathbf{2.\; f'(x)} \;\text{(signe)} \;\to\; \mathbf{3.\; f''(x)} \;\text{(signe)} \;\to\; \mathbf{4.\; f(x)} \;\text{(valeurs, } \nearrow\searrow, \cup\cap\text{)}.
         \]
         \item Indiquez dans la dernière ligne les mentions \textbf{max}, \textbf{min}, \textbf{inflexion (PI)}, \textbf{racine} et \textbf{AV}.
     \end{itemize}
@@ -222,15 +222,17 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     \item \textbf{Dérivée première $f'(x)$ :} Par la règle du quotient avec $(\cos^2 x)' = -2\cos(x)\sin(x)$ :
     \begin{align*}
         f'(x) &= \frac{-2\cos(x)\sin(x)\bigl(1+\cos(x)\bigr) - \cos^2(x)\bigl(-\sin(x)\bigr)}{\bigl(1+\cos(x)\bigr)^2} \\
-        &= \frac{\cos(x)\sin(x)\bigl[-2\bigl(1+\cos(x)\bigr) + \cos(x)\bigr]}{\bigl(1+\cos(x)\bigr)^2} = \boxed{-\frac{\cos(x)\sin(x)\bigl(2 + \cos(x)\bigr)}{\bigl(1+\cos(x)\bigr)^2}} = -\frac{\sin(2x)\bigl(2+\cos(x)\bigr)}{2\bigl(1+\cos(x)\bigr)^2}.
+        &= \boxed{-\frac{\cos(x)\sin(x)\bigl(2 + \cos(x)\bigr)}{\bigl(1+\cos(x)\bigr)^2}} = -\frac{\sin(2x)\bigl(2+\cos(x)\bigr)}{2\bigl(1+\cos(x)\bigr)^2}.
     \end{align*}
     \item \textbf{Signe de $f'(x)$ et extrema locaux :} Sur tout le domaine $\D$, on a $\bigl(1+\cos(x)\bigr)^2 > 0$ et $2 + \cos(x) \ge 2 - 1 = 1 > 0$. Le signe de $f'(x)$ est donc exactement le signe de $-\cos(x)\sin(x) = -\frac{1}{2}\sin(2x)$.
     \[
-        f'(x) = 0 \text{ dans } \D \iff \sin(x) = 0 \text{ ou } \cos(x) = 0 \quad (\text{avec } \cos x \neq -1) \iff x = 2k\pi \text{ ou } x = \frac{\pi}{2} + k\pi \;\; (k \in \Z).
+        f'(x) = 0 \iff \sin(x) = 0 \text{ ou } \cos(x) = 0 \iff x = 2k\pi \text{ ou } x = \frac{\pi}{2} + k\pi \;\; (k \in \Z).
     \]
     Dressons le tableau de signes et de variations sur $[-\pi, \pi]$ :
     \begin{center}
+    {\small
     \renewcommand{\arraystretch}{1.35}
+    \setlength{\tabcolsep}{4pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
     \hline
     $x$ & $-\pi$ & & $-\dfrac{\pi}{2}$ & & $0$ & & $\dfrac{\pi}{2}$ & & $\pi$ \\ \hline\hline
@@ -239,6 +241,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     $f'(x)$ & AV & $-$ & $0$ & $+$ & $0$ & $-$ & $0$ & $+$ & AV \\ \hline
     $f(x)$ & $\text{AV}\;(+\infty)$ & $\searrow$ & $\mathbf{0}$ (min) & $\nearrow$ & $\mathbf{\dfrac{1}{2}}$ (max) & $\searrow$ & $\mathbf{0}$ (min) & $\nearrow$ & $(+\infty)\;\text{AV}$ \\ \hline
     \end{tabular}
+    }
     \end{center}
     La fonction admet donc :
     \begin{itemize}
@@ -300,7 +303,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     \]
     (En $x \to -1^+$, $\lim_{x \to -1^+} f'(x) = +\infty$ : demi-tangente verticale au bord gauche $x = -1$). Cherchons où $f'$ s'annule :
     \[
-        f'(x) = 0 \iff \frac{1}{2\sqrt{1+x}} = 1 \iff \sqrt{1+x} = \frac{1}{2} \iff 1 + x = \frac{1}{4} \iff \boxed{x = -\frac{3}{4} = -0,75 \in \D}.
+        f'(x) = 0 \iff \sqrt{1+x} = \frac{1}{2} \iff 1 + x = \frac{1}{4} \iff \boxed{x = -\frac{3}{4} = -0,75}.
     \]
     En ce point $x = -\frac{3}{4}$, la fonction vaut $f\left(-\frac{3}{4}\right) = \sqrt{\frac{1}{4}} - \left(-\frac{3}{4}\right) = \frac{1}{2} + \frac{3}{4} = \dfrac{5}{4} = 1,25$.
     \item \textbf{Dérivée seconde $f''(x)$ :} En dérivant $f'(x) = \frac{1}{2}(1+x)^{-1/2} - 1$ pour $x > -1$ :
@@ -310,15 +313,17 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     La dérivée seconde est \textbf{strictement négative partout} sur $]-1, +\infty[$ : la concavité est toujours tournée vers le bas ($\cap$), il n'y a \textbf{aucun point d'inflexion}, et le point critique $x = -\frac{3}{4}$ est un \textbf{maximum global}.
     \item \textbf{Tableau de variations et de valeurs sur $[-1, 2]$ :}
     \begin{center}
+    {\scriptsize
     \renewcommand{\arraystretch}{1.45}
-    \setlength{\tabcolsep}{4.5pt}
+    \setlength{\tabcolsep}{1.4pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-    $x$ & $-1$ & & $-\dfrac{3}{4}$ & & $0$ & & $1$ & & $x_1 = \dfrac{1+\sqrt{5}}{2} \simeq 1,618$ & & $2$ \\ \hline\hline
+    $x$ & $-1$ & & $-\dfrac{3}{4}$ & & $0$ & & $1$ & & $x_1 = \dfrac{1+\sqrt{5}}{2}$ & & $2$ \\ \hline\hline
     $f'(x)$ & $+\infty$ & $+$ & $0$ & $-$ & $-\dfrac{1}{2}$ & $-$ & $\dfrac{1}{2\sqrt{2}}-1 \simeq -0,65$ & $-$ & $\dfrac{1}{2x_1}-1 < 0$ & $-$ & $\dfrac{1}{2\sqrt{3}}-1 \simeq -0,71$ \\ \hline
     $f''(x)$ & $-\infty$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ \\ \hline
-    $f(x)$ & $1$ & $\nearrow$ & $\mathbf{\dfrac{5}{4} = 1,25}$ (max) & $\searrow$ & $1$ & $\searrow$ & $\sqrt{2}-1 \simeq 0,414$ & $\searrow$ & $\mathbf{0}$ (racine) & $\searrow$ & $\sqrt{3}-2 \simeq -0,268$ \\ \hline
+    $f(x)$ & $1$ & $\nearrow$ & $\mathbf{\dfrac{5}{4} = 1,25}$ (max) & $\searrow$ & $1$ & $\searrow$ & $\sqrt{2}-1 \simeq 0,41$ & $\searrow$ & $\mathbf{0}$ (racine) & $\searrow$ & $\sqrt{3}-2 \simeq -0,27$ \\ \hline
     \end{tabular}
+    }
     \end{center}
     \item \textbf{Esquisse graphique sur $[-1, 2]$ :}
     \begin{center}
@@ -371,13 +376,14 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     \item \textbf{Domaine :} Vu à l'Exemple du Chapitre 1 : $\sin(x) + \cos(x) = \sqrt{2}\cos\left(x - \frac{\pi}{4}\right) > 0 \iff x \in \,]-\frac{\pi}{4} + 2k\pi,\; \frac{3\pi}{4} + 2k\pi[$. Dans $[-\pi, \pi]$, la partie du domaine est l'intervalle ouvert $\left]-\dfrac{\pi}{4}, \dfrac{3\pi}{4}\right[$.
     \item \textbf{Dérivée première $f'(x)$ :} En dérivant terme à terme et en mettant au même dénominateur :
     \[
-        f'(x) = 1 + \frac{\cos(x) - \sin(x)}{\sin(x) + \cos(x)} = \frac{\bigl(\sin(x) + \cos(x)\bigr) + \bigl(\cos(x) - \sin(x)\bigr)}{\sin(x) + \cos(x)} = \boxed{\frac{2\cos(x)}{\sin(x) + \cos(x)}}.
+        f'(x) = 1 + \frac{\cos(x) - \sin(x)}{\sin(x) + \cos(x)} = \frac{\sin(x) + \cos(x) + \cos(x) - \sin(x)}{\sin(x) + \cos(x)} = \boxed{\frac{2\cos(x)}{\sin(x) + \cos(x)}}.
     \]
     Sur $\left]-\frac{\pi}{4}, \frac{3\pi}{4}\right[$, le dénominateur $\sin(x) + \cos(x)$ est strictement positif. Donc $f'(x)$ a le même signe que $\cos(x)$, et s'annule uniquement en $\cos(x) = 0 \iff \boxed{x = \dfrac{\pi}{2}}$ (avec $f'(x) > 0$ sur $\left]-\frac{\pi}{4}, \frac{\pi}{2}\right[$ et $f'(x) < 0$ sur $\left]\frac{\pi}{2}, \frac{3\pi}{4}\right[$).
     \item \textbf{Dérivée seconde $f''(x)$ :} Dérivons le quotient $f'(x) = \dfrac{2\cos(x)}{\sin(x)+\cos(x)}$ :
-    \[
-        f''(x) = 2\,\frac{-\sin(x)\bigl(\sin(x)+\cos(x)\bigr) - \cos(x)\bigl(\cos(x)-\sin(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} = \frac{2\bigl(-\sin^2(x) - \cos^2(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} = \boxed{-\frac{2}{\bigl(\sin(x)+\cos(x)\bigr)^2} < 0}.
-    \]
+    \begin{align*}
+        f''(x) &= 2\,\frac{-\sin(x)\bigl(\sin(x)+\cos(x)\bigr) - \cos(x)\bigl(\cos(x)-\sin(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} \\
+        &= \frac{2\bigl(-\sin^2(x) - \cos^2(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} = \boxed{-\frac{2}{\bigl(\sin(x)+\cos(x)\bigr)^2} < 0}.
+    \end{align*}
     (On peut aussi l'écrire $-\dfrac{2}{1 + \sin(2x)}$ car $(\sin x + \cos x)^2 = \sin^2 x + \cos^2 x + 2\sin x\cos x = 1 + \sin(2x)$).
     La dérivée seconde est \textbf{strictement négative partout} : la concavité est négative ($\cap$) sur tout l'intervalle, sans point d'inflexion.
     \item \textbf{Comportement aux bornes, racines et tableau de variations sur $\left]-\frac{\pi}{4}, \frac{3\pi}{4}\right[$ :}
@@ -455,7 +461,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     \]
     (Notons qu'en $x \to 0^+$, $\lim_{x \to 0^+} f'(x) = (-\infty)(-\infty) = +\infty$ : demi-tangente verticale en $0^+$).
     \[
-        f'(x) = 0 \iff \ln(x) = 0 \;\text{ ou }\; \ln(x) = -2 \iff \boxed{x = 1 \;\text{ ou }\; x = e^{-2} = \frac{1}{e^2} \simeq (0,368)^2 \simeq 0,135}.
+        f'(x) = 0 \iff \ln(x) = 0 \;\text{ ou }\; \ln(x) = -2 \iff \boxed{x = 1 \;\text{ ou }\; x = e^{-2} = \frac{1}{e^2} \simeq 0,135}.
     \]
     \item \textbf{Dérivée seconde $f''(x)$ et ses racines :} En dérivant $f'(x) = \ln^2(x) + 2\ln(x)$ :
     \[
@@ -473,7 +479,9 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
         \item En $x = 2$ (bord droit du tracé) : $f(2) = 2\ln^2(2) \simeq 2 \times (0,693)^2 \simeq 2 \times 0,480 = \mathbf{0,960}$.
     \end{itemize}
     \begin{center}
+    {\footnotesize
     \renewcommand{\arraystretch}{1.4}
+    \setlength{\tabcolsep}{2.8pt}
     \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
     \hline
     $x$ & $0$ & & $e^{-2} \simeq 0,135$ & & $e^{-1} \simeq 0,368$ & & $1$ & \\ \hline\hline
@@ -481,6 +489,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     $f''(x)$ & $-\infty$ & $-$ & $-2e^2 < 0$ & $-$ & $0$ & $+$ & $2 > 0$ & $+$ \\ \hline
     $f(x)$ & $\lim = 0$ & $\nearrow\;\cap$ & $\mathbf{\dfrac{4}{e^2} \simeq 0,542}$ (max) & $\searrow\;\cap$ & $\mathbf{\dfrac{1}{e} \simeq 0,368}$ (PI) & $\searrow\;\cup$ & $\mathbf{0}$ (min \& racine) & $\nearrow\;\cup$ \\ \hline
     \end{tabular}
+    }
     \end{center}
     \item \textbf{Esquisse graphique sur $]0, 2]$ :}
     \begin{center}
@@ -530,7 +539,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Limite en $0^+$ :} En développant $f(x)$ :
     \[
-        \lim_{x \to 0^+} f(x) = \frac{1}{2}\lim_{x \to 0^+} \bigl(x\ln(x)\bigr)^2 - \frac{1}{2}\lim_{x \to 0^+} \bigl(x^2\ln(x)\bigr) + \frac{1}{4}\lim_{x \to 0^+} x^2 = \frac{1}{2}(0)^2 - \frac{1}{2}(0) + \frac{1}{4}(0) = \boxed{0}.
+        \lim_{x \to 0^+} f(x) = \frac{1}{2}\lim_{x \to 0^+} \bigl(x\ln(x)\bigr)^2 - \frac{1}{2}\lim_{x \to 0^+} \bigl(x^2\ln(x)\bigr) + \frac{1}{4}\lim_{x \to 0^+} x^2 = 0 - 0 + 0 = \boxed{0}.
     \]
     (De plus, comme le trinôme $u^2 - u + \frac{1}{2} = \left(u - \frac{1}{2}\right)^2 + \frac{1}{4} \ge \frac{1}{4} > 0$ ne s'annule jamais, $f$ ne possède \textbf{aucune racine} sur $]0, +\infty[$ !).
     \item \textbf{Dérivée première $f'(x)$ (simplification remarquable !) :} Par la règle du produit :
@@ -558,7 +567,9 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
         \item En $x = 1$ : $f'(1) = 0$, $f''(1) = 0$ et $f(1) = \frac{1}{2}\left(0 - 0 + \frac{1}{2}\right) = \dfrac{1}{4} = \mathbf{0,250}$.
     \end{itemize}
     \begin{center}
+    {\small
     \renewcommand{\arraystretch}{1.4}
+    \setlength{\tabcolsep}{4pt}
     \begin{tabular}{|c||c|c|c|c|c|c|}
     \hline
     $x$ & $\text{limite } 0$ & & $e^{-2} \simeq 0,135$ & & $1$ & \\ \hline\hline
@@ -566,6 +577,7 @@ En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum l
     $f''(x)$ & $+\infty$ & $+$ & $0$ & $-$ & $0$ & $+$ \\ \hline
     $f(x)$ & $0$ & $\nearrow\;\cup$ & $\mathbf{\dfrac{13}{4}e^{-4} \simeq 0,059}$ (PI) & $\nearrow\;\cap$ & $\mathbf{\dfrac{1}{4} = 0,250}$ (PI tang. horiz.) & $\nearrow\;\cup$ \\ \hline
     \end{tabular}
+    }
     \end{center}
     \item \textbf{Esquisse graphique sur $]0, 2]$ :}
     \begin{center}

@@ -32,24 +32,27 @@ En lisant à l'envers le tableau des dérivées du Chapitre 3 (et la règle de d
 
 \begin{theoreme}[Formulaire des primitives immédiates et composées ($C \in \R$)]
 \begin{center}
+{\footnotesize
 \renewcommand{\arraystretch}{1.65}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}ll@{}}
 \toprule
 \textbf{Forme élémentaire $\displaystyle\int f(x)\dd x$} & \textbf{Forme composée directe $\displaystyle\int f\bigl(u(x)\bigr)\,u'(x)\dd x$} \\
 \midrule
-$\displaystyle\int x^p\dd x = \frac{x^{p+1}}{p+1} + C \quad (p \neq -1)$ & $\displaystyle\int \bigl(u(x)\bigr)^p\,u'(x)\dd x = \frac{\bigl(u(x)\bigr)^{p+1}}{p+1} + C \quad (p \neq -1)$ \\
-$\displaystyle\int \frac{1}{x}\dd x = \ln(|x|) + C \quad (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{u(x)}\dd x = \ln\bigl(|u(x)|\bigr) + C$ \\
-$\displaystyle\int \frac{1}{\sqrt{x}}\dd x = 2\sqrt{x} + C \quad (x > 0)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{u(x)}}\dd x = 2\sqrt{u(x)} + C \quad \left(\text{ou } \int \frac{u'}{2\sqrt{u}}\dd x = \sqrt{u} + C\right)$ \\
-$\displaystyle\int \frac{1}{x^2}\dd x = -\frac{1}{x} + C \quad (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{\bigl(u(x)\bigr)^2}\dd x = -\frac{1}{u(x)} + C$ \\
+$\displaystyle\int x^p\dd x = \frac{x^{p+1}}{p+1} + C \;\; (p \neq -1)$ & $\displaystyle\int \bigl(u(x)\bigr)^p\,u'(x)\dd x = \frac{\bigl(u(x)\bigr)^{p+1}}{p+1} + C \;\; (p \neq -1)$ \\
+$\displaystyle\int \frac{1}{x}\dd x = \ln(|x|) + C \;\; (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{u(x)}\dd x = \ln\bigl(|u(x)|\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\sqrt{x}}\dd x = 2\sqrt{x} + C \;\; (x > 0)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{u(x)}}\dd x = 2\sqrt{u(x)} + C$ \\
+$\displaystyle\int \frac{1}{x^2}\dd x = -\frac{1}{x} + C \;\; (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{\bigl(u(x)\bigr)^2}\dd x = -\frac{1}{u(x)} + C$ \\
 $\displaystyle\int e^x\dd x = e^x + C$ & $\displaystyle\int u'(x)\,e^{u(x)}\dd x = e^{u(x)} + C$ \\
 $\displaystyle\int \cos(x)\dd x = \sin(x) + C$ & $\displaystyle\int u'(x)\,\cos\bigl(u(x)\bigr)\dd x = \sin\bigl(u(x)\bigr) + C$ \\
 $\displaystyle\int \sin(x)\dd x = -\cos(x) + C$ & $\displaystyle\int u'(x)\,\sin\bigl(u(x)\bigr)\dd x = -\cos\bigl(u(x)\bigr) + C$ \\
 $\displaystyle\int \frac{1}{\cos^2(x)}\dd x = \int \bigl(1+\tan^2(x)\bigr)\dd x = \tan(x) + C$ & $\displaystyle\int \frac{u'(x)}{\cos^2(u(x))}\dd x = \tan\bigl(u(x)\bigr) + C$ \\
 $\displaystyle\int \frac{1}{\sin^2(x)}\dd x = \int \bigl(1+\cot^2(x)\bigr)\dd x = -\cot(x) + C$ & $\displaystyle\int \frac{u'(x)}{\sin^2(u(x))}\dd x = -\cot\bigl(u(x)\bigr) + C$ \\
 $\displaystyle\int \frac{1}{1 + x^2}\dd x = \arctan(x) + C$ & $\displaystyle\int \frac{u'(x)}{1 + \bigl(u(x)\bigr)^2}\dd x = \arctan\bigl(u(x)\bigr) + C$ \\
-$\displaystyle\int \frac{1}{\sqrt{1 - x^2}}\dd x = \arcsin(x) + C \quad (|x| < 1)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{1 - \bigl(u(x)\bigr)^2}}\dd x = \arcsin\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\sqrt{1 - x^2}}\dd x = \arcsin(x) + C \;\; (|x| < 1)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{1 - \bigl(u(x)\bigr)^2}}\dd x = \arcsin\bigl(u(x)\bigr) + C$ \\
 \bottomrule
 \end{tabular}
+}
 \end{center}
 \end{theoreme}
 
@@ -110,7 +113,7 @@ Séparons $x^5\dd x = x^4 \cdot (x\dd x)$ et posons $\boxed{u = x^2 + 1}$, ce qu
 \end{align*}
 En mettant au même dénominateur $24u^4 = 24(x^2+1)^4$, on obtient la forme compacte :
 \[
-    g(x) = -\frac{6u^2 - 8u + 3}{24u^4} + C_1 = \boxed{-\frac{6x^4 + 4x^2 + 1}{24(x^2 + 1)^4} + C_1} \quad \left(\text{ou, avec } C_1 = \frac{1}{24} + C_2 : \;\; \boxed{\frac{x^6(x^2 + 4)}{24(x^2 + 1)^4} + C_2}\right).
+    g(x) = -\frac{6u^2 - 8u + 3}{24u^4} + C_1 = \boxed{-\frac{6x^4 + 4x^2 + 1}{24(x^2 + 1)^4} + C_1} \;\; \left(\text{ou } \boxed{\frac{x^6(x^2 + 4)}{24(x^2 + 1)^4} + C_2}\right).
 \]
 \emph{Note :} Le solutionnaire de Juillet 2026 présente également la substitution trigonométrique $x = \tan\theta \implies \mathrm{d}x = \frac{1}{\cos^2\theta}\dd\theta$ et $x^2+1 = \frac{1}{\cos^2\theta}$, qui transforme l'intégrale en $\int \sin^5\theta\cos^3\theta\dd\theta = \int \sin^5\theta(1-\sin^2\theta)\cos\theta\dd\theta = \frac{\sin^6\theta}{6} - \frac{\sin^8\theta}{8} + C_2$, où $\sin^2\theta = \frac{x^2}{x^2+1}$ !
 \end{exemple}
@@ -124,7 +127,7 @@ Lorsque l'intégrande est un \textbf{produit de deux fonctions de natures diffé
 \begin{theoreme}[Formule d'intégration par parties (IPP)]
 En intégrant la formule de dérivation d'un produit $\bigl(u(x)v(x)\bigr)' = u'(x)v(x) + u(x)v'(x)$, on obtient pour toutes fonctions dérivables $u(x)$ et $v(x)$ :
 \[
-    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x} \qquad \text{notée en différentielles :} \qquad \boxed{\int u\dd v = u\,v - \int v\dd u}.
+    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x} \quad \text{soit} \quad \boxed{\int u\dd v = u\,v - \int v\dd u}.
 \]
 Pour une intégrale définie entre $a$ et $b$ :
 \[
@@ -193,7 +196,7 @@ Le but de l'intégration par parties est que la nouvelle intégrale $\int v\dd u
     \item La première intégrale vaut $\displaystyle\int \frac{1}{x\ln(x)}\dd x = \ln\bigl(|\ln(x)|\bigr)$ (par substitution $u = \ln(x)$).
     \item Pour la seconde intégrale $\displaystyle\int \frac{\ln(x)}{x^2}\dd x$, appliquons l'\textbf{IPP} en dérivant le logarithme ($u = \ln(x) \implies \mathrm{d}u = \frac{1}{x}\dd x$) et en intégrant la puissance ($\mathrm{d}v = \frac{1}{x^2}\dd x \implies v = -\frac{1}{x}$) :
     \[
-        \int \frac{\ln(x)}{x^2}\dd x = -\frac{\ln(x)}{x} - \int \left(-\frac{1}{x}\right)\frac{1}{x}\dd x = -\frac{\ln(x)}{x} + \int \frac{1}{x^2}\dd x = -\frac{\ln(x)}{x} - \frac{1}{x} = -\frac{\ln(x) + 1}{x}.
+        \int \frac{\ln(x)}{x^2}\dd x = -\frac{\ln(x)}{x} - \int \left(-\frac{1}{x}\right)\frac{1}{x}\dd x = -\frac{\ln(x)}{x} - \frac{1}{x} = -\frac{\ln(x) + 1}{x}.
     \]
     En soustrayant ce résultat à la première primitive, le signe $-$ devient $+$ :
     \[
@@ -266,8 +269,9 @@ En intégrant terme à terme (attention au signe $-$ provenant de la dérivée d
         \int \frac{1}{\cos(x)}\dd x = \int \frac{\cos(x)}{1 - \sin^2(x)}\dd x \stackrel{t=\sin x}{=} \int \frac{\mathrm{d}t}{1 - t^2} = \boxed{\frac{1}{2}\ln\left(\frac{1 + \sin(x)}{1 - \sin(x)}\right) + C},
     \]
     \[
-        \int \frac{1}{\sin(u)}\dd u = \int \frac{\sin(u)}{1 - \cos^2(u)}\dd u \stackrel{t=\cos u}{=} -\int \frac{\mathrm{d}t}{1 - t^2} = \boxed{\frac{1}{2}\ln\left(\frac{1 - \cos(u)}{1 + \cos(u)}\right) + C = \ln\left(\left|\tan\left(\frac{u}{2}\right)\right|\right) + C}.
+        \int \frac{1}{\sin(u)}\dd u = \int \frac{\sin(u)}{1 - \cos^2(u)}\dd u \stackrel{t=\cos u}{=} -\int \frac{\mathrm{d}t}{1 - t^2} = \boxed{\frac{1}{2}\ln\left(\frac{1 - \cos(u)}{1 + \cos(u)}\right) + C},
     \]
+    qui s'écrit aussi $\ln\bigl(|\tan(u/2)|\bigr) + C$.
 \end{enumerate}
 \end{theoreme}
 
@@ -276,8 +280,9 @@ En intégrant terme à terme (attention au signe $-$ provenant de la dérivée d
 \emph{Résolution :} Isolons $\sin(x)\dd x$ et écrivons $\sin^2(x) = 1 - \cos^2(x) = \bigl(1 - \cos(x)\bigr)\bigl(1 + \cos(x)\bigr)$. Le dénominateur $1 + \cos(x)$ se simplifie immédiatement !
 \begin{align*}
     I &= \int \frac{\bigl(1 - \cos^2(x)\bigr)\sin(x)}{1 + \cos(x)}\dd x = \int \bigl(1 - \cos(x)\bigr)\sin(x)\dd x \\
-    &= \int \sin(x)\dd x - \int \cos(x)\sin(x)\dd x = \boxed{-\cos(x) + \frac{1}{2}\cos^2(x) + C_1} \quad \left(\text{ou } -\cos(x) - \frac{1}{2}\sin^2(x) + C_2\right).
+    &= \int \sin(x)\dd x - \int \cos(x)\sin(x)\dd x = \boxed{-\cos(x) + \frac{1}{2}\cos^2(x) + C_1},
 \end{align*}
+ou de façon équivalente $-\cos(x) - \frac{1}{2}\sin^2(x) + C_2$.
 
 \medskip
 \textbf{2) UCLouvain -- Septembre 2022, Question 3 :} Calculer $g(x) = \displaystyle\int \frac{\cos^2(x)}{1 + \cos(x)}\dd x$.\\
@@ -300,9 +305,10 @@ où nous avons utilisé la formule de Carnot $1 + \cos(x) = 2\cos^2\left(\frac{x
     \]
     En posant $u = 1 + \tan(x) \implies \mathrm{d}u = \frac{1}{\cos^2(x)}\dd x$, on obtient $\displaystyle\int \frac{\mathrm{d}u}{u^2} = -\frac{1}{u} + C = \boxed{-\frac{1}{1 + \tan(x)} + C}$.
     \item \emph{Méthode 2 (Multiplication par le conjugué $1 - \sin(2x)$) :} Comme $(1+\sin 2x)(1-\sin 2x) = 1 - \sin^2(2x) = \cos^2(2x)$ :
-    \[
-        g(x) = \int \frac{1 - \sin(2x)}{\cos^2(2x)}\dd x = \int \frac{1}{\cos^2(2x)}\dd x - \int \frac{\sin(2x)}{\cos^2(2x)}\dd x = \boxed{\frac{1}{2}\tan(2x) - \frac{1}{2\cos(2x)} + C_3 = \frac{\sin(2x) - 1}{2\cos(2x)} + C_3}.
-    \]
+    \begin{align*}
+        g(x) &= \int \frac{1 - \sin(2x)}{\cos^2(2x)}\dd x = \int \frac{1}{\cos^2(2x)}\dd x - \int \frac{\sin(2x)}{\cos^2(2x)}\dd x \\
+        &= \boxed{\frac{1}{2}\tan(2x) - \frac{1}{2\cos(2x)} + C_3 = \frac{\sin(2x) - 1}{2\cos(2x)} + C_3}.
+    \end{align*}
     \item \emph{Méthode 3 (Factorisation de $1 + \sin(2x) = (\cos x + \sin x)^2$) :} Comme $(\cos x + \sin x)^2 = 2\cos^2\left(x - \frac{\pi}{4}\right)$, on a directement $g(x) = \frac{1}{2}\tan\left(x - \frac{\pi}{4}\right) + C_4 = -\frac{\cos(x)}{\cos(x)+\sin(x)} + C$.
 \end{itemize}
 
@@ -318,12 +324,13 @@ où nous avons utilisé la formule de Carnot $1 + \cos(x) = 2\cos^2\left(\frac{x
     \]
     Effectuons alors une seconde substitution $\boxed{t = \cos(u) = \cos(\cos(x))} \implies \mathrm{d}t = -\sin(u)\dd u$. Grâce à l'aide de l'énoncé :
     \[
-        I_2 = \int \frac{\mathrm{d}t}{1 - t^2} = \frac{1}{2}\int \left(\frac{1}{1 - t} + \frac{1}{1 + t}\right)\dd t = \frac{1}{2}\ln\left(\left|\frac{1 + t}{1 - t}\right|\right) = \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right).
+        I_2 = \int \frac{\mathrm{d}t}{1 - t^2} = \frac{1}{2}\int \left(\frac{1}{1 - t} + \frac{1}{1 + t}\right)\dd t = \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right).
     \]
     En soustrayant $I_2$ au premier terme (ou en utilisant la variante de l'angle demi $\int \frac{\mathrm{d}u}{\sin(u)} = \ln\bigl(|\tan(u/2)|\bigr)$) :
-    \[
-        \boxed{g(x) = -\ln\bigl(|\cos(x)|\bigr) - \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right) + C = -\ln\bigl(|\cos(x)|\bigr) + \ln\left(\left|\tan\left(\frac{\cos(x)}{2}\right)\right|\right) + C'}.
-    \]
+    \begin{align*}
+        \boxed{g(x) = -\ln\bigl(|\cos(x)|\bigr) - \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right) + C}
+    \end{align*}
+    qui s'écrit aussi $g(x) = -\ln\bigl(|\cos(x)|\bigr) + \ln\left(\left|\tan\left(\frac{\cos(x)}{2}\right)\right|\right) + C'$.
 \end{itemize}
 \end{exemple}
 

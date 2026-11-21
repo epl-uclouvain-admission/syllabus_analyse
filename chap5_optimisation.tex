@@ -65,7 +65,7 @@ Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ 
     \]
     \item \textbf{Dérivation et optimisation :}
     \[
-        f'(e) = 1000 - \frac{10}{e^2} = 0 \iff e^2 = \frac{10}{1000} = 0,01 \iff \boxed{e^* = 0,1\text{ m} = 10\text{ cm}} \quad (\text{car } e > 0).
+        f'(e) = 1000 - \frac{10}{e^2} = 0 \iff e^2 = \frac{10}{1000} = 0,01 \iff \boxed{e^* = 0,1\text{ m} = 10\text{ cm}} \; (e > 0).
     \]
     Comme $f''(e) = \frac{20}{e^3} > 0$ pour tout $e > 0$, il s'agit bien d'un minimum global.
 \end{itemize}
@@ -85,8 +85,9 @@ Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ 
     \]
     Dérivons par rapport à $V$ :
     \[
-        \frac{\mathrm{d}C_{\text{total}}}{\mathrm{d}V} = 2aV - \frac{d}{V^2} = 0 \iff 2aV = \frac{d}{V^2} \iff \boxed{V_{\text{opt}}^3 = \frac{d}{2a}} \quad \left(\text{soit } aV_{\text{opt}}^2 = \frac{1}{2}\frac{d}{V_{\text{opt}}}, \text{ c'est-à-dire } C_E = \frac{1}{2}C_T\right).
+        \frac{\mathrm{d}C_{\text{total}}}{\mathrm{d}V} = 2aV - \frac{d}{V^2} = 0 \iff 2aV = \frac{d}{V^2} \iff \boxed{V_{\text{opt}}^3 = \frac{d}{2a}},
     \]
+    soit $aV_{\text{opt}}^2 = \frac{1}{2}\frac{d}{V_{\text{opt}}}$, c'est-à-dire $C_E = \frac{1}{2}C_T$.
     La dérivée seconde $\frac{\mathrm{d}^2 C_{\text{total}}}{\mathrm{d}V^2} = 2a + \frac{2d}{V^3} > 0$ confirme que c'est un minimum.
     \item \textbf{Application au premier voyage :} La condition d'optimalité générale $aV^2 = \frac{d}{2V} \iff C_E = \frac{1}{2}C_T$ est \textbf{précisément celle qui est observée à $V = 20\text{ nœuds}$} dans l'énoncé ! Sans aucun calcul numérique, on conclut immédiatement que la vitesse de $20\text{ nœuds}$ était déjà optimale : $\boxed{V_{\text{opt1}} = 20\text{ nœuds}}$.
     \item \textbf{Application au second voyage :} Traduisons les deux coûts donnés pour $V = 20$ et $V = 10$ dans $C_{\text{total}}(V) = aV^2 + \frac{d}{V}$ :
@@ -123,14 +124,15 @@ Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ 
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Boîte fermée (2 bases carrées d'aire $c^2$ + 4 faces latérales d'aire $ch$) :}
     La contrainte de volume est $V = c^2 h \implies h = \dfrac{V}{c^2}$. En remplaçant $h$ dans $M(c, h) = \alpha(2c^2 + 4ch)$ :
-    \[
-        M(c) = \alpha\left(2c^2 + 4c\,\frac{V}{c^2}\right) = \alpha\left(2c^2 + \frac{4V}{c}\right) \implies M'(c) = \alpha\left(4c - \frac{4V}{c^2}\right) = 0 \iff c^3 = V \iff \boxed{c = \sqrt[3]{V}}.
-    \]
+    \begin{align*}
+        M(c) &= \alpha\left(2c^2 + 4c\,\frac{V}{c^2}\right) = \alpha\left(2c^2 + \frac{4V}{c}\right) \\
+        \implies M'(c) &= \alpha\left(4c - \frac{4V}{c^2}\right) = 0 \iff c^3 = V \iff \boxed{c = \sqrt[3]{V}}.
+    \end{align*}
     On en déduit $h = \frac{V}{c^2} = \frac{V}{V^{2/3}} = \sqrt[3]{V} = c$ : la boîte optimale est un \textbf{cube} ! Et $M_1 = \alpha(2V^{2/3} + 4V^{2/3}) = \boxed{6\alpha V^{2/3}}$.
     \item \textbf{Suppression du couvercle à dimensions inchangées ($c = h = V^{1/3}$) :} Il n'y a plus qu'une seule base carrée ($S = c^2 + 4ch = 5c^2$), donc $\boxed{M_2 = 5\alpha V^{2/3}}$ (économie de $1/6 \approx 16,7\%$).
     \item \textbf{Ré-optimisation sans couvercle ($S = c^2 + 4ch$) :} Avec $h = \frac{V}{c^2}$, la nouvelle fonction à minimiser est :
     \[
-        M(c) = \alpha\left(c^2 + \frac{4V}{c}\right) \implies M'(c) = \alpha\left(2c - \frac{4V}{c^2}\right) = 0 \iff 2c^3 = 4V \iff \boxed{c^* = \sqrt[3]{2V} = 2^{1/3}V^{1/3}}.
+        M(c) = \alpha\left(c^2 + \frac{4V}{c}\right) \implies M'(c) = \alpha\left(2c - \frac{4V}{c^2}\right) = 0 \iff \boxed{c^* = \sqrt[3]{2V} = 2^{1/3}V^{1/3}}.
     \]
     La nouvelle hauteur optimale vaut $h^* = \frac{V}{(c^*)^2} = \frac{V}{2^{2/3}V^{2/3}} = \frac{1}{2^{2/3}}V^{1/3} = \sqrt[3]{\frac{V}{4}} = \frac{c^*}{2}$ (un demi-cube !), et la quantité de métal minimale vaut :
     \[
@@ -179,7 +181,7 @@ Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ 
     \]
     Annulons la dérivée (avec $x \ge 0$) :
     \[
-        T'(x) = 0 \iff \frac{x}{3\sqrt{1+x^2}} = \frac{1}{5} \iff 5x = 3\sqrt{1+x^2} \iff 25x^2 = 9(1+x^2) \iff 16x^2 = 9 \iff \boxed{x^* = \frac{3}{4}\text{ km}}.
+        T'(x) = 0 \iff 5x = 3\sqrt{1+x^2} \iff 16x^2 = 9 \iff \boxed{x^* = \frac{3}{4}\text{ km}}.
     \]
     En remplaçant $x^* = \frac{3}{4}$ (notons le triplet pythagoricien $\sqrt{1 + (3/4)^2} = \sqrt{25/16} = \frac{5}{4}$) dans $T(x)$ :
     \[
@@ -211,7 +213,7 @@ Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ 
     \begin{itemize}
         \item \emph{Méthode analytique standard (par la dérivée de $A_{\text{tri}}(b)$ ou de son carré $A_{\text{tri}}^2(b)$) :} Comme $h = \sqrt{(C/2)^2 - (b/2)^2}$, on a $A_{\text{tri}}^2(b) = \frac{1}{4}b^2\left(\frac{C^2}{4} - \frac{b^2}{4}\right) = \frac{1}{16}(C^2 b^2 - b^4)$. En dérivant ce polynôme par rapport à $b$ :
         \[
-            \frac{\mathrm{d}(A_{\text{tri}}^2)}{\mathrm{d}b} = \frac{1}{16}(2C^2 b - 4b^3) = \frac{b}{8}(C^2 - 2b^2) = 0 \iff \boxed{b = \frac{C}{\sqrt{2}} = \frac{200}{\sqrt{2}} = 100\sqrt{2} \simeq 141,42\text{ m}},
+            \frac{\mathrm{d}(A_{\text{tri}}^2)}{\mathrm{d}b} = \frac{b}{8}(C^2 - 2b^2) = 0 \iff \boxed{b = \frac{C}{\sqrt{2}} = 100\sqrt{2} \simeq 141,42\text{ m}},
         \]
         d'où $\boxed{h = \sqrt{\frac{C^2}{4} - \frac{C^2}{8}} = \frac{C}{2\sqrt{2}} = 50\sqrt{2} \simeq 70,71\text{ m}}$ et $\boxed{A_{\text{triangle}} = \frac{1}{2}\cdot\frac{C}{\sqrt{2}}\cdot\frac{C}{2\sqrt{2}} = \frac{C^2}{8} = 5000\text{ m}^2 = 0,5\text{ ha}}$.
         \item \emph{Méthode géométrique fulgurante (Méthode 6 du solutionnaire) :} Notons $\beta$ l'angle au sommet entre les deux côtés clôturés de longueur fixe $\frac{C}{2} = 100\text{ m}$. L'aire d'un triangle de côtés $\frac{C}{2}$ et $\frac{C}{2}$ entourant l'angle $\beta$ vaut :
@@ -238,12 +240,13 @@ Quelle fonction $f(x)$ utiliserez-vous et quel sera le volume minimal $V$ ?\\
 \begin{itemize}
     \item \textbf{Élimination de $b$ et $c$ grâce aux contraintes aux bords :}
     \[
-        \begin{cases} f(1) = a + b + c = 1 \\ f(-1) = a - b + c = 1 \end{cases} \implies \begin{cases} 2b = 0 \iff b = 0 \\ a + c = 1 \iff c = 1 - a \end{cases} \implies f(x) = ax^2 + (1 - a).
+        \begin{cases} f(1) = a + b + c = 1 \\ f(-1) = a - b + c = 1 \end{cases} \implies \begin{cases} b = 0 \\ c = 1 - a \end{cases} \implies f(x) = ax^2 + (1 - a).
     \]
     \item \textbf{Calcul du volume $V(a)$ en fonction du seul paramètre $a \in \R$ :} Par parité de $f^2(x)$ sur $[-1, 1]$ :
     \begin{align*}
         V(a) &= \pi \int_{-1}^1 \bigl(ax^2 + (1-a)\bigr)^2\dd x = \pi \int_{-1}^1 \bigl(a^2 x^4 + 2a(1-a)x^2 + (1-a)^2\bigr)\dd x \\
-        &= \pi\left[a^2\cdot\frac{2}{5} + 2a(1-a)\cdot\frac{2}{3} + (1-a)^2\cdot 2\right] = \frac{\pi}{15}\bigl(6a^2 + 20a(1-a) + 30(1 - 2a + a^2)\bigr) = \frac{\pi}{15}\bigl(16a^2 - 40a + 30\bigr).
+        &= \pi\left[a^2\cdot\frac{2}{5} + 2a(1-a)\cdot\frac{2}{3} + (1-a)^2\cdot 2\right] \\
+        &= \frac{\pi}{15}\bigl(6a^2 + 20a(1-a) + 30(1 - 2a + a^2)\bigr) = \frac{\pi}{15}\bigl(16a^2 - 40a + 30\bigr).
     \end{align*}
     \item \textbf{Optimisation par rapport à $a$ :}
     \[
@@ -295,7 +298,7 @@ Pour $n = 2$, calculer l'intégrale (par changement de variable $x = f/f_0$ et i
     \]
     On retrouve l'équation du nombre d'or ! Comme $x_s > 0$, l'unique racine positive est :
     \[
-        \frac{f_s}{f_0} = \frac{1 + \sqrt{5}}{2} \simeq \frac{1 + 2,236}{2} = 1,618 \implies \boxed{f_s = \frac{1+\sqrt{5}}{2}f_0 \simeq 1,618 \times 1,146\cdot 10^{14} \simeq 1,85\cdot 10^{14}\text{ Hz}}.
+        \frac{f_s}{f_0} = \frac{1 + \sqrt{5}}{2} \simeq 1,618 \implies \boxed{f_s = \frac{1+\sqrt{5}}{2}f_0 \simeq 1,618 \times 1,146\cdot 10^{14} \simeq 1,85\cdot 10^{14}\text{ Hz}}.
     \]
 \end{itemize}
 \end{exemple}

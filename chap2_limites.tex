@@ -129,12 +129,13 @@ Au Chapitre 3, nous étudierons la célèbre \textbf{règle de L'Hospital} ($\li
     \item \textbf{Limites fondamentales et croissances comparées (puissances, $\ln$, $\exp$, $\sin$) :}
     \begin{itemize}
         \item \textbf{En $u \to 0$ :}
-        \[
-            \boxed{\lim_{u \to 0} \frac{\sin(u)}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{\tan(u)}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}}, \quad \boxed{\lim_{u \to 0} \frac{e^u - 1}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{\ln(1+u)}{u} = 1}.
-        \]
+        \begin{gather*}
+            \boxed{\lim_{u \to 0} \frac{\sin(u)}{u} = 1}, \qquad \boxed{\lim_{u \to 0} \frac{\tan(u)}{u} = 1}, \qquad \boxed{\lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}}, \\[4pt]
+            \boxed{\lim_{u \to 0} \frac{e^u - 1}{u} = 1}, \qquad \boxed{\lim_{u \to 0} \frac{\ln(1+u)}{u} = 1}.
+        \end{gather*}
         \item \textbf{Croissances comparées (« l'exponentielle l'emporte sur les puissances, qui l'emportent sur le logarithme ») pour tout $p > 0$ :}
         \[
-            \boxed{\lim_{x \to +\infty} \frac{e^x}{x^p} = +\infty}, \quad \boxed{\lim_{x \to +\infty} x^p e^{-x} = 0}, \quad \boxed{\lim_{x \to +\infty} \frac{\ln(x)}{x^p} = 0}, \quad \boxed{\lim_{y \to 0^+} y^p \ln(y) = 0}.
+            \boxed{\lim_{x \to +\infty} \frac{e^x}{x^p} = +\infty}, \;\; \boxed{\lim_{x \to +\infty} x^p e^{-x} = 0}, \;\; \boxed{\lim_{x \to +\infty} \frac{\ln(x)}{x^p} = 0}, \;\; \boxed{\lim_{y \to 0^+} y^p \ln(y) = 0}.
         \]
     \end{itemize}
 \end{enumerate}
@@ -161,7 +162,7 @@ Or, les fonctions $\sin(x)$ et $\sin(x^2)$ sont bornées entre $-1$ et $1$, tand
 \emph{Énoncé (Juillet 2026, Q1b) :} Soit $f(x) = (1 - x^2)\ln(1 - x) + x$ sur $\D = \,]-\infty, 1[$. Obtenir $\lim_{x \to 1} f(x)$ en utilisant l'aide $\lim_{y \to 0^+} y\ln(y) = 0$.\\
 \emph{Résolution :} Lorsque $x \to 1^-$, $(1-x^2) \to 0$ et $\ln(1-x) \to -\infty$ : c'est une forme indéterminée $[0 \cdot (-\infty)]$. Factorisons $1 - x^2 = (1+x)(1-x)$ et posons le changement de variable $y = 1 - x$ (de sorte que $y \to 0^+$ lorsque $x \to 1^-$) :
 \[
-    \lim_{x \to 1^-} f(x) = \lim_{x \to 1^-} \bigl[(1+x)(1-x)\ln(1-x) + x\bigr] = \left(\lim_{x \to 1^-} (1+x)\right) \cdot \left(\lim_{y \to 0^+} y\ln(y)\right) + 1 = 2 \cdot 0 + 1 = \boxed{1}.
+    \lim_{x \to 1^-} f(x) = \lim_{x \to 1^-} \bigl[(1+x)(1-x)\ln(1-x) + x\bigr] = 2 \cdot \left(\lim_{y \to 0^+} y\ln(y)\right) + 1 = 2 \cdot 0 + 1 = \boxed{1}.
 \]
 
 \medskip
@@ -192,7 +193,7 @@ Soit $f : \D \subset \R \to \R$ et soit $a \in \D$ :
 \end{enumerate}
 \end{definition}
 
-Toutes les fonctions usuelles (polynômes, fractions rationnelles, racines, $\sin, \cos, \tan, \arcsin, \arccos, \arctan, \ln, \exp$) ainsi que leurs sommes, produits, quotients et composées sont \textbf{continues sur tout intervalle inclus dans leur domaine de définition}.
+Toutes les fonctions usuelles (polynômes, fractions rationnelles, radicaux, $\sin$, $\cos$, $\tan$, $\arcsin$, $\arccos$, $\arctan$, $\ln$, $\exp$) ainsi que leurs sommes, produits, quotients et composées sont \textbf{continues sur tout intervalle inclus dans leur domaine de définition}.
 
 \begin{exemple}[Continuité et discontinuités aux examens UCLouvain (Juillet 2022 Q6 et Juillet 2025 Q4)]
 \textbf{1) Paramètre de continuité (UCLouvain -- Juillet 2022, Question 6) :}\\
@@ -288,7 +289,7 @@ Soit $f : \D \subset \R \to \R$ une fonction réelle :
     \item \textbf{Asymptote oblique (AO) d'équation $\boxed{y = mx + p}$ (avec $m \neq 0$) en $+\infty$ (et/ou en $-\infty$) :}
     Si $\lim_{x \to +\infty} f(x) = \pm\infty$ (il n'y a donc pas d'AH en $+\infty$), on cherche une éventuelle asymptote oblique $y = mx + p$ en $+\infty$ grâce aux \textbf{formules de Cauchy} en deux étapes :
     \[
-        \boxed{\text{Étape 1 : } m = \lim_{x \to +\infty} \frac{f(x)}{x}} \quad (\text{si } m \in \R_0), \qquad \text{puis} \qquad \boxed{\text{Étape 2 : } p = \lim_{x \to +\infty} \bigl(f(x) - mx\bigr)} \quad (\text{si } p \in \R).
+        \boxed{\text{Étape 1 : } m = \lim_{x \to +\infty} \frac{f(x)}{x}} \; (m \in \R_0), \quad \boxed{\text{Étape 2 : } p = \lim_{x \to +\infty} \bigl(f(x) - mx\bigr)} \; (p \in \R).
     \]
     (On procède de même séparément en $x \to -\infty$ si le domaine s'étend vers $-\infty$).
 \end{enumerate}

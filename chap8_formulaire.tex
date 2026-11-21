@@ -44,7 +44,7 @@
     \item \textbf{Fonction impaire ($\D$ sym.) :} $f(-x) = -f(x)$ (centre $O$).\\
     Si $f$ est impaire : $f'$ est paire, $f''$ est impaire, $\int_{-a}^a f(x)\dd x = 0$.
     \item \textbf{Périodique de période $T > 0$ :} $f(x+T) = f(x)$.\\
-    $\sin(\omega x), \cos(\omega x) \to T = \frac{2\pi}{\omega}$ ; \; $\tan(\omega x), \sin^2(\omega x), \cos^2(\omega x) \to T = \frac{\pi}{\omega}$.
+    $\sin(\omega x), \cos(\omega x) \to T = \frac{2\pi}{\omega}$ ; \; $\tan(\omega x), \sin^2(\omega x) \to T = \frac{\pi}{\omega}$.
 \end{itemize}
 
 \vspace{3pt}
@@ -76,7 +76,7 @@ Si $f : I \to J$ est continue et strictement monotone sur un intervalle $I$ :
     $\forall \varepsilon > 0, \;\exists M \;\text{ tel que }\; x > M \implies |f(x) - c| \le \varepsilon$.
     \item \textbf{Limites remarquables en $u \to 0$ :}
     \[
-        \lim_{u \to 0} \frac{\sin(u)}{u} = 1, \qquad \lim_{u \to 0} \frac{\tan(u)}{u} = 1, \qquad \lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}
+        \lim_{u \to 0} \frac{\sin(u)}{u} = 1, \quad \lim_{u \to 0} \frac{\tan(u)}{u} = 1, \quad \lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}
     \]
     \[
         \lim_{u \to 0} \frac{e^u - 1}{u} = 1, \qquad \lim_{u \to 0} \frac{\ln(1+u)}{u} = 1
@@ -129,12 +129,12 @@ Si $f : I \to J$ est continue et strictement monotone sur un intervalle $I$ :
 \end{center}
 \vspace{-6pt}
 
-{\fontsize{9.3pt}{11.3pt}\selectfont
+{\fontsize{9.0pt}{10.8pt}\selectfont
 \setlength{\columnsep}{18pt}
 \begin{multicols}{2}
 
 \noindent{\large\bfseries\color{uclblue} 1. Nombre Dérivé, Tangente et Règles Opératoires}
-\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+\begin{itemize}[leftmargin=1.2em, itemsep=1.2pt, topsep=1.5pt]
     \item \textbf{Définition :} $f'(a) = \lim_{x \to a} \dfrac{f(x) - f(a)}{x - a} = \lim_{h \to 0} \dfrac{f(a+h) - f(a)}{h}$
     \item \textbf{Tangente en $x_0$ :} $T_{x_0} \equiv \mathbf{y = f(x_0) + f'(x_0)\,(x - x_0)}$
     \item \textbf{Dérivable $\implies$ Continue} (mais réciproque fausse : $|x|$ ou $\sqrt{|x|}$ en $0$).
@@ -143,22 +143,23 @@ Si $f : I \to J$ est continue et strictement monotone sur un intervalle $I$ :
     \item \textbf{Composée (Chaîne) :} $\Bigl(f\bigl(u(x)\bigr)\Bigr)' = f'\bigl(u(x)\bigr)\cdot u'(x)$
 \end{itemize}
 
-\vspace{3pt}
+\vspace{2pt}
 \noindent{\large\bfseries\color{uclblue} 2. Tableau des Dérivées Composées}
 \begin{center}
 \vspace{-4pt}
-\renewcommand{\arraystretch}{1.42}
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Fonction $f(u(x))$} & \textbf{Dérivée $\bigl(f(u(x))\bigr)'$} \\ \hline
 $\bigl(u(x)\bigr)^n \;\; (n \in \R)$ & $n\,\bigl(u(x)\bigr)^{n-1} \cdot u'(x)$ \\ \hline
 $\sqrt{u(x)}$ & $\dfrac{u'(x)}{2\sqrt{u(x)}}$ \\ \hline
-$e^{u(x)}$ \quad / \quad $a^{u(x)}$ & $u'(x)\,e^{u(x)}$ \quad / \quad $(\ln a)\,u'(x)\,a^{u(x)}$ \\ \hline
+$e^{u(x)}$ \; / \; $a^{u(x)}$ & $u'(x)\,e^{u(x)}$ \; / \; $(\ln a)\,u'(x)\,a^{u(x)}$ \\ \hline
 $\ln\bigl(|u(x)|\bigr)$ & $\dfrac{u'(x)}{u(x)}$ \\ \hline
-$\sin\bigl(u(x)\bigr)$ \quad / \quad $\cos\bigl(u(x)\bigr)$ & $u'(x)\cos\bigl(u(x)\bigr)$ \quad / \quad $-u'(x)\sin\bigl(u(x)\bigr)$ \\ \hline
+$\sin\bigl(u(x)\bigr)$ / $\cos\bigl(u(x)\bigr)$ & $u'(x)\cos\bigl(u(x)\bigr)$ / $-u'(x)\sin\bigl(u(x)\bigr)$ \\ \hline
 $\tan\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{\cos^2(u(x))} = u'(x)\bigl(1 + \tan^2(u(x))\bigr)$ \\ \hline
 $\cot\bigl(u(x)\bigr)$ & $-\dfrac{u'(x)}{\sin^2(u(x))}$ \\ \hline
-$\arcsin\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{\sqrt{1 - u^2(x)}}$ \quad ($\arccos : \text{signe } -$) \\ \hline
+$\arcsin\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{\sqrt{1 - u^2(x)}}$ \; ($\arccos : \text{signe } -$) \\ \hline
 $\arctan\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{1 + u^2(x)}$ \\ \hline
 \end{tabular}
 \end{center}
@@ -174,9 +175,9 @@ Si $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ est une F.I. $\left[\dfrac{0}{0}\right]$ 
 \columnbreak
 
 \noindent{\large\bfseries\color{uclblue} 4. Théorèmes de Rolle et des Accroissements Finis}
-\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+\begin{itemize}[leftmargin=1.2em, itemsep=1.2pt, topsep=1.5pt]
     \item \textbf{Théorème de Rolle :} Si $f : [a, b] \to \R$ est :
-    \begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=1pt]
+    \begin{enumerate}[leftmargin=1.5em, itemsep=0.5pt, topsep=0.5pt]
         \item \textbf{continue} sur l'intervalle fermé $[a, b]$,
         \item \textbf{dérivable} sur l'intervalle ouvert $]a, b[$,
         \item telle que $\mathbf{f(a) = f(b)}$,
@@ -189,21 +190,18 @@ Si $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ est une F.I. $\left[\dfrac{0}{0}\right]$ 
     \item \textbf{Astuce en cascade :} Si $f(x_0) = f(x_1) = f(x_2)$, Rolle sur $[x_0, x_1]$ et $[x_1, x_2]$ donne deux zéros distincts $c_1 < x_1 < c_2$ de $f'$, puis Rolle appliqué à $f'$ sur $[c_1, c_2]$ donne $d \in \,]c_1, c_2[$ tel que $\mathbf{f''(d) = 0}$ !
 \end{itemize}
 
-\vspace{3pt}
+\vspace{2pt}
 \noindent{\large\bfseries\color{uclblue} 5. Variations, Extrema, Concavité (Question 1)}
-\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
-    \item \textbf{Croissance / Décroissance :}
-    \[
-        f'(x) > 0 \implies f \text{ croissante } (\nearrow), \qquad f'(x) < 0 \implies f \text{ décroissante } (\searrow)
-    \]
+\begin{itemize}[leftmargin=1.2em, itemsep=1.2pt, topsep=1.5pt]
+    \item \textbf{Croissance / Décroissance :} $f'(x) > 0 \implies \nearrow$, \quad $f'(x) < 0 \implies \searrow$.
     \item \textbf{Extrema locaux (en un point intérieur $x^*$ où $f'(x^*) = 0$) :}
-    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+    \begin{itemize}[leftmargin=1em, itemsep=0.5pt, topsep=0.5pt]
         \item $f'$ passe de $-$ à $+$ (ou $f''(x^*) > 0$) $\implies$ \textbf{Minimum local} ($\cup$)
         \item $f'$ passe de $+$ à $-$ (ou $f''(x^*) < 0$) $\implies$ \textbf{Maximum local} ($\cap$)
         \item $f'$ ne change pas de signe $\implies$ \textbf{Point d'inflexion à tangente horiz.}
     \end{itemize}
     \item \textbf{Concavité et Points d'Inflexion (PI) :}
-    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+    \begin{itemize}[leftmargin=1em, itemsep=0.5pt, topsep=0.5pt]
         \item $f''(x) > 0 \implies$ Concavité positive / vers le haut ($\cup$, convexe)
         \item $f''(x) < 0 \implies$ Concavité négative / vers le bas ($\cap$, concave)
         \item $f''(x_0) = 0$ \textbf{en changeant de signe} $\implies$ \textbf{Point d'inflexion (PI)}
@@ -212,9 +210,9 @@ Si $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ est une F.I. $\left[\dfrac{0}{0}\right]$ 
     Ligne 1 : $x$ $\to$ Ligne 2 : $f'(x)$ $\to$ Ligne 3 : $f''(x)$ $\to$ Ligne 4 : $f(x)$ (avec valeurs exactes ET décimales approchées, flèches $\nearrow\searrow$, concavité $\cup\cap$).
 \end{itemize}
 
-\vspace{3pt}
+\vspace{2pt}
 \noindent{\large\bfseries\color{uclblue} 6. Méthode d'Optimisation Appliquée (Question 2)}
-\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=1pt]
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.5pt, topsep=0.5pt]
     \item Identifier la fonction objectif à maximiser/minimiser et la contrainte.
     \item Éliminer les variables liées pour avoir une fonction d'\textbf{une seule variable} $\Phi(x)$ (en gardant les constantes sous forme de lettres !).
     \item Résoudre $\Phi'(x^*) = 0$ et vérifier le signe de $\Phi''(x^*)$ (ou le tableau de $\Phi'$).
@@ -247,22 +245,27 @@ Si $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ est une F.I. $\left[\dfrac{0}{0}\right]$ 
 \noindent{\large\bfseries\color{uclblue} 1. Primitives Immédiates et Composées ($u = u(x)$)}
 \begin{center}
 \vspace{-4pt}
-\renewcommand{\arraystretch}{1.48}
+{\footnotesize
+\renewcommand{\arraystretch}{1.42}
+\setlength{\tabcolsep}{2.2pt}
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Intégrale $\displaystyle\int f(u(x))u'(x)\dd x$} & \textbf{Primitive $F(u(x)) + C$} \\ \hline
-$\displaystyle\int u^p\,u'\dd x \quad (p \neq -1)$ & $\dfrac{u^{p+1}}{p+1} + C$ \\ \hline
+$\displaystyle\int u^p\,u'\dd x \;\; (p \neq -1)$ & $\dfrac{u^{p+1}}{p+1} + C$ \\ \hline
 $\displaystyle\int \frac{u'}{u}\dd x$ & $\ln(|u|) + C$ \\ \hline
-$\displaystyle\int \frac{u'}{\sqrt{u}}\dd x$ \quad / \quad $\displaystyle\int \frac{u'}{u^2}\dd x$ & $2\sqrt{u} + C$ \quad / \quad $-\dfrac{1}{u} + C$ \\ \hline
+$\displaystyle\int \frac{u'}{\sqrt{u}}\dd x$ \; / \; $\displaystyle\int \frac{u'}{u^2}\dd x$ & $2\sqrt{u} + C$ \; / \; $-\dfrac{1}{u} + C$ \\ \hline
 $\displaystyle\int u'\,e^u\dd x$ & $e^u + C$ \\ \hline
-$\displaystyle\int u'\cos(u)\dd x$ \quad / \quad $\displaystyle\int u'\sin(u)\dd x$ & $\sin(u) + C$ \quad / \quad $-\cos(u) + C$ \\ \hline
+$\displaystyle\int u'\cos(u)\dd x$ & $\sin(u) + C$ \\ \hline
+$\displaystyle\int u'\sin(u)\dd x$ & $-\cos(u) + C$ \\ \hline
 $\displaystyle\int \frac{u'}{\cos^2(u)}\dd x = \int u'(1+\tan^2 u)\dd x$ & $\tan(u) + C$ \\ \hline
 $\displaystyle\int \frac{u'}{\sin^2(u)}\dd x = \int u'(1+\cot^2 u)\dd x$ & $-\cot(u) + C$ \\ \hline
 $\displaystyle\int \frac{u'}{1 + u^2}\dd x$ & $\arctan(u) + C$ \\ \hline
 $\displaystyle\int \frac{u'}{\sqrt{1 - u^2}}\dd x$ & $\arcsin(u) + C$ \\ \hline
-$\displaystyle\int \tan(x)\dd x$ \quad / \quad $\displaystyle\int \cot(x)\dd x$ & $-\ln(|\cos x|) + C$ \;/\; $\ln(|\sin x|) + C$ \\ \hline
+$\displaystyle\int \tan(x)\dd x$ & $-\ln(|\cos x|) + C$ \\ \hline
+$\displaystyle\int \cot(x)\dd x$ & $\ln(|\sin x|) + C$ \\ \hline
 $\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
 \end{tabular}
+}
 \end{center}
 
 \vspace{3pt}
@@ -285,14 +288,14 @@ $\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
 
 \noindent{\large\bfseries\color{uclblue} 3. Intégration par Parties (IPP)}
 \[
-    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x} \quad \left(\int u\dd v = uv - \int v\dd u\right)
+    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x}
 \]
 \begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
     \item \textbf{Priorité pour le choix de $u(x)$ (à dériver) -- Règle ALPES :}
     \begin{enumerate}[leftmargin=1.4em, itemsep=1pt, topsep=1pt]
         \item \textbf{A}rc ($\arcsin, \arccos, \arctan$) $\to$ toujours dériver !
         \item \textbf{L}ogarithme ($\ln(x), \ln^2(x)$) $\to$ toujours dériver face à $x^n$ !
-        \item \textbf{P}olynôme ($x, x^2$) $\to$ dériver face à $e^{ax}, \sin(ax), \cos(ax), \frac{1}{\cos^2 x}$.
+        \item \textbf{P}olynôme ($x, x^2$) $\to$ dériver face à $e^{ax}, \sin, \cos, \frac{1}{\cos^2 x}$.
         \item \textbf{E}xponentielle et \textbf{S}inus/Cosinus $\to$ intégrer ($\mathrm{d}v$) ; si produit $e^{ax}\cos(bx)$, faire \textbf{2 IPP cycliques} pour retrouver $\mathcal{I}$.
     \end{enumerate}
     \item \textbf{Exemples types UCLouvain :}
@@ -328,7 +331,7 @@ $\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
         \int \frac{\mathrm{d}x}{\cos(x)} = \int \frac{\cos(x)\dd x}{1 - \sin^2(x)} = \frac{1}{2}\ln\left(\frac{1+\sin x}{1-\sin x}\right) + C
     \]
     \[
-        \int \frac{\mathrm{d}u}{\sin(u)} = \int \frac{\sin(u)\dd u}{1 - \cos^2(u)} = \frac{1}{2}\ln\left(\frac{1-\cos u}{1+\cos u}\right) + C = \ln\left(\left|\tan\frac{u}{2}\right|\right) + C
+        \int \frac{\mathrm{d}u}{\sin(u)} = \frac{1}{2}\ln\left(\frac{1-\cos u}{1+\cos u}\right) + C = \ln\left(\left|\tan\frac{u}{2}\right|\right) + C
     \]
 \end{itemize}
 
@@ -381,7 +384,7 @@ $\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
 \begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
     \item \textbf{Méthode 1 : Par intégration sur $[a, x]$ (avec $x \ge a$) :}
     \[
-        \forall s \in [a, x], \;\; f'(s) \le g'(s) \implies \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s
+        \forall s \in [a, x], \; f'(s) \le g'(s) \implies \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s
     \]
     \begin{itemize}[leftmargin=1em, itemsep=1.5pt, topsep=1pt]
         \item \textbf{Inégalité de $\ln(x)$ ($\forall x > 0$) :} Pour $s \ge 1$, $\frac{1}{s^2} \le \frac{1}{s} \le 1$. En intégrant sur $[1, x]$ ($x \ge 1$, ou sur $[x, 1]$ si $0 < x \le 1$) :
@@ -390,7 +393,7 @@ $\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
         \]
         \item \textbf{Inégalité de $e^x$ ($\forall x \ge 0$) :} Pour $s \ge 0$, $e^s \ge 1 \implies \int_0^x e^s\dd s \ge \int_0^x 1\dd s$ :
         \[
-            \boxed{e^x \ge 1 + x \quad (\forall x \ge 0)} \implies e^y \ge \left(1 + \frac{y}{n}\right)^n \;\; (y > 0, n \in \N_0)
+            \boxed{e^x \ge 1 + x \;\; (\forall x \ge 0)} \implies e^y \ge \left(1 + \frac{y}{n}\right)^n \; (y > 0)
         \]
     \end{itemize}
     \item \textbf{Méthode 2 : Par étude du signe de la dérivée :}\\

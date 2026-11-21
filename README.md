@@ -55,7 +55,7 @@ Le fichier généré s'intitule `main.pdf`.
 
 ## 👥 Auteurs, direction et sources
 
-- **Direction artistique & *Prompt Engineering*** : L'équipe de l'examen d'admission à l'EPL — UCLouvain (**Jean-François Remacle** et **Pierre Schaus**).
+- **Direction artistique & *Prompt Engineering*** : L'équipe de l'examen d'admission à l'EPL — UCLouvain (**Xavier Gonze** et **Grégoire Winckelmans**).
 - **Rédaction et mise en forme $\LaTeX$ / TikZ** : assistée par Intelligence Artificielle sous la supervision des enseignants.
 - **Sources** :
   - Le programme officiel de mathématiques (5e et 6e secondaire, 6h/semaine) de la Fédération Wallonie-Bruxelles (Communauté française de Belgique).

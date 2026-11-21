@@ -41,7 +41,7 @@ Pour toutes fonctions continues $f, g$ sur $[a, b]$ et constantes $\alpha, \beta
     \item \textbf{Linéarité :} $\displaystyle\int_a^b \bigl(\alpha f(x) + \beta g(x)\bigr)\dd x = \alpha\int_a^b f(x)\dd x + \beta\int_a^b g(x)\dd x$.
     \item \textbf{Relation de Chasles et inversion des bornes :}
     \[
-        \int_a^a f(x)\dd x = 0, \qquad \int_b^a f(x)\dd x = -\int_a^b f(x)\dd x, \qquad \int_a^c f(x)\dd x + \int_c^b f(x)\dd x = \int_a^b f(x)\dd x.
+        \int_a^a f(x)\dd x = 0, \;\; \int_b^a f(x)\dd x = -\int_a^b f(x)\dd x, \;\; \int_a^c f(x)\dd x + \int_c^b f(x)\dd x = \int_a^b f(x)\dd x.
     \]
     \item \textbf{Simplifications par parité sur un intervalle symétrique $[-a, a]$ :}
     \begin{itemize}
@@ -70,7 +70,7 @@ En 2022 et 2023, cinq examens d'admission consécutifs de l'UCLouvain ont compor
     \item \textbf{Méthode A -- Par intégration d'une inégalité connue sur $[a, x]$ (quand $x \ge a$) :}
     Si l'on connaît une inégalité simple entre deux fonctions dérivées $f'(s) \le g'(s)$ pour tout $s \in [a, x]$ (par exemple $\frac{1}{s^2} \le \frac{1}{s} \le 1$ pour $s \ge 1$, ou $1 - \ln(1+s) \le e^{-s}$ pour $s \ge 0$), on \textbf{intègre chaque membre par rapport à la variable muette $s$ entre $a$ et $x$} (avec $x \ge a$) :
     \[
-        \forall s \in [a, x], \;\; f'(s) \le g'(s) \implies \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s \iff f(x) - f(a) \le g(x) - g(a).
+        \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s \iff f(x) - f(a) \le g(x) - g(a).
     \]
     Si de plus $f(a) = g(a)$, on obtient immédiatement $\boxed{f(x) \le g(x)}$ pour tout $x \ge a$ !\\
     \emph{Attention si $x \le a$ (par ex. $0 < x \le 1$ avec $a = 1$) :} Pour garder les bornes dans le sens croissant (borne inférieure $\le$ borne supérieure), on intègre entre $x$ et $a$ : $\int_x^1 f'(s)\dd s \le \int_x^1 g'(s)\dd s$ !
@@ -106,9 +106,9 @@ En 2022 et 2023, cinq examens d'admission consécutifs de l'UCLouvain ont compor
     \]
     Intégrons cet encadrement par rapport à $s$ sur l'intervalle $[1, x]$ (avec $x \ge 1$) :
     \[
-        \int_1^x \frac{1}{s^2}\dd s \le \int_1^x \frac{1}{s}\dd s \le \int_1^x 1\dd s \iff \left[-\frac{1}{s}\right]_1^x \le \Bigl[\ln(s)\Bigr]_1^x \le \Bigl[s\Bigr]_1^x \iff -\frac{1}{x} - (-1) \le \ln(x) - 0 \le x - 1,
+        \int_1^x \frac{1}{s^2}\dd s \le \int_1^x \frac{1}{s}\dd s \le \int_1^x 1\dd s \iff \left[-\frac{1}{s}\right]_1^x \le \Bigl[\ln(s)\Bigr]_1^x \le \Bigl[s\Bigr]_1^x,
     \]
-    ce qui donne exactement $1 - \dfrac{1}{x} \le \ln(x) \le x - 1$.
+    soit $-\frac{1}{x} - (-1) \le \ln(x) - 0 \le x - 1$, ce qui donne exactement $1 - \dfrac{1}{x} \le \ln(x) \le x - 1$.
     \item \textbf{Pour $0 < x \le 1$ (deux méthodes officielles d'Août 2023) :}
     \begin{itemize}
         \item \emph{Méthode 1 (par intégration sur $[x, 1]$) :} Pour $0 < s \le 1$, on a $s^2 \le s \le 1 \implies 1 \le \frac{1}{s} \le \frac{1}{s^2}$. En intégrant entre la plus petite borne $x$ et la plus grande borne $1$ :
@@ -118,7 +118,7 @@ En 2022 et 2023, cinq examens d'admission consécutifs de l'UCLouvain ont compor
         En multipliant toute la double inégalité par $-1$ (ce qui inverse les symboles $\le$), on retrouve exactement $1 - \frac{1}{x} \le \ln(x) \le x - 1$ !
         \item \emph{Méthode 2 (par changement de variable $y = \frac{1}{x} \ge 1$) :} Si $0 < x \le 1$, alors $y = \frac{1}{x} \ge 1$. Appliquons le résultat de (a) à $y \ge 1$ :
         \[
-            1 - \frac{1}{y} \le \ln(y) \le y - 1 \iff 1 - x \le \ln\left(\frac{1}{x}\right) = -\ln(x) \le \frac{1}{x} - 1 \iff 1 - \frac{1}{x} \le \ln(x) \le x - 1.
+            1 - \frac{1}{y} \le \ln(y) \le y - 1 \iff 1 - x \le -\ln(x) \le \frac{1}{x} - 1 \iff 1 - \frac{1}{x} \le \ln(x) \le x - 1.
         \]
     \end{itemize}
     \item \textbf{Pour majorer $\int_1^x \ln(s)\dd s$ ($x \ge 1$) :}
@@ -143,7 +143,7 @@ En 2022 et 2023, cinq examens d'admission consécutifs de l'UCLouvain ont compor
 \]
 Intégrons chaque membre par rapport à $s$ entre $1$ et $x$ (avec $\int s^p\dd s = \frac{s^{p+1}}{p+1}$ pour $p = -1-a$ et $p = a-1$) :
 \[
-    \left[\frac{s^{-a}}{-a}\right]_1^x < \Bigl[\ln(s)\Bigr]_1^x < \left[\frac{s^a}{a}\right]_1^x \iff -\frac{1}{a}\bigl(x^{-a} - 1\bigr) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr) \iff \frac{1}{a}\left(1 - \frac{1}{x^a}\right) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr).
+    \left[\frac{s^{-a}}{-a}\right]_1^x < \Bigl[\ln(s)\Bigr]_1^x < \left[\frac{s^a}{a}\right]_1^x \iff \frac{1}{a}\left(1 - \frac{1}{x^a}\right) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr).
 \]
 
 \medskip
@@ -156,7 +156,7 @@ Intégrons chaque membre par rapport à $s$ entre $1$ et $x$ (avec $\int s^p\dd 
 \begin{itemize}
     \item Pour tout $w \ge 0$, on a $e^w \ge 1$. Intégrons cette inégalité entre $0$ et $x$ (pour $x \ge 0$) :
     \[
-        \int_0^x e^w\dd w \ge \int_0^x 1\dd w \iff \Bigl[e^w\Bigr]_0^x \ge \Bigl[w\Bigr]_0^x \iff e^x - 1 \ge x \iff \boxed{e^x \ge 1 + x \quad (\forall x \ge 0)}.
+        \int_0^x e^w\dd w \ge \int_0^x 1\dd w \iff e^x - 1 \ge x \iff \boxed{e^x \ge 1 + x \quad (\forall x \ge 0)}.
     \]
     \item Appliquons cette inégalité au réel positif $x = \dfrac{y}{n} > 0$ :
     \[
@@ -282,13 +282,15 @@ En isolant $e^{-x}$ à gauche, on obtient immédiatement $\boxed{e^{-x} \le (1+x
     \]
     \item \textbf{Calcul de $\displaystyle\int_0^a \sqrt{a^2 - x^2}\dd x$ par substitution trigonométrique $x = a\sin(\theta)$ :}
     Posons $x = a\sin(\theta)$ pour $\theta \in \left[0, \frac{\pi}{2}\right]$, de sorte que $\mathrm{d}x = a\cos(\theta)\dd\theta$ et $\sqrt{a^2 - x^2} = \sqrt{a^2(1-\sin^2\theta)} = a\cos(\theta)$ (car $\cos\theta \ge 0$ sur $[0, \pi/2]$). Grâce à la formule de Carnot :
-    \[
-        \int_0^a \sqrt{a^2 - x^2}\dd x = a^2 \int_0^{\pi/2} \cos^2(\theta)\dd\theta = \frac{a^2}{2}\int_0^{\pi/2} \bigl(1 + \cos(2\theta)\bigr)\dd\theta = \frac{a^2}{2}\left[\theta + \frac{\sin(2\theta)}{2}\right]_0^{\pi/2} = \frac{\pi a^2}{4},
-    \]
+    \begin{align*}
+        \int_0^a \sqrt{a^2 - x^2}\dd x &= a^2 \int_0^{\pi/2} \cos^2(\theta)\dd\theta = \frac{a^2}{2}\int_0^{\pi/2} \bigl(1 + \cos(2\theta)\bigr)\dd\theta \\
+        &= \frac{a^2}{2}\left[\theta + \frac{\sin(2\theta)}{2}\right]_0^{\pi/2} = \frac{\pi a^2}{4},
+    \end{align*}
     (ce qui est bien le quart de l'aire $\pi a^2$ d'un disque de rayon $a$ !). En multipliant par $8\pi R$ :
     \[
-        \boxed{V = 8\pi R \cdot \frac{\pi a^2}{4} = 2\pi^2 R a^2 = (2\pi R)\cdot(\pi a^2)} = (\text{périmètre du cercle de rayon } R) \times (\text{aire du disque de rayon } a).
+        \boxed{V = 8\pi R \cdot \frac{\pi a^2}{4} = 2\pi^2 R a^2 = (2\pi R)\cdot(\pi a^2)},
     \]
+    soit le produit du périmètre $2\pi R$ du cercle directeur par l'aire $\pi a^2$ de la section circulaire.
 \end{itemize}
 
 \medskip
@@ -302,7 +304,7 @@ Calculer la formule littérale du volume $V_{\text{œuf}}$, puis sa valeur numé
 \begin{align*}
     V_{\text{œuf}} &= \pi \int_0^H \bigl(R(h)\bigr)^2\dd h = \pi A^2 \int_0^H \left(\sin\left(\frac{\pi h}{H}\right) + \frac{1}{4}\sin\left(\frac{2\pi h}{H}\right)\right)\dd h \\
     &= \pi A^2 \left[-\frac{H}{\pi}\cos\left(\frac{\pi h}{H}\right) - \frac{1}{4}\cdot\frac{H}{2\pi}\cos\left(\frac{2\pi h}{H}\right)\right]_0^H = -H A^2 \left[\cos\left(\frac{\pi h}{H}\right) + \frac{1}{8}\cos\left(\frac{2\pi h}{H}\right)\right]_0^H \\
-    &= -H A^2 \left[\left(\cos(\pi) + \frac{1}{8}\cos(2\pi)\right) - \left(\cos(0) + \frac{1}{8}\cos(0)\right)\right] = -H A^2 \left[\left(-1 + \frac{1}{8}\right) - \left(1 + \frac{1}{8}\right)\right] = \boxed{2 H A^2}.
+    &= -H A^2 \left[\left(-1 + \frac{1}{8}\right) - \left(1 + \frac{1}{8}\right)\right] = \boxed{2 H A^2}.
 \end{align*}
 Numériquement, pour $H = 1,00\text{ m}$ et $A = 0,50\text{ m}$ : $\boxed{V_{\text{œuf}} = 2 \times 1,00 \times (0,50)^2 = 0,50\text{ m}^3}$, tandis que le volume de la sphère de rayon $R = 0,50\text{ m}$ vaut $\boxed{V_{\text{sphère}} = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi\left(\frac{1}{2}\right)^3 = \frac{\pi}{6} \simeq \frac{3,1416}{6} \simeq 0,52\text{ m}^3}$. L'œuf est donc légèrement \textbf{moins volumineux} que la sphère.
 \end{exemple}
