@@ -1,0 +1,348 @@
+% ============================================================================
+% CHAPITRE 5 : PROBLÈMES D'OPTIMISATION APPLIQUÉE
+% ============================================================================
+\chapter{Problèmes d'Optimisation Appliquée}
+
+La \textbf{Question 2} de l'examen d'admission d'Analyse à l'UCLouvain (qui vaut elle aussi typiquement $15$ points sur $50$) est un \textbf{problème concret d'optimisation} inspiré du métier d'ingénieur : concevoir l'épaisseur optimale d'un isolant thermique, dimensionner une boîte métallique ou un enclos agricole, choisir la vitesse économique d'un drone-lanceur ou d'un navire marchand, optimiser un panneau solaire photovoltaïque, un accélérateur de particules, un propulseur spatial ou l'heure de prise d'un café avant l'examen ! Ce chapitre vous donne une méthode universelle en 5 étapes pour traduire n'importe quel énoncé en équations et le résoudre sans erreur.
+
+% ----------------------------------------------------------------------------
+\section{Méthodologie générale de résolution en 5 étapes}
+% ----------------------------------------------------------------------------
+
+Face à un long texte de problème (parfois une demi-page décrivant un système physique ou économique), la difficulté principale n'est pas le calcul de la dérivée, mais la \textbf{mise en équation} et l'\textbf{identification de la variable par rapport à laquelle il faut dériver}.
+
+\begin{theoreme}[La méthode universelle en 5 étapes pour les problèmes d'optimisation]
+\begin{enumerate}
+    \item \textbf{Étape 1 -- Identifier la grandeur à optimiser (fonction objectif) et les variables :}
+    Repérez dans la question finale ce qu'il faut \textbf{minimiser} ou \textbf{maximiser} : est-ce un coût $C$, une énergie $E$, une masse de métal $M$, un temps de trajet $T$, un volume $V$, une aire $A$, une vitesse $v_e$, une accélération $A$ ? Donnez un nom clair à cette grandeur et listez les variables dont elle dépend a priori (par ex. largeur $l$ et longueur $L$, ou côté $c$ et hauteur $h$), en les distinguant bien des \textbf{constantes fixées par l'énoncé} ($V_0, H, \alpha, \beta, f_0, K\dots$).
+    \item \textbf{Étape 2 -- Écrire la ou les équation(s) de contrainte :}
+    Si votre fonction objectif dépend de deux (ou trois) variables, cherchez dans l'énoncé la contrainte géométrique, physique ou budgétaire qui les relie (par ex. volume imposé $V = c^2 h$, longueur de clôture $C = L + 2l$, budget $A + V = 560$, ou conditions aux bords $f(1) = f(-1) = 1$).
+    \item \textbf{Étape 3 -- Éliminer les variables liées pour obtenir une fonction d'UNE SEULE variable :}
+    Isolez l'une des variables dans l'équation de contrainte (par ex. $h = \frac{V}{c^2}$ ou $L = C - 2l$) et remplacez-la dans la fonction objectif afin d'obtenir une fonction $\Phi(x)$ ne dépendant plus que d'\textbf{une seule variable indépendante $x$}, en précisant son intervalle de validité physique (souvent $x > 0$ ou $x \in [a, b]$).
+    \item \textbf{Étape 4 -- Dériver par rapport à cette variable et résoudre $\Phi'(x^*) = 0$ :}
+    Calculez $\Phi'(x) = \dfrac{\mathrm{d}\Phi}{\mathrm{d}x}$, factorisez-la et résolvez $\Phi'(x^*) = 0$ sur l'intervalle physique.
+    \item \textbf{Étape 5 -- Vérifier la nature de l'extremum et répondre à TOUTES les sous-questions :}
+    \begin{itemize}
+        \item Justifiez brièvement que $x^*$ est bien un minimum (resp. un maximum), soit par le signe de la dérivée seconde $\Phi''(x^*) > 0$ (resp. $< 0$), soit par un petit tableau de signes de $\Phi'(x)$ autour de $x^*$.
+        \item Calculez la valeur optimale $\Phi(x^*)$ ainsi que les autres dimensions demandées, et vérifiez les \textbf{unités} (mètres, hectares, heures/minutes, kg/min...).
+    \end{itemize}
+\end{enumerate}
+\end{theoreme}
+
+\begin{astuce}[Quatre astuces d'ingénieur qui simplifient radicalement les calculs]
+\begin{enumerate}
+    \item \textbf{Gardez les constantes sous forme de lettres jusqu'à la fin !} Comme le rappelle avec insistance le solutionnaire de \textbf{Juillet 2026 (Question 2)}, n'injectez jamais les grands nombres ($2300$ milles nautiques, $5$ millions d'euros, $f_0 = 1,146\cdot 10^{14}\text{ Hz}$...) au début du calcul : en travaillant avec des lettres ($C_{\text{total}}(V) = aV^2 + \frac{d}{V}$), la dérivée tient en une demi-ligne et les constantes inutiles s'éliminent d'elles-mêmes !
+    \item \textbf{Optimiser le carré d'une fonction positive $A(x) \ge 0$ pour éliminer une racine carrée :} (Septembre 2026, Q2 -- Méthode 3). Si vous devez maximiser une grandeur positive contenant une racine carrée, telle que l'aire d'un triangle $A(b) = \frac{1}{2}b\sqrt{(C/2)^2 - (b/2)^2}$, remarquez que la fonction carré $u \mapsto u^2$ est strictement croissante sur $\R^+$ : \textbf{$A(b)$ atteint son maximum exactement au même point $b^*$ que son carré $A^2(b) = \frac{1}{16}(b^2 C^2 - b^4)$}, qui est un simple polynôme sans aucune racine carrée à dériver !
+    \item \textbf{Penser au paramétrage trigonométrique dans les problèmes géométriques :} ( Juillet 2023 Série 1 Q2 et Septembre 2026 Q2 -- Méthodes 5 et 6). Dans un problème de triangle ou de trajet oblique, choisir l'\textbf{angle $\theta$} comme variable plutôt qu'une longueur $x$ transforme souvent les racines carrées de Pythagore en simples $\sin\theta$ et $\cos\theta$ !
+    \item \textbf{Quand la fonction objectif est définie par une intégrale :} (Juillet 2022 Q2, Septembre 2022 Q2, Septembre 2023 Q2, Juillet 2024 Q2). Calculez d'abord l'intégrale définie par rapport au temps $t$ (ou à l'espace $x$) pour obtenir une expression explicite en fonction du paramètre à optimiser ($v$, $a$, $f_s$), puis dérivez ce résultat par rapport au paramètre !
+\end{enumerate}
+\end{astuce}
+
+% ----------------------------------------------------------------------------
+\section{Optimisation de coûts, d'énergie et de vitesse (Modèles $a\,x^p + b\,x^{-q}$)}
+% ----------------------------------------------------------------------------
+
+Une grande famille de problèmes d'ingénierie consiste à arbitrer entre deux effets antagonistes lorsque l'on fait varier un paramètre $x > 0$ (épaisseur d'isolant, vitesse d'un navire ou d'un drone) : un terme qui croît avec $x$ ($a\,x^p$) et un terme qui décroît avec $x$ ($\frac{b}{x^q}$).
+
+\begin{exemple}[compromis coût de production / déperdition ou temps : Juillet 2021 Q2, Juillet 2022 Q2 et Juillet 2026 Q2]
+\textbf{1) Épaisseur optimale d'un isolant thermique (UCLouvain -- Juillet 2021, Question 2) :}\\
+\emph{Énoncé résumé :} On souhaite isoler un bâtiment pour une durée de $20\text{ ans}$ afin de minimiser la dépense énergétique totale par $\text{m}^2$ de mur (somme de la déperdition de chauffage et de l'énergie de fabrication de l'isolant) :
+\begin{itemize}
+    \item La déperdition annuelle par $\text{m}^2$ est inversement proportionnelle à l'épaisseur $e$ (en m) de l'isolant (soit de la forme $\frac{k}{e}$) et vaut $5\text{ kWh}/(\text{m}^2\cdot\text{an})$ pour $e = 0,1\text{ m}$.
+    \item La fabrication de l'isolant demande $1000\text{ kWh}$ par $\text{m}^3$ d'isolant.
+\end{itemize}
+Quelle épaisseur $e$ permet de minimiser l'énergie totale sur $20\text{ ans}$ ?\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \textbf{Mise en équation pour $1\text{ m}^2$ de mur sur $20\text{ ans}$ en fonction de l'épaisseur $e > 0$ :}
+    \begin{itemize}
+        \item La déperdition annuelle vaut $\frac{k}{e}$. Comme elle vaut $5\text{ kWh}$ pour $e = 0,1\text{ m}$, on a $k = 5 \times 0,1 = 0,5\text{ kWh}\cdot\text{m/an}$. Sur $20\text{ ans}$, la déperdition totale par $\text{m}^2$ vaut donc $20 \times \frac{0,5}{e} = \dfrac{10}{e}\text{ kWh}$.
+        \item Pour $1\text{ m}^2$ de mur et une épaisseur $e$ (en m), le volume d'isolant est $1 \times e = e\text{ m}^3$, ce qui consomme à la fabrication $1000\,e\text{ kWh}$.
+    \end{itemize}
+    La dépense énergétique totale par $\text{m}^2$ sur $20\text{ ans}$ est donc la fonction d'une seule variable $e > 0$ :
+    \[
+        f(e) = 1000\,e + \frac{10}{e}.
+    \]
+    \item \textbf{Dérivation et optimisation :}
+    \[
+        f'(e) = 1000 - \frac{10}{e^2} = 0 \iff e^2 = \frac{10}{1000} = 0,01 \iff \boxed{e^* = 0,1\text{ m} = 10\text{ cm}} \quad (\text{car } e > 0).
+    \]
+    Comme $f''(e) = \frac{20}{e^3} > 0$ pour tout $e > 0$, il s'agit bien d'un minimum global.
+\end{itemize}
+
+\medskip
+\textbf{2) Vitesse optimale d'un navire de transport maritime (UCLouvain -- Juillet 2026, Question 2) :}\\
+\emph{Énoncé :} Une entreprise livre du matériel d'Anvers à Marseille (distance $D = 2300$ milles nautiques). Le coût total du voyage est $C_{\text{total}} = C_E + C_T$, où le coût énergétique augmente quadratiquement avec la vitesse $V$ du bateau ($C_E = aV^2$) et le coût salarial/amortissement est proportionnel à la durée $T$ du voyage ($C_T = bT$).
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Premier voyage :} Pour $V = 20\text{ nœuds}$, le voyage coûte $5$ millions d'euros avec $C_E = C_T / 2$. Cette vitesse $V = 20\text{ nœuds}$ était-elle optimale ? Quelle est $V_{\text{opt1}}$ ?
+    \item \textbf{Second voyage :} Les paramètres $a$ et $b$ ont été réduits : le coût total vaut maintenant $4$ millions d'euros pour $V = 20\text{ nœuds}$, et vaudrait $\dfrac{17}{3}$ millions d'euros pour $V = 10\text{ nœuds}$. Quelle est la nouvelle vitesse optimale $V_{\text{opt2}}$ ?
+\end{enumerate}
+\emph{Résolution :}
+\begin{itemize}
+    \item \textbf{Modélisation générale pour tout voyage :} Comme la distance parcourue est $D = T \cdot V$, la durée du voyage est $T = \dfrac{D}{V}$. En posant la constante globale $d = bD$, le coût total s'exprime en fonction de la seule variable $V > 0$ :
+    \[
+        C_{\text{total}}(V) = aV^2 + b\,\frac{D}{V} = aV^2 + \frac{d}{V}.
+    \]
+    Dérivons par rapport à $V$ :
+    \[
+        \frac{\mathrm{d}C_{\text{total}}}{\mathrm{d}V} = 2aV - \frac{d}{V^2} = 0 \iff 2aV = \frac{d}{V^2} \iff \boxed{V_{\text{opt}}^3 = \frac{d}{2a}} \quad \left(\text{soit } aV_{\text{opt}}^2 = \frac{1}{2}\frac{d}{V_{\text{opt}}}, \text{ c'est-à-dire } C_E = \frac{1}{2}C_T\right).
+    \]
+    La dérivée seconde $\frac{\mathrm{d}^2 C_{\text{total}}}{\mathrm{d}V^2} = 2a + \frac{2d}{V^3} > 0$ confirme que c'est un minimum.
+    \item \textbf{Application au premier voyage :} La condition d'optimalité générale $aV^2 = \frac{d}{2V} \iff C_E = \frac{1}{2}C_T$ est \textbf{précisément celle qui est observée à $V = 20\text{ nœuds}$} dans l'énoncé ! Sans aucun calcul numérique, on conclut immédiatement que la vitesse de $20\text{ nœuds}$ était déjà optimale : $\boxed{V_{\text{opt1}} = 20\text{ nœuds}}$.
+    \item \textbf{Application au second voyage :} Traduisons les deux coûts donnés pour $V = 20$ et $V = 10$ dans $C_{\text{total}}(V) = aV^2 + \frac{d}{V}$ :
+    \[
+        \begin{cases}
+            400\,a + \dfrac{d}{20} = 4 \\[6pt]
+            100\,a + \dfrac{d}{10} = \dfrac{17}{3}
+        \end{cases}
+    \]
+    Multiplions la seconde équation par $4$ ($400\,a + \frac{4d}{10} = \frac{68}{3}$) et soustrayons la première pour éliminer $400a$ :
+    \[
+        \left(\frac{4}{10} - \frac{1}{20}\right)d = \frac{68}{3} - 4 \iff \frac{7}{20}d = \frac{56}{3} \iff d = \frac{56 \times 20}{3 \times 7} = \frac{160}{3}.
+    \]
+    En remplaçant dans la seconde équation : $100a = \frac{17}{3} - \frac{16}{3} = \frac{1}{3} \implies a = \frac{1}{300}$. On injecte dans la formule (5) de la vitesse optimale :
+    \[
+        V_{\text{opt2}}^3 = \frac{d}{2a} = \frac{160/3}{2/300} = \frac{160}{3} \times \frac{300}{2} = 80 \times 100 = 8000 = 20^3 \implies \boxed{V_{\text{opt2}} = 20\text{ nœuds}}.
+    \]
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Optimisation géométrique et cinématique (Aires, volumes, trajets)}
+% ----------------------------------------------------------------------------
+
+\begin{exemple}[Trois problèmes géométriques et cinématiques d'annales : Septembre 2021 Q2, Juillet 2023 Q2, Septembre 2026 Q2]
+\textbf{1) Dimensionnement d'une boîte métallique avec et sans couvercle (UCLouvain -- Septembre 2021, Question 2) :}\\
+\emph{Énoncé résumé :} On conçoit une boîte métallique de volume fixé $V = 1\text{ dm}^3$ ayant la forme d'un parallélépipède rectangle à base carrée (côté de base $c$, hauteur $h$). La quantité de métal est $M = \alpha S$ où $S$ est la surface totale des parois métalliques.
+\begin{enumerate}[label=\alph*)]
+    \item Quelles dimensions $(c, h)$ minimisent la quantité de métal $M_1$ pour une boîte fermée (avec couvercle) ? Quelle est sa forme ?
+    \item Comme les boîtes sont empilées, on supprime le couvercle supérieur. Si l'on garde les dimensions $(c, h)$ trouvées en a), quelle est la nouvelle quantité de métal $M_2$ ?
+    \item Si l'on ré-optimise les dimensions $(c, h)$ en tenant compte de l'absence de couvercle, quelle quantité minimale de métal $M_3$ obtient-on ?
+\end{enumerate}
+\emph{Résolution :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Boîte fermée (2 bases carrées d'aire $c^2$ + 4 faces latérales d'aire $ch$) :}
+    La contrainte de volume est $V = c^2 h \implies h = \dfrac{V}{c^2}$. En remplaçant $h$ dans $M(c, h) = \alpha(2c^2 + 4ch)$ :
+    \[
+        M(c) = \alpha\left(2c^2 + 4c\,\frac{V}{c^2}\right) = \alpha\left(2c^2 + \frac{4V}{c}\right) \implies M'(c) = \alpha\left(4c - \frac{4V}{c^2}\right) = 0 \iff c^3 = V \iff \boxed{c = \sqrt[3]{V}}.
+    \]
+    On en déduit $h = \frac{V}{c^2} = \frac{V}{V^{2/3}} = \sqrt[3]{V} = c$ : la boîte optimale est un \textbf{cube} ! Et $M_1 = \alpha(2V^{2/3} + 4V^{2/3}) = \boxed{6\alpha V^{2/3}}$.
+    \item \textbf{Suppression du couvercle à dimensions inchangées ($c = h = V^{1/3}$) :} Il n'y a plus qu'une seule base carrée ($S = c^2 + 4ch = 5c^2$), donc $\boxed{M_2 = 5\alpha V^{2/3}}$ (économie de $1/6 \approx 16,7\%$).
+    \item \textbf{Ré-optimisation sans couvercle ($S = c^2 + 4ch$) :} Avec $h = \frac{V}{c^2}$, la nouvelle fonction à minimiser est :
+    \[
+        M(c) = \alpha\left(c^2 + \frac{4V}{c}\right) \implies M'(c) = \alpha\left(2c - \frac{4V}{c^2}\right) = 0 \iff 2c^3 = 4V \iff \boxed{c^* = \sqrt[3]{2V} = 2^{1/3}V^{1/3}}.
+    \]
+    La nouvelle hauteur optimale vaut $h^* = \frac{V}{(c^*)^2} = \frac{V}{2^{2/3}V^{2/3}} = \frac{1}{2^{2/3}}V^{1/3} = \sqrt[3]{\frac{V}{4}} = \frac{c^*}{2}$ (un demi-cube !), et la quantité de métal minimale vaut :
+    \[
+        M_3 = \alpha\left(2^{2/3}V^{2/3} + \frac{4V}{2^{1/3}V^{1/3}}\right) = \alpha\bigl(2^{2/3} + 2\cdot 2^{2/3}\bigr)V^{2/3} = \boxed{3\sqrt[3]{2}\,\alpha V^{2/3} \approx 4,76\,\alpha V^{2/3}}.
+    \]
+\end{enumerate}
+
+\medskip
+\textbf{2) Trajet le plus rapide sable / route -- Loi de Snell-Descartes (UCLouvain -- Juillet 2023 -- Série 1, Question 2) :}\\
+\emph{Énoncé résumé :} Vous êtes dans le sable à $1\text{ km}$ au nord d'une route est-ouest, et votre destination est également dans le sable à $1\text{ km}$ au nord de la route et à une distance $L$ à l'est de votre position. Vous marchez à $v_1 = 3\text{ km/h}$ dans le sable et à $v_2 = 5\text{ km/h}$ sur la route. Vous suivez une diagonale jusqu'à un point de la route décalé de $x\text{ km}$ vers l'est, puis la route sur une distance $L - 2x$, puis une diagonale symétrique jusqu'à la destination.
+\begin{enumerate}[label=\alph*)]
+    \item Quelle est la durée minimale de votre trajet ?
+    \item Pour quelles distances $L$ aurait-il été plus rapide de marcher directement en ligne droite dans le sable ?
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=1.1, >=Stealth]
+    \draw[very thick, darkgray] (-0.5,0) -- (6.5,0) node[midway, below=3pt] {\small Route ($v_2 = 5\text{ km/h}$, distance parcourue $L - 2x$)};
+    \coordinate (A) at (0.5, 1.8);
+    \coordinate (B) at (5.5, 1.8);
+    \coordinate (A0) at (0.5, 0);
+    \coordinate (B0) at (5.5, 0);
+    \coordinate (P1) at (1.85, 0);
+    \coordinate (P2) at (4.15, 0);
+
+    \draw[dashed, gray] (A) -- (A0) node[midway, left] {\small $1\text{ km}$};
+    \draw[dashed, gray] (B) -- (B0) node[midway, right] {\small $1\text{ km}$};
+    \draw[dotted, gray, <->] (0.5, 2.05) -- (5.5, 2.05) node[midway, above] {\small $L$};
+    \draw[very thick, uclblue] (A) -- (P1) node[midway, above right=-2pt] {\footnotesize $\sqrt{1+x^2}$};
+    \draw[very thick, uclblue] (P1) -- (P2);
+    \draw[very thick, uclblue] (P2) -- (B) node[midway, above left=-2pt] {\footnotesize $\sqrt{1+x^2}$};
+
+    \draw[<->, warnred] (0.5, -0.25) -- (1.85, -0.25) node[midway, below] {\small $x$};
+    \draw[<->, warnred] (4.15, -0.25) -- (5.5, -0.25) node[midway, below] {\small $x$};
+
+    \fill[uclblue] (A) circle (2.2pt) node[above left] {\small Départ};
+    \fill[uclblue] (B) circle (2.2pt) node[above right] {\small Destination};
+    \fill[warnred] (P1) circle (1.8pt);
+    \fill[warnred] (P2) circle (1.8pt);
+\end{tikzpicture}
+\end{center}
+\emph{Résolution :}
+\begin{enumerate}[label=\alph*)]
+    \item Par le théorème de Pythagore, chaque diagonale dans le sable mesure $\sqrt{1 + x^2}\text{ km}$. Parcourir les deux diagonales à $3\text{ km/h}$ prend un temps $\frac{2\sqrt{1+x^2}}{3}\text{ h}$, et parcourir le segment de route $L - 2x$ à $5\text{ km/h}$ prend $\frac{L-2x}{5}\text{ h}$. Le temps total $T(x)$ vaut donc :
+    \[
+        T(x) = \frac{1}{5}(L - 2x) + \frac{2}{3}\sqrt{1 + x^2} \implies T'(x) = -\frac{2}{5} + \frac{2}{3}\cdot\frac{\cancel{2}x}{\cancel{2}\sqrt{1+x^2}} = -\frac{2}{5} + \frac{2x}{3\sqrt{1+x^2}}.
+    \]
+    Annulons la dérivée (avec $x \ge 0$) :
+    \[
+        T'(x) = 0 \iff \frac{x}{3\sqrt{1+x^2}} = \frac{1}{5} \iff 5x = 3\sqrt{1+x^2} \iff 25x^2 = 9(1+x^2) \iff 16x^2 = 9 \iff \boxed{x^* = \frac{3}{4}\text{ km}}.
+    \]
+    En remplaçant $x^* = \frac{3}{4}$ (notons le triplet pythagoricien $\sqrt{1 + (3/4)^2} = \sqrt{25/16} = \frac{5}{4}$) dans $T(x)$ :
+    \[
+        T(x^*) = \frac{1}{5}\left(L - \frac{3}{2}\right) + \frac{2}{3} \cdot \frac{5}{4} = \frac{L}{5} - \frac{3}{10} + \frac{5}{6} = \frac{L}{5} + \frac{-9 + 25}{30} = \boxed{\frac{1}{5}L + \frac{8}{15}\text{ heures}}.
+    \]
+    \emph{Remarque :} Si l'on paramètre par l'angle d'incidence $\theta$, la condition $T'(\theta) = 0$ donne immédiatement $\sin\theta = \frac{3}{5} = \frac{v_1}{v_2}$, qui n'est autre que la loi de la réfraction de Snell-Descartes en optique !
+    \item Marcher en ligne droite dans le sable sur la distance $L$ à $3\text{ km/h}$ prend un temps $T_{\text{direct}} = \frac{1}{3}L$. Ce trajet direct est plus rapide si et seulement si :
+    \[
+        \frac{1}{3}L < \frac{1}{5}L + \frac{8}{15} \iff \left(\frac{5 - 3}{15}\right)L < \frac{8}{15} \iff \frac{2}{15}L < \frac{8}{15} \iff \boxed{L < 4\text{ km}}.
+    \]
+\end{enumerate}
+
+\medskip
+\textbf{3) Enclos agricole rectangulaire vs triangulaire adossé à un mur (UCLouvain -- Septembre 2026, Question 2) :}\\
+\emph{Énoncé résumé :} Une agricultrice dispose de $C = 200\text{ m}$ de clôture pour délimiter un enclos adossé à un mur rectiligne (le mur ne nécessite pas de clôture).
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Cas rectangulaire :} Quelles doivent être la longueur $L$ (parallèle au mur) et la largeur $l$ (perpendiculaire au mur) pour maximiser l'aire $A_{\text{rectangle}}$ ? Que vaut $A_{\text{rectangle}}$ en $\text{m}^2$ et en hectares ($1\text{ ha} = 10\,000\text{ m}^2$) ?
+    \item \textbf{Cas triangulaire :} Pour économiser un pieu, elle envisage un enclos en forme de triangle isocèle dont la base $b$ est le mur (les deux côtés clôturés mesurant chacun $C/2 = 100\text{ m}$). Quelles sont la base $b$ et la hauteur $h$ qui maximisent $A_{\text{triangle}}$, et que vaut $A_{\text{triangle}}$ ? Que doit-elle choisir ? (\textbf{Aide :} $\sqrt{1/2} \simeq 0,7071$).
+\end{enumerate}
+\emph{Résolution :}
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Rectangle :} La clôture couvre la longueur $L$ et les deux largeurs $l$, soit $L + 2l = C \implies L = C - 2l$. L'aire en fonction de $l$ est :
+    \[
+        A_{\text{rect}}(l) = L\cdot l = (C - 2l)l = Cl - 2l^2 \implies \frac{\mathrm{d}A_{\text{rect}}}{\mathrm{d}l} = C - 4l = 0 \iff \boxed{l = \frac{C}{4} = 50\text{ m}},
+    \]
+    (avec dérivée seconde $-4 < 0$), d'où $\boxed{L = C - 2l = \frac{C}{2} = 100\text{ m}}$ et $\boxed{A_{\text{rectangle}} = 100 \times 50 = \frac{C^2}{8} = 5000\text{ m}^2 = 0,5\text{ ha}}$.
+    \item \textbf{Triangle isocèle (présentons 3 des 6 méthodes du solutionnaire officiel !) :}
+    Chaque côté latéral clôturé mesure $\frac{C}{2} = 100\text{ m}$. Par Pythagore dans le demi-triangle rectangle de base $\frac{b}{2}$ et de hauteur $h$, on a $\left(\frac{b}{2}\right)^2 + h^2 = \left(\frac{C}{2}\right)^2$, et l'aire vaut $A_{\text{tri}} = \frac{1}{2}bh$.
+    \begin{itemize}
+        \item \emph{Méthode analytique standard (par la dérivée de $A_{\text{tri}}(b)$ ou de son carré $A_{\text{tri}}^2(b)$) :} Comme $h = \sqrt{(C/2)^2 - (b/2)^2}$, on a $A_{\text{tri}}^2(b) = \frac{1}{4}b^2\left(\frac{C^2}{4} - \frac{b^2}{4}\right) = \frac{1}{16}(C^2 b^2 - b^4)$. En dérivant ce polynôme par rapport à $b$ :
+        \[
+            \frac{\mathrm{d}(A_{\text{tri}}^2)}{\mathrm{d}b} = \frac{1}{16}(2C^2 b - 4b^3) = \frac{b}{8}(C^2 - 2b^2) = 0 \iff \boxed{b = \frac{C}{\sqrt{2}} = \frac{200}{\sqrt{2}} = 100\sqrt{2} \simeq 141,42\text{ m}},
+        \]
+        d'où $\boxed{h = \sqrt{\frac{C^2}{4} - \frac{C^2}{8}} = \frac{C}{2\sqrt{2}} = 50\sqrt{2} \simeq 70,71\text{ m}}$ et $\boxed{A_{\text{triangle}} = \frac{1}{2}\cdot\frac{C}{\sqrt{2}}\cdot\frac{C}{2\sqrt{2}} = \frac{C^2}{8} = 5000\text{ m}^2 = 0,5\text{ ha}}$.
+        \item \emph{Méthode géométrique fulgurante (Méthode 6 du solutionnaire) :} Notons $\beta$ l'angle au sommet entre les deux côtés clôturés de longueur fixe $\frac{C}{2} = 100\text{ m}$. L'aire d'un triangle de côtés $\frac{C}{2}$ et $\frac{C}{2}$ entourant l'angle $\beta$ vaut :
+        \[
+            A_{\text{triangle}} = \frac{1}{2}\left(\frac{C}{2}\right)\left(\frac{C}{2}\right)\sin\beta = \frac{C^2}{8}\sin\beta.
+        \]
+        Elle est immédiatement maximale lorsque $\sin\beta = 1 \iff \beta = 90\degree$ (triangle rectangle isocèle d'hypoténuse $b = \sqrt{2}\cdot\frac{C}{2} = \frac{C}{\sqrt{2}}$ et d'aire maximale $\frac{C^2}{8}$) !
+    \end{itemize}
+    \textbf{Conclusion :} Les deux aires maximales sont \textbf{strictement égales} ($5000\text{ m}^2 = 0,5\text{ ha}$), donc en tenant compte de l'économie d'un pieu, l'agricultrice a intérêt à choisir \textbf{le triangle} !
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Optimisation de fonctions exponentielles, logarithmiques et intégrales}
+% ----------------------------------------------------------------------------
+
+\begin{exemple}[Quatre problèmes avancés d'annales : Septembre 2022 Q2, Juillet 2023 Série 2 Q2, Juillet 2024 Q2, Septembre 2025 Q2]
+\textbf{1) Conception d'une pièce mécanique de volume minimal par intégration (UCLouvain -- Septembre 2022, Question 2) :}\\
+\emph{Énoncé :} Vous concevez une pièce mécanique de longueur $2$ obtenue par révolution d'une fonction $f : [-1, 1] \to \R$ autour de l'axe des abscisses, et devez choisir $f$ de façon à minimiser le volume $V = \pi \int_{-1}^1 f^2(x)\dd x$ sous deux contraintes :
+(i) le rayon aux extrémités doit valoir $1$, soit $f(1) = f(-1) = 1$ ;
+(ii) $f$ doit être un polynôme du second degré $f(x) = ax^2 + bx + c$ (qui peut prendre des valeurs négatives).
+Quelle fonction $f(x)$ utiliserez-vous et quel sera le volume minimal $V$ ?\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \textbf{Élimination de $b$ et $c$ grâce aux contraintes aux bords :}
+    \[
+        \begin{cases} f(1) = a + b + c = 1 \\ f(-1) = a - b + c = 1 \end{cases} \implies \begin{cases} 2b = 0 \iff b = 0 \\ a + c = 1 \iff c = 1 - a \end{cases} \implies f(x) = ax^2 + (1 - a).
+    \]
+    \item \textbf{Calcul du volume $V(a)$ en fonction du seul paramètre $a \in \R$ :} Par parité de $f^2(x)$ sur $[-1, 1]$ :
+    \begin{align*}
+        V(a) &= \pi \int_{-1}^1 \bigl(ax^2 + (1-a)\bigr)^2\dd x = \pi \int_{-1}^1 \bigl(a^2 x^4 + 2a(1-a)x^2 + (1-a)^2\bigr)\dd x \\
+        &= \pi\left[a^2\cdot\frac{2}{5} + 2a(1-a)\cdot\frac{2}{3} + (1-a)^2\cdot 2\right] = \frac{\pi}{15}\bigl(6a^2 + 20a(1-a) + 30(1 - 2a + a^2)\bigr) = \frac{\pi}{15}\bigl(16a^2 - 40a + 30\bigr).
+    \end{align*}
+    \item \textbf{Optimisation par rapport à $a$ :}
+    \[
+        V'(a) = \frac{\pi}{15}(32a - 40) = 0 \iff \boxed{a^* = \frac{40}{32} = \frac{5}{4}} \quad (\text{minimum car } V''(a) = \frac{32\pi}{15} > 0).
+    \]
+    On obtient $c^* = 1 - \frac{5}{4} = -\frac{1}{4}$, soit $\boxed{f(x) = \frac{5}{4}x^2 - \frac{1}{4}}$ et le volume minimal $V\left(\frac{5}{4}\right) = \frac{\pi}{15}\left(16\cdot\frac{25}{16} - 40\cdot\frac{5}{4} + 30\right) = \frac{\pi}{15}(25 - 50 + 30) = \boxed{\dfrac{\pi}{3}}$.
+\end{itemize}
+
+\medskip
+\textbf{2) Accélérateur de particules et vitesse maximale (UCLouvain -- Juillet 2023 -- Série 2, Question 2) :}\\
+\emph{Énoncé :} La position d'une particule au temps $t \in \R$ (en ns) est $x(t) = b\,e^{-\frac{1}{2}at^2}$ et sa vitesse est $v(t) = x'(t)$.
+(i) À $t = 0$, la particule passe en $x = 1$.
+(ii) Elle est éclairée par un laser $1\text{ ns}$ \emph{avant} d'arriver en $t = 0$ (donc à l'instant $t = -1$), à une position $x^* = x(-1)$.
+(iii) Elle doit aller le plus vite possible au moment où elle est éclairée. Déterminer $a$, $b$ et $x^*$.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item Condition à $t = 0$ : $x(0) = b\,e^0 = b = 1 \implies \boxed{b = 1}$, donc $x(t) = e^{-\frac{1}{2}at^2}$ et $x^* = x(-1) = e^{-\frac{1}{2}a}$.
+    \item La vitesse à l'instant $t$ est $v(t) = x'(t) = -at\,e^{-\frac{1}{2}at^2}$. À l'instant de l'éclairage $t = -1$, la vitesse de la particule vaut donc, en fonction du paramètre $a$ :
+    \[
+        v_e(a) = v(-1) = a\,e^{-\frac{1}{2}a}.
+    \]
+    \item Maximisons $v_e(a)$ en dérivant par rapport à $a$ (règle du produit) :
+    \[
+        \frac{\mathrm{d}v_e}{\mathrm{d}a} = 1\cdot e^{-\frac{1}{2}a} + a\left(-\frac{1}{2}\right)e^{-\frac{1}{2}a} = e^{-\frac{1}{2}a}\left(1 - \frac{1}{2}a\right) = 0 \iff \boxed{a = 2} \quad (\text{car } e^{-\frac{1}{2}a} > 0).
+    \]
+    Comme $\frac{\mathrm{d}v_e}{\mathrm{d}a}$ est $> 0$ pour $a < 2$ et $< 0$ pour $a > 2$, $a = 2$ est bien un maximum global, et la position du laser est $\boxed{x^* = e^{-\frac{1}{2}(2)} = e^{-1} = \dfrac{1}{e}}$.
+\end{itemize}
+
+\medskip
+\textbf{3) Panneau solaire photovoltaïque et loi de Planck / Wien (UCLouvain -- Juillet 2024, Question 2) :}\\
+\emph{Énoncé résumé :} L'énergie électrique totale générée par un panneau solaire de fréquence seuil $f_s > 0$ (dans l'approximation de Wien $K = 0$) est donnée par :
+\[
+    E(f_s) = S\,C_1\,C_2\,f_s \int_{f_s}^\infty f^{n-1}\,e^{-f/f_0}\dd f, \qquad \text{où } f_0 = 1,146\cdot 10^{14}\text{ Hz}.
+\]
+Pour $n = 2$, calculer l'intégrale (par changement de variable $x = f/f_0$ et intégration par parties), puis déterminer la fréquence seuil optimale $f_s$ qui maximise $E(f_s)$ (avec $\sqrt{5} \simeq 2,236$).\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \textbf{Calcul de l'intégrale pour $n = 2$ :} Posons $x = \frac{f}{f_0} \implies f = f_0 x$ et $\mathrm{d}f = f_0\dd x$. Lorsque $f$ varie de $f_s$ à $\infty$, $x$ varie de $x_s = \frac{f_s}{f_0}$ à $\infty$ :
+    \[
+        E(f_s) = S\,C_1\,C_2\,f_s\,f_0^2 \int_{f_s/f_0}^\infty x\,e^{-x}\dd x.
+    \]
+    Une intégration par parties ($u = x \implies \mathrm{d}u = \mathrm{d}x$ ; $\mathrm{d}v = e^{-x}\dd x \implies v = -e^{-x}$) donne la primitive $\int x\,e^{-x}\dd x = -x\,e^{-x} + \int e^{-x}\dd x = -(x+1)e^{-x}$. Comme $\lim_{x \to \infty} -(x+1)e^{-x} = 0$ (croissance comparée), il vient :
+    \[
+        E(f_s) = S\,C_1\,C_2\,f_0^3\,\left[\frac{f_s}{f_0}\left(\frac{f_s}{f_0} + 1\right)e^{-f_s/f_0}\right] = K_0\,\bigl(x_s^2 + x_s\bigr)e^{-x_s} \quad \text{où } x_s = \frac{f_s}{f_0} > 0.
+    \]
+    \item \textbf{Maximisation par rapport à $x_s = f_s / f_0$ :} Dérivons $\phi(x_s) = (x_s^2 + x_s)e^{-x_s}$ par rapport à $x_s$ :
+    \[
+        \phi'(x_s) = (2x_s + 1)e^{-x_s} - (x_s^2 + x_s)e^{-x_s} = \bigl(-x_s^2 + x_s + 1\bigr)e^{-x_s} = 0 \iff x_s^2 - x_s - 1 = 0.
+    \]
+    On retrouve l'équation du nombre d'or ! Comme $x_s > 0$, l'unique racine positive est :
+    \[
+        \frac{f_s}{f_0} = \frac{1 + \sqrt{5}}{2} \simeq \frac{1 + 2,236}{2} = 1,618 \implies \boxed{f_s = \frac{1+\sqrt{5}}{2}f_0 \simeq 1,618 \times 1,146\cdot 10^{14} \simeq 1,85\cdot 10^{14}\text{ Hz}}.
+    \]
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 5}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 5.\arabic* --}]
+    \item \textbf{(UCLouvain -- Juillet 2022, Q2 -- Consommation énergétique d'un drone-lanceur)} Un drone-lanceur monte verticalement du sol ($x=0$) jusqu'à l'altitude $H$ à vitesse constante $v$, de sorte que $x(t) = vt$ pour $t \in [0, T]$. Durant la montée, sa puissance consommée par unité de temps est $Q(t) = K + C_x(t)v^3$, où le coefficient de traînée diminue avec l'altitude selon $C_x(t) = \dfrac{C}{x(t) + x_0}$ ($K, C, x_0, H > 0$ sont des constantes).
+    \begin{enumerate}
+        \item À quel instant $T$ le lanceur atteint-il l'altitude $H$ ?
+        \item En intégrant $Q(t)$ entre $0$ et $T$, calculer la consommation énergétique totale $E(v)$ de la montée en fonction de $v$ et des constantes $K, C, x_0, H$.
+        \item Quelle vitesse $v^*$ faut-il choisir pour minimiser cette consommation totale $E(v)$ ? Quelle est alors la consommation minimale $E(v^*)$ ?
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2023, Q2 -- Éclairage optimal dans un train de nuit)} L'intensité lumineuse dans un train de nuit au temps $t \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ est $\ell(t) = a + b\bigl(1 + \sin(t)\bigr)$, où $b > 0$ est donné et $a > 0$ est l'éclairage d'appoint à choisir. Le degré d'inconfort instantané est modélisé par :
+    \[
+        c(t) = \ell(t) + \frac{|\ell'(t)|}{\ell(t)},
+    \]
+    et l'inconfort moyen sur $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ est $\bar{c}(a) = \dfrac{1}{\pi}\displaystyle\int_{-\pi/2}^{\pi/2} c(t)\dd t$.
+    \begin{enumerate}
+        \item En remarquant que $\ell'(t) = b\cos(t) \ge 0$ sur $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, calculer explicitement l'intégrale donnant $\bar{c}(a)$ en fonction de $a$ et $b$.
+        \item Déterminer la valeur de $a > 0$ qui minimise l'inconfort moyen $\bar{c}(a)$.
+        \item Même question si l'intensité vaut $\ell(t) = a + b\bigl(1 + \sin(\lambda t)\bigr)$ avec une fréquence $\lambda > 0$ sur l'intervalle $\left[-\frac{\pi}{2\lambda}, \frac{\pi}{2\lambda}\right]$.
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2024, Q2 -- Le thermos de café avant l'examen)} Vous buvez un café à l'instant $t = 0$ pour que la concentration de caféine dans votre sang soit maximale exactement $60\text{ minutes}$ après le début de l'examen. La concentration à l'instant $t \ge 0$ (en heures) vaut :
+    \[
+        c(t) = \frac{D}{1 - \beta/\alpha}\Bigl((1 - e^{-\alpha t}) - (1 - e^{-\beta t})\Bigr),
+    \]
+    avec $\alpha = 1,0\text{ h}^{-1}$ et $\beta = 0,2\text{ h}^{-1}$. (\textbf{Aide :} $\ln(5) \simeq 1,61$).
+    \begin{enumerate}
+        \item Combien de minutes avant le début de l'examen devez-vous boire votre café ?
+        \item Prouver par le calcul de la dérivée seconde $\left.\dfrac{\mathrm{d}^2 c}{\mathrm{d}t^2}\right|_{t_{\max}}$ qu'il s'agit bien d'un maximum (en justifiant le signe de la constante $D$).
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Juillet 2025, Q2 -- Le tournoi de la ligue des « legendgénieurs »)} Vous disposez d'un budget de $560\text{ bitcoins}$ et de $7$ points de vie initiaux. Vous répartissez votre budget entre l'achat d'une armure (coût $A$ bitcoins) et l'achat de points de vie supplémentaires (coût $V$ bitcoins, avec $A + V = 560$, sachant qu'un point de vie coûte $10$ bitcoins). L'efficacité de l'armure est proportionnelle au carré de son coût ($E = kA^2$) et vaut $E = 1$ si $A = 560$. Votre durée de vie en jours est le produit de votre nombre total de points de vie par l'efficacité de l'armure : $D = \left(7 + \dfrac{V}{10}\right)E$.
+    Déterminer la répartition optimale $(A, V)$ qui maximise $D$, et exprimer la durée de vie maximale $D_{\max}$ sous forme de fraction, puis en jours $J$, heures $H$ et minutes $M$.
+
+    \item \textbf{(UCLouvain -- Septembre 2025, Q2 -- Le moteur propulseur spatial et l'effet d'embouteillage)} Un moteur spatial émet un flux de particules $F$ (en $\text{g/s}$). La vitesse des particules décroît avec le flux selon $V(F) = V_{\max}\exp(-F/F_c)$, où $V_{\max} = 100\text{ km/s}$ et $F_c = 100\text{ g/s}$. L'accélération du vaisseau est $A(F) = k\,V(F)\,F$ ($k > 0$).
+    \begin{enumerate}
+        \item Quel flux optimal $F^*$ (en $\text{g/s}$ puis en $\text{kg/min}$) maximise l'accélération $A(F)$ ? Justifier qu'il s'agit d'un maximum.
+        \item Quel devient le flux optimal $F^*$ (en $\text{g/s}$) si le facteur de réduction de vitesse est $\exp\bigl[-(F/F_c)^{1/2}\bigr]$ ?
+    \end{enumerate}
+
+    \item \textbf{(Volume maximal d'un cylindre inscrit dans une sphère ou un cône)} Parmi tous les cylindres circulaires droits de rayon $r$ et de hauteur $h$ inscrits dans une sphère de rayon donné $R > 0$, déterminer les dimensions $(r, h)$ et le volume maximal du cylindre.
+\end{enumerate}

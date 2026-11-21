@@ -1,0 +1,76 @@
+% ============================================================================
+% ANNEXE A : ÉLÉMENTS DE LOGIQUE ET MÉTHODES DE DÉMONSTRATION EN ANALYSE
+% ============================================================================
+\chapter*{Annexe A : Logique et Méthodes de Démonstration en Analyse}
+\addcontentsline{toc}{chapter}{Annexe A : Logique et Méthodes de Démonstration en Analyse}
+\markboth{Annexe A : Logique et Démonstrations}{Annexe A : Logique et Démonstrations}
+
+\emph{Bien que la logique formelle ne fasse pas l'objet d'un chapitre séparé au programme de l'examen d'admission, plusieurs questions d'Analyse de l'UCLouvain (telles que Juillet 2021 Q3d, Juillet 2023 Série 1 Q5, Juillet 2024 Q5, Septembre 2024 Q5 ou Juillet 2025 Q4) évaluent directement la capacité à manipuler rigoureusement une définition avec quantificateurs ($\forall, \exists$), à distinguer une implication ($\implies$) d'une équivalence ($\iff$), à utiliser une contraposée ou à construire un contre-exemple.}
+
+% ----------------------------------------------------------------------------
+\section*{A.1 Connecteurs logiques (« non », « et », « ou »), implication et équivalence}
+% ----------------------------------------------------------------------------
+
+\begin{theoreme}[Opérateurs logiques, implication ($\implies$) et équivalence ($\iff$)]
+Soient $P$ et $Q$ deux assertions mathématiques :
+\begin{enumerate}
+    \item \textbf{Conjonction (« $P \text{ et } Q$ ») vs Disjonction (« $P \text{ ou } Q$ ») :}
+    \begin{itemize}
+        \item « $P \text{ et } Q$ » (noté par une accolade système) correspond à l'\textbf{intersection} $\cap$ des ensembles de validité : les deux conditions doivent être vraies simultanément.
+        \item « $P \text{ ou } Q$ » correspond à l'\textbf{union} $\cup$ : il suffit qu'au moins l'une des deux conditions soit vraie (par exemple : $A(x)\cdot B(x) = 0 \iff A(x) = 0 \text{ \textbf{ou} } B(x) = 0$).
+    \end{itemize}
+    \item \textbf{Lois de De Morgan (négation d'un « et » et d'un « ou ») :}
+    \[
+        \boxed{\text{non}(P \text{ ou } Q) \iff (\text{non } P) \text{ et } (\text{non } Q)} \qquad \text{et} \qquad \boxed{\text{non}(P \text{ et } Q) \iff (\text{non } P) \text{ ou } (\text{non } Q)}.
+    \]
+    \item \textbf{Implication ($P \implies Q$) et sa contraposée ($\text{non } Q \implies \text{non } P$) :}
+    L'implication $P \implies Q$ (« si $P$, alors $Q$ ») a toujours exactement la même valeur de vérité que sa \textbf{contraposée} :
+    \[
+        \boxed{(P \implies Q) \iff (\text{non } Q \implies \text{non } P)}.
+    \]
+    \emph{Exemple fondamental en analyse :} L'implication « $f \text{ dérivable en } a \implies f \text{ continue en } a$ » a pour contraposée « $f \text{ non continue en } a \implies f \text{ non dérivable en } a$ » (toutes deux vraies). En revanche, la \textbf{réciproque} « $f \text{ continue en } a \implies f \text{ dérivable en } a$ » est \textbf{fausse} (contre-exemple : $f(x) = |x|$ en $a = 0$).
+    \item \textbf{Équivalence ($P \iff Q$, « si et seulement si ») :} Vraie lorsque $P \implies Q$ \textbf{et} $Q \implies P$ sont toutes deux vraies.
+\end{enumerate}
+\end{theoreme}
+
+\begin{attention}[Trois fausses équivalences à éviter absolument en Analyse]
+\begin{enumerate}
+    \item \textbf{Condition d'extremum :} « $x^*$ est un extremum local intérieur de $f \implies f'(x^*) = 0$ » est une \textbf{implication simple}, pas une équivalence ! La réciproque est fausse : on peut avoir $f'(x^*) = 0$ sans que $x^*$ soit un extremum (si $f'$ ne change pas de signe en $x^*$, comme $x^3$ en $0$ ou la fonction de Septembre 2026 Q1 en $x = 1$, qui est un point d'inflexion à tangente horizontale).
+    \item \textbf{Élévation au carré :} $\sqrt{1+x} = x \implies 1 + x = x^2$ n'est une équivalence que si l'on ajoute la condition de signe $x \ge 0$ (Juillet 2024 Q1a). De même, $(f(x+\pi))^2 = (f(x))^2 \iff f(x+\pi) = \pm f(x)$ n'implique pas $f(x+\pi) = f(x)$, contrairement au cube $(f(x+\pi))^3 = (f(x))^3 \iff f(x+\pi) = f(x)$ car $y \mapsto y^3$ est bijective sur $\R$ (Septembre 2024 Q5).
+    \item \textbf{Théorème de Rolle :} Si les hypothèses du théorème de Rolle sont satisfaites sur $[a, b]$, alors $\exists c \in \,]a, b[$ tel que $f'(c) = 0$. Si l'une des hypothèses n'est pas satisfaite, le théorème de Rolle \textbf{ne s'applique pas} (ce qui ne prouve pas nécessairement que $f'$ ne s'annule pas, mais interdit d'invoquer Rolle pour le démontrer, comme en Juillet 2023 Série 1 Q5).
+\end{enumerate}
+\end{attention}
+
+% ----------------------------------------------------------------------------
+\section*{A.2 Quantificateurs ($\forall, \exists$), négation d'une définition et contre-exemples}
+% ----------------------------------------------------------------------------
+
+\begin{theoreme}[Règles de négation des quantificateurs $\forall$ et $\exists$]
+Pour nier une proposition contenant un ou plusieurs quantificateurs, on remplace chaque $\forall$ par $\exists$, chaque $\exists$ par $\forall$, et on nie la propriété finale :
+\[
+    \boxed{\text{non}\bigl(\forall x \in E,\; P(x)\bigr) \iff \exists x \in E \text{ tel que } \text{non } P(x)},
+\]
+\[
+    \boxed{\text{non}\bigl(\exists x \in E \text{ tel que } P(x)\bigr) \iff \forall x \in E,\; \text{non } P(x)}.
+\]
+\end{theoreme}
+
+\begin{itemize}
+    \item \textbf{Application 1 : Réfuter une propriété universelle par un contre-exemple (Septembre 2024 Q5b et Juillet 2025 Q4) :}
+    \begin{itemize}
+        \item La définition de « $f$ est croissante sur $I$ » est : $\forall x_1, x_2 \in I,\; (x_1 < x_2 \implies f(x_1) \le f(x_2))$.
+        \item Sa négation exacte est : $\mathbf{\exists x_1, x_2 \in I \text{ tels que } x_1 < x_2 \text{ et } f(x_1) > f(x_2)}$. Pour prouver qu'une fonction n'est pas croissante sur $I$, il suffit donc de donner \textbf{un seul couple numérique précis} $(x_1, x_2)$ vérifiant $x_1 < x_2$ et $f(x_1) > f(x_2)$ (par ex. $x_1 = 0,09 < x_2 = 0,1$ en Juillet 2025 Q4).
+    \end{itemize}
+    \item \textbf{Application 2 : Nier une définition de limite $\varepsilon$-$M$ (Juillet 2021 Q3d-ii) :}
+    \begin{itemize}
+        \item La définition de « $\lim_{x \to +\infty} g(x) = 0$ » est :
+        \[
+            \forall \varepsilon > 0, \;\; \exists M \in \R \text{ tel que } \forall x > M, \;\; |g(x)| \le \varepsilon.
+        \]
+        \item En inversant chaque quantificateur de gauche à droite, la négation « $\text{non}\bigl(\lim_{x \to +\infty} g(x) = 0\bigr)$ » s'écrit :
+        \[
+            \boxed{\exists \varepsilon > 0 \text{ tel que } \forall M \in \R, \;\; \exists x > M \text{ vérifiant } |g(x)| > \varepsilon}.
+        \]
+        Pour démontrer que $g(x)$ ne tend pas vers $0$ en $+\infty$, on choisit donc une valeur fixe de $\varepsilon > 0$ (par ex. $\varepsilon = 1$) et on exhibe une suite de points $x_k \to +\infty$ (qui dépassent donc n'importe quel $M$) en lesquels $|g(x_k)| > 1$.
+    \end{itemize}
+\end{itemize}

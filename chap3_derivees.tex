@@ -1,0 +1,513 @@
+% ============================================================================
+% CHAPITRE 3 : DÉRIVÉES ET GRANDS THÉORÈMES D'ANALYSE
+% ============================================================================
+\chapter{Dérivées et Grands Théorèmes d'Analyse}
+
+La \textbf{dérivée} est l'outil central du calcul différentiel : géométriquement, elle donne la pente de la droite tangente à une courbe en chaque point ; physiquement, elle mesure la vitesse instantanée de variation d'une grandeur ; analytiquement, son signe gouverne la croissance, la décroissance et les extrema d'une fonction. Ce chapitre couvre la définition du nombre dérivé, la dérivabilité en un point, toutes les règles de dérivation (y compris pour les fonctions composées et réciproques comme la fonction de Lambert $W_0$), la règle de L'Hospital, ainsi que les deux grands théorèmes théoriques systématiquement présents aux examens de l'UCLouvain : le \textbf{théorème de Rolle} et le \textbf{théorème des accroissements finis (TAF)}.
+
+% ----------------------------------------------------------------------------
+\section{Nombre dérivé, tangente et dérivabilité en un point}
+% ----------------------------------------------------------------------------
+
+\subsection{Définition par la limite du taux d'accroissement}
+
+\begin{definition}[Nombre dérivé en un point $a$ et fonction dérivée $f'$]
+Soit $f : \D \subset \R \to \R$ une fonction définie au voisinage d'un point $a \in \D$. On dit que $f$ est \textbf{dérivable en $a$} si la limite du \textbf{taux d'accroissement} de $f$ entre $a$ et $x$ existe et est finie lorsque $x \to a$ :
+\[
+    \boxed{f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a} = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} \in \R}.
+\]
+\begin{itemize}
+    \item Ce nombre réel $f'(a)$, noté aussi $\dfrac{\mathrm{d}f}{\mathrm{d}x}(a)$ ou $\left.\dfrac{\mathrm{d}f}{\mathrm{d}x}\right|_{x=a}$, est appelé le \textbf{nombre dérivé} de $f$ en $a$.
+    \item La fonction $f' : \D' \subset \D \to \R, x \mapsto f'(x)$ qui à tout point $x$ où $f$ est dérivable associe $f'(x)$ est la \textbf{fonction dérivée première} de $f$.
+    \item Si $f'$ est elle-même dérivable, sa dérivée $(f')' = f'' = \dfrac{\mathrm{d}^2 f}{\mathrm{d}x^2}$ est la \textbf{dérivée seconde} de $f$. Une fonction dérivable à tout ordre (et dont toutes les dérivées sont continues) est dite \textbf{de classe $C^\infty$}, tandis qu'une fonction $k$ fois continûment dérivable est dite \textbf{de classe $C^k$} (par exemple $C^1$ si $f'$ est continue, $C^2$ si $f''$ est continue).
+\end{itemize}
+\end{definition}
+
+\begin{theoreme}[Interprétation géométrique : équation de la droite tangente]
+Si $f$ est dérivable en $x_0 \in \D$, alors le graphe de $f$ admet au point $P\bigl(x_0, f(x_0)\bigr)$ une \textbf{droite tangente} non verticale $T_{x_0}$ dont le coefficient directeur (la pente) vaut $m = f'(x_0)$ et dont l'équation cartésienne est :
+\[
+    \boxed{T_{x_0} \equiv y = f(x_0) + f'(x_0)\,(x - x_0)}.
+\]
+\begin{itemize}
+    \item Si $f'(x_0) = 0$, la tangente en $x_0$ est \textbf{horizontale} ($y = f(x_0)$).
+    \item Si $\lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = \pm\infty$ (avec $f$ continue en $x_0$), la fonction n'est \textbf{pas dérivable} en $x_0$, mais son graphe admet une \textbf{tangente verticale} d'équation $x = x_0$ (c'est le cas de $\sqrt{x}$ en $x=0$, de $\sqrt{1+x}-x$ en $x=-1$ en Juillet 2024 Q1e, ou de la fonction de Lambert $W_0(y)$ en $y = -e^{-1}$ en Septembre 2026 Q4).
+    \item Si la limite à gauche et la limite à droite du taux d'accroissement en $x_0$ sont finies mais différentes ($f'_g(x_0) \neq f'_d(x_0)$), la fonction n'est \textbf{pas dérivable} en $x_0$ et le graphe présente un \textbf{point anguleux} (demi-tangentes de pentes différentes, comme pour $|x|$ en $x=0$).
+\end{itemize}
+\end{theoreme}
+
+\begin{attention}[Lien fondamental entre dérivabilité et continuité]
+\textbf{Toute fonction dérivable en un point $a$ est nécessairement continue en $a$ :}
+\[
+    \boxed{f \text{ dérivable en } a \implies f \text{ continue en } a} \qquad \text{et par contraposée :} \qquad \boxed{f \text{ non continue en } a \implies f \text{ non dérivable en } a}.
+\]
+\textbf{Attention : la réciproque est FAUSSE !} Une fonction peut être parfaitement continue en un point $a$ sans y être dérivable. Les deux contre-exemples classiques à connaître par cœur (notamment pour tester les hypothèses du théorème de Rolle, comme en \textbf{Juillet 2023 -- Série 1, Question 5}) sont :
+\begin{itemize}
+    \item $x \mapsto |x|$ en $x = 0$ (continue en $0$, mais point anguleux : pente $-1$ à gauche et $+1$ à droite).
+    \item $x \mapsto \sqrt{x}$ en $x = 0^+$, ou $x \mapsto \sqrt[3]{x}$ en $x = 0$, ou $x \mapsto 1 - \sqrt{|x|}$ en $x = 0$ (continues en $0$, mais pente infinie / tangente verticale en $0$).
+\end{itemize}
+\end{attention}
+
+\begin{exemple}[Tangente et dérivabilité en un point aux examens UCLouvain (Septembre 2021, Q3a et Q3d)]
+\textbf{1) Identification de paramètres par la tangente (UCLouvain -- Septembre 2021, Question 3a) :}\\
+\emph{Énoncé :} Soit la fonction $f : \R \to \R$ définie par $f(x) = \dfrac{a}{1 + e^{-bx}}$. Déterminer les valeurs de $a$ et $b$ pour que $f(0) = \dfrac{1}{2}$ et que la tangente à $f$ en $x = 0$ passe par le point $(x, y) = (2, 1)$.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item En $x = 0$, comme $e^0 = 1$, on a $f(0) = \frac{a}{1+1} = \frac{a}{2}$. La condition $f(0) = \frac{1}{2}$ impose immédiatement $\boxed{a = 1}$.
+    \item L'équation de la tangente au graphe de $f$ en $x_0 = 0$ est $y = f(0) + f'(0)(x - 0) = \frac{1}{2} + f'(0)\,x$. Dire que cette droite passe par le point $(2, 1)$ signifie que $1 = \frac{1}{2} + 2f'(0) \iff f'(0) = \frac{1}{4}$.
+    \item Calculons la dérivée de $f(x) = (1 + e^{-bx})^{-1}$ pour $a = 1$ :
+    \[
+        f'(x) = -\frac{(-b\,e^{-bx})}{(1 + e^{-bx})^2} = \frac{b\,e^{-bx}}{(1 + e^{-bx})^2} \implies f'(0) = \frac{b \cdot 1}{(1+1)^2} = \frac{b}{4}.
+    \]
+    L'égalité $f'(0) = \frac{b}{4} = \frac{1}{4}$ donne donc $\boxed{b = 1}$.
+\end{itemize}
+
+\medskip
+\textbf{2) Étude complète de la régularité en $0$ d'une fonction prolongée (UCLouvain -- Septembre 2021, Question 3d) :}\\
+\emph{Énoncé :} Soit $f : \R \to \R$ définie par $f(x) = \dfrac{\sin(x)}{x}$ si $x \neq 0$ et $f(0) = 1$. Démontrer que : (i) $f$ est continue en $0$, (ii) $f$ est dérivable en $0$, et (iii) la fonction dérivée $f'$ est continue en $0$.\\
+\emph{Résolution :}
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Continuité de $f$ en $0$ :} Par la limite trigonométrique fondamentale, $\lim_{x \to 0} f(x) = \lim_{x \to 0} \frac{\sin(x)}{x} = 1 = f(0)$. Donc $f$ est continue en $0$.
+    \item \textbf{Dérivabilité de $f$ en $0$ :} Pour savoir si une fonction définie par morceaux est dérivable au point de raccord $x = 0$, on \textbf{revient à la définition du nombre dérivé} par la limite du taux d'accroissement :
+    \[
+        f'(0) = \lim_{x \to 0} \frac{f(x) - f(0)}{x - 0} = \lim_{x \to 0} \frac{\dfrac{\sin(x)}{x} - 1}{x} = \lim_{x \to 0} \frac{\sin(x) - x}{x^2} \quad \left[\text{F.I. } \frac{0}{0}\right].
+    \]
+    En appliquant deux fois la règle de L'Hospital (voir Section 3.3 ci-dessous) :
+    \[
+        \lim_{x \to 0} \frac{\sin(x) - x}{x^2} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{\cos(x) - 1}{2x} \quad \left[\frac{0}{0}\right] \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{-\sin(x)}{2} = \frac{0}{2} = 0.
+    \]
+    La limite existe et est finie, donc $f$ est dérivable en $0$ et $\boxed{f'(0) = 0}$.
+    \item \textbf{Continuité de $f'$ en $0$ :} Pour tout $x \neq 0$, la règle du quotient donne :
+    \[
+        f'(x) = \frac{x\cos(x) - \sin(x)}{x^2}.
+    \]
+    Pour que $f'$ soit continue en $0$, il faut que $\lim_{x \to 0} f'(x) = f'(0) = 0$. Calculons cette limite (de forme $\frac{0}{0}$) par la règle de L'Hospital :
+    \[
+        \lim_{x \to 0} f'(x) = \lim_{x \to 0} \frac{x\cos(x) - \sin(x)}{x^2} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{\bigl(\cos(x) - x\sin(x)\bigr) - \cos(x)}{2x} = \lim_{x \to 0} \frac{-\cancel{x}\sin(x)}{2\cancel{x}} = \lim_{x \to 0} \frac{-\sin(x)}{2} = 0 = f'(0).
+    \]
+    La dérivée $f'$ est donc bien continue en $0$ (on dit que $f$ est au moins de classe $C^1$ sur $\R$).
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Formulaire et règles de dérivation}
+% ----------------------------------------------------------------------------
+
+\subsection{Règles opératoires, fonctions composées et fonctions réciproques}
+
+\begin{theoreme}[Les 5 règles fondamentales de dérivation]
+Soient $u$ et $v$ deux fonctions dérivables et $c \in \R$ une constante :
+\begin{enumerate}
+    \item \textbf{Linéarité :} $\bigl(c\cdot u(x)\bigr)' = c\cdot u'(x)$ \quad et \quad $\bigl(u(x) \pm v(x)\bigr)' = u'(x) \pm v'(x)$.
+    \item \textbf{Dérivée d'un produit :}
+    \[
+        \boxed{\bigl(u(x) \cdot v(x)\bigr)' = u'(x)\,v(x) + u(x)\,v'(x)}.
+    \]
+    \item \textbf{Dérivée d'un inverse et d'un quotient (où $v(x) \neq 0$) :}
+    \[
+        \boxed{\left(\frac{1}{v(x)}\right)' = -\frac{v'(x)}{\bigl(v(x)\bigr)^2}} \qquad \text{et} \qquad \boxed{\left(\frac{u(x)}{v(x)}\right)' = \frac{u'(x)\,v(x) - u(x)\,v'(x)}{\bigl(v(x)\bigr)^2}}.
+    \]
+    \item \textbf{Dérivée d'une fonction composée (règle de la chaîne / \emph{Chain Rule}) :}
+    \[
+        \boxed{\Bigl(f\bigl(u(x)\bigr)\Bigr)' = f'\bigl(u(x)\bigr) \cdot u'(x)}.
+    \]
+    \item \textbf{Dérivée d'une fonction réciproque $g = f^{-1}$ :} Si $f$ est bijective et dérivable en $x = g(y)$ avec $f'(g(y)) \neq 0$, alors en dérivant l'identité $f(g(y)) = y$ par rapport à $y$, on obtient $f'(g(y))\cdot g'(y) = 1$, soit :
+    \[
+        \boxed{\bigl(f^{-1}\bigr)'(y) = g'(y) = \frac{1}{f'\bigl(g(y)\bigr)} = \frac{1}{f'\bigl(f^{-1}(y)\bigr)}}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\subsection{Tableau complet des dérivées usuelles et composées}
+
+\begin{theoreme}[Tableau des dérivées des fonctions élémentaires et composées]
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Fonction simple $f(x)$} & \textbf{Dérivée $f'(x)$} & \textbf{Version composée $\bigl(f(u(x))\bigr)'$} \\
+\midrule
+$c$ (constante) & $0$ & $0$ \\
+$x^n \quad (n \in \R)$ & $n\,x^{n-1}$ & $\bigl(u(x)^n\bigr)' = n\,\bigl(u(x)\bigr)^{n-1} \cdot u'(x)$ \\
+$\sqrt{x} = x^{1/2} \quad (x > 0)$ & $\dfrac{1}{2\sqrt{x}}$ & $\bigl(\sqrt{u(x)}\bigr)' = \dfrac{u'(x)}{2\sqrt{u(x)}}$ \\
+$\dfrac{1}{x} = x^{-1} \quad (x \neq 0)$ & $-\dfrac{1}{x^2}$ & $\left(\dfrac{1}{u(x)}\right)' = -\dfrac{u'(x)}{\bigl(u(x)\bigr)^2}$ \\
+$e^x$ & $e^x$ & $\bigl(e^{u(x)}\bigr)' = u'(x)\,e^{u(x)}$ \\
+$a^x = e^{x\ln a} \quad (a > 0)$ & $(\ln a)\,a^x$ & $\bigl(a^{u(x)}\bigr)' = (\ln a)\,u'(x)\,a^{u(x)}$ \\
+$\ln(x)$ (ou $\ln(|x|)$) & $\dfrac{1}{x}$ & $\Bigl(\ln\bigl(|u(x)|\bigr)\Bigr)' = \dfrac{u'(x)}{u(x)}$ \\
+$\sin(x)$ & $\cos(x)$ & $\bigl(\sin(u(x))\bigr)' = u'(x)\,\cos\bigl(u(x)\bigr)$ \\
+$\cos(x)$ & $-\sin(x)$ & $\bigl(\cos(u(x))\bigr)' = -u'(x)\,\sin\bigl(u(x)\bigr)$ \\
+$\tan(x)$ & $\dfrac{1}{\cos^2(x)} = 1 + \tan^2(x)$ & $\bigl(\tan(u(x))\bigr)' = \dfrac{u'(x)}{\cos^2(u(x))} = u'(x)\bigl(1+\tan^2(u(x))\bigr)$ \\
+$\cot(x)$ & $-\dfrac{1}{\sin^2(x)} = -\bigl(1 + \cot^2(x)\bigr)$ & $\bigl(\cot(u(x))\bigr)' = -\dfrac{u'(x)}{\sin^2(u(x))}$ \\
+$\arcsin(x) \quad (|x| < 1)$ & $\dfrac{1}{\sqrt{1 - x^2}}$ & $\bigl(\arcsin(u(x))\bigr)' = \dfrac{u'(x)}{\sqrt{1 - u(x)^2}}$ \\
+$\arccos(x) \quad (|x| < 1)$ & $-\dfrac{1}{\sqrt{1 - x^2}}$ & $\bigl(\arccos(u(x))\bigr)' = -\dfrac{u'(x)}{\sqrt{1 - u(x)^2}}$ \\
+$\arctan(x) \quad (x \in \R)$ & $\dfrac{1}{1 + x^2}$ & $\bigl(\arctan(u(x))\bigr)' = \dfrac{u'(x)}{1 + u(x)^2}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theoreme}
+
+\begin{astuce}[Comment retrouver en 10 secondes les dérivées de $\arcsin$, $\arccos$ et $\arctan$ ?]
+Si vous hésitez le jour de l'examen sur la formule de $(\arcsin x)'$ ou $(\arctan x)'$, appliquez la méthode de dérivation implicite :
+\begin{itemize}
+    \item Pour $y(x) = \arcsin(x) \in \left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ : on a $\sin(y(x)) = x$. Dérivons les deux membres par rapport à $x$ :
+    \[
+        \cos\bigl(y(x)\bigr) \cdot y'(x) = 1 \implies y'(x) = \frac{1}{\cos(\arcsin x)} = \frac{1}{\sqrt{1 - \sin^2(\arcsin x)}} = \frac{1}{\sqrt{1 - x^2}}.
+    \]
+    \item Pour $y(x) = \arctan(x)$ : on a $\tan(y(x)) = x$. En dérivant par rapport à $x$ :
+    \[
+        \bigl(1 + \tan^2(y(x))\bigr)\cdot y'(x) = 1 \implies y'(x) = \frac{1}{1 + \tan^2(\arctan x)} = \frac{1}{1 + x^2}.
+    \]
+\end{itemize}
+C'est exactement cette méthode qui a été demandée en \textbf{Septembre 2026 (Question 4)} pour calculer la dérivée de la fonction de Lambert $W_0(y)$ !
+\end{astuce}
+
+\begin{exemple}[Dérivation de fonctions réciproques et d'équations fonctionnelles aux examens UCLouvain]
+\textbf{1) Dérivée de la fonction de Lambert $W_0(y)$ (UCLouvain -- Septembre 2026, Question 4) :}\\
+\emph{Énoncé :} La fonction de Lambert $W_0(y)$, définie sur $D = [-e^{-1}, +\infty[$, est la réciproque de $f(x) = x\,e^x$ sur $I = [-1, +\infty[$, et vérifie donc l'identité $W_0(y)\,e^{W_0(y)} = y$ (avec $W_0(0) = 0$, $W_0(e) = 1$ et $W_0(-e^{-1}) = -1$). Obtenir la dérivée $W'_0(y)$. Que valent $W'_0(0)$ et $W'_0(e)$ ? La dérivée de $W_0(y)$ existe-t-elle en $y = -e^{-1}$ ? Pourquoi ?\\
+\emph{Résolution :} Présentons les deux méthodes officielles du solutionnaire :
+\begin{itemize}
+    \item \emph{Méthode 1 (Dérivation implicite de l'identité $W_0(y)\,e^{W_0(y)} = y$) :} En dérivant les deux membres par rapport à $y$ (par la règle du produit et de la composée) :
+    \[
+        W'_0(y)\,e^{W_0(y)} + W_0(y)\cdot W'_0(y)\,e^{W_0(y)} = 1 \iff W'_0(y)\,e^{W_0(y)}\bigl(1 + W_0(y)\bigr) = 1,
+    \]
+    d'où, pour tout $y > -e^{-1}$ (c'est-à-dire $W_0(y) > -1$) :
+    \[
+        \boxed{W'_0(y) = \frac{e^{-W_0(y)}}{1 + W_0(y)} = \bigl(1 + W_0(y)\bigr)^{-1} e^{-W_0(y)}} \quad \left(\text{ou encore } \frac{1}{e^{W_0(y)} + y} = \frac{W_0(y)}{y(1+W_0(y))} \text{ pour } y \neq 0\right).
+    \]
+    \item \emph{Méthode 2 (Formule de la dérivée d'une fonction réciproque) :} Comme $f(x) = x\,e^x$, on a $f'(x) = (1+x)e^x$. La formule $g'(y) = \frac{1}{f'(g(y))}$ appliquée à $g = W_0$ donne directement :
+    \[
+        W'_0(y) = \frac{1}{f'\bigl(W_0(y)\bigr)} = \frac{1}{\bigl(1 + W_0(y)\bigr)\,e^{W_0(y)}} = \bigl(1 + W_0(y)\bigr)^{-1} e^{-W_0(y)}.
+    \]
+    \item \emph{Évaluations et non-dérivabilité au bord $y = -e^{-1}$ :}
+    \begin{itemize}
+        \item En $y = 0$, $W_0(0) = 0 \implies W'_0(0) = (1+0)^{-1}e^{-0} = \boxed{1}$.
+        \item En $y = e$, $W_0(e) = 1 \implies W'_0(e) = (1+1)^{-1}e^{-1} = \boxed{\dfrac{1}{2e}}$.
+        \item En $y = -e^{-1}$, on a $W_0(-e^{-1}) = -1$, ce qui \textbf{annule le dénominateur} $1 + W_0(y) = 0$ (géométriquement, la fonction directe $f(x) = x\,e^x$ a une tangente horizontale $f'(-1) = 0$ en $x = -1$, donc par symétrie par rapport à $y = x$, la fonction réciproque $W_0(y)$ a une \textbf{tangente verticale} de pente infinie en $y = -e^{-1}$). La dérivée $W'_0(-e^{-1})$ \textbf{n'existe donc pas}.
+    \end{itemize}
+\end{itemize}
+
+\medskip
+\textbf{2) Fonctions liées et équations différentielles par dérivation composée (UCLouvain -- Juillet 2022 Q5, Septembre 2023 Q4 et Juillet 2024 Q4) :}\\
+Ces trois superbes questions d'examen reposent toutes sur le même principe : \textbf{reconnaître la dérivée d'une fonction composée pour montrer qu'une combinaison est constante ou linéaire}.
+\begin{itemize}
+    \item \textbf{Juillet 2022, Question 5 :} Soit $f : \R^+ \to \R_0^+$ dérivable telle que $f'(x) = -\bigl(f(x)\bigr)^2$. Que vaut $\left(\dfrac{1}{f(x)}\right)'$ ? En déduire $f(x)$.\\
+    \emph{Résolution :} Par la règle de dérivation d'un inverse :
+    \[
+        \left(\frac{1}{f(x)}\right)' = -\frac{f'(x)}{\bigl(f(x)\bigr)^2} = -\frac{-\bigl(f(x)\bigr)^2}{\bigl(f(x)\bigr)^2} = 1.
+    \]
+    Puisque la dérivée de $\frac{1}{f(x)}$ vaut la constante $1$, on a en intégrant $\frac{1}{f(x)} = x + C$, soit $\boxed{f(x) = \dfrac{1}{x + C}}$ (avec $C > 0$ pour que $f$ soit définie et strictement positive sur tout $\R^+$).
+    \item \textbf{Septembre 2023, Question 4 :} Soit $f : I \to \R$ deux fois continûment dérivable telle que (i) $f''(x) = -f(x)$ et (ii) $f'(x) \ge 0$.
+    \begin{enumerate}[label=\alph*)]
+        \item Prouver que $f^2(x) + f'^2(x)$ est une constante positive notée $k^2$.\\
+        \emph{Résolution :} Dérivons la somme de carrés $f^2(x) + f'^2(x)$ par la règle de la chaîne $\bigl(u^2(x)\bigr)' = 2u(x)u'(x)$ :
+        \[
+            \Bigl(f^2(x) + f'^2(x)\Bigr)' = 2f(x)f'(x) + 2f'(x)f''(x) = 2f(x)f'(x) + 2f'(x)\bigl(-f(x)\bigr) = 0.
+        \]
+        Sa dérivée étant identiquement nulle sur l'intervalle $I$, la fonction $f^2(x) + f'^2(x)$ est constante sur $I$, et cette constante est positive ou nulle comme somme de deux carrés : $f^2(x) + f'^2(x) = k^2$.
+        \item On pose $g(x) = \arcsin\left(\dfrac{f(x)}{k}\right)$ (pour $k > 0$). Calculer et simplifier $g'(x)$, puis en déduire $f(x)$.\\
+        \emph{Résolution :} Par la dérivée composée de $\arcsin(u(x))$ :
+        \[
+            g'(x) = \frac{1}{\sqrt{1 - \left(\dfrac{f(x)}{k}\right)^2}} \cdot \frac{f'(x)}{k} = \frac{f'(x)}{\sqrt{k^2 - f^2(x)}} = \frac{f'(x)}{\sqrt{f'^2(x)}} = \frac{f'(x)}{f'(x)} = \boxed{1} \quad \bigl(\text{car } f'(x) \ge 0 \implies \sqrt{f'^2(x)} = f'(x)\bigr).
+        \]
+        Dès lors, $g'(x) = 1 \implies g(x) = \arcsin\left(\frac{f(x)}{k}\right) = x + C \implies \boxed{f(x) = k\sin(x + C)}$.
+    \end{enumerate}
+    \item \textbf{Juillet 2024, Question 4 :} Soit $f(x) > 0$ dérivable telle que $f(0) = 1$, et soit $g(x)$ vérifiant $\dfrac{g'(x)}{f(x)} = g(x)f'(x)$ avec $g(0) = 1$. Exprimer $g(x)$ en fonction de $f(x)$ et montrer que $g(x) > C$ pour une constante $C > 0$.\\
+    \emph{Résolution :} En multipliant par $f(x)$ et en divisant par $g(x)$ (qui est $>0$ au voisinage de $0$ car $g(0) = 1$), on sépare les fonctions $g$ et $f$ :
+    \[
+        \frac{g'(x)}{g(x)} = f(x)f'(x) \iff \Bigl(\ln\bigl(g(x)\bigr)\Bigr)' = \left(\frac{1}{2}f^2(x)\right)'.
+    \]
+    En intégrant entre $0$ et $x$ avec $f(0) = 1$ et $g(0) = 1$ ($\ln(g(0)) = \ln(1) = 0$), il vient :
+    \[
+        \ln\bigl(g(x)\bigr) - \ln\bigl(g(0)\bigr) = \frac{1}{2}\bigl(f^2(x) - f^2(0)\bigr) \iff \ln\bigl(g(x)\bigr) = \frac{1}{2}\bigl(f^2(x) - 1\bigr) \implies \boxed{g(x) = e^{\frac{1}{2}(f^2(x) - 1)}}.
+    \]
+    Comme $f(x) > 0 \implies f^2(x) > 0$, la croissance stricte de l'exponentielle donne $g(x) > e^{\frac{1}{2}(0-1)} = \boxed{e^{-1/2} = \dfrac{1}{\sqrt{e}}}$ (donc $C = e^{-1/2}$).
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{La règle de L'Hospital pour les limites indéterminées}
+% ----------------------------------------------------------------------------
+
+La \textbf{règle de L'Hospital} (ou de Bernoulli-L'Hospital) est l'outil privilégié à l'examen d'entrée pour lever rapidement les formes indéterminées de type quotient $\left[\dfrac{0}{0}\right]$ ou $\left[\dfrac{\infty}{\infty}\right]$.
+
+\begin{theoreme}[Théorème de Bernoulli -- Règle de L'Hospital]
+Soient $f$ et $g$ deux fonctions dérivables sur un voisinage épointé de $a$ (où $a \in \R$ ou $a = \pm\infty$), telles que $g'(x) \neq 0$ sur ce voisinage. Si l'on est en présence d'une \textbf{forme indéterminée} de type :
+\[
+    \lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0 \quad \left[\text{F.I. } \frac{0}{0}\right] \qquad \text{ou} \qquad \lim_{x \to a} |f(x)| = \lim_{x \to a} |g(x)| = +\infty \quad \left[\text{F.I. } \frac{\infty}{\infty}\right],
+\]
+et si la limite du quotient des dérivées $\lim_{x \to a} \dfrac{f'(x)}{g'(x)}$ existe (finie ou égale à $\pm\infty$), alors :
+\[
+    \boxed{\lim_{x \to a} \frac{f(x)}{g(x)} \stackrel{\text{H}}{=} \lim_{x \to a} \frac{f'(x)}{g'(x)}}.
+\]
+\emph{Itération :} Si le nouveau quotient $\frac{f'(x)}{g'(x)}$ présente à son tour une forme indéterminée $\left[\frac{0}{0}\right]$ ou $\left[\frac{\infty}{\infty}\right]$, on peut réappliquer la règle de L'Hospital aux dérivées secondes $\lim_{x \to a} \frac{f''(x)}{g''(x)}$, et ainsi de suite.
+\end{theoreme}
+
+\begin{attention}[Les 4 règles de prudence avec la règle de L'Hospital]
+\begin{enumerate}
+    \item \textbf{Vérifiez TOUJOURS qu'il s'agit bien d'une forme $\frac{0}{0}$ ou $\frac{\infty}{\infty}$ avant d'appliquer L'Hospital !} Appliquer L'Hospital à un quotient qui n'est pas indéterminé donne un résultat totalement faux.
+    \item \textbf{On dérive le numérateur ET le dénominateur séparément :} C'est $\dfrac{f'(x)}{g'(x)}$, et \textbf{surtout pas} la dérivée du quotient $\left(\frac{f}{g}\right)' = \frac{f'g-fg'}{g^2}$ !
+    \item \textbf{Simplifiez algébriquement entre deux applications de L'Hospital !} Avant de réappliquer L'Hospital une deuxième fois, nettoyez l'expression $\frac{f'(x)}{g'(x)}$ (mettez au même dénominateur, remplacez $\lim \cos(x) = 1$, utilisez les propriétés de $\ln$...) : cela évite une explosion de dérivées de produits ou de quotients.
+    \item \textbf{Transformez un produit $[0 \cdot \infty]$ en quotient avant L'Hospital :} Pour calculer $\lim_{x \to 0^+} x\ln^2(x)$ (Septembre 2025 Q1a) par L'Hospital, on fait passer $x$ au dénominateur sous la forme $1/x$ (jamais $\ln(x)$ au dénominateur !) :
+    \[
+        \lim_{x \to 0^+} x\ln^2(x) = \lim_{x \to 0^+} \frac{\ln^2(x)}{1/x} \quad \left[\frac{\infty}{\infty}\right] \stackrel{\text{H}}{=} \lim_{x \to 0^+} \frac{2\ln(x)\cdot \frac{1}{x}}{-1/x^2} = \lim_{x \to 0^+} \frac{-2\ln(x)}{1/x} \quad \left[\frac{\infty}{\infty}\right] \stackrel{\text{H}}{=} \lim_{x \to 0^+} \frac{-2/x}{-1/x^2} = \lim_{x \to 0^+} 2x = 0.
+    \]
+\end{enumerate}
+\end{attention}
+
+\begin{exemple}[Trois limites d'examen résolues par la règle de L'Hospital (Juillet 2023 Q3, Septembre 2024 Q4b, Juillet 2025 Q5)]
+\textbf{1) UCLouvain -- Juillet 2023 (Série 1), Question 3 :}\\
+\emph{Énoncé :} Calculer la limite suivante :
+\[
+    L = \lim_{x \to 0} \frac{\ln(1+x) + \ln(1-x)}{1 - \cos(x)}.
+\]
+\emph{Résolution :} En $x = 0$, le numérateur vaut $\ln(1) + \ln(1) = 0$ et le dénominateur vaut $1 - \cos(0) = 0$ : c'est une forme indéterminée $\left[\frac{0}{0}\right]$.
+Simplifions d'abord le numérateur par la propriété du logarithme d'un produit : $\ln(1+x) + \ln(1-x) = \ln\bigl((1+x)(1-x)\bigr) = \ln(1-x^2)$. Appliquons alors une première fois la règle de L'Hospital :
+\[
+    L = \lim_{x \to 0} \frac{\ln(1-x^2)}{1 - \cos(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{\dfrac{-2x}{1-x^2}}{\sin(x)} = \lim_{x \to 0} \left(\frac{-2}{1-x^2} \cdot \frac{x}{\sin(x)}\right).
+\]
+À ce stade, soit on conclut immédiatement grâce à la limite fondamentale $\lim_{x \to 0} \frac{x}{\sin(x)} = 1$, soit on réapplique une seconde fois la règle de L'Hospital à $\lim_{x \to 0} \frac{-2x}{(1-x^2)\sin(x)}$ (forme $\frac{0}{0}$) :
+\[
+    L \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{-2}{-2x\sin(x) + (1-x^2)\cos(x)} = \frac{-2}{0 + 1 \cdot 1} = \boxed{-2}.
+\]
+
+\medskip
+\textbf{2) UCLouvain -- Septembre 2024, Question 4b (Limite en une racine implicite $x_0$) :}\\
+\emph{Énoncé :} Soit $x_0$ la racine de $f(x) = \sqrt{1+x} - x$ (donc $\sqrt{1+x_0} = x_0 > 0$). On a montré à l'Exercice 1.3 que $x_0$ est aussi racine de $g(x) = \sqrt{1 + \sqrt{1+x}} - x$. Soit $h(x) = \dfrac{f(x)}{g(x)}$. Obtenir $\lim_{x \to x_0} h(x)$ exprimée uniquement en fonction de $x_0$ (sans aucune racine carrée) et simplifiée au maximum.\\
+\emph{Résolution :} Puisque $f(x_0) = 0$ et $g(x_0) = 0$, la limite $\lim_{x \to x_0} \frac{f(x)}{g(x)}$ est une forme indéterminée $\left[\frac{0}{0}\right]$. Par la règle de L'Hospital :
+\[
+    \lim_{x \to x_0} h(x) = \lim_{x \to x_0} \frac{f(x)}{g(x)} \stackrel{\text{H}}{=} \frac{f'(x_0)}{g'(x_0)}.
+\]
+Calculons les dérivées $f'(x)$ et $g'(x)$ pour tout $x > -1$ :
+\[
+    f'(x) = \frac{1}{2\sqrt{1+x}} - 1 \qquad \text{et} \qquad g'(x) = \frac{1}{2\sqrt{1 + \sqrt{1+x}}} \cdot \frac{1}{2\sqrt{1+x}} - 1 = \frac{1}{4\sqrt{1+\sqrt{1+x}}\,\sqrt{1+x}} - 1.
+\]
+Or, en $x = x_0$, par définition de la racine $x_0$, on a $\sqrt{1+x_0} = x_0$ et $\sqrt{1 + \sqrt{1+x_0}} = \sqrt{1+x_0} = x_0$ ! En remplaçant chaque radical en $x_0$ par $x_0$, les deux dérivées se simplifient merveilleusement :
+\[
+    f'(x_0) = \frac{1}{2x_0} - 1 = \frac{1 - 2x_0}{2x_0} \qquad \text{et} \qquad g'(x_0) = \frac{1}{4x_0^2} - 1 = \frac{1 - 4x_0^2}{4x_0^2} = \frac{(1 - 2x_0)(1 + 2x_0)}{4x_0^2}.
+\]
+En effectuant le quotient et en simplifiant par $(1 - 2x_0) \neq 0$ et par $2x_0 \neq 0$ :
+\[
+    \lim_{x \to x_0} h(x) = \frac{f'(x_0)}{g'(x_0)} = \frac{1 - 2x_0}{2x_0} \cdot \frac{4x_0^2}{(1 - 2x_0)(1 + 2x_0)} = \boxed{\frac{2x_0}{1 + 2x_0}}.
+\]
+
+\medskip
+\textbf{3) UCLouvain -- Juillet 2025, Question 5 (Comparaison L'Hospital vs décomposition) :}\\
+\emph{Énoncé :} Calculer $\displaystyle \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)}$.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \emph{Méthode 1 (par la règle de L'Hospital deux fois) :} C'est une forme $\left[\frac{0}{0}\right]$.
+    \[
+        \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)} \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2x\cos(x^2)}{\tan(x) + \dfrac{x}{\cos^2(x)}} \quad \left[\frac{0}{0}\right] \stackrel{\text{H}}{=} \lim_{x \to 0} \frac{2\cos(x^2) - 4x^2\sin(x^2)}{\dfrac{2}{\cos^2(x)} + \dfrac{2x\sin(x)}{\cos^3(x)}} = \frac{2 \cdot 1 - 0}{\dfrac{2}{1} + 0} = \boxed{1}.
+    \]
+    \item \emph{Méthode 2 (beaucoup plus rapide : décomposition en limites fondamentales ou L'Hospital séparé) :} En multipliant et divisant par $x$ :
+    \[
+        \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)} = \left(\lim_{x \to 0} \frac{\sin(x^2)}{x^2}\right) \cdot \left(\lim_{x \to 0} \frac{x}{\tan(x)}\right) = 1 \cdot 1 = \boxed{1}.
+    \]
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Théorème de Rolle et Théorème des Accroissements Finis (TAF)}
+% ----------------------------------------------------------------------------
+
+Presque chaque session de l'examen d'admission d'Analyse à l'UCLouvain comporte une question dédiée au \textbf{théorème de Rolle} ou au \textbf{théorème des accroissements finis (TAF)} (Septembre 2021 Q3f, Septembre 2022 Q6, Juillet 2023 Série 1 Q5, Juillet 2024 Q5, Septembre 2025 Q4). Ce sont des questions très rentables dès lors qu'on maîtrise leurs trois hypothèses et leurs schémas d'application.
+
+\subsection{Le théorème de Rolle}
+
+\begin{theoreme}[Théorème de Rolle]
+Soient $a$ et $b$ deux nombres réels tels que $a < b$, et soit $f : [a, b] \to \R$ une fonction vérifiant les \textbf{trois hypothèses} suivantes :
+\begin{enumerate}
+    \item $f$ est \textbf{continue sur l'intervalle fermé $[a, b]$} ;
+    \item $f$ est \textbf{dérivable sur l'intervalle ouvert $]a, b[$} ;
+    \item $f$ prend la même valeur aux deux extrémités : $\boxed{f(a) = f(b)}$.
+\end{enumerate}
+Alors il existe \textbf{au moins un} réel $c \in \,]a, b[$ (strictement compris entre $a$ et $b$) tel que :
+\[
+    \boxed{f'(c) = 0}.
+\]
+\emph{Interprétation géométrique :} Si une courbe continue et lisse (sans point anguleux ni rupture) part d'une certaine hauteur $f(a)$ et revient à la même hauteur $f(b) = f(a)$, elle possède nécessairement au moins un point intérieur $c \in \,]a, b[$ où la tangente est horizontale.
+\end{theoreme}
+
+\subsection{Le théorème des accroissements finis (TAF / Lagrange)}
+
+En inclinant la figure du théorème de Rolle lorsque $f(a) \neq f(b)$, la corde reliant $A\bigl(a, f(a)\bigr)$ à $B\bigl(b, f(b)\bigr)$ a pour pente le taux d'accroissement moyen $\dfrac{f(b) - f(a)}{b - a}$. Le théorème des accroissements finis affirme qu'il existe au moins un point intérieur $c \in \,]a, b[$ où la tangente est parallèle à la corde $[AB]$.
+
+\begin{theoreme}[Théorème des Accroissements Finis (TAF)]
+Soient $a$ et $b$ deux nombres réels tels que $a < b$, et soit $f : [a, b] \to \R$ une fonction vérifiant les \textbf{deux hypothèses} suivantes :
+\begin{enumerate}
+    \item $f$ est \textbf{continue sur l'intervalle fermé $[a, b]$} ;
+    \item $f$ est \textbf{dérivable sur l'intervalle ouvert $]a, b[$}.
+\end{enumerate}
+Alors il existe \textbf{au moins un} réel $c \in \,]a, b[$ tel que :
+\[
+    \boxed{f'(c) = \frac{f(b) - f(a)}{b - a}} \qquad \Longleftrightarrow \qquad \boxed{f(b) - f(a) = f'(c)\,(b - a)}.
+\]
+\emph{Interprétation cinématique :} Si une voiture parcourt $120\text{ km}$ en $1\text{ heure}$ (vitesse moyenne de $120\text{ km/h}$), son compteur de vitesse instantanée $v(t) = x'(t)$ a nécessairement affiché exactement $120\text{ km/h}$ à au moins un instant $c$ durant le trajet !
+\end{theoreme}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, >=Stealth]
+    % Théorème de Rolle
+    \begin{scope}[shift={(0,0)}]
+        \draw[->, thick, gray] (-0.4,0) -- (5.2,0) node[right, black] {$x$};
+        \draw[->, thick, gray] (0,-0.4) -- (0,3.2) node[above, black] {$y$};
+        \draw[very thick, uclblue, domain=0.8:4.4, samples=80] plot (\x, {0.8 + 1.8*sin(deg((\x-0.8)*3.14159/3.6))});
+        \draw[dashed, darkgray] (0,0.8) node[left] {\small $f(a)=f(b)$} -- (4.4,0.8);
+        \draw[dashed, gray] (0.8,0) node[below, black] {$a$} -- (0.8,0.8);
+        \draw[dashed, gray] (4.4,0) node[below, black] {$b$} -- (4.4,0.8);
+        \draw[dashed, warnred] (2.6,0) node[below, warnred] {$c$} -- (2.6,2.6);
+        \draw[thick, warnred, <->] (1.6,2.6) -- (3.6,2.6) node[right] {\small $f'(c)=0$};
+        \fill[uclblue] (0.8,0.8) circle (2pt) node[above left] {\small $A$};
+        \fill[uclblue] (4.4,0.8) circle (2pt) node[above right] {\small $B$};
+        \fill[warnred] (2.6,2.6) circle (2pt);
+        \node[above, uclblue, font=\bfseries\small] at (2.6,3.2) {Théorème de Rolle};
+    \end{scope}
+
+    % Théorème des accroissements finis
+    \begin{scope}[shift={(7.2,0)}]
+        \draw[->, thick, gray] (-0.4,0) -- (5.2,0) node[right, black] {$x$};
+        \draw[->, thick, gray] (0,-0.4) -- (0,3.2) node[above, black] {$y$};
+        \draw[very thick, uclblue, domain=0.8:4.4, samples=80] plot (\x, {0.5 + 0.45*(\x-0.8) + 1.2*sin(deg((\x-0.8)*3.14159/3.6))});
+        % Corde AB
+        \draw[thick, defgreen, dashed] (0.8,0.5) -- (4.4,2.12) node[pos=0.55, below right=-2pt] {\footnotesize Corde $[AB]$};
+        % Tangente parallèle en c=2.6
+        \draw[thick, warnred, <->] (1.5, 2.015) -- (3.7, 3.005) node[right] {\footnotesize $f'(c) = \frac{f(b)-f(a)}{b-a}$};
+        \draw[dashed, gray] (0.8,0) node[below, black] {$a$} -- (0.8,0.5);
+        \draw[dashed, gray] (4.4,0) node[below, black] {$b$} -- (4.4,2.12);
+        \draw[dashed, warnred] (2.6,0) node[below, warnred] {$c$} -- (2.6,2.51);
+        \fill[defgreen] (0.8,0.5) circle (2pt) node[above left] {\small $A$};
+        \fill[defgreen] (4.4,2.12) circle (2pt) node[below right] {\small $B$};
+        \fill[warnred] (2.6,2.51) circle (2pt);
+        \node[above, uclblue, font=\bfseries\small] at (2.6,3.2) {Théorème des Accroissements Finis (TAF)};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{astuce}[Les 3 stratégies récurrentes avec Rolle et le TAF aux examens UCLouvain]
+\begin{enumerate}
+    \item \textbf{Vérifier minutieusement les 3 hypothèses de Rolle (Juillet 2023 -- Série 1, Q5) :} Si la fonction n'est pas définie en un seul point de $[a, b]$ (ex: $g(x) = x - \frac{1}{x}$ sur $[-1, 1]$, non définie en $0$), ou n'est pas dérivable en un seul point de $]a, b[$ (ex: $f(x) = 1 - \sqrt{|x|}$ sur $[-1, 1]$, non dérivable en $0$), ou si $f(a) \neq f(b)$, \textbf{le théorème de Rolle ne s'applique pas} !
+    \item \textbf{Découper un intervalle en sous-intervalles disjoints $[x_i, x_{i+1}]$ :} Pour prouver que $f'$ s'annule (ou vaut une constante $k$) en \textbf{plusieurs points distincts} $c_1, c_2, \dots$, on applique Rolle ou le TAF sur des intervalles consécutifs $[a, b]$ et $[b, c]$ dont les intérieurs $]a, b[$ et $]b, c[$ sont \textbf{disjoints}, ce qui garantit automatiquement que $c_1 \in \,]a, b[$ et $c_2 \in \,]b, c[$ vérifient $c_1 < b < c_2$, donc $c_1 \neq c_2$ !
+    \item \textbf{Enchaîner en cascade Rolle sur $f$, puis Rolle sur $f'$ pour atteindre $f''(d) = 0$ :} Dès que l'on a trouvé deux points distincts $c_1 < c_2$ où la dérivée première prend la même valeur ($f'(c_1) = f'(c_2)$), on applique une seconde fois le théorème de Rolle (ou le TAF) \textbf{à la fonction dérivée $f'$} sur l'intervalle $[c_1, c_2]$ pour conclure qu'il existe un point $c_4 \in \,]c_1, c_2[$ tel que $(f')'(c_4) = f''(c_4) = 0$ !
+\end{enumerate}
+\end{astuce}
+
+\begin{exemple}[Quatre questions complètes d'examen UCLouvain sur Rolle et le TAF (2021--2025)]
+\textbf{1) UCLouvain -- Septembre 2021, Question 3f (Cascade du TAF sur $f$ puis sur $f'$) :}\\
+\emph{Énoncé :} Soit $f : \R^+ \to \R^+$ une fonction de classe $C^\infty$ telle que $f(n) = n$ pour tout entier $n \ge 0$. Démontrer qu'alors, pour tout entier $p \ge 2$, l'intervalle $[0, p]$ contient : (i) au moins $p$ points $x_i$ distincts pour lesquels $f'(x_i) = 1$, et (ii) au moins $p - 1$ points $y_i$ distincts pour lesquels $f''(y_i) = 0$.\\
+\emph{Résolution :}
+\begin{enumerate}[label=(\roman*)]
+    \item Subdivisons $[0, p]$ en $p$ sous-intervalles de longueur $1$ : $[i, i+1]$ pour $i \in \{0, 1, \dots, p-1\}$. Sur chaque intervalle $[i, i+1]$, $f$ est continue et dérivable (car de classe $C^\infty$). Le théorème des accroissements finis appliqué à $f$ sur $[i, i+1]$ fournit l'existence d'un réel $x_i \in \,]i, i+1[$ tel que :
+    \[
+        f'(x_i) = \frac{f(i+1) - f(i)}{(i+1) - i} = \frac{(i+1) - i}{1} = 1.
+    \]
+    Comme les $p$ intervalles ouverts $]0, 1[,\; ]1, 2[,\; \dots,\; ]p-1, p[$ sont deux à deux disjoints, les $p$ points obtenus vérifient $0 < x_0 < 1 < x_1 < 2 < \dots < x_{p-1} < p$ et sont donc bien tous distincts !
+    \item Considérons maintenant les $p-1$ intervalles $[x_i, x_{i+1}]$ pour $i \in \{0, 1, \dots, p-2\}$. La fonction dérivée $f'$ est elle-même continue sur $[x_i, x_{i+1}]$, dérivable sur $]x_i, x_{i+1}[$, et prend la même valeur aux bornes : $f'(x_i) = f'(x_{i+1}) = 1$. En appliquant le théorème de Rolle (ou le TAF) \textbf{à la fonction $f'$} sur chaque $[x_i, x_{i+1}]$, il existe un point $y_i \in \,]x_i, x_{i+1}[$ tel que :
+    \[
+        f''(y_i) = \frac{f'(x_{i+1}) - f'(x_i)}{x_{i+1} - x_i} = \frac{1 - 1}{x_{i+1} - x_i} = 0.
+    \]
+    Les $p-1$ intervalles ouverts $]x_i, x_{i+1}[$ étant disjoints, les $p-1$ points $y_0 < y_1 < \dots < y_{p-2}$ sont tous distincts dans $[0, p]$.
+\end{enumerate}
+
+\medskip
+\textbf{2) UCLouvain -- Septembre 2022, Question 6 (Trois méthodes pour les racines de $f'$) :}\\
+\emph{Énoncé :} Soient $a < b < c$ trois nombres réels, et soit $f : \R \to \R$ définie par $f(x) = (x-a)(x-b)(x-c)$. Prouver que la fonction dérivée $f'$ possède au moins deux racines distinctes.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \emph{Méthode 1 (la plus élégante : théorème de Rolle) :} $f$ est un polynôme, donc continue et dérivable sur tout $\R$, et elle s'annule en $a$, $b$ et $c$ : $f(a) = f(b) = f(c) = 0$.
+    \begin{itemize}
+        \item Sur $[a, b]$, comme $f(a) = f(b) = 0$, le théorème de Rolle garantit l'existence de $r_1 \in \,]a, b[$ tel que $f'(r_1) = 0$.
+        \item Sur $[b, c]$, comme $f(b) = f(c) = 0$, le théorème de Rolle garantit l'existence de $r_2 \in \,]b, c[$ tel que $f'(r_2) = 0$.
+    \end{itemize}
+    Puisque $a < r_1 < b < r_2 < c$, on a $r_1 \neq r_2$ : $f'$ possède bien deux racines distinctes.
+    \item \emph{Méthode 2 (par le TVI sur $f'$) :} Par la règle du produit, $f'(x) = (x-b)(x-c) + (x-a)(x-c) + (x-a)(x-b)$. Évaluons le signe de $f'$ en $a, b, c$ (sachant que $a < b < c$) :
+    \[
+        f'(a) = \underbrace{(a-b)}_{<0}\underbrace{(a-c)}_{<0} > 0, \qquad f'(b) = \underbrace{(b-a)}_{>0}\underbrace{(b-c)}_{<0} < 0, \qquad f'(c) = \underbrace{(c-a)}_{>0}\underbrace{(c-b)}_{>0} > 0.
+    \]
+    La fonction continue $f'$ change de signe sur $[a, b]$ et sur $[b, c]$ : par le TVI, elle s'annule dans $]a, b[$ et dans $]b, c[$.
+    \item \emph{Méthode 3 (algébrique par le discriminant $\Delta$) :} En développant $f'(x) = 3x^2 - 2(a+b+c)x + (ab+bc+ac)$, son discriminant vaut $\Delta = 4(a+b+c)^2 - 12(ab+bc+ac) = 2\bigl[(a-b)^2 + (b-c)^2 + (a-c)^2\bigr] > 0$ car $a < b < c$.
+\end{itemize}
+
+\medskip
+\textbf{3) UCLouvain -- Juillet 2024, Question 5 (Égalité des carrés $f^2(a) = f^2(b) = f^2(c)$) :}\\
+\emph{Énoncé :} Soient $a < b < c$ trois nombres réels et $f : [a, c] \to \R$ une fonction continue sur $[a, c]$ et dérivable sur $]a, c[$ telle que $f^2(a) = f^2(b) = f^2(c)$. En partant du théorème de Rolle, prouver qu'il existe au moins un réel $d \in \,]a, c[$ tel que $f'(d) = 0$.\\
+\emph{Résolution (2 démonstrations officielles) :}
+\begin{itemize}
+    \item \emph{Démonstration 1 (Principe des tiroirs sur les signes) :} Puisque $f^2(a) = f^2(b) = f^2(c)$, les trois nombres $f(a), f(b), f(c)$ ont la même valeur absolue $|f(a)| = |f(b)| = |f(c)|$. Comme il n'y a que deux signes possibles ($+$ ou $-$), parmi les trois nombres $f(a), f(b), f(c)$, il y en a nécessairement \textbf{au moins deux qui ont le même signe} et qui sont donc \textbf{égaux} :
+    \begin{itemize}
+        \item Si $f(a) = f(b)$, Rolle appliqué à $f$ sur $[a, b]$ donne $d \in \,]a, b[ \;\subset \,]a, c[$ tel que $f'(d) = 0$.
+        \item Si $f(b) = f(c)$, Rolle appliqué à $f$ sur $[b, c]$ donne $d \in \,]b, c[ \;\subset \,]a, c[$ tel que $f'(d) = 0$.
+        \item Si $f(a) = f(c)$, Rolle appliqué à $f$ sur $[a, c]$ donne directement $d \in \,]a, c[$ tel que $f'(d) = 0$.
+    \end{itemize}
+    \item \emph{Démonstration 2 (Rolle appliqué à la fonction $f^2$) :} La fonction $f^2$ vérifie les hypothèses de Rolle sur $[a, b]$ et sur $[b, c]$. Il existe donc $d_1 \in \,]a, b[$ et $d_2 \in \,]b, c[$ tels que $(f^2)'(d_1) = 2f(d_1)f'(d_1) = 0$ et $(f^2)'(d_2) = 2f(d_2)f'(d_2) = 0$. Si $f'(d_1) = 0$ ou $f'(d_2) = 0$, la thèse est prouvée (avec $d = d_1$ ou $d = d_2$). Sinon, on a simultanément $f(d_1) = 0$ et $f(d_2) = 0$ : on applique alors le théorème de Rolle à $f$ sur $[d_1, d_2] \subset [a, c]$, ce qui fournit $d_3 \in \,]d_1, d_2[ \;\subset \,]a, c[$ tel que $f'(d_3) = 0$ !
+\end{itemize}
+
+\medskip
+\textbf{4) UCLouvain -- Septembre 2025, Question 4 (TAF et Rolle combinés sur une fraction rationnelle) :}\\
+\emph{Énoncé :} Soit $f(x) = \dfrac{x^2 + x + 2}{x^3 + 1}$. Montrer qu'il existe dans l'intervalle $\left]-\dfrac{1}{2}, 2\right[$ :
+(1) un nombre $c_1$ où $f'(c_1) = -\dfrac{4}{9}$ ;
+(2) et (3) deux nombres distincts $c_2$ et $c_3$ où $f'(c_2) = f'(c_3) = 0$ ;
+(4) un nombre $c_4$ où $f''(c_4) = 0$.
+\emph{Aide :} examiner la valeur de $f$ pour certains entiers de l'intervalle.\\
+\emph{Résolution :} Le dénominateur $x^3 + 1$ ne s'annule qu'en $x = -1 \notin \left[-\frac{1}{2}, 2\right]$. La fraction rationnelle $f$ est donc de classe $C^\infty$ (continue et indéfiniment dérivable) sur $\left[-\frac{1}{2}, 2\right]$. Calculons les valeurs de $f$ aux bornes $-\frac{1}{2}$ et $2$, ainsi qu'aux entiers $0$ et $1$ de l'intervalle :
+\[
+    f\left(-\frac{1}{2}\right) = \frac{\frac{1}{4} - \frac{1}{2} + 2}{-\frac{1}{8} + 1} = \frac{7/4}{7/8} = 2, \qquad f(0) = \frac{2}{1} = 2, \qquad f(1) = \frac{1+1+2}{1+1} = \frac{4}{2} = 2, \qquad f(2) = \frac{4+2+2}{8+1} = \frac{8}{9}.
+\]
+\begin{itemize}
+    \item \textbf{(1)} Appliquons le \textbf{théorème des accroissements finis} à $f$ sur l'intervalle complet $\left[-\frac{1}{2}, 2\right]$ : il existe $c_1 \in \left]-\frac{1}{2}, 2\right[$ tel que :
+    \[
+        f'(c_1) = \frac{f(2) - f(-1/2)}{2 - (-1/2)} = \frac{\frac{8}{9} - 2}{\frac{5}{2}} = \frac{-10/9}{5/2} = -\frac{4}{9}.
+    \]
+    \item \textbf{(2) et (3)} Comme $f\left(-\frac{1}{2}\right) = f(0) = f(1) = 2$, appliquons le \textbf{théorème de Rolle} (ou le TAF) à $f$ sur les deux sous-intervalles $\left[-\frac{1}{2}, 0\right]$ et $[0, 1]$ : il existe $c_2 \in \left]-\frac{1}{2}, 0\right[$ tel que $f'(c_2) = 0$ et $c_3 \in \,]0, 1[$ tel que $f'(c_3) = 0$. Puisque $-\frac{1}{2} < c_2 < 0 < c_3 < 1 < 2$, $c_2$ et $c_3$ sont bien distincts et appartiennent à $\left]-\frac{1}{2}, 2\right[$.
+    \item \textbf{(4)} Appliquons enfin le \textbf{théorème de Rolle} (ou le TAF) \textbf{à la fonction dérivée $f'$} sur l'intervalle $[c_2, c_3]$ (puisque $f'(c_2) = f'(c_3) = 0$) : il existe $c_4 \in \,]c_2, c_3[ \;\subset \left]-\frac{1}{2}, 2\right[$ tel que $(f')'(c_4) = f''(c_4) = 0$.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 3}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 3.\arabic* --}]
+    \item \textbf{(Calculs de dérivées premières et secondes d'annales UCLouvain)} Calculer et factoriser au maximum la dérivée première $f'(x)$ (et la dérivée seconde $f''(x)$ lorsqu'elle est demandée) des fonctions suivantes :
+    \begin{enumerate}
+        \item $f_1(x) = x^2\sin(x^2) + \cos(x^2)$ \quad (calculer $f'_1$ et $f''_1$) \quad \textbf{(Juillet 2023 -- Série 1, Q1a-b)}
+        \item $f_2(x) = 3\cos(x) - \cos^3(x)$ \quad (calculer $f'_2$ et $f''_2$) \quad \textbf{(Juillet 2023 -- Série 2, Q1a-b)}
+        \item $f_3(x) = \dfrac{1 - x^2}{\cos^2(x)}$ \quad (écrire $f'_3(x)$ sous la forme $\dfrac{g(x)}{\cos^2(x)}$) \quad \textbf{(Septembre 2024, Q1b)}
+        \item $f_4(x) = \dfrac{x^2}{2}\left(\ln^2(x) - \ln(x) + \dfrac{1}{2}\right)$ \quad (calculer $f'_4$ et $f''_4$) \quad \textbf{(Septembre 2026, Q1b-c)}
+    \end{enumerate}
+
+    \item \textbf{(Dérivées de fonctions réciproques et composées)} Calculer la dérivée des fonctions suivantes sur leur domaine de dérivabilité :
+    \begin{enumerate}
+        \item $g_1(x) = \arcsin(2x - 1)$
+        \item $g_2(x) = \arctan\left(\dfrac{1+x}{1-x}\right)$ \quad (interpréter géométriquement le résultat simplifié !)
+        \item $g_3(x) = x^x = e^{x\ln(x)} \quad (x > 0)$
+    \end{enumerate}
+
+    \item \textbf{(Limites par la règle de L'Hospital)} Calculer les limites suivantes en vérifiant à chaque étape les conditions d'application de la règle de L'Hospital :
+    \begin{enumerate}
+        \item $\displaystyle \lim_{x \to 0} \frac{e^x - e^{-x} - 2x}{x - \sin(x)}$
+        \item $\displaystyle \lim_{x \to \pi/2} \frac{\ln(\sin x)}{(\pi - 2x)^2}$
+        \item $\displaystyle \lim_{x \to 0^+} x^{\sin(x)}$
+        \item $\displaystyle \lim_{x \to +\infty} \left(1 + \frac{y}{x}\right)^x \quad (y \in \R \text{ fixé})$
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Juillet 2023 -- Série 1, Q5 -- Applicabilité du théorème de Rolle)} Pour chacune des quatre fonctions suivantes, indiquer par \textbf{OUI} ou \textbf{NON} si l'on peut utiliser le théorème de Rolle sur l'intervalle $[-1, 1]$ pour prouver l'existence d'un point $c \in \,]-1, 1[$ auquel la dérivée s'annule, et justifier succinctement sur base des hypothèses du théorème :
+    \begin{enumerate}
+        \item $f(x) = 1 - \sqrt{|x|}$
+        \item $g(x) = x - \dfrac{1}{x}$
+        \item $h(x) = \ln(1 + x^2)$
+        \item $w(x) = x - x^5$
+    \end{enumerate}
+
+    \item \textbf{(Application du théorème de Rolle aux polynômes)} Soit $P(x) = x^4 - 4x + 1$.
+    \begin{enumerate}
+        \item En utilisant le théorème de Rolle (ou son raisonnement par l'absurde), démontrer que l'équation $x^4 - 4x + 1 = 0$ ne peut pas avoir plus de deux racines réelles distinctes.
+        \item En utilisant le théorème des valeurs intermédiaires, montrer qu'elle possède exactement deux racines réelles.
+    \end{enumerate}
+
+    \item \textbf{(Inégalités par le théorème des accroissements finis)} En appliquant le théorème des accroissements finis à une fonction judicieusement choisie sur un intervalle $[a, b]$, démontrer que :
+    \begin{enumerate}
+        \item Pour tous réels $a, b \in \R$, $\bigl|\sin(b) - \sin(a)\bigr| \le |b - a|$.
+        \item Pour tout $x > 0$, $\dfrac{x}{1 + x^2} < \arctan(x) < x$.
+    \end{enumerate}
+\end{enumerate}

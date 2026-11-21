@@ -1,0 +1,502 @@
+% ============================================================================
+% CHAPITRE 1 : FONCTIONS RÉELLES, DOMAINES ET FONCTIONS TRANSCENDANTES
+% ============================================================================
+\chapter{Fonctions Réelles, Domaines et Fonctions Transcendantes}
+
+L'analyse mathématique a pour objet l'étude rigoureuse des fonctions d'une variable réelle : comment elles varient, comment elles se comportent aux bornes de leur domaine, à quelle vitesse elles évoluent (dérivée) et comment elles s'accumulent (intégrale). Ce premier chapitre consolide les notions fondamentales de 5\ieme{} et 6\ieme{} secondaire : le domaine de définition, les racines, les symétries (parité et périodicité), les fonctions réciproques, ainsi que les deux grandes fonctions transcendantes omniprésentes à l'examen d'admission de l'UCLouvain : le logarithme népérien $\ln(x)$ et l'exponentielle $e^x$.
+
+% ----------------------------------------------------------------------------
+\section{Généralités sur les fonctions réelles, domaines et racines}
+% ----------------------------------------------------------------------------
+
+\subsection{Définition, domaine d'existence et racines}
+
+\begin{definition}[Fonction réelle, domaine de définition et image]
+Une \textbf{fonction réelle d'une variable réelle} $f : \D \subset \R \to \R$ est une relation qui, à tout nombre réel $x$ appartenant à son \textbf{domaine de définition} (noté $\D$, $\dom f$ ou $D_f$), associe \emph{au plus un} nombre réel noté $f(x)$, appelé l'\textbf{image} de $x$ par $f$.
+\begin{itemize}
+    \item Lorsqu'une fonction est donnée uniquement par son expression analytique $f(x)$, son \textbf{domaine de définition naturel} $\D$ est l'ensemble de tous les réels $x \in \R$ pour lesquels le calcul de $f(x)$ a un sens (c'est-à-dire qui vérifient toutes les \textbf{conditions d'existence}, abrégées CE).
+    \item L'\textbf{ensemble image} de $f$, noté $\operatorname{Im} f$ ou $f(\D)$, est l'ensemble de toutes les valeurs prises par $f(x)$ lorsque $x$ parcourt $\D$ :
+    \[
+        \operatorname{Im} f = f(\D) = \bigl\{ y \in \R \;\big|\; \exists x \in \D \text{ tel que } y = f(x) \bigr\}.
+    \]
+    \item Une \textbf{racine} (ou un \textbf{zéro}) de la fonction $f$ est une valeur $x_0 \in \D$ telle que $f(x_0) = 0$. Géométriquement, les racines sont les abscisses des points d'intersection du graphe de $f$ avec l'axe horizontal $Ox$.
+\end{itemize}
+\end{definition}
+
+À l'examen d'entrée, la toute première sous-question de la Question 1 consiste systématiquement à déterminer le domaine de définition $\D$ de la fonction étudiée (et très souvent ses racines). Toutes les conditions d'existence se ramènent à quatre règles fondamentales.
+
+\begin{theoreme}[Les quatre règles d'or des conditions d'existence (CE)]
+Pour déterminer le domaine de définition $\D$ d'une expression $f(x)$, on inspecte la présence de :
+\begin{enumerate}
+    \item \textbf{Dénominateurs (fractions) :} On ne divise jamais par zéro.
+    \[
+        \frac{N(x)}{D(x)} \quad \text{existe} \iff \boxed{D(x) \neq 0}.
+    \]
+    En particulier, pour $\tan(u(x)) = \frac{\sin(u(x))}{\cos(u(x))}$, il faut $\cos(u(x)) \neq 0 \iff u(x) \neq \frac{\pi}{2} + k\pi$ ($k \in \Z$).
+    \item \textbf{Racines d'indice pair ($\sqrt{\phantom{u}}$, $\sqrt[4]{\phantom{u}}$, ou exposant fractionnaire $u^{p/2q}$) :} Le radicande doit être positif ou nul.
+    \[
+        \sqrt{u(x)} \quad \text{existe dans } \R \iff \boxed{u(x) \ge 0}.
+    \]
+    \emph{Remarque :} Si la racine carrée figure au dénominateur, comme $\frac{1}{\sqrt{u(x)}} = (u(x))^{-1/2}$, les règles 1 et 2 se combinent en une inégalité stricte : $u(x) > 0$. En revanche, une racine d'indice \emph{impair} telle que $\sqrt[3]{u(x)} = (u(x))^{1/3}$ est définie quel que soit le signe de $u(x)$.
+    \item \textbf{Logarithmes ($\ln$) :} L'argument d'un logarithme doit être \textbf{strictement positif}.
+    \[
+        \ln\bigl(u(x)\bigr) \quad \text{existe} \iff \boxed{u(x) > 0}.
+    \]
+    \item \textbf{Arcsinus et Arccosinus ($\arcsin$, $\arccos$) :} Leur argument (qui représente un sinus ou un cosinus) doit être compris au sens large entre $-1$ et $1$.
+    \[
+        \arcsin\bigl(u(x)\bigr) \;\text{ ou }\; \arccos\bigl(u(x)\bigr) \quad \text{existe} \iff \boxed{-1 \le u(x) \le 1}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{attention}[Piège lors de la recherche des racines d'une fonction avec racine carrée]
+Lorsqu'on résout une équation irrationnelle du type $\sqrt{A(x)} = B(x)$ (comme à l'examen de \textbf{Juillet 2024, Question 1a} pour trouver la racine de $f(x) = \sqrt{1+x} - x$), n'oubliez jamais qu'une racine carrée désigne par convention un nombre \textbf{positif ou nul} ($\sqrt{A(x)} \ge 0$) !
+Ainsi, l'équivalence rigoureuse est :
+\[
+    \boxed{\sqrt{A(x)} = B(x) \iff \begin{cases} B(x) \ge 0 \quad (\text{condition de signe indispensable !}) \\ A(x) = \bigl(B(x)\bigr)^2 \end{cases}}
+\]
+Élever au carré sans vérifier que $B(x) \ge 0$ introduit des \textbf{solutions parasites} (celles qui vérifient $\sqrt{A(x)} = -B(x)$) qui appartiennent pourtant au domaine de définition de la racine carrée !
+\end{attention}
+
+\begin{exemple}[Domaines de définition et racines aux examens UCLouvain (2021--2026)]
+Analysons six questions d'examen illustrant chaque type de condition d'existence :
+
+\medskip
+\textbf{1) UCLouvain -- Juillet 2021, Question 1a :} $f(x) = \ln\left(\dfrac{1}{\cos(x)}\right)$.\\
+\emph{Résolution :} Il y a deux conditions d'existence : (1) le dénominateur $\cos(x) \neq 0$, et (2) l'argument du logarithme $\frac{1}{\cos(x)} > 0 \iff \cos(x) > 0$. Comme $\cos(x) > 0$ implique automatiquement $\cos(x) \neq 0$, la condition unique est $\cos(x) > 0$. Sur le cercle trigonométrique (quadrants I et IV), le cosinus est strictement positif sur $\left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ modulo $2\pi$. Le domaine est donc l'union disjointe :
+\[
+    \D = \bigcup_{k \in \Z} \left]-\frac{\pi}{2} + 2k\pi,\; \frac{\pi}{2} + 2k\pi\right[.
+\]
+
+\medskip
+\textbf{2) UCLouvain -- Septembre 2021, Question 1a :} $f(x) = x + 2\ln\left(1 + \dfrac{1}{x}\right)$.\\
+\emph{Résolution :} Les conditions d'existence sont (1) $x \neq 0$ et (2) $1 + \frac{1}{x} > 0 \iff \frac{x+1}{x} > 0$. Un tableau de signes du quotient $\frac{x+1}{x}$ (dont le numérateur s'annule en $x=-1$ et le dénominateur en $x=0$) montre immédiatement que la fraction est strictement positive à l'extérieur des racines :
+\[
+    \D = \,]-\infty, -1[ \;\cup\; ]0, +\infty[.
+\]
+
+\medskip
+\textbf{3) UCLouvain -- Juillet 2022, Question 1a (et Septembre 2022, Question 1a) :}\\
+Soit $f_1(x) = \ln\left(\dfrac{1}{1+\cos x}\right)$ (Juillet 2022) et $f_2(x) = \dfrac{\cos^2 x}{1 + \cos x}$ (Septembre 2022).\\
+\emph{Résolution :}
+\begin{itemize}
+    \item Pour $f_2(x)$, la seule condition est $1 + \cos x \neq 0 \iff \cos x \neq -1 \iff x \neq \pi + 2k\pi$ ($k \in \Z$).
+    \item Pour $f_1(x)$, il faut $\frac{1}{1+\cos x} > 0 \iff 1 + \cos x > 0 \iff \cos x > -1$. Or, pour tout réel $x$, on a toujours $\cos x \in [-1, 1]$, donc $\cos x \ge -1$ est toujours vérifié ! La condition stricte $\cos x > -1$ revient donc simplement à exclure le cas d'égalité $\cos x = -1$. Les deux fonctions ont exactement le même domaine :
+    \[
+        \D = \R \setminus \bigl\{ \pi + 2k\pi \;\big|\; k \in \Z \bigr\} = \bigcup_{k \in \Z} \bigl](2k-1)\pi,\; (2k+1)\pi\bigr[.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{4) UCLouvain -- Juillet 2024, Question 1a :} $f(x) = \sqrt{1+x} - x$. Déterminer $\D$ et la/les racine(s) de $f$.\\
+\emph{Résolution :} La condition d'existence de la racine carrée est $1 + x \ge 0 \iff x \ge -1$, d'où $\D = [-1, +\infty[$.
+Pour trouver les racines de $f$, résolvons $f(x) = 0 \iff \sqrt{1+x} = x$. Comme le membre de gauche $\sqrt{1+x}$ est positif ou nul, toute solution doit impérativement vérifier $x \ge 0$. Sous cette condition $x \ge 0$, élevons au carré :
+\[
+    1 + x = x^2 \iff x^2 - x - 1 = 0 \iff x = \frac{1 \pm \sqrt{5}}{2}.
+\]
+Bien que les deux valeurs $x_1 = \frac{1+\sqrt{5}}{2} \approx 1,618$ (le nombre d'or !) et $x_2 = \frac{1-\sqrt{5}}{2} \approx -0,618$ appartiennent au domaine $\D = [-1, +\infty[$, la valeur $x_2 < 0$ est une \textbf{racine parasite} (elle vérifie $\sqrt{1+x_2} = -x_2$ et non $+x_2$). La fonction $f$ possède donc \textbf{une unique racine} : $x_1 = \dfrac{1+\sqrt{5}}{2}$.
+
+\medskip
+\textbf{5) UCLouvain -- Juillet 2025, Question 1a :} $f(x) = x + \ln\bigl(\sin(x) + \cos(x)\bigr)$. Formuler $\D$ comme union disjointe d'intervalles ouverts $]a_k, b_k[$ ($k \in \Z$).\\
+\emph{Résolution :} Il faut $\sin(x) + \cos(x) > 0$. On propose deux méthodes complémentaires :
+\begin{itemize}
+    \item \emph{Méthode 1 (par le cercle trigonométrique et l'étude des zéros) :} Cherchons d'abord où la somme s'annule : $\sin(x) + \cos(x) = 0 \iff \sin(x) = -\cos(x) \iff \tan(x) = -1 \iff x = -\frac{\pi}{4} + k\pi$. Sur un tour du cercle trigonométrique, les deux points où $\sin x$ et $\cos x$ sont opposés sont $-\frac{\pi}{4}$ (quadrant IV) et $\frac{3\pi}{4}$ (quadrant II). Entre $-\frac{\pi}{4}$ et $\frac{3\pi}{4}$ (par exemple en $x = 0$ où $\sin 0 + \cos 0 = 1 > 0$, ou en $x = \frac{\pi}{4}$ où la somme vaut $\sqrt{2} > 0$), la somme $\sin x + \cos x$ est strictement positive.
+    \item \emph{Méthode 2 (par les formules de Simpson ou d'addition) :} En écrivant $\cos(x) = \sin\left(\frac{\pi}{2}-x\right)$ et en appliquant Simpson (ou en factorisant par $\sqrt{2}$), on obtient :
+    \[
+        \sin(x) + \cos(x) = \sqrt{2}\left(\frac{\sqrt{2}}{2}\cos x + \frac{\sqrt{2}}{2}\sin x\right) = \sqrt{2}\cos\left(x - \frac{\pi}{4}\right).
+    \]
+    La condition devient $\cos\left(x - \frac{\pi}{4}\right) > 0 \iff -\frac{\pi}{2} + 2k\pi < x - \frac{\pi}{4} < \frac{\pi}{2} + 2k\pi \iff -\frac{\pi}{4} + 2k\pi < x < \frac{3\pi}{4} + 2k\pi$.
+\end{itemize}
+Dans les deux cas, $\D = \bigcup_{k\in\Z} \,]a_k, b_k[$ avec $\boxed{a_k = -\dfrac{\pi}{4} + 2k\pi}$ et $\boxed{b_k = \dfrac{3\pi}{4} + 2k\pi}$.
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Parité, périodicité et transformations de graphes}
+% ----------------------------------------------------------------------------
+
+Repérer dès le premier coup d'œil qu'une fonction est paire, impaire ou périodique permet de diviser par deux (ou de restreindre à une seule période) tout le travail d'étude de fonction et de calcul d'intégrale définie !
+
+\begin{definition}[Fonction paire, fonction impaire et fonction périodique]
+Soit $f : \D \subset \R \to \R$ une fonction réelle.
+\begin{enumerate}
+    \item On suppose le domaine $\D$ \textbf{symétrique par rapport à $0$} (c'est-à-dire que $\forall x \in \D, -x \in \D$) :
+    \begin{itemize}
+        \item $f$ est \textbf{paire} si $\forall x \in \D, \quad \boxed{f(-x) = f(x)}$.\\
+        \emph{Interprétation graphique :} Le graphe de $f$ est symétrique par rapport à l'\textbf{axe vertical $Oy$}. Exemples : $x^2, x^4, |x|, \cos(x), \ln(1+x^2), x^2\sin(x^2) + \cos(x^2)$ (Juillet 2023 Série 1).
+        \item $f$ est \textbf{impaire} si $\forall x \in \D, \quad \boxed{f(-x) = -f(x)}$.\\
+        \emph{Interprétation graphique :} Le graphe de $f$ est symétrique par symétrie centrale par rapport à l'\textbf{origine $O(0,0)$}. Si $0 \in \D$, alors nécessairement $f(0) = 0$. Exemples : $x, x^3, \frac{1}{x}, \sin(x), \tan(x), \arcsin(x), \arctan(x)$.
+    \end{itemize}
+    \item Soit $T > 0$. On dit que $f$ est \textbf{périodique de période $T$} (ou $T$-périodique) si, pour tout $x \in \D$, on a $x + T \in \D$ et :
+    \[
+        \forall x \in \D, \quad \boxed{f(x + T) = f(x)}.
+    \]
+    La plus petite période strictement positive $T > 0$ (lorsqu'elle existe) est appelée la \textbf{période fondamentale}. Le graphe de $f$ s'obtient par translations horizontales successives de vecteur $(kT, 0)$ ($k \in \Z$).
+\end{enumerate}
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95, >=Stealth]
+    % Fonction paire
+    \begin{scope}[shift={(0,0)}]
+        \draw[->, thick, gray] (-2.5,0) -- (2.5,0) node[right, black] {$x$};
+        \draw[->, thick, gray] (0,-0.4) -- (0,2.5) node[above, black] {$y$};
+        \draw[very thick, uclblue, domain=-2.1:2.1, samples=80] plot (\x, {0.45*(\x)^2 + 0.3});
+        \draw[dashed, warnred] (-1.5,0) -- (-1.5,1.3125) -- (1.5,1.3125) -- (1.5,0);
+        \fill[uclblue] (-1.5,1.3125) circle (1.8pt);
+        \fill[uclblue] (1.5,1.3125) circle (1.8pt);
+        \node[below] at (-1.5,0) {\small $-x$};
+        \node[below] at (1.5,0) {\small $x$};
+        \node[above, uclblue, font=\bfseries\small] at (0,2.55) {Fonction paire : $f(-x) = f(x)$};
+        \node[below, darkgray, font=\footnotesize] at (0,-0.55) {Symétrie orthogonale d'axe $Oy$};
+    \end{scope}
+
+    % Fonction impaire
+    \begin{scope}[shift={(7.5,0.8)}]
+        \draw[->, thick, gray] (-2.5,0) -- (2.5,0) node[right, black] {$x$};
+        \draw[->, thick, gray] (0,-1.8) -- (0,1.8) node[above, black] {$y$};
+        \draw[very thick, defgreen, domain=-2.1:2.1, samples=80] plot (\x, {0.22*(\x)^3 + 0.25*\x});
+        \draw[dashed, warnred] (-1.5,-1.1175) -- (1.5,1.1175);
+        \draw[dashed, gray] (-1.5,0) -- (-1.5,-1.1175);
+        \draw[dashed, gray] (1.5,0) -- (1.5,1.1175);
+        \fill[defgreen] (-1.5,-1.1175) circle (1.8pt) node[left] {\small $f(-x)$};
+        \fill[defgreen] (1.5,1.1175) circle (1.8pt) node[right] {\small $f(x)$};
+        \fill[warnred] (0,0) circle (1.8pt);
+        \node[above] at (-1.5,0) {\small $-x$};
+        \node[below] at (1.5,0) {\small $x$};
+        \node[above, defgreen, font=\bfseries\small] at (0,1.85) {Fonction impaire : $f(-x) = -f(x)$};
+        \node[below, darkgray, font=\footnotesize] at (0,-1.85) {Symétrie centrale de centre $O(0,0)$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{theoreme}[Conséquences pratiques de la parité et de la périodicité]
+\begin{enumerate}
+    \item \textbf{Parité des dérivées :} Si $f$ est dérivable sur un domaine symétrique $\D$ :
+    \begin{itemize}
+        \item Si $f$ est \textbf{paire}, alors sa dérivée $f'$ est \textbf{impaire} ($f'(-x) = -f'(x)$), et sa dérivée seconde $f''$ est \textbf{paire}.
+        \item Si $f$ est \textbf{impaire}, alors sa dérivée $f'$ est \textbf{paire} ($f'(-x) = f'(x)$), et sa dérivée seconde $f''$ est \textbf{impaire}.
+    \end{itemize}
+    \item \textbf{Parité d'un produit ou d'un quotient :} La règle des signes s'applique exactement comme pour $+$ et $-$ :
+    \[
+        \text{Paire} \times \text{Paire} = \text{Paire}, \qquad \text{Impaire} \times \text{Impaire} = \text{Paire}, \qquad \text{Paire} \times \text{Impaire} = \text{Impaire}.
+    \]
+    \item \textbf{Périodicité de $\sin(\omega x)$, $\cos(\omega x)$ et $\tan(\omega x)$ (pour $\omega > 0$) :}
+    \begin{itemize}
+        \item $\sin(\omega x)$ et $\cos(\omega x)$ sont périodiques de période $T = \dfrac{2\pi}{\omega}$.
+        \item $\tan(\omega x)$, $\sin^2(\omega x)$ et $\cos^2(\omega x) = \frac{1+\cos(2\omega x)}{2}$ sont périodiques de période $T = \dfrac{\pi}{\omega}$.
+    \end{itemize}
+\end{enumerate}
+\end{theoreme}
+
+\begin{exemple}[Question de théorie sur la périodicité : UCLouvain -- Septembre 2024, Question 5]
+\emph{Énoncé :} Soient deux fonctions $f_1(x)$ et $f_2(x)$ dont le domaine de définition est $\R$. On sait que $\bigl(f_1(x)\bigr)^3$ et $\bigl(f_2(x)\bigr)^2$ sont périodiques, de période $\pi$.
+\begin{enumerate}[label=\alph*)]
+    \item La fonction $f_1(x)$ est-elle périodique de période $\pi$ ? Si oui, démontrez-le. Si non, fournissez un contre-exemple. Votre résultat change-t-il si $f_1$ est continue et n'est jamais nulle ?
+    \item La fonction $f_2(x)$ est-elle périodique de période $\pi$ ? Si oui, démontrez-le. Si non, fournissez un contre-exemple. Votre résultat change-t-il si $f_2$ est continue et n'est jamais nulle ?
+\end{enumerate}
+
+\emph{Résolution :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Pour le cube $\bigl(f_1(x)\bigr)^3$ : OUI, $f_1$ est toujours périodique de période $\pi$.} En effet, par hypothèse, pour tout $x \in \R$ :
+    \[
+        \bigl(f_1(x+\pi)\bigr)^3 = \bigl(f_1(x)\bigr)^3.
+    \]
+    Or la fonction cube $h : \R \to \R, y \mapsto y^3$ est \textbf{strictement croissante} (donc bijective) sur tout $\R$ : deux nombres réels qui ont le même cube sont nécessairement égaux (algébriquement, $y_2^3 - y_1^3 = (y_2-y_1)(y_2^2 + y_1 y_2 + y_1^2) = 0 \implies y_2 = y_1$ car $y_2^2 + y_1 y_2 + y_1^2 = (y_2 + \frac{1}{2}y_1)^2 + \frac{3}{4}y_1^2 > 0$ dès que $y_1, y_2$ ne sont pas tous deux nuls). On en déduit immédiatement que $\forall x \in \R, f_1(x+\pi) = f_1(x)$ : $f_1$ est périodique de période $\pi$. Ce résultat est vrai pour toute fonction $f_1$, qu'elle soit continue ou non, nulle ou non.
+    \item \textbf{Pour le carré $\bigl(f_2(x)\bigr)^2$ : NON en général, mais OUI si $f_2$ est continue et jamais nulle.}
+    \begin{itemize}
+        \item \emph{Cas général :} L'égalité $\bigl(f_2(x+\pi)\bigr)^2 = \bigl(f_2(x)\bigr)^2$ implique seulement $f_2(x+\pi) = \pm f_2(x)$ (la fonction peut changer de signe en passant de $x$ à $x+\pi$). Un \textbf{contre-exemple} simple et continu est $f_2(x) = \sin(x)$ (ou $\cos(x)$) : son carré $\sin^2(x) = \frac{1-\cos(2x)}{2}$ est bien périodique de période $\pi$, mais $\sin(x+\pi) = -\sin(x) \neq \sin(x)$, donc $f_2(x) = \sin(x)$ est de période fondamentale $2\pi$ et non $\pi$.
+        \item \emph{Si $f_2$ est continue sur $\R$ et ne s'annule jamais :} Par le théorème des valeurs intermédiaires (voir Chapitre 2), une fonction continue sur $\R$ qui ne s'annule jamais garde un \textbf{signe strictement constant} sur tout $\R$ (soit $\forall x \in \R, f_2(x) > 0$, soit $\forall x \in \R, f_2(x) < 0$), car si elle changeait de signe entre deux points, elle devrait s'annuler entre les deux. Puisque $f_2(x)$ et $f_2(x+\pi)$ ont la même valeur absolue et le même signe, on a nécessairement $\forall x \in \R, f_2(x+\pi) = f_2(x)$ : dans ce cas, $f_2$ est bien périodique de période $\pi$ !
+    \end{itemize}
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Monotonie, bijectivité et fonctions réciproques}
+% ----------------------------------------------------------------------------
+
+\subsection{Croissance, décroissance et bijectivité}
+
+\begin{definition}[Croissance et décroissance sur un intervalle $I$]
+Soit $f : \D \to \R$ et soit $I \subset \D$ un intervalle :
+\begin{itemize}
+    \item $f$ est \textbf{croissante} (resp. \textbf{strictement croissante}) sur $I$ si :
+    \[
+        \forall x_1, x_2 \in I, \quad x_1 < x_2 \implies f(x_1) \le f(x_2) \quad \bigl(\text{resp. } f(x_1) < f(x_2)\bigr).
+    \]
+    \item $f$ est \textbf{décroissante} (resp. \textbf{strictement décroissante}) sur $I$ si :
+    \[
+        \forall x_1, x_2 \in I, \quad x_1 < x_2 \implies f(x_1) \ge f(x_2) \quad \bigl(\text{resp. } f(x_1) > f(x_2)\bigr).
+    \]
+\end{itemize}
+\emph{Remarque logique (UCLouvain -- Juillet 2025, Q4) :} Pour prouver qu'une fonction \textbf{n'est pas croissante} sur un intervalle $I$, il suffit d'exhiber \textbf{un seul contre-exemple}, c'est-à-dire deux nombres précis $x_1, x_2 \in I$ tels que $x_1 < x_2$ mais $f(x_1) > f(x_2)$.
+\end{definition}
+
+\begin{definition}[Bijection et fonction réciproque $f^{-1}$]
+Une fonction $f : I \to J$ (où $J = f(I)$ est l'ensemble image de $I$ par $f$) est dite \textbf{bijective} de $I$ sur $J$ si tout élément $y \in J$ possède \textbf{un et un seul antécédent} $x \in I$ tel que $y = f(x)$.
+On définit alors la \textbf{fonction réciproque} $f^{-1} : J \to I$ par la relation fondamentale d'équivalence :
+\[
+    \boxed{\forall x \in I, \;\forall y \in J : \quad y = f(x) \iff x = f^{-1}(y)}.
+\]
+En particulier, on a les identités de composition :
+\[
+    \forall x \in I, \quad f^{-1}\bigl(f(x)\bigr) = x \qquad \text{et} \qquad \forall y \in J, \quad f\bigl(f^{-1}(y)\bigr) = y.
+\]
+\end{definition}
+
+\begin{theoreme}[Propriétés fondamentales de la fonction réciproque]
+Soit $f : I \to J$ une fonction \textbf{continue et strictement monotone} (strictement croissante ou strictement décroissante) sur un intervalle $I \subset \R$. Alors :
+\begin{enumerate}
+    \item L'image $J = f(I)$ est un intervalle (dont les bornes sont les valeurs ou les limites de $f$ aux bornes de $I$), et $f$ réalise une \textbf{bijection} de $I$ sur $J$.
+    \item La fonction réciproque $f^{-1} : J \to I$ a pour \textbf{domaine de définition} l'ensemble image de $f$ : $\dom(f^{-1}) = J = \operatorname{Im}(f)$.
+    \item La fonction réciproque $f^{-1}$ est \textbf{continue} sur $J$ et possède \textbf{exactement le même sens de variation} que $f$ (la réciproque d'une fonction strictement croissante est strictement croissante ; la réciproque d'une fonction strictement décroissante est strictement décroissante).
+    \item \textbf{Symétrie des graphes :} Dans un repère orthonormé, le graphe de $y = f^{-1}(x)$ est le symétrique du graphe de $y = f(x)$ par rapport à la \textbf{première bissectrice} d'équation $y = x$ (puisque $(x, y)$ appartient au graphe de $f$ si et seulement si $(y, x)$ appartient au graphe de $f^{-1}$).
+\end{enumerate}
+\end{theoreme}
+
+\begin{attention}[Ne confondez jamais la réciproque $f^{-1}(x)$ et l'inverse $\bigl(f(x)\bigr)^{-1} = \frac{1}{f(x)}$ !]
+Pour éviter toute confusion entre la réciproque pour la composition et l'inverse pour la multiplication :
+\begin{itemize}
+    \item Les fonctions réciproques de $\sin, \cos, \tan$ sont toujours notées $\arcsin(x), \arccos(x), \arctan(x)$ à l'examen d'admission.
+    \item L'inverse multiplicatif de $f(x)$ est noté $\dfrac{1}{f(x)}$ ou $\bigl(f(x)\bigr)^{-1}$.
+\end{itemize}
+\end{attention}
+
+\subsection{Rappel sur les fonctions cyclométriques ($\arcsin, \arccos, \arctan$)}
+
+Bien qu'étudiées en détail dans le syllabus de Trigonométrie, les fonctions réciproques des fonctions trigonométriques interviennent régulièrement en Analyse (dans les calculs de primitives ou d'équations différentielles, comme en Septembre 2021 Q3b ou Septembre 2023 Q4). Retenons leur carte d'identité :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Fonction} & \textbf{Domaine $\D$} & \textbf{Ensemble image} & \textbf{Sens de variation} & \textbf{Relation de définition} \\
+\midrule
+$y = \arcsin(x)$ & $[-1, 1]$ & $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$ & Strictement croissante & $\sin(y) = x \text{ et } y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ \\
+$y = \arccos(x)$ & $[-1, 1]$ & $[0, \pi]$ & Strictement décroissante & $\cos(y) = x \text{ et } y \in [0, \pi]$ \\
+$y = \arctan(x)$ & $\R$ & $\left]-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right[$ & Strictement croissante & $\tan(y) = x \text{ et } y \in \left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ----------------------------------------------------------------------------
+\section{Logarithme népérien $\ln(x)$ et exponentielle $e^x$}
+% ----------------------------------------------------------------------------
+
+À l'examen d'entrée d'Analyse, plus de 80\% des sujets font intervenir la fonction logarithme népérien $\ln(x)$ ou la fonction exponentielle $e^x = \exp(x)$. Il est indispensable de connaître sur le bout des doigts leurs propriétés algébriques, leurs valeurs remarquables et leurs graphes.
+
+\subsection{Le logarithme népérien $\ln(x)$}
+
+\begin{definition}[Le logarithme népérien $\ln(x)$ et la constante d'Euler $e$]
+La fonction \textbf{logarithme népérien}, notée $\ln : \R_0^+ = \,]0, +\infty[ \;\to \R$, est l'unique primitive sur $]0, +\infty[$ de la fonction $x \mapsto \frac{1}{x}$ qui s'annule en $x = 1$ :
+\[
+    \boxed{\forall x > 0, \quad \ln(x) = \int_1^x \frac{1}{s}\dd s \qquad \text{avec } \ln(1) = 0 \text{ et } \bigl(\ln(x)\bigr)' = \frac{1}{x}}.
+\]
+Puisque sa dérivée $(\ln(x))' = \frac{1}{x}$ est strictement positive sur $]0, +\infty[$, la fonction $\ln$ est \textbf{continue et strictement croissante} de $]0, +\infty[$ sur $\R$.
+L'unique réel $x > 0$ tel que $\ln(x) = 1$ est la \textbf{base des logarithmes népériens} (ou nombre de Néper / constante d'Euler), notée $e$ :
+\[
+    \boxed{\ln(e) = 1 \qquad \text{avec } e \approx 2,71828 \quad \left(\text{et } \frac{1}{e} \approx 0,368,\;\; e^{-2} \approx 0,135,\;\; \ln(2) \approx 0,693\right)}.
+\]
+\end{definition}
+
+\begin{theoreme}[Propriétés algébriques et signe du logarithme népérien]
+Pour tous nombres réels \textbf{strictement positifs} $a > 0$ et $b > 0$, et pour tout exposant réel $p \in \R$ :
+\begin{enumerate}
+    \item \textbf{Transforme un produit en somme :}
+    \[
+        \boxed{\ln(a \cdot b) = \ln(a) + \ln(b)}
+    \]
+    \item \textbf{Transforme un inverse en opposé et un quotient en différence :}
+    \[
+        \boxed{\ln\left(\frac{1}{a}\right) = -\ln(a)} \qquad \text{et} \qquad \boxed{\ln\left(\frac{a}{b}\right) = \ln(a) - \ln(b)}
+    \]
+    \item \textbf{Transforme une puissance en facteur multiplicatif :}
+    \[
+        \boxed{\ln(a^p) = p\,\ln(a)} \qquad \text{et en particulier } \ln(\sqrt{a}) = \ln(a^{1/2}) = \frac{1}{2}\ln(a).
+    \]
+    \item \textbf{Signe et croissance stricte sur $]0, +\infty[$ :}
+    \[
+        \ln(a) = \ln(b) \iff a = b, \qquad \ln(a) < \ln(b) \iff 0 < a < b,
+    \]
+    \[
+        \boxed{\begin{cases} 0 < x < 1 &\iff \ln(x) < 0 \\ x = 1 &\iff \ln(x) = 0 \\ x > 1 &\iff \ln(x) > 0 \end{cases}}
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{attention}[Deux pièges algébriques classiques avec $\ln$]
+\begin{itemize}
+    \item \textbf{Le carré dans $\ln(x^2)$ vs $\ln^2(x)$ :}
+    \begin{itemize}
+        \item $\ln^2(x) = \bigl(\ln(x)\bigr)^2$ est le carré du logarithme : il n'est défini que pour $x > 0$ et ne vaut \textbf{pas} $2\ln(x)$ !
+        \item $\ln(x^2)$ est défini pour tout $x \neq 0$ (même pour $x < 0$ !), et la formule correcte sur $\R_0$ comporte une valeur absolue : $\boxed{\ln(x^2) = 2\ln(|x|)}$ (qui se simplifie en $2\ln(x)$ lorsque $x > 0$, comme en Septembre 2022 Q5).
+    \end{itemize}
+    \item \textbf{Il n'existe aucune formule pour simplifier $\ln(a + b)$ !} Ne remplacez jamais $\ln(a+b)$ par $\ln(a) + \ln(b)$ ou par $\ln(a)\ln(b)$.
+\end{itemize}
+\end{attention}
+
+\subsection{La fonction exponentielle $e^x = \exp(x)$}
+
+\begin{definition}[La fonction exponentielle $e^x$]
+La fonction \textbf{exponentielle} de base $e$, notée $\exp : \R \to \,]0, +\infty[, x \mapsto e^x$ (ou $\exp(x)$), est la \textbf{fonction réciproque} de la fonction logarithme népérien $\ln : \,]0, +\infty[ \;\to \R$ :
+\[
+    \boxed{\forall x \in \R, \;\forall y > 0 : \quad y = e^x \iff x = \ln(y)}.
+\]
+En particulier, on a les relations d'annulation mutuelle :
+\[
+    \boxed{\forall x \in \R, \quad \ln(e^x) = x} \qquad \text{et} \qquad \boxed{\forall y > 0, \quad e^{\ln(y)} = y}.
+\]
+\end{definition}
+
+\begin{theoreme}[Propriétés fondamentales de la fonction exponentielle $e^x$]
+Pour tous nombres réels $a, b \in \R$ et tout réel $p \in \R$ :
+\begin{enumerate}
+    \item \textbf{Positivité stricte :} Pour tout $x \in \R$, $\boxed{e^x > 0}$ (une exponentielle ne s'annule \textbf{jamais} et n'est jamais négative !).
+    \item \textbf{Valeurs particulières :} $e^0 = 1$, \quad $e^1 = e \approx 2,718$, \quad $e^{-1} = \dfrac{1}{e} \approx 0,368$.
+    \item \textbf{Règles de calcul sur les exposants :}
+    \[
+        \boxed{e^{a+b} = e^a \cdot e^b}, \qquad \boxed{e^{-a} = \frac{1}{e^a}}, \qquad \boxed{e^{a-b} = \frac{e^a}{e^b}}, \qquad \boxed{\bigl(e^a\bigr)^p = e^{a\cdot p}}.
+    \]
+    \item \textbf{Dérivée et croissance stricte :} La fonction $x \mapsto e^x$ est sa propre dérivée : $\boxed{(e^x)' = e^x > 0}$. Elle est donc continue et \textbf{strictement croissante} sur tout $\R$ :
+    \[
+        e^a = e^b \iff a = b \qquad \text{et} \qquad e^a < e^b \iff a < b.
+    \]
+    \item \textbf{Puissance quelconque $a^x$ ($a > 0$) et logarithme en base $a$ ($a > 0, a \neq 1$) :}
+    \[
+        \boxed{a^x = e^{x\ln(a)}} \qquad \text{et} \qquad \boxed{\log_a(x) = \frac{\ln(x)}{\ln(a)}}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05, >=Stealth]
+    \begin{axis}[
+        width=9.5cm, height=8.5cm,
+        axis lines=middle,
+        xmin=-2.6, xmax=3.4,
+        ymin=-2.6, ymax=3.4,
+        xtick={-2,-1,1,2,2.718},
+        xticklabels={$-2$,$-1$,$1$,$2$,$e$},
+        ytick={-2,-1,1,2,2.718},
+        yticklabels={$-2$,$-1$,$1$,$2$,$e$},
+        xlabel={$x$},
+        ylabel={$y$},
+        grid=both,
+        grid style={gray!20},
+        samples=100,
+        clip=true
+    ]
+        % Première bissectrice y = x
+        \addplot[dashed, darkgray, thick, domain=-2.5:3.3] {x} node[pos=0.88, above left] {\small $y = x$};
+
+        % Exponentielle y = e^x
+        \addplot[very thick, uclblue, domain=-2.6:1.25] {exp(x)} node[pos=0.92, right] {$y = e^x$};
+
+        % Logarithme y = ln(x)
+        \addplot[very thick, defgreen, domain=0.07:3.3] {ln(x)} node[pos=0.88, below right] {$y = \ln(x)$};
+
+        % Tangentes remarquables en (0,1) et (1,0) : y = 1+x et y = x-1
+        \addplot[dotted, warnred, thick, domain=-1.5:1.5] {1 + x};
+        \addplot[dotted, warnred, thick, domain=-0.5:2.5] {x - 1};
+
+        % Points remarquables
+        \fill[uclblue] (axis cs:0,1) circle (2pt) node[above left] {\small $(0,1)$};
+        \fill[defgreen] (axis cs:1,0) circle (2pt) node[below right] {\small $(1,0)$};
+        \fill[uclblue] (axis cs:1,2.718) circle (2pt) node[left] {\small $(1,e)$};
+        \fill[defgreen] (axis cs:2.718,1) circle (2pt) node[above] {\small $(e,1)$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{astuce}[Simplifier avant de dériver grâce aux propriétés du logarithme !]
+Comme le soulignent les solutionnaires officiels de l'UCLouvain (Juillet 2021 Q1b et Juillet 2022 Q1a), lorsqu'on doit étudier ou dériver une fonction de la forme $f(x) = \ln\left(\frac{1}{u(x)}\right)$ ou $f(x) = \ln\bigl(A(x)\cdot B(x)\bigr)$, \textbf{utilisez toujours les propriétés du logarithme avant de dériver} :
+\begin{itemize}
+    \item $f(x) = \ln\left(\dfrac{1}{\cos(x)}\right) = -\ln\bigl(\cos(x)\bigr) \implies f'(x) = -\dfrac{-\sin(x)}{\cos(x)} = \tan(x)$ (en une seule ligne !).
+    \item $f(x) = \ln\left(\dfrac{1}{1+\cos(x)}\right) = -\ln\bigl(1+\cos(x)\bigr) \implies f'(x) = \dfrac{\sin(x)}{1+\cos(x)}$.
+    \item $\ln(1+x) + \ln(1-x) = \ln\bigl((1+x)(1-x)\bigr) = \ln(1-x^2)$ (Juillet 2023 Série 1, Q3), dont la dérivée est immédiatement $\dfrac{-2x}{1-x^2}$.
+\end{itemize}
+\end{astuce}
+
+\begin{exemple}[Équations exponentielles et logarithmiques imbriquées : UCLouvain -- Juillet 2023 (Série 2, Q3) et Septembre 2024 (Q2a)]
+\textbf{1) Double exponentielle (UCLouvain, Juillet 2023 -- Série 2, Question 3) :}\\
+\emph{Énoncé :} Soit la fonction $f : \R \to \R$ définie par $f(x) = e^{(e^x)} + a\,e^x + b$ pour deux coefficients $a, b \in \R$. Sous quelles conditions sur $a$ et $b$ la dérivée $f'(x) = e^x(e^{e^x} + a)$ s'annule-t-elle en un point $x^*$ ? Que vaut alors $x^*$ ?\\
+\emph{Résolution :} Comme $e^x > 0$ ne s'annule jamais sur $\R$, on a :
+\[
+    f'(x) = 0 \iff e^{e^x} + a = 0 \iff e^{e^x} = -a.
+\]
+\begin{itemize}
+    \item Première condition : puisque une exponentielle $e^u$ est toujours strictement positive, cette équation n'a de solution en $e^x$ que si $-a > 0 \iff a < 0$. On applique alors $\ln$ aux deux membres :
+    \[
+        e^{e^x} = -a \iff e^x = \ln(-a).
+    \]
+    \item Seconde condition : de nouveau, puisque $e^x > 0$, cette équation n'a de solution en $x \in \R$ que si le membre de droite est strictement positif :
+    \[
+        \ln(-a) > 0 \iff -a > 1 \iff \boxed{a < -1} \quad (\text{et aucune condition sur } b \in \R).
+    \]
+    En appliquant une seconde fois le logarithme népérien, on obtient l'unique point critique :
+    \[
+        \boxed{x^* = \ln\bigl(\ln(-a)\bigr)}.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{2) Équation bi-exponentielle en pharmacocinétique (UCLouvain, Septembre 2024, Question 2a) :}\\
+\emph{Énoncé :} Résoudre l'équation $\alpha e^{-\alpha t} - \beta e^{-\beta t} = 0$ d'inconnue $t > 0$, où $\alpha = 1,0\text{ h}^{-1}$ et $\beta = 0,2\text{ h}^{-1}$, sachant que $\ln(5) \simeq 1,61$.\\
+\emph{Résolution :} Isolons les exponentielles d'un côté et les constantes de l'autre :
+\[
+    \alpha e^{-\alpha t} = \beta e^{-\beta t} \iff \frac{e^{-\alpha t}}{e^{-\beta t}} = \frac{\beta}{\alpha} \iff e^{(-\alpha + \beta)t} = \frac{\beta}{\alpha}.
+\]
+En prenant le logarithme népérien des deux membres et en utilisant $\ln\left(\frac{\beta}{\alpha}\right) = -\ln\left(\frac{\alpha}{\beta}\right)$ :
+\[
+    (-\alpha + \beta)t = \ln\left(\frac{\beta}{\alpha}\right) \iff t = \frac{1}{\alpha - \beta}\ln\left(\frac{\alpha}{\beta}\right) = \frac{1}{1,0 - 0,2}\ln\left(\frac{1,0}{0,2}\right) = \frac{\ln(5)}{0,8} \simeq \frac{1,61}{0,8} = 2,0125\text{ heures}.
+\]
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 1}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 1.\arabic* --}]
+    \item \textbf{(Domaines de définition d'annales UCLouvain)} Déterminer le domaine de définition $\D \subset \R$ de chacune des fonctions suivantes :
+    \begin{enumerate}
+        \item $f_1(x) = \dfrac{x}{\cos^2(x)}$ \quad \textbf{(Septembre 2023, Q1a)}
+        \item $f_2(x) = \dfrac{1 - x^2}{\cos^2(x)}$ \quad \textbf{(Septembre 2024, Q1a)}
+        \item $f_3(x) = x\ln^2(x)$ \quad \textbf{(Septembre 2025, Q1a)}
+        \item $f_4(x) = (1 - x^2)\ln(1 - x) + x$ \quad \textbf{(Juillet 2026, Q1a)}
+    \end{enumerate}
+
+    \item \textbf{(Racines et équations logarithmiques / irrationnelles)} Déterminer le domaine de définition et toutes les racines réelles des fonctions suivantes :
+    \begin{enumerate}
+        \item $f(x) = \ln(x^2 - 3x + 2)$
+        \item $g(x) = \sqrt{2x + 3} - x$
+        \item $h(x) = \dfrac{x^2}{2}\left(\ln^2(x) - \ln(x) + \dfrac{1}{2}\right)$ \quad \textbf{(Inspiré de Septembre 2026, Q1)}
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2024, Q4a)} Soit $x_0$ l'unique racine réelle de la fonction $f(x) = \sqrt{1+x} - x$ sur $[-1, +\infty[$. Sans calculer la valeur numérique de $x_0$, démontrer que $x_0$ est également racine de la fonction composée :
+    \[
+        g(x) = \sqrt{1 + \sqrt{1+x}} - x.
+    \]
+
+    \item \textbf{(Parité et symétries)} Étudier la parité des fonctions suivantes après avoir déterminé leur domaine de définition :
+    \begin{enumerate}
+        \item $f_1(x) = x^2\sin(x^2) + \cos(x^2)$ \quad \textbf{(Juillet 2023 -- Série 1, Q1a)}
+        \item $f_2(x) = 3\cos(x) - \cos^3(x)$ \quad \textbf{(Juillet 2023 -- Série 2, Q1a)}
+        \item $f_3(x) = \ln\left(\dfrac{1+x}{1-x}\right)$
+        \item $f_4(x) = \ln\bigl(x + \sqrt{1+x^2}\bigr)$
+    \end{enumerate}
+
+    \item \textbf{(Simplifications algébriques avec $\ln$ et $\exp$)}
+    \begin{enumerate}
+        \item Simplifier au maximum l'expression $A(x) = \ln\left(\dfrac{e^{2x} - 1}{e^x + 1}\right) - \ln\bigl(1 - e^{-x}\bigr)$ en précisant sa condition d'existence.
+        \item Résoudre dans $\R$ l'équation $e^{2x} - 3e^x - 4 = 0$.
+        \item Résoudre dans $\R$ l'équation $\ln(x+3) + \ln(x-1) = \ln(5)$.
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2026, Q4 -- Premières propriétés de la fonction de Lambert $W_0$)}
+    La fonction de Lambert, notée $W_0(y)$, est définie comme la fonction réciproque de la fonction $f(x) = x\,e^x$ restreinte à l'intervalle $I = [-1, +\infty[$. Ainsi, pour tout $x \in [-1, +\infty[$, on a $W_0(y) = x \iff y = x\,e^x$, et donc $W_0(y)\,e^{W_0(y)} = y$.
+    \begin{enumerate}
+        \item Sans calculatrice, déterminer les valeurs exactes de $W_0(0)$, $W_0(e)$ et $W_0(-e^{-1})$.
+        \item Sachant que $f(x) = x\,e^x$ est strictement croissante sur $I = [-1, +\infty[$ et que $\lim_{x \to +\infty} x\,e^x = +\infty$, déterminer le domaine de définition $D$ de $W_0(y)$, son sens de variation et préciser si $W_0$ est continue sur $D$.
+    \end{enumerate}
+\end{enumerate}

@@ -1,0 +1,349 @@
+% ============================================================================
+% CHAPITRE 7 : INTÉGRALES DÉFINIES, INÉGALITÉS, AIRES ET VOLUMES DE RÉVOLUTION
+% ============================================================================
+\chapter{Intégrales Définies, Inégalités, Aires et Volumes de Révolution}
+
+Une fois maîtrisé le calcul des primitives (Chapitre 6), l'\textbf{intégrale définie} $\int_a^b f(x)\dd x$ permet de calculer des grandeurs géométriques et physiques exactes. À l'examen d'admission d'Analyse de l'UCLouvain, l'intégrale définie intervient régulièrement sous deux grandes formes dans les Questions 3 à 5 :
+\begin{enumerate}
+    \item \textbf{La démonstration d'inégalités fonctionnelles} (encadrements de $\ln(x)$, de $\int_1^x \ln(s)\dd s$ ou de $e^{-x}$) en intégrant une inégalité de départ entre $1$ et $x$ (ou entre $0$ et $x$) : \textbf{Juillet 2022 Q4, Septembre 2022 Q4, Juillet 2023 (Série 1) Q4, Juillet 2023 (Série 2) Q5, Août 2023 Q5}.
+    \item \textbf{Le calcul du volume d'un solide de révolution} obtenu en faisant tourner une courbe ou une surface plane autour d'un axe : \textbf{Juillet 2021 Q3f, Septembre 2022 Q2, Juillet 2024 Q3 (volume d'un tore), Juillet 2026 Q4 (volume d'un œuf fossilisé)}.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\section{L'intégrale définie et le Théorème Fondamental de l'Analyse}
+% ----------------------------------------------------------------------------
+
+\subsection{Sommes de Riemann, théorème fondamental et propriétés}
+
+Géométriquement, pour une fonction continue $f : [a, b] \to \R$, l'\textbf{intégrale définie} $\int_a^b f(x)\dd x$ représente l'\textbf{aire algébrique} (c'est-à-dire comptée positivement là où $f(x) \ge 0$ et négativement là où $f(x) \le 0$) délimitée par la courbe $y = f(x)$, l'axe horizontal $Ox$ et les droites verticales $x = a$ et $x = b$.
+
+\begin{theoreme}[Théorème Fondamental de l'Analyse (Newton-Leibniz)]
+Soit $f : [a, b] \to \R$ une fonction continue sur l'intervalle $[a, b]$.
+\begin{enumerate}
+    \item \textbf{Dérivée d'une intégrale fonction de sa borne supérieure :} La fonction d'accumulation $\Phi : [a, b] \to \R$ définie par :
+    \[
+        \Phi(x) = \int_a^x f(s)\dd s
+    \]
+    est dérivable sur $[a, b]$ et est l'unique primitive de $f$ qui s'annule en $x = a$ :
+    \[
+        \boxed{\forall x \in [a, b], \quad \Phi'(x) = \frac{\mathrm{d}}{\mathrm{d}x}\left(\int_a^x f(s)\dd s\right) = f(x) \qquad \text{avec } \Phi(a) = 0}.
+    \]
+    \item \textbf{Formule de Newton-Leibniz :} Si $F$ est n'importe quelle primitive de $f$ sur $[a, b]$ ($F'(x) = f(x)$), alors :
+    \[
+        \boxed{\int_a^b f(x)\dd x = \Bigl[F(x)\Bigr]_a^b = F(b) - F(a)}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{theoreme}[Propriétés fondamentales de l'intégrale définie et valeur moyenne]
+Pour toutes fonctions continues $f, g$ sur $[a, b]$ et constantes $\alpha, \beta \in \R$ :
+\begin{enumerate}
+    \item \textbf{Linéarité :} $\displaystyle\int_a^b \bigl(\alpha f(x) + \beta g(x)\bigr)\dd x = \alpha\int_a^b f(x)\dd x + \beta\int_a^b g(x)\dd x$.
+    \item \textbf{Relation de Chasles et inversion des bornes :}
+    \[
+        \int_a^a f(x)\dd x = 0, \qquad \int_b^a f(x)\dd x = -\int_a^b f(x)\dd x, \qquad \int_a^c f(x)\dd x + \int_c^b f(x)\dd x = \int_a^b f(x)\dd x.
+    \]
+    \item \textbf{Simplifications par parité sur un intervalle symétrique $[-a, a]$ :}
+    \begin{itemize}
+        \item Si $f$ est \textbf{paire} ($f(-x) = f(x)$) : $\boxed{\displaystyle\int_{-a}^a f(x)\dd x = 2\int_0^a f(x)\dd x}$.
+        \item Si $f$ est \textbf{impaire} ($f(-x) = -f(x)$) : $\boxed{\displaystyle\int_{-a}^a f(x)\dd x = 0}$.
+    \end{itemize}
+    \item \textbf{Positivité et croissance de l'intégrale (pour $a \le b$, l'ordre des bornes est crucial !) :}
+    \[
+        \boxed{\text{Si } a \le b \;\text{ et }\; \forall s \in [a, b], \; f(s) \le g(s), \quad \text{alors} \quad \int_a^b f(s)\dd s \le \int_a^b g(s)\dd s}.
+    \]
+    \item \textbf{Valeur moyenne d'une fonction $f$ sur $[a, b]$ (avec $a < b$) :} (Utilisée en Août 2023 Q2 pour l'inconfort moyen $\bar{c}$ dans le train de nuit) :
+    \[
+        \boxed{\bar{f} = \frac{1}{b - a}\int_a^b f(t)\dd t}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+% ----------------------------------------------------------------------------
+\section{Démonstration d'inégalités par intégration ou par dérivation}
+% ----------------------------------------------------------------------------
+
+En 2022 et 2023, cinq examens d'admission consécutifs de l'UCLouvain ont comporté une question demandant de démontrer une inégalité (ou une double inégalité) fonctionnelle. Les solutionnaires officiels mettent en avant \textbf{deux méthodes complémentaires} qu'il faut absolument savoir rédiger.
+
+\begin{theoreme}[Les deux méthodes reines pour démontrer une inégalité $f(x) \le g(x)$ pour $x \ge a$]
+\begin{enumerate}
+    \item \textbf{Méthode A -- Par intégration d'une inégalité connue sur $[a, x]$ (quand $x \ge a$) :}
+    Si l'on connaît une inégalité simple entre deux fonctions dérivées $f'(s) \le g'(s)$ pour tout $s \in [a, x]$ (par exemple $\frac{1}{s^2} \le \frac{1}{s} \le 1$ pour $s \ge 1$, ou $1 - \ln(1+s) \le e^{-s}$ pour $s \ge 0$), on \textbf{intègre chaque membre par rapport à la variable muette $s$ entre $a$ et $x$} (avec $x \ge a$) :
+    \[
+        \forall s \in [a, x], \;\; f'(s) \le g'(s) \implies \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s \iff f(x) - f(a) \le g(x) - g(a).
+    \]
+    Si de plus $f(a) = g(a)$, on obtient immédiatement $\boxed{f(x) \le g(x)}$ pour tout $x \ge a$ !\\
+    \emph{Attention si $x \le a$ (par ex. $0 < x \le 1$ avec $a = 1$) :} Pour garder les bornes dans le sens croissant (borne inférieure $\le$ borne supérieure), on intègre entre $x$ et $a$ : $\int_x^1 f'(s)\dd s \le \int_x^1 g'(s)\dd s$ !
+    \item \textbf{Méthode B -- Par étude du signe de la dérivée de la différence $\Delta(x) = g(x) - f(x)$ :}
+    Pour prouver que $f(x) \le g(x)$ pour tout $x \ge a$, on pose $\Delta(x) = g(x) - f(x)$ :
+    \begin{itemize}
+        \item On vérifie que $\Delta(a) = g(a) - f(a) = 0$ (ou $\ge 0$).
+        \item On calcule la dérivée $\Delta'(x) = g'(x) - f'(x)$ et on montre que $\Delta'(x) \ge 0$ pour tout $x \ge a$.
+        \item Par conséquent, $\Delta$ est croissante sur $[a, +\infty[$, donc $\forall x \ge a,\; \Delta(x) \ge \Delta(a) \ge 0 \iff f(x) \le g(x)$.
+    \end{itemize}
+\end{enumerate}
+\end{theoreme}
+
+\begin{exemple}[Les quatre grandes questions d'inégalités des annales UCLouvain (2022--2023)]
+\textbf{1) Encadrement fondamental de $\ln(x)$ et de $\int_1^x \ln(s)\dd s$ (UCLouvain -- Septembre 2022, Question 4 et Août 2023, Question 5) :}\\
+\emph{Énoncé :}
+\begin{enumerate}[label=(\alph*)]
+    \item Soit $x \ge 1$ (on a donc $1 \le s \le s^2$ pour tout $s \in [1, x]$). Démontrer que :
+    \[
+        \boxed{1 - \frac{1}{x} \le \ln(x) \le x - 1}.
+    \]
+    \item (Août 2023, Q5) Démontrer que cette double inégalité reste vraie pour $0 < x \le 1$, et donc pour tout $x > 0$.
+    \item (Septembre 2022, Q4) En utilisant ce résultat pour $x \ge 1$, démontrer que :
+    \[
+        \boxed{0 \le \int_1^x \ln(s)\dd s \le (x - 1)^2} \quad \left(\text{et même } \le \frac{1}{2}(x-1)^2\right).
+    \]
+\end{enumerate}
+\emph{Résolution :}
+\begin{enumerate}[label=(\alph*)]
+    \item Pour tout $s \ge 1$, on a $1 \le s \le s^2$. En passant aux inverses (la fonction inverse $u \mapsto \frac{1}{u}$ étant strictement décroissante sur $\R_0^+$, le sens des inégalités s'inverse) :
+    \[
+        \forall s \ge 1, \quad \frac{1}{s^2} \le \frac{1}{s} \le 1.
+    \]
+    Intégrons cet encadrement par rapport à $s$ sur l'intervalle $[1, x]$ (avec $x \ge 1$) :
+    \[
+        \int_1^x \frac{1}{s^2}\dd s \le \int_1^x \frac{1}{s}\dd s \le \int_1^x 1\dd s \iff \left[-\frac{1}{s}\right]_1^x \le \Bigl[\ln(s)\Bigr]_1^x \le \Bigl[s\Bigr]_1^x \iff -\frac{1}{x} - (-1) \le \ln(x) - 0 \le x - 1,
+    \]
+    ce qui donne exactement $1 - \dfrac{1}{x} \le \ln(x) \le x - 1$.
+    \item \textbf{Pour $0 < x \le 1$ (deux méthodes officielles d'Août 2023) :}
+    \begin{itemize}
+        \item \emph{Méthode 1 (par intégration sur $[x, 1]$) :} Pour $0 < s \le 1$, on a $s^2 \le s \le 1 \implies 1 \le \frac{1}{s} \le \frac{1}{s^2}$. En intégrant entre la plus petite borne $x$ et la plus grande borne $1$ :
+        \[
+            \int_x^1 1\dd s \le \int_x^1 \frac{1}{s}\dd s \le \int_x^1 \frac{1}{s^2}\dd s \iff 1 - x \le -\ln(x) \le \frac{1}{x} - 1.
+        \]
+        En multipliant toute la double inégalité par $-1$ (ce qui inverse les symboles $\le$), on retrouve exactement $1 - \frac{1}{x} \le \ln(x) \le x - 1$ !
+        \item \emph{Méthode 2 (par changement de variable $y = \frac{1}{x} \ge 1$) :} Si $0 < x \le 1$, alors $y = \frac{1}{x} \ge 1$. Appliquons le résultat de (a) à $y \ge 1$ :
+        \[
+            1 - \frac{1}{y} \le \ln(y) \le y - 1 \iff 1 - x \le \ln\left(\frac{1}{x}\right) = -\ln(x) \le \frac{1}{x} - 1 \iff 1 - \frac{1}{x} \le \ln(x) \le x - 1.
+        \]
+    \end{itemize}
+    \item \textbf{Pour majorer $\int_1^x \ln(s)\dd s$ ($x \ge 1$) :}
+    \begin{itemize}
+        \item Pour $s \ge 1$, on a $0 \le \ln(s) \le s - 1$. En intégrant directement cette double inégalité entre $1$ et $x$ :
+        \[
+            0 \le \int_1^x \ln(s)\dd s \le \int_1^x (s - 1)\dd s = \left[\frac{(s-1)^2}{2}\right]_1^x = \frac{1}{2}(x - 1)^2 \le (x - 1)^2.
+        \]
+        \item \emph{Variante en calculant l'intégrale de $\ln(s)$ :} Comme $\int_1^x \ln(s)\dd s = \bigl[s\ln(s) - s\bigr]_1^x = x\ln(x) - (x - 1)$, il suffit de multiplier l'encadrement $\frac{x-1}{x} \le \ln(x) \le x - 1$ par $x > 0$ pour obtenir $x - 1 \le x\ln(x) \le x(x-1)$, et en soustrayant $x - 1$, on a $0 \le x\ln(x) - (x-1) \le (x-1)(x-1) = (x-1)^2$.
+    \end{itemize}
+\end{enumerate}
+
+\medskip
+\textbf{2) Encadrement fin de $\ln(x)$ par des puissances $x^a$ (UCLouvain -- Juillet 2022, Question 4) :}\\
+\emph{Énoncé :} Soit $x > 1$ et $0 < a < 1$, de sorte que $s^{1-a} < s < s^{1+a}$ pour tout $s > 1$. Prouver que :
+\[
+    \frac{1}{a}\left(1 - \frac{1}{x^a}\right) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr).
+\]
+\emph{Résolution :} Pour tout $s \in \,]1, x]$, passons aux inverses dans $s^{1-a} < s < s^{1+a}$ :
+\[
+    \frac{1}{s^{1+a}} < \frac{1}{s} < \frac{1}{s^{1-a}} \iff s^{-1-a} < \frac{1}{s} < s^{a-1}.
+\]
+Intégrons chaque membre par rapport à $s$ entre $1$ et $x$ (avec $\int s^p\dd s = \frac{s^{p+1}}{p+1}$ pour $p = -1-a$ et $p = a-1$) :
+\[
+    \left[\frac{s^{-a}}{-a}\right]_1^x < \Bigl[\ln(s)\Bigr]_1^x < \left[\frac{s^a}{a}\right]_1^x \iff -\frac{1}{a}\bigl(x^{-a} - 1\bigr) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr) \iff \frac{1}{a}\left(1 - \frac{1}{x^a}\right) < \ln(x) < \frac{1}{a}\bigl(x^a - 1\bigr).
+\]
+
+\medskip
+\textbf{3) Inégalité exponentielle $e^y \ge \left(1 + \frac{y}{n}\right)^n$ (UCLouvain -- Juillet 2023 -- Série 2, Question 5) :}\\
+\emph{Énoncé :} En exploitant le fait que $e^x \ge 1$ pour tout $x \ge 0$, prouver que $e^x \ge 1 + x$ pour tout $x \ge 0$. Grâce aux propriétés de l'exponentielle, en déduire ensuite que pour tout entier $n \ge 1$ et tout $y > 0$ :
+\[
+    e^y \ge \left(1 + \frac{y}{n}\right)^n.
+\]
+\emph{Résolution :}
+\begin{itemize}
+    \item Pour tout $w \ge 0$, on a $e^w \ge 1$. Intégrons cette inégalité entre $0$ et $x$ (pour $x \ge 0$) :
+    \[
+        \int_0^x e^w\dd w \ge \int_0^x 1\dd w \iff \Bigl[e^w\Bigr]_0^x \ge \Bigl[w\Bigr]_0^x \iff e^x - 1 \ge x \iff \boxed{e^x \ge 1 + x \quad (\forall x \ge 0)}.
+    \]
+    \item Appliquons cette inégalité au réel positif $x = \dfrac{y}{n} > 0$ :
+    \[
+        e^{y/n} \ge 1 + \frac{y}{n} > 0.
+    \]
+    Comme les deux membres sont positifs et que la fonction puissance $u \mapsto u^n$ ($n \ge 1$) est strictement croissante sur $\R^+$, élevons les deux membres à la puissance $n$ en utilisant $(e^{y/n})^n = e^{(y/n)\cdot n} = e^y$ :
+    \[
+        \bigl(e^{y/n}\bigr)^n \ge \left(1 + \frac{y}{n}\right)^n \iff \boxed{e^y \ge \left(1 + \frac{y}{n}\right)^n}.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{4) Majoration de $e^{-x}$ par intégration de $\ln(1+s)$ (UCLouvain -- Juillet 2023 -- Série 1, Question 4) :}\\
+\emph{Énoncé :} Sachant que pour tout $x \ge 0$, on a $1 - \ln(1+x) \le e^{-x}$, démontrer que pour tout $x \ge 0$ :
+\[
+    e^{-x} \le (1 + x)\ln(1 + x) + (1 - 2x).
+\]
+\emph{Résolution :} Intégrons l'inégalité $1 - \ln(1+s) \le e^{-s}$ par rapport à $s$ entre $0$ et $x$ (avec $x \ge 0$). Par le changement de variable $p = 1 + s \implies \mathrm{d}p = \mathrm{d}s$, une primitive de $\ln(1+s)$ est $p\ln(p) - p = (1+s)\ln(1+s) - (1+s)$. Dès lors :
+\[
+    \int_0^x \bigl(1 - \ln(1+s)\bigr)\dd s \le \int_0^x e^{-s}\dd s \iff \Bigl[s - (1+s)\ln(1+s) + (1+s)\Bigr]_0^x \le \Bigl[-e^{-s}\Bigr]_0^x,
+\]
+\[
+    \Bigl[(1 + 2s) - (1+s)\ln(1+s)\Bigr]_0^x \le -e^{-x} - (-1) \iff (1 + 2x) - (1+x)\ln(1+x) - 1 \le 1 - e^{-x}.
+\]
+En isolant $e^{-x}$ à gauche, on obtient immédiatement $\boxed{e^{-x} \le (1+x)\ln(1+x) + (1 - 2x)}$.
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Calcul d'aires planes et volumes de solides de révolution}
+% ----------------------------------------------------------------------------
+
+\subsection{Aire comprise entre deux courbes et volume d'un solide de révolution}
+
+\begin{theoreme}[Aire entre deux courbes et Volume d'un solide de révolution]
+\begin{enumerate}
+    \item \textbf{Aire d'une région plane comprise entre deux courbes $y = f(x)$ et $y = g(x)$ sur $[a, b]$ :}
+    \[
+        \boxed{\mathcal{A} = \int_a^b \bigl|f(x) - g(x)\bigr|\dd x = \int_a^b \bigl(y_{\text{haut}}(x) - y_{\text{bas}}(x)\bigr)\dd x}.
+    \]
+    \item \textbf{Volume d'un solide plein obtenu par révolution de $y = R(x)$ autour de l'axe $Ox$ sur $[a, b]$ :}
+    En découpant le solide en tranches cylindriques élémentaires (disques) perpendiculaires à l'axe de rotation $Ox$, d'épaisseur $\mathrm{d}x$ et de rayon $R(x) = |f(x)|$, l'aire de chaque disque vaut $\pi\bigl(R(x)\bigr)^2$, d'où le volume total :
+    \[
+        \boxed{V = \pi \int_a^b \bigl(f(x)\bigr)^2\dd x = \pi \int_a^b \bigl(R(x)\bigr)^2\dd x}.
+    \]
+    \item \textbf{Volume d'un solide creux (anneau / tube) compris entre un rayon extérieur $y_+(x) \ge 0$ et un rayon intérieur $y_-(x) \ge 0$ autour de $Ox$ :}
+    Chaque tranche est une couronne circulaire d'aire $\pi y_+^2(x) - \pi y_-^2(x)$, donc :
+    \[
+        \boxed{V = V_{\text{ext}} - V_{\text{int}} = \pi \int_a^b \Bigl(\bigl(y_+(x)\bigr)^2 - \bigl(y_-(x)\bigr)^2\Bigr)\dd x}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, >=Stealth]
+    % Axe de révolution
+    \draw[->, thick, darkgray] (-0.6,0) -- (6.2,0) node[right] {$x$ (axe de révolution)};
+    \draw[->, thick, darkgray] (0,-2.0) -- (0,2.2) node[above] {$y$};
+
+    % Profil supérieur et inférieur symétrique
+    \draw[very thick, uclblue, domain=0.8:5.0, samples=80] plot (\x, {1.05 + 0.45*sin(deg(1.2*\x))}) node[above right] {$y = R(x)$};
+    \draw[thick, uclblue!60, dashed, domain=0.8:5.0, samples=80] plot (\x, {-1.05 - 0.45*sin(deg(1.2*\x))});
+
+    % Ellipses de révolution aux extrémités a et b
+    \draw[thick, uclblue] (0.8,0) ellipse (0.22 and 1.42);
+    \draw[thick, uclblue] (5.0,0) ellipse (0.22 and 0.92);
+
+    % Tranche élémentaire (disque d'épaisseur dx) en x = 2.8
+    \fill[uclaccent!25] (2.8,0) ellipse (0.20 and 0.95);
+    \draw[thick, warnred] (2.8,0) ellipse (0.20 and 0.95);
+    \draw[thick, warnred, <->] (2.8,0) -- (2.8,0.95) node[midway, right] {\small $R(x)$};
+    \fill[warnred] (2.8,0) circle (1.5pt);
+
+    \node[below] at (0.8,-1.45) {$x = a$};
+    \node[below] at (5.0,-1.0) {$x = b$};
+    \node[uclblue, font=\small\bfseries] at (3.0, -1.75) {Tranche élémentaire : $\mathrm{d}V = \pi \bigl(R(x)\bigr)^2\dd x$};
+\end{tikzpicture}
+\end{center}
+
+\begin{exemple}[Trois volumes de révolution complets des annales UCLouvain (2021, 2024 et 2026)]
+\textbf{1) Pièce mécanique exponentielle-trigonométrique (UCLouvain -- Juillet 2021, Question 3f) :}\\
+\emph{Énoncé :} Une pièce mécanique de longueur $2\pi$ est définie par la révolution autour de l'axe des abscisses de la fonction $f : [0, 2\pi] \to \R, x \mapsto f(x) = \sin(x)\exp(x)$.
+(i) Exprimer le volume $V$ de cette pièce sous forme d'une intégrale, et (ii) calculer sa valeur exacte. (\emph{Rappel :} $\cos(2\theta) = 1 - 2\sin^2(\theta)$).\\
+\emph{Résolution :}
+\begin{enumerate}[label=(\roman*)]
+    \item Par la formule du volume de révolution autour de $Ox$ :
+    \[
+        \boxed{V = \pi \int_0^{2\pi} \bigl(\sin(x)\,e^x\bigr)^2\dd x = \pi \int_0^{2\pi} \sin^2(x)\,e^{2x}\dd x}.
+    \]
+    \item Linéarisons $\sin^2(x) = \dfrac{1 - \cos(2x)}{2}$ grâce à la formule de Carnot rappelée dans l'énoncé :
+    \[
+        V = \frac{\pi}{2}\int_0^{2\pi} e^{2x}\dd x - \frac{\pi}{2}\int_0^{2\pi} \cos(2x)\,e^{2x}\dd x = \frac{\pi}{2}\left[\frac{e^{2x}}{2}\right]_0^{2\pi} - \frac{\pi}{2}\int_0^{2\pi} \cos(2x)\,e^{2x}\dd x.
+    \]
+    Posons $y = 2x \implies \mathrm{d}y = 2\dd x$ (avec $y \in [0, 4\pi]$) dans la seconde intégrale : $\int_0^{2\pi} \cos(2x)e^{2x}\dd x = \frac{1}{2}\mathcal{I}$ où $\mathcal{I} = \int_0^{4\pi} \cos(y)e^y\dd y$. Calculons $\mathcal{I}$ par \textbf{double intégration par parties cyclique} :
+    \begin{itemize}
+        \item 1\iere{} IPP ($u = \cos y \implies \mathrm{d}u = -\sin y\dd y$ ; $\mathrm{d}v = e^y\dd y \implies v = e^y$) :
+        \[
+            \mathcal{I} = \Bigl[\cos(y)\,e^y\Bigr]_0^{4\pi} + \int_0^{4\pi} \sin(y)\,e^y\dd y = (e^{4\pi} - 1) + \int_0^{4\pi} \sin(y)\,e^y\dd y.
+        \]
+        \item 2\ieme{} IPP ($u = \sin y \implies \mathrm{d}u = \cos y\dd y$ ; $\mathrm{d}v = e^y\dd y \implies v = e^y$) :
+        \[
+            \int_0^{4\pi} \sin(y)\,e^y\dd y = \underbrace{\Bigl[\sin(y)\,e^y\Bigr]_0^{4\pi}}_{= 0 - 0 = 0} - \int_0^{4\pi} \cos(y)\,e^y\dd y = -\mathcal{I}.
+        \]
+    \end{itemize}
+    On obtient l'équation $\mathcal{I} = e^{4\pi} - 1 - \mathcal{I} \iff 2\mathcal{I} = e^{4\pi} - 1 \iff \mathcal{I} = \dfrac{e^{4\pi} - 1}{2}$. Dès lors :
+    \[
+        V = \frac{\pi}{4}\bigl(e^{4\pi} - 1\bigr) - \frac{\pi}{4}\,\mathcal{I} = \frac{\pi}{4}\bigl(e^{4\pi} - 1\bigr) - \frac{\pi}{8}\bigl(e^{4\pi} - 1\bigr) = \boxed{\frac{\pi}{8}\bigl(e^{4\pi} - 1\bigr)}.
+    \]
+\end{enumerate}
+
+\medskip
+\textbf{2) Volume d'un anneau / tore de révolution -- Théorème de Guldin (UCLouvain -- Juillet 2024, Question 3) :}\\
+\emph{Énoncé :} Un anneau (tore) est un solide de révolution dont le profil dans le plan $x$-$y$ est un cercle de rayon $a$ excentré d'une distance $R > a$ par rapport à l'axe de rotation $Ox$, d'équation $x^2 + (y - R)^2 = a^2$. Quel est le volume $V$ de cet anneau ? (\emph{Rappel :} $\cos^2(\theta) = \frac{1}{2}(1 + \cos(2\theta))$).\\
+\emph{Résolution :}
+\begin{itemize}
+    \item \textbf{Équations des demi-cercles supérieur $y_+(x)$ et inférieur $y_-(x)$ pour $x \in [-a, a]$ :}
+    \[
+        (y - R)^2 = a^2 - x^2 \iff y - R = \pm\sqrt{a^2 - x^2} \iff y_\pm(x) = R \pm \sqrt{a^2 - x^2} \ge 0.
+    \]
+    \item \textbf{Mise en intégrale du volume creux $V = V_{\text{ext}} - V_{\text{int}}$ :}
+    Puisque $y_+^2(x) - y_-^2(x) = \bigl(R + \sqrt{a^2-x^2}\bigr)^2 - \bigl(R - \sqrt{a^2-x^2}\bigr)^2 = 4R\sqrt{a^2 - x^2}$ :
+    \[
+        V = \pi \int_{-a}^a \Bigl(y_+^2(x) - y_-^2(x)\Bigr)\dd x = 4\pi R \int_{-a}^a \sqrt{a^2 - x^2}\dd x = 8\pi R \int_0^a \sqrt{a^2 - x^2}\dd x.
+    \]
+    \item \textbf{Calcul de $\displaystyle\int_0^a \sqrt{a^2 - x^2}\dd x$ par substitution trigonométrique $x = a\sin(\theta)$ :}
+    Posons $x = a\sin(\theta)$ pour $\theta \in \left[0, \frac{\pi}{2}\right]$, de sorte que $\mathrm{d}x = a\cos(\theta)\dd\theta$ et $\sqrt{a^2 - x^2} = \sqrt{a^2(1-\sin^2\theta)} = a\cos(\theta)$ (car $\cos\theta \ge 0$ sur $[0, \pi/2]$). Grâce à la formule de Carnot :
+    \[
+        \int_0^a \sqrt{a^2 - x^2}\dd x = a^2 \int_0^{\pi/2} \cos^2(\theta)\dd\theta = \frac{a^2}{2}\int_0^{\pi/2} \bigl(1 + \cos(2\theta)\bigr)\dd\theta = \frac{a^2}{2}\left[\theta + \frac{\sin(2\theta)}{2}\right]_0^{\pi/2} = \frac{\pi a^2}{4},
+    \]
+    (ce qui est bien le quart de l'aire $\pi a^2$ d'un disque de rayon $a$ !). En multipliant par $8\pi R$ :
+    \[
+        \boxed{V = 8\pi R \cdot \frac{\pi a^2}{4} = 2\pi^2 R a^2 = (2\pi R)\cdot(\pi a^2)} = (\text{périmètre du cercle de rayon } R) \times (\text{aire du disque de rayon } a).
+    \]
+\end{itemize}
+
+\medskip
+\textbf{3) L'œuf gigantesque fossilisé (UCLouvain -- Juillet 2026, Question 4) :}\\
+\emph{Énoncé résumé :} Un œuf fossilisé est un solide de révolution de hauteur $H$ dont le rayon horizontal à la hauteur $h \in [0, H]$ vaut :
+\[
+    R(h) = A\sqrt{\sin\left(\frac{\pi h}{H}\right) + \frac{1}{4}\sin\left(\frac{2\pi h}{H}\right)}.
+\]
+Calculer la formule littérale du volume $V_{\text{œuf}}$, puis sa valeur numérique pour $H = 1,00\text{ m}$ et $A = 0,50\text{ m}$, et la comparer au volume $V_{\text{sphère}}$ d'une sphère de rayon $0,50\text{ m}$.\\
+\emph{Résolution :} La présence de la racine carrée dans $R(h)$ est un cadeau puisque la formule du volume de révolution élève $R(h)$ au carré !
+\begin{align*}
+    V_{\text{œuf}} &= \pi \int_0^H \bigl(R(h)\bigr)^2\dd h = \pi A^2 \int_0^H \left(\sin\left(\frac{\pi h}{H}\right) + \frac{1}{4}\sin\left(\frac{2\pi h}{H}\right)\right)\dd h \\
+    &= \pi A^2 \left[-\frac{H}{\pi}\cos\left(\frac{\pi h}{H}\right) - \frac{1}{4}\cdot\frac{H}{2\pi}\cos\left(\frac{2\pi h}{H}\right)\right]_0^H = -H A^2 \left[\cos\left(\frac{\pi h}{H}\right) + \frac{1}{8}\cos\left(\frac{2\pi h}{H}\right)\right]_0^H \\
+    &= -H A^2 \left[\left(\cos(\pi) + \frac{1}{8}\cos(2\pi)\right) - \left(\cos(0) + \frac{1}{8}\cos(0)\right)\right] = -H A^2 \left[\left(-1 + \frac{1}{8}\right) - \left(1 + \frac{1}{8}\right)\right] = \boxed{2 H A^2}.
+\end{align*}
+Numériquement, pour $H = 1,00\text{ m}$ et $A = 0,50\text{ m}$ : $\boxed{V_{\text{œuf}} = 2 \times 1,00 \times (0,50)^2 = 0,50\text{ m}^3}$, tandis que le volume de la sphère de rayon $R = 0,50\text{ m}$ vaut $\boxed{V_{\text{sphère}} = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi\left(\frac{1}{2}\right)^3 = \frac{\pi}{6} \simeq \frac{3,1416}{6} \simeq 0,52\text{ m}^3}$. L'œuf est donc légèrement \textbf{moins volumineux} que la sphère.
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 7}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 7.\arabic* --}]
+    \item \textbf{(Calculs d'intégrales définies)} Calculer la valeur exacte des intégrales définies suivantes :
+    \begin{enumerate}
+        \item $\displaystyle\int_0^{\pi/4} \tan(x)\dd x$
+        \item $\displaystyle\int_1^e x\ln(x)\dd x$
+        \item $\displaystyle\int_{-1}^1 \frac{x^3\,\cos(x)}{1 + x^2}\dd x$
+        \item $\displaystyle\int_0^{\pi/2} \cos^2(x)\sin(x)\dd x$
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2021, Q3e -- Étude et majoration de $\dfrac{\sin(x)}{x}$)}
+    \begin{enumerate}
+        \item Soit $g : \left]-\frac{\pi}{2}, \frac{\pi}{2}\right[ \;\to \R, x \mapsto g(x) = \tan(x) - x$. Exploiter la dérivée de $g$ pour montrer que $g$ n'a qu'une seule racine sur $\left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$ et déterminer les zones où $g$ est positive ou négative.
+        \item Soit $f : \R \to \R$ définie par $f(x) = \dfrac{\sin(x)}{x}$ si $x \neq 0$ et $f(0) = 1$. Sur base de (a), donner les zones de croissance et de décroissance de $f$ sur $\left]-\frac{\pi}{2}, \frac{\pi}{2}\right[$.
+        \item En traitant séparément les cas $|x| \le 1 < \frac{\pi}{2}$ et $|x| > 1$, prouver que $f(x) \le 1$ pour tout $x \in \R$ (et donc que $\sin(x) \le x$ pour tout $x \ge 0$).
+    \end{enumerate}
+
+    \item \textbf{(Inégalités polynomiales de Taylor pour $\cos(x)$ et $\sin(x)$ par intégrations successives)}
+    En partant de l'inégalité $\cos(s) \le 1$ valable pour tout $s \ge 0$ et en intégrant successivement entre $0$ et $x$ (pour $x \ge 0$), démontrer la chaîne d'inégalités :
+    \[
+        \forall x \ge 0 : \qquad \sin(x) \le x, \qquad 1 - \frac{x^2}{2} \le \cos(x) \le 1, \qquad x - \frac{x^3}{6} \le \sin(x) \le x.
+    \]
+
+    \item \textbf{(Aire comprise entre deux courbes)} Calculer l'aire géométrique du domaine plan fermé délimité par la parabole d'équation $y = 4 - x^2$ et la droite d'équation $y = x + 2$.
+
+    \item \textbf{(Démonstration des formules de volume des solides classiques par intégration)}
+    En utilisant la formule du volume d'un solide de révolution $V = \pi \int_a^b y^2(x)\dd x$, retrouver :
+    \begin{enumerate}
+        \item Le volume d'un \textbf{cône circulaire droit} de rayon de base $R$ et de hauteur $H$ ($V = \frac{1}{3}\pi R^2 H$).
+        \item Le volume d'une \textbf{sphère} de rayon $R$ ($V = \frac{4}{3}\pi R^3$).
+        \item Le volume d'une \textbf{calotte sphérique} de hauteur $h \in [0, R]$ découpée au sommet d'une sphère de rayon $R$ ($V = \pi h^2\left(R - \frac{h}{3}\right)$).
+    \end{enumerate}
+
+    \item \textbf{(Volume d'un solide de révolution logarithmique)} On considère la région plane délimitée par la courbe $y = \dfrac{\ln(x)}{\sqrt{x}}$, l'axe $Ox$ et les droites $x = 1$ et $x = e$. Calculer le volume exact $V$ du solide engendré par la rotation de cette région autour de l'axe $Ox$.
+\end{enumerate}

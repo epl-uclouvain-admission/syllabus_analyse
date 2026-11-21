@@ -1,0 +1,654 @@
+% ============================================================================
+% CHAPITRE 4 : ÉTUDE COMPLÈTE DE FONCTIONS
+% ============================================================================
+\chapter{Étude Complète de Fonctions}
+
+La \textbf{Question 1} de l'examen d'admission d'Analyse à l'UCLouvain (qui représente typiquement $15$ points sur $50$, soit $30\%$ de la note totale !) est systématiquement consacrée à l'\textbf{étude complète d'une fonction} $f : \D \subset \R \to \R$ aboutissant à son tableau de variations et à l'esquisse précise de son graphe sur un repère quadrillé. Ce chapitre expose la théorie reliant les dérivées $f'$ et $f''$ à la géométrie de la courbe (croissance, extrema locaux, concavité, points d'inflexion), puis détaille pas à pas la méthodologie attendue par les correcteurs à travers cinq études complètes issues des annales 2021 à 2026.
+
+% ----------------------------------------------------------------------------
+\section{Croissance, extrema locaux, concavité et points d'inflexion}
+% ----------------------------------------------------------------------------
+
+\subsection{Signe de la dérivée première $f'$ et sens de variation}
+
+En appliquant le théorème des accroissements finis $f(x_2) - f(x_1) = f'(c)(x_2 - x_1)$ entre deux points quelconques $x_1 < x_2$ d'un intervalle $I$, on voit immédiatement que le signe de $f(x_2) - f(x_1)$ est le même que celui de $f'(c)$.
+
+\begin{theoreme}[Théorème fondamental des variations sur un intervalle $I$]
+Soit $f$ une fonction continue sur un intervalle $I$ et dérivable à l'intérieur de $I$ :
+\begin{enumerate}
+    \item $f'(x) \ge 0$ sur $I \iff f$ est \textbf{croissante} sur $I$ ($\nearrow$).\\
+    Si $f'(x) > 0$ sur $I$ (sauf éventuellement en un nombre fini de points isolés où $f'(x) = 0$), alors $f$ est \textbf{strictement croissante} sur $I$.
+    \item $f'(x) \le 0$ sur $I \iff f$ est \textbf{décroissante} sur $I$ ($\searrow$).\\
+    Si $f'(x) < 0$ sur $I$ (sauf éventuellement en des points isolés), alors $f$ est \textbf{strictement décroissante} sur $I$.
+    \item $f'(x) = 0$ pour tout $x \in I \iff f$ est \textbf{constante} sur l'intervalle $I$.
+\end{enumerate}
+\end{theoreme}
+
+\subsection{Extrema locaux (minima et maxima) : conditions du 1\ier{} et du 2\ieme{} ordre}
+
+\begin{definition}[Maximum local, minimum local et extremum global]
+Soit $f : \D \subset \R \to \R$ et soit $x^* \in \D$ :
+\begin{itemize}
+    \item On dit que $f$ admet un \textbf{maximum local} (ou relatif) en $x^*$ s'il existe un intervalle ouvert $]x^* - \delta, x^* + \delta[$ ($\delta > 0$) tel que $\forall x \in \D \cap \,]x^* - \delta, x^* + \delta[,\; f(x) \le f(x^*)$. Si cette inégalité est vraie sur tout le domaine $\D$, c'est un \textbf{maximum global} (ou absolu).
+    \item On dit que $f$ admet un \textbf{minimum local} (ou relatif) en $x^*$ s'il existe $\delta > 0$ tel que $\forall x \in \D \cap \,]x^* - \delta, x^* + \delta[,\; f(x) \ge f(x^*)$ (et \textbf{minimum global} si c'est vrai sur tout $\D$).
+    \item Un \textbf{point critique} (ou point stationnaire) de $f$ est un point $x^* \in \D$ où la dérivée s'annule : $\boxed{f'(x^*) = 0}$.
+\end{itemize}
+\end{definition}
+
+\begin{theoreme}[Caractérisation des extrema locaux d'une fonction dérivable]
+Soit $f$ une fonction dérivable sur un intervalle ouvert $I \subset \D$ et soit $x^* \in I$ un point intérieur à $I$ :
+\begin{enumerate}
+    \item \textbf{Condition nécessaire du 1\ier{} ordre (Théorème de Fermat) :}
+    \[
+        \boxed{\text{Si } f \text{ admet un extremum local en un point intérieur } x^* \in I, \text{ alors nécessairement } f'(x^*) = 0}.
+    \]
+    \item \textbf{Condition suffisante du 1\ier{} ordre (changement de signe de $f'$) :} Soit $x^* \in I$ tel que $f'(x^*) = 0$ :
+    \begin{itemize}
+        \item Si $f'(x)$ passe du signe \textbf{$+$ à gauche au signe $-$ à droite} de $x^*$ ($\nearrow \;\text{max}\; \searrow$), alors $f$ admet un \textbf{maximum local} en $x^*$.
+        \item Si $f'(x)$ passe du signe \textbf{$-$ à gauche au signe $+$ à droite} de $x^*$ ($\searrow \;\text{min}\; \nearrow$), alors $f$ admet un \textbf{minimum local} en $x^*$.
+        \item Si $f'(x)$ \textbf{garde le même signe} à gauche et à droite de $x^*$ (tout en s'annulant en $x^*$, comme $x^3$ en $0$ ou la fonction de \textbf{Septembre 2026 Q1} en $x = 1$), alors $x^*$ \textbf{n'est PAS un extremum local} : c'est un \textbf{point d'inflexion à tangente horizontale} !
+    \end{itemize}
+    \item \textbf{Condition suffisante du 2\ieme{} ordre (signe de la dérivée seconde $f''(x^*)$) :} Si $f$ est deux fois dérivable en un point critique $x^* \in I$ ($f'(x^*) = 0$) :
+    \[
+        \boxed{\begin{cases}
+            f'(x^*) = 0 \;\text{ et }\; f''(x^*) < 0 &\implies f \text{ admet un \textbf{maximum local strict} en } x^* \;\; (\cap) \\
+            f'(x^*) = 0 \;\text{ et }\; f''(x^*) > 0 &\implies f \text{ admet un \textbf{minimum local strict} en } x^* \;\; (\cup)
+        \end{cases}}
+    \]
+    \emph{Attention :} Si $f'(x^*) = 0$ et $f''(x^*) = 0$, le test de la dérivée seconde seul ne permet pas de conclure : il faut regarder si $f'(x)$ change de signe de part et d'autre de $x^*$ (par exemple, pour $x^4$ ou $f(x) = x^2\sin(x^2)+\cos(x^2)$ en $x=0$ en Juillet 2023 Série 1 Q1, on a $f'(0) = f''(0) = 0$ et c'est un minimum très plat ; tandis que pour $x^3$ en $0$, $f'(0) = f''(0) = 0$ et c'est un point d'inflexion !).
+\end{enumerate}
+\end{theoreme}
+
+\subsection{Signe de la dérivée seconde $f''$, concavité et points d'inflexion}
+
+\begin{definition}[Concavité tournée vers le haut / vers le bas et point d'inflexion]
+Soit $f$ une fonction deux fois dérivable sur un intervalle $I$ :
+\begin{enumerate}
+    \item \textbf{Concavité positive (tournée vers le haut $\cup$, fonction convexe) :}
+    \[
+        \boxed{f''(x) > 0 \text{ sur } I \implies f' \text{ est croissante} \implies \text{la concavité de } f \text{ est tournée vers le haut } (\cup)}.
+    \]
+    Géométriquement, la courbe est située \textbf{au-dessus de toutes ses tangentes} sur $I$.
+    \item \textbf{Concavité négative (tournée vers le bas $\cap$, fonction concave) :}
+    \[
+        \boxed{f''(x) < 0 \text{ sur } I \implies f' \text{ est décroissante} \implies \text{la concavité de } f \text{ est tournée vers le bas } (\cap)}.
+    \]
+    Géométriquement, la courbe est située \textbf{en dessous de toutes ses tangentes} sur $I$.
+    \item \textbf{Point d'inflexion (PI) :} Un point $x_0 \in \D$ (où $f$ est continue) est un \textbf{point d'inflexion} du graphe de $f$ si la fonction \textbf{change de sens de concavité} en passant par $x_0$ (c'est-à-dire si la dérivée seconde $f''(x)$ \textbf{s'annule en $x_0$ en changeant de signe} de part et d'autre de $x_0$). En un point d'inflexion, la courbe \textbf{traverse sa droite tangente}.
+\end{enumerate}
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, >=Stealth]
+    % Concavité vers le haut (minimum)
+    \begin{scope}[shift={(0,0)}]
+        \draw[very thick, uclblue, domain=-1.5:1.5, samples=60] plot (\x, {0.65*(\x)^2 + 0.4});
+        \draw[thick, defgreen] (-1.2,0.4) -- (1.2,0.4);
+        \fill[defgreen] (0,0.4) circle (2pt) node[below] {\small Min ($f'=0, f''>0$)};
+        \node[above, uclblue, font=\bfseries\small] at (0,2.1) {Concavité positive ($f'' > 0, \cup$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {Courbe au-dessus de ses tangentes};
+    \end{scope}
+
+    % Concavité vers le bas (maximum)
+    \begin{scope}[shift={(5.3,0)}]
+        \draw[very thick, warnred, domain=-1.5:1.5, samples=60] plot (\x, {1.85 - 0.65*(\x)^2});
+        \draw[thick, defgreen] (-1.2,1.85) -- (1.2,1.85);
+        \fill[defgreen] (0,1.85) circle (2pt) node[above] {\small Max ($f'=0, f''<0$)};
+        \node[above, warnred, font=\bfseries\small] at (0,2.4) {Concavité négative ($f'' < 0, \cap$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-0.25) {Courbe en dessous de ses tangentes};
+    \end{scope}
+
+    % Point d'inflexion
+    \begin{scope}[shift={(10.6,0.9)}]
+        \draw[very thick, exorange, domain=-1.45:1.45, samples=60] plot (\x, {0.42*(\x)^3 + 0.15*\x});
+        \draw[thick, dashed, darkgray] (-1.3,-0.195) -- (1.3,0.195);
+        \fill[exorange] (0,0) circle (2.2pt) node[below right] {\small PI ($f''=0$ change de signe)};
+        \node[above, exorange, font=\bfseries\small] at (0,1.5) {Point d'inflexion ($\cap \to \cup$)};
+        \node[below, darkgray, font=\footnotesize] at (0,-1.15) {La courbe traverse sa tangente};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{exemple}[Extrema locaux en fonction de paramètres : UCLouvain -- Juillet 2021, Question 3a]
+\emph{Énoncé :} Soient $a, b, c$ des constantes non nulles. On considère la fonction $f$ définie sur $\R_0$ par :
+\[
+    f(x) = \frac{ax^2 + bx + c}{x^2}.
+\]
+En quel(s) point(s) $x$ la fonction $f$ admet-elle un maximum et/ou un minimum local ? S'agit-il d'un maximum ou d'un minimum (la réponse peut dépendre des valeurs de $a, b, c$) ?
+
+\emph{Résolution :}
+\begin{itemize}
+    \item \emph{Astuce de réécriture avant de dériver :} Au lieu d'appliquer la lourde formule de dérivation d'un quotient $\frac{u}{v}$, divisons chaque terme du numérateur par $x^2$ :
+    \[
+        f(x) = a + \frac{b}{x} + \frac{c}{x^2} = a + b\,x^{-1} + c\,x^{-2} \quad (\forall x \neq 0).
+    \]
+    \item \emph{Dérivée première et point critique :} En dérivant terme à terme :
+    \[
+        f'(x) = -\frac{b}{x^2} - \frac{2c}{x^3} = -\frac{bx + 2c}{x^3}.
+    \]
+    Comme $b \neq 0$ et $c \neq 0$, la dérivée s'annule en un unique point critique $x^* \neq 0$ :
+    \[
+        f'(x^*) = 0 \iff bx^* + 2c = 0 \iff \boxed{x^* = -\frac{2c}{b}}.
+    \]
+    \item \emph{Nature de l'extremum par la dérivée seconde $f''(x^*)$ :} Dérivons une seconde fois $f'(x) = -b\,x^{-2} - 2c\,x^{-3}$ :
+    \[
+        f''(x) = \frac{2b}{x^3} + \frac{6c}{x^4} = \frac{2bx + 6c}{x^4}.
+    \]
+    Évaluons $f''$ en $x^* = -\frac{2c}{b}$ (où $2bx^* + 6c = 2b\left(-\frac{2c}{b}\right) + 6c = -4c + 6c = 2c$) :
+    \[
+        f''(x^*) = \frac{2c}{(x^*)^4} = \frac{2c}{\left(-\frac{2c}{b}\right)^4} = \frac{2c\,b^4}{16c^4} = \frac{b^4}{8c^3}.
+    \]
+    Puisque $b^4 > 0$ pour tout $b \neq 0$, le signe de $f''(x^*)$ ne dépend que du signe de $c$ (ni $a$ ni $b$ n'influencent la nature de l'extremum !) :
+    \begin{itemize}
+        \item \textbf{Si $c > 0$ :} $f''(x^*) > 0$, donc $f$ admet un \textbf{minimum local} en $x^* = -\dfrac{2c}{b}$.
+        \item \textbf{Si $c < 0$ :} $f''(x^*) < 0$, donc $f$ admet un \textbf{maximum local} en $x^* = -\dfrac{2c}{b}$.
+    \end{itemize}
+    \emph{Remarque élégante du solutionnaire :} En posant $y = \frac{1}{x}$, on a $f(x) = a + by + cy^2$, qui est une simple parabole en $y$ dont le sommet est en $y^* = -\frac{b}{2c} \iff x^* = -\frac{2c}{b}$, tournée vers le haut (minimum) si $c > 0$ et vers le bas (maximum) si $c < 0$ !
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Méthodologie en 6 étapes pour réussir la Question 1 de l'examen}
+% ----------------------------------------------------------------------------
+
+À l'examen d'admission de l'UCLouvain, la Question 1 est guidée par des sous-questions a), b), c), d), e) (et parfois f)). Voici la feuille de route méthodologique qui répond exactement aux attentes du barème officiel :
+
+\begin{astuce}[Les 6 étapes du succès à la Question 1 (Étude de fonction)]
+\begin{enumerate}
+    \item \textbf{Domaine $\D$, symétries, racines et comportement aux bords :}
+    \begin{itemize}
+        \item Écrire les conditions d'existence et exprimer clairement $\D$.
+        \item Repérer si $f$ est paire, impaire ou périodique.
+        \item Chercher les racines $f(x) = 0$ si l'équation est résoluble, ainsi que les limites aux bords ouverts de $\D$ (asymptotes verticales AV, horizontales AH ou obliques AO).
+    \end{itemize}
+    \item \textbf{Dérivée première $f'(x)$ et ses racines :}
+    \begin{itemize}
+        \item Calculer $f'(x)$ proprement et \textbf{la mettre sous forme factorisée / sur un même dénominateur} (sans factorisation, il est impossible d'étudier son signe !).
+        \item Résoudre $f'(x) = 0$ sur $\D$ pour identifier les candidats extrema locaux.
+    \end{itemize}
+    \item \textbf{Dérivée seconde $f''(x)$ et ses racines (si demandée) :}
+    \begin{itemize}
+        \item Partir de la forme la plus simple de $f'(x)$, calculer $f''(x)$ et la factoriser pour trouver ses racines (candidats points d'inflexion) et son signe.
+    \end{itemize}
+    \item \textbf{Calcul des valeurs exactes ET numériques approchées aux points remarquables :}
+    \begin{itemize}
+        \item Depuis 2024, l'énoncé fournit une \textbf{Aide numérique} (par ex. $\sqrt{2} \simeq 1,414$, $\sqrt{5} \simeq 2,236$, $e^{-1} \simeq 0,368$, $e^{-2} \simeq 0,135$, $\ln(2) \simeq 0,693$, $\pi^2 \simeq 9,87$).
+        \item Calculez au brouillon, puis reportez dans le tableau la \textbf{valeur mathématique exacte ET la valeur décimale approchée} de $f(x)$ (et de $f'(x)$ si demandé) en chaque point remarquable : c'est indispensable pour placer les points au bon endroit sur le quadrillage !
+    \end{itemize}
+    \item \textbf{Tableau de variations dans l'ordre logique officiel :}
+    \begin{itemize}
+        \item Les énoncés récents (2025--2026) demandent explicitement de présenter les lignes du tableau dans l'\textbf{ordre logique} :
+        \[
+            \mathbf{1.\; x} \quad \longrightarrow \quad \mathbf{2.\; f'(x)} \;\;(\text{signe et zéros}) \quad \longrightarrow \quad \mathbf{3.\; f''(x)} \;\;(\text{signe et zéros}) \quad \longrightarrow \quad \mathbf{4.\; f(x)} \;\;(\text{valeurs, } \nearrow\searrow \text{ et } \cup\cap).
+        \]
+        \item Indiquez dans la dernière ligne les mentions \textbf{max}, \textbf{min}, \textbf{inflexion (PI)}, \textbf{racine} et \textbf{AV}.
+    \end{itemize}
+    \item \textbf{Esquisse graphique sur le quadrillage avec axes chiffrés :}
+    \begin{itemize}
+        \item \textbf{Graduez et chiffrez vos deux axes $x$ et $y$} en choisissant une échelle adaptée aux valeurs de votre tableau.
+        \item Tracez d'abord les \textbf{asymptotes en pointillés} (AV, AH, AO), puis placez tous les \textbf{points remarquables} (racines, extrema avec un petit segment horizontal pour la tangente horizontale, points d'inflexion, bords avec tangente verticale éventuelle).
+        \item Reliez les points par une courbe lisse respectant scrupuleusement le sens de concavité ($\cup$ ou $\cap$) et annotez clairement sur le dessin : \emph{racine}, \emph{max}, \emph{min}, \emph{point d'inflexion}, \emph{AV}.
+    \end{itemize}
+\end{enumerate}
+\end{astuce}
+
+% ----------------------------------------------------------------------------
+\section{Cinq études complètes de fonctions issues des annales UCLouvain}
+% ----------------------------------------------------------------------------
+
+Étudions maintenant de A à Z cinq sujets représentatifs couvrant toute la diversité des fonctions posées à l'examen d'admission entre 2022 et 2026.
+
+\begin{exemple}[Étude 1 : Fonction trigonométrique périodique -- UCLouvain, Septembre 2022, Question 1]
+\emph{Énoncé :} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+\[
+    f(x) = \frac{\cos^2(x)}{1 + \cos(x)}.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Quel est le domaine de définition $\D$ de $f$ ?
+    \item Calculez la fonction dérivée $f'$.
+    \item Quels sont les minima et maxima locaux éventuels de $f$ ? \emph{(Note : il ne vous est pas demandé de calculer la dérivée seconde).}
+    \item Sur base de vos résultats précédents, esquissez le graphique de la fonction $f$ pour $x \in [-\pi, \pi]$. Veillez à aussi y indiquer la position des racines, s'il y en a.
+\end{enumerate}
+
+\emph{Résolution complète :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Domaine, parité, périodicité et racines :}
+    \begin{itemize}
+        \item \textbf{CE :} $1 + \cos(x) \neq 0 \iff \cos(x) \neq -1 \iff x \neq \pi + 2k\pi$ ($k \in \Z$). D'où $\D = \R \setminus \{\pi + 2k\pi \mid k \in \Z\}$.
+        \item La fonction $f$ est \textbf{paire} ($f(-x) = f(x)$) et \textbf{périodique de période $2\pi$}. Sur $[-\pi, \pi]$, le domaine est $]-\pi, \pi[$.
+        \item \textbf{Racines :} $f(x) = 0 \iff \cos^2(x) = 0$ (avec $\cos(x) \neq -1$) $\iff \cos(x) = 0 \iff x = \frac{\pi}{2} + k\pi$. Sur $]-\pi, \pi[$, il y a deux racines : $x = -\frac{\pi}{2}$ et $x = \frac{\pi}{2}$.
+        \item \textbf{Asymptotes verticales :} Pour $x \to \pm\pi$ (à l'intérieur de $]-\pi, \pi[$), $\cos(x) \to -1^+$ donc $1 + \cos(x) \to 0^+$ et $\cos^2(x) \to (-1)^2 = 1 > 0$. Ainsi $\lim_{x \to \pi^-} f(x) = \lim_{x \to -\pi^+} f(x) = \frac{1}{0^+} = +\infty$, d'où les asymptotes verticales $\text{AV} \equiv x = \pi + 2k\pi$.
+    \end{itemize}
+    \item \textbf{Dérivée première $f'(x)$ :} Par la règle du quotient avec $(\cos^2 x)' = -2\cos(x)\sin(x)$ :
+    \begin{align*}
+        f'(x) &= \frac{-2\cos(x)\sin(x)\bigl(1+\cos(x)\bigr) - \cos^2(x)\bigl(-\sin(x)\bigr)}{\bigl(1+\cos(x)\bigr)^2} \\
+        &= \frac{\cos(x)\sin(x)\bigl[-2\bigl(1+\cos(x)\bigr) + \cos(x)\bigr]}{\bigl(1+\cos(x)\bigr)^2} = \boxed{-\frac{\cos(x)\sin(x)\bigl(2 + \cos(x)\bigr)}{\bigl(1+\cos(x)\bigr)^2}} = -\frac{\sin(2x)\bigl(2+\cos(x)\bigr)}{2\bigl(1+\cos(x)\bigr)^2}.
+    \end{align*}
+    \item \textbf{Signe de $f'(x)$ et extrema locaux :} Sur tout le domaine $\D$, on a $\bigl(1+\cos(x)\bigr)^2 > 0$ et $2 + \cos(x) \ge 2 - 1 = 1 > 0$. Le signe de $f'(x)$ est donc exactement le signe de $-\cos(x)\sin(x) = -\frac{1}{2}\sin(2x)$.
+    \[
+        f'(x) = 0 \text{ dans } \D \iff \sin(x) = 0 \text{ ou } \cos(x) = 0 \quad (\text{avec } \cos x \neq -1) \iff x = 2k\pi \text{ ou } x = \frac{\pi}{2} + k\pi \;\; (k \in \Z).
+    \]
+    Dressons le tableau de signes et de variations sur $[-\pi, \pi]$ :
+    \begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+    \hline
+    $x$ & $-\pi$ & & $-\dfrac{\pi}{2}$ & & $0$ & & $\dfrac{\pi}{2}$ & & $\pi$ \\ \hline\hline
+    $\sin(2x)$ & $0$ & $+$ & $0$ & $-$ & $0$ & $+$ & $0$ & $-$ & $0$ \\ \hline
+    $1 + \cos(x)$ & $0$ & $+$ & $1$ & $+$ & $2$ & $+$ & $1$ & $+$ & $0$ \\ \hline
+    $f'(x)$ & AV & $-$ & $0$ & $+$ & $0$ & $-$ & $0$ & $+$ & AV \\ \hline
+    $f(x)$ & $\text{AV}\;(+\infty)$ & $\searrow$ & $\mathbf{0}$ (min) & $\nearrow$ & $\mathbf{\dfrac{1}{2}}$ (max) & $\searrow$ & $\mathbf{0}$ (min) & $\nearrow$ & $(+\infty)\;\text{AV}$ \\ \hline
+    \end{tabular}
+    \end{center}
+    La fonction admet donc :
+    \begin{itemize}
+        \item des \textbf{minima locaux} (et globaux, qui sont aussi les racines de $f$, de valeur $0$) en $\boxed{x = \dfrac{\pi}{2} + k\pi}$ ($k \in \Z$) ;
+        \item des \textbf{maxima locaux} (de valeur $f(0) = \dfrac{1}{2}$) en $\boxed{x = 2k\pi}$ ($k \in \Z$).
+    \end{itemize}
+    \item \textbf{Esquisse graphique sur $[-\pi, \pi]$ :}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.05, >=Stealth]
+        \begin{axis}[
+            width=10.5cm, height=6.5cm,
+            axis lines=middle,
+            xmin=-3.6, xmax=3.6,
+            ymin=-0.3, ymax=3.2,
+            xtick={-3.1416, -1.5708, 0, 1.5708, 3.1416},
+            xticklabels={$-\pi$, $-\frac{\pi}{2}$, $0$, $\frac{\pi}{2}$, $\pi$},
+            ytick={0.5, 1, 2, 3},
+            yticklabels={$\frac{1}{2}$, $1$, $2$, $3$},
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            grid=both,
+            grid style={gray!20},
+            samples=120
+        ]
+            \addplot[very thick, uclblue, domain=-2.72:2.72] {(cos(deg(x)))^2 / (1 + cos(deg(x)))};
+            \draw[dashed, warnred, thick] (axis cs:-3.1416, -0.2) -- (axis cs:-3.1416, 3.1) node[pos=0.85, right] {\small AV};
+            \draw[dashed, warnred, thick] (axis cs:3.1416, -0.2) -- (axis cs:3.1416, 3.1) node[pos=0.85, left] {\small AV};
+            \fill[defgreen] (axis cs:-1.5708, 0) circle (2.2pt) node[below] {\footnotesize min \& racine};
+            \fill[defgreen] (axis cs:1.5708, 0) circle (2.2pt) node[below] {\footnotesize min \& racine};
+            \fill[exorange] (axis cs:0, 0.5) circle (2.2pt) node[above right] {\footnotesize max $(0, 1/2)$};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+\end{exemple}
+
+\begin{exemple}[Étude 2 : Fonction algébrique avec radical -- UCLouvain, Juillet 2024, Question 1]
+\emph{Énoncé :} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+\[
+    f(x) = \sqrt{1 + x} - x.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Quel est le domaine de définition $\D$ de $f$ ? Obtenez aussi la(les) racine(s) de $f$.
+    \item Obtenez la fonction dérivée première $f'$.
+    \item Obtenez la fonction dérivée seconde $f''$.
+    \item Réalisez un tableau avec les points $x = -1, x = 0, x = 1, x = 2$, la(les) racine(s) de $f$ et le(s) point(s) où $f'$ s'annule. Reportez-y clairement toutes les valeurs de $f$ et $f'$, ainsi que le signe de $f''$.
+    \item Esquissez proprement le graphe de $f$ dans l'intervalle $[-1, 2]$. \textbf{Aide :} $\sqrt{2} \simeq 1,414$, $\sqrt{3} \simeq 1,732$, $\sqrt{5} \simeq 2,236$.
+\end{enumerate}
+
+\emph{Résolution complète :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Domaine et racine :} Comme démontré à l'Exemple du Chapitre 1, $1 + x \ge 0 \iff x \ge -1$, donc $\boxed{\D = [-1, +\infty[}$. L'équation $\sqrt{1+x} = x$ (qui impose $x \ge 0$ et $x^2 - x - 1 = 0$) admet \textbf{une unique racine} dans $\D$ :
+    \[
+        \boxed{x_1 = \frac{1 + \sqrt{5}}{2} \simeq \frac{1 + 2,236}{2} = 1,618}.
+    \]
+    \item \textbf{Dérivée première $f'(x)$ et point critique :} Pour tout $x > -1$ :
+    \[
+        \boxed{f'(x) = \frac{1}{2\sqrt{1+x}} - 1}.
+    \]
+    (En $x \to -1^+$, $\lim_{x \to -1^+} f'(x) = +\infty$ : demi-tangente verticale au bord gauche $x = -1$). Cherchons où $f'$ s'annule :
+    \[
+        f'(x) = 0 \iff \frac{1}{2\sqrt{1+x}} = 1 \iff \sqrt{1+x} = \frac{1}{2} \iff 1 + x = \frac{1}{4} \iff \boxed{x = -\frac{3}{4} = -0,75 \in \D}.
+    \]
+    En ce point $x = -\frac{3}{4}$, la fonction vaut $f\left(-\frac{3}{4}\right) = \sqrt{\frac{1}{4}} - \left(-\frac{3}{4}\right) = \frac{1}{2} + \frac{3}{4} = \dfrac{5}{4} = 1,25$.
+    \item \textbf{Dérivée seconde $f''(x)$ :} En dérivant $f'(x) = \frac{1}{2}(1+x)^{-1/2} - 1$ pour $x > -1$ :
+    \[
+        \boxed{f''(x) = -\frac{1}{4}(1+x)^{-3/2} = -\frac{1}{4(1+x)\sqrt{1+x}} < 0 \quad (\forall x > -1)}.
+    \]
+    La dérivée seconde est \textbf{strictement négative partout} sur $]-1, +\infty[$ : la concavité est toujours tournée vers le bas ($\cap$), il n'y a \textbf{aucun point d'inflexion}, et le point critique $x = -\frac{3}{4}$ est un \textbf{maximum global}.
+    \item \textbf{Tableau de variations et de valeurs sur $[-1, 2]$ :}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.45}
+    \setlength{\tabcolsep}{4.5pt}
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    $x$ & $-1$ & & $-\dfrac{3}{4}$ & & $0$ & & $1$ & & $x_1 = \dfrac{1+\sqrt{5}}{2} \simeq 1,618$ & & $2$ \\ \hline\hline
+    $f'(x)$ & $+\infty$ & $+$ & $0$ & $-$ & $-\dfrac{1}{2}$ & $-$ & $\dfrac{1}{2\sqrt{2}}-1 \simeq -0,65$ & $-$ & $\dfrac{1}{2x_1}-1 < 0$ & $-$ & $\dfrac{1}{2\sqrt{3}}-1 \simeq -0,71$ \\ \hline
+    $f''(x)$ & $-\infty$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ \\ \hline
+    $f(x)$ & $1$ & $\nearrow$ & $\mathbf{\dfrac{5}{4} = 1,25}$ (max) & $\searrow$ & $1$ & $\searrow$ & $\sqrt{2}-1 \simeq 0,414$ & $\searrow$ & $\mathbf{0}$ (racine) & $\searrow$ & $\sqrt{3}-2 \simeq -0,268$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \item \textbf{Esquisse graphique sur $[-1, 2]$ :}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.05, >=Stealth]
+        \begin{axis}[
+            width=10.5cm, height=6.5cm,
+            axis lines=middle,
+            xmin=-1.25, xmax=2.25,
+            ymin=-0.45, ymax=1.45,
+            xtick={-1, -0.75, 0, 1, 1.618, 2},
+            xticklabels={$-1$, $-\frac{3}{4}$, $0$, $1$, $x_1 \simeq 1{,}62$, $2$},
+            ytick={-0.268, 0.414, 1, 1.25},
+            yticklabels={$-0{,}27$, $0{,}41$, $1$, $\frac{5}{4}$},
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            grid=both,
+            grid style={gray!20},
+            samples=150
+        ]
+            \addplot[very thick, uclblue, domain=-1:2.05] {sqrt(1+x) - x};
+            \draw[thick, warnred, <->] (axis cs:-0.95, 1.25) -- (axis cs:-0.55, 1.25);
+            \draw[thick, exorange, ->] (axis cs:-1, 1) -- (axis cs:-1, 1.32) node[above right] {\footnotesize pente $\infty$};
+            \fill[exorange] (axis cs:-1, 1) circle (2pt);
+            \fill[warnred] (axis cs:-0.75, 1.25) circle (2.2pt) node[above] {\footnotesize max $(-3/4, 5/4)$};
+            \fill[uclblue] (axis cs:0, 1) circle (2pt);
+            \fill[uclblue] (axis cs:1, 0.414) circle (2pt);
+            \fill[defgreen] (axis cs:1.618, 0) circle (2.2pt) node[above right] {\footnotesize racine $x_1$};
+            \fill[uclblue] (axis cs:2, -0.268) circle (2pt);
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+\end{exemple}
+
+\begin{exemple}[Étude 3 : Fonction logarithmique et trigonométrique -- UCLouvain, Juillet 2025, Question 1]
+\emph{Énoncé :} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+\[
+    f(x) = x + \ln\bigl(\sin(x) + \cos(x)\bigr).
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Obtenez le domaine de définition $\D = \bigcup_{k\in\Z} \,]a_k, b_k[$.
+    \item Obtenez la fonction dérivée première $f'$.
+    \item Obtenez la fonction dérivée seconde $f''$.
+    \item Réalisez le tableau de variation de $f$ pour la partie de $\D$ comprise dans $[-\pi, \pi]$, dans l'ordre logique $f'$, puis $f''$, puis $f$.
+    \item Esquissez proprement le graphe de $f$ sur cette même partie de $\D$.
+\end{enumerate}
+
+\emph{Résolution complète :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Domaine :} Vu à l'Exemple du Chapitre 1 : $\sin(x) + \cos(x) = \sqrt{2}\cos\left(x - \frac{\pi}{4}\right) > 0 \iff x \in \,]-\frac{\pi}{4} + 2k\pi,\; \frac{3\pi}{4} + 2k\pi[$. Dans $[-\pi, \pi]$, la partie du domaine est l'intervalle ouvert $\left]-\dfrac{\pi}{4}, \dfrac{3\pi}{4}\right[$.
+    \item \textbf{Dérivée première $f'(x)$ :} En dérivant terme à terme et en mettant au même dénominateur :
+    \[
+        f'(x) = 1 + \frac{\cos(x) - \sin(x)}{\sin(x) + \cos(x)} = \frac{\bigl(\sin(x) + \cos(x)\bigr) + \bigl(\cos(x) - \sin(x)\bigr)}{\sin(x) + \cos(x)} = \boxed{\frac{2\cos(x)}{\sin(x) + \cos(x)}}.
+    \]
+    Sur $\left]-\frac{\pi}{4}, \frac{3\pi}{4}\right[$, le dénominateur $\sin(x) + \cos(x)$ est strictement positif. Donc $f'(x)$ a le même signe que $\cos(x)$, et s'annule uniquement en $\cos(x) = 0 \iff \boxed{x = \dfrac{\pi}{2}}$ (avec $f'(x) > 0$ sur $\left]-\frac{\pi}{4}, \frac{\pi}{2}\right[$ et $f'(x) < 0$ sur $\left]\frac{\pi}{2}, \frac{3\pi}{4}\right[$).
+    \item \textbf{Dérivée seconde $f''(x)$ :} Dérivons le quotient $f'(x) = \dfrac{2\cos(x)}{\sin(x)+\cos(x)}$ :
+    \[
+        f''(x) = 2\,\frac{-\sin(x)\bigl(\sin(x)+\cos(x)\bigr) - \cos(x)\bigl(\cos(x)-\sin(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} = \frac{2\bigl(-\sin^2(x) - \cos^2(x)\bigr)}{\bigl(\sin(x)+\cos(x)\bigr)^2} = \boxed{-\frac{2}{\bigl(\sin(x)+\cos(x)\bigr)^2} < 0}.
+    \]
+    (On peut aussi l'écrire $-\dfrac{2}{1 + \sin(2x)}$ car $(\sin x + \cos x)^2 = \sin^2 x + \cos^2 x + 2\sin x\cos x = 1 + \sin(2x)$).
+    La dérivée seconde est \textbf{strictement négative partout} : la concavité est négative ($\cap$) sur tout l'intervalle, sans point d'inflexion.
+    \item \textbf{Comportement aux bornes, racines et tableau de variations sur $\left]-\frac{\pi}{4}, \frac{3\pi}{4}\right[$ :}
+    \begin{itemize}
+        \item En $x \to -\frac{\pi}{4}^+$ et en $x \to \frac{3\pi}{4}^-$, $\sin(x) + \cos(x) \to 0^+ \implies \ln(\sin x + \cos x) \to -\infty$, d'où deux \textbf{asymptotes verticales} $\text{AV}_1 \equiv x = -\dfrac{\pi}{4}$ et $\text{AV}_2 \equiv x = \dfrac{3\pi}{4}$.
+        \item Au maximum $x = \frac{\pi}{2}$, on a $f\left(\frac{\pi}{2}\right) = \frac{\pi}{2} + \ln(1 + 0) = \dfrac{\pi}{2} \simeq 1,57$.
+        \item En $x = 0$, $f(0) = 0 + \ln(0 + 1) = 0$ : $x = 0$ est une première \textbf{racine} évidente (avec pente $f'(0) = \frac{2}{1} = 2$). Comme $f$ redescend continûment de $f\left(\frac{\pi}{2}\right) = \frac{\pi}{2} > 0$ vers $-\infty$ en $\frac{3\pi}{4}^-$, le TVI garantit une \textbf{seconde racine} dans $\left]\frac{\pi}{2}, \frac{3\pi}{4}\right[$.
+    \end{itemize}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|c||c|c|c|c|c|c|c|}
+    \hline
+    $x$ & $-\dfrac{\pi}{4}$ & & $0$ & & $\dfrac{\pi}{2}$ & & $\dfrac{3\pi}{4}$ \\ \hline\hline
+    $f'(x)$ & AV & $+$ & $2$ & $+$ & $0$ & $-$ & AV \\ \hline
+    $f''(x)$ & AV & $-$ & $-2$ & $-$ & $-2$ & $-$ & AV \\ \hline
+    $f(x)$ & $\text{AV}\;(-\infty)$ & $\nearrow\;\cap$ & $\mathbf{0}$ (racine) & $\nearrow\;\cap$ & $\mathbf{\dfrac{\pi}{2}}$ (max) & $\searrow\;\cap$ & $(-\infty)\;\text{AV}$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \item \textbf{Esquisse graphique sur $\left]-\frac{\pi}{4}, \frac{3\pi}{4}\right[$ :}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.05, >=Stealth]
+        \begin{axis}[
+            width=10.0cm, height=6.5cm,
+            axis lines=middle,
+            xmin=-1.1, xmax=2.65,
+            ymin=-2.4, ymax=1.95,
+            xtick={-0.7854, 0, 0.7854, 1.5708, 2.3562},
+            xticklabels={$-\frac{\pi}{4}$, $0$, $\frac{\pi}{4}$, $\frac{\pi}{2}$, $\frac{3\pi}{4}$},
+            ytick={-2, -1, 0.7854, 1.5708},
+            yticklabels={$-2$, $-1$, $\frac{\pi}{4}$, $\frac{\pi}{2}$},
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            grid=both,
+            grid style={gray!20},
+            samples=140
+        ]
+            \addplot[very thick, uclblue, domain=-0.75:2.335] {x + ln(sin(deg(x)) + cos(deg(x)))};
+            \draw[dashed, warnred, thick] (axis cs:-0.7854, -2.35) -- (axis cs:-0.7854, 1.85) node[pos=0.15, right] {\small AV};
+            \draw[dashed, warnred, thick] (axis cs:2.3562, -2.35) -- (axis cs:2.3562, 1.85) node[pos=0.15, left] {\small AV};
+            \draw[thick, warnred, <->] (axis cs:1.25, 1.5708) -- (axis cs:1.89, 1.5708);
+            \fill[warnred] (axis cs:1.5708, 1.5708) circle (2.2pt) node[above] {\footnotesize max $(\pi/2, \pi/2)$};
+            \fill[defgreen] (axis cs:0, 0) circle (2.2pt) node[below right] {\footnotesize racine $(0,0)$};
+            \fill[defgreen] (axis cs:2.253, 0) circle (2.2pt) node[above left] {\footnotesize 2\ieme{} racine};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+\end{exemple}
+
+\begin{exemple}[Étude 4 : Logarithmes, extremum et point d'inflexion -- UCLouvain, Septembre 2025, Question 1]
+\emph{Énoncé :} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+\[
+    f(x) = x\,\ln^2(x).
+\]
+\textbf{Aide :} $\lim_{y \to 0^+} y^p\ln(y) = 0$ pour $p > 0$, $e \simeq 2,72$, $\dfrac{1}{e} \simeq 0,368$ et $\ln(2) \simeq 0,693$.
+\begin{enumerate}[label=\alph*)]
+    \item Obtenez le domaine de définition $\D$ et la/les racine(s) de $f$.
+    \item Obtenez la dérivée première $f'$ et ses racines.
+    \item Obtenez la dérivée seconde $f''$ et ses racines.
+    \item Réalisez le tableau de variation de $f$ (ordre logique $f'$, $f''$, $f$).
+    \item Esquissez proprement le graphe de $f$ pour $x \le 2$ en indiquant les valeurs numériques aux points remarquables.
+\end{enumerate}
+
+\emph{Résolution complète :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Domaine, comportement en $0^+$ et racines :}
+    \begin{itemize}
+        \item \textbf{CE :} $x > 0 \implies \boxed{\D = \,]0, +\infty[}$.
+        \item \textbf{Limite en $0^+$ :} $\lim_{x \to 0^+} x\ln^2(x) = \lim_{x \to 0^+} \bigl(x^{1/2}\ln(x)\bigr)^2 = 0^2 = 0$ (pas d'asymptote verticale en $0$, la courbe part du point limite $(0, 0)$).
+        \item \textbf{Racine sur $\D = \,]0, +\infty[$ :} $f(x) = 0 \iff \ln(x) = 0 \iff \boxed{x = 1}$ (et $f(x) > 0$ pour tout $x \in \D \setminus \{1\}$).
+    \end{itemize}
+    \item \textbf{Dérivée première $f'(x)$ et ses racines :} Par la règle du produit et de la chaîne $\bigl(\ln^2(x)\bigr)' = 2\ln(x)\cdot\frac{1}{x}$ :
+    \[
+        f'(x) = 1\cdot\ln^2(x) + x \cdot 2\ln(x)\frac{1}{x} = \ln^2(x) + 2\ln(x) = \boxed{\ln(x)\bigl(\ln(x) + 2\bigr)}.
+    \]
+    (Notons qu'en $x \to 0^+$, $\lim_{x \to 0^+} f'(x) = (-\infty)(-\infty) = +\infty$ : demi-tangente verticale en $0^+$).
+    \[
+        f'(x) = 0 \iff \ln(x) = 0 \;\text{ ou }\; \ln(x) = -2 \iff \boxed{x = 1 \;\text{ ou }\; x = e^{-2} = \frac{1}{e^2} \simeq (0,368)^2 \simeq 0,135}.
+    \]
+    \item \textbf{Dérivée seconde $f''(x)$ et ses racines :} En dérivant $f'(x) = \ln^2(x) + 2\ln(x)$ :
+    \[
+        f''(x) = \frac{2\ln(x)}{x} + \frac{2}{x} = \boxed{\frac{2}{x}\bigl(\ln(x) + 1\bigr)}.
+    \]
+    Comme $x > 0$, $f''(x)$ s'annule en changeant de signe uniquement en :
+    \[
+        f''(x) = 0 \iff \ln(x) = -1 \iff \boxed{x = e^{-1} = \frac{1}{e} \simeq 0,368} \quad (\textbf{point d'inflexion}).
+    \]
+    \item \textbf{Valeurs remarquables et tableau de variations :}
+    \begin{itemize}
+        \item En $x = e^{-2} \simeq 0,135$ (maximum local) : $f(e^{-2}) = e^{-2}(-2)^2 = \dfrac{4}{e^2} \simeq 4 \times 0,135 = \mathbf{0,542}$.
+        \item En $x = e^{-1} \simeq 0,368$ (point d'inflexion) : $f(e^{-1}) = e^{-1}(-1)^2 = \dfrac{1}{e} \simeq \mathbf{0,368}$.
+        \item En $x = 1$ (minimum local et racine) : $f(1) = \mathbf{0}$.
+        \item En $x = 2$ (bord droit du tracé) : $f(2) = 2\ln^2(2) \simeq 2 \times (0,693)^2 \simeq 2 \times 0,480 = \mathbf{0,960}$.
+    \end{itemize}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & & $e^{-2} \simeq 0,135$ & & $e^{-1} \simeq 0,368$ & & $1$ & \\ \hline\hline
+    $f'(x)$ & $+\infty$ & $+$ & $0$ & $-$ & $-1$ & $-$ & $0$ & $+$ \\ \hline
+    $f''(x)$ & $-\infty$ & $-$ & $-2e^2 < 0$ & $-$ & $0$ & $+$ & $2 > 0$ & $+$ \\ \hline
+    $f(x)$ & $\lim = 0$ & $\nearrow\;\cap$ & $\mathbf{\dfrac{4}{e^2} \simeq 0,542}$ (max) & $\searrow\;\cap$ & $\mathbf{\dfrac{1}{e} \simeq 0,368}$ (PI) & $\searrow\;\cup$ & $\mathbf{0}$ (min \& racine) & $\nearrow\;\cup$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \item \textbf{Esquisse graphique sur $]0, 2]$ :}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.05, >=Stealth]
+        \begin{axis}[
+            width=10.0cm, height=6.5cm,
+            axis lines=middle,
+            xmin=-0.1, xmax=2.15,
+            ymin=-0.12, ymax=1.08,
+            xtick={0.135, 0.368, 1, 2},
+            xticklabels={$0{,}135$, $0{,}368$, $1$, $2$},
+            ytick={0.368, 0.541, 0.960},
+            yticklabels={$0{,}368$, $0{,}542$, $0{,}960$},
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            grid=both,
+            grid style={gray!20},
+            samples=200
+        ]
+            \addplot[very thick, uclblue, domain=0.001:2.03] {x * (ln(x))^2};
+            \draw[uclblue, thick] (axis cs:0,0) circle (2pt);
+            \fill[warnred] (axis cs:0.1353, 0.5413) circle (2.2pt) node[above right] {\footnotesize max $(e^{-2}, 4/e^2)$};
+            \fill[exorange] (axis cs:0.3679, 0.3679) circle (2.2pt) node[above right] {\footnotesize inflexion $(1/e, 1/e)$};
+            \fill[defgreen] (axis cs:1, 0) circle (2.2pt) node[above right] {\footnotesize min \& racine $(1,0)$};
+            \fill[uclblue] (axis cs:2, 0.961) circle (2pt) node[left] {\footnotesize $(2;\; 0{,}96)$};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+\end{exemple}
+
+\begin{exemple}[Étude 5 : Le cas d'un point d'inflexion à tangente horizontale -- UCLouvain, Septembre 2026, Question 1]
+\emph{Énoncé :} On considère la fonction $f : \,]0, +\infty[ \;\to \R$ définie par :
+\[
+    f(x) = \frac{x^2}{2}\left(\ln^2(x) - \ln(x) + \frac{1}{2}\right).
+\]
+\textbf{Aide :} $\lim_{y \to 0^+} y^p\ln(y) = 0$ pour $p > 0$ ; $e^{-2} \simeq 0,135$ ; $f(2) \simeq 0,575$.
+\begin{enumerate}[label=\alph*)]
+    \item Obtenez $\lim_{x \to 0} f(x)$ en détail.
+    \item Obtenez la dérivée première $f'$, sa/ses racine(s) ainsi que $\lim_{x \to 0} f'(x)$.
+    \item Obtenez la dérivée seconde $f''$, sa/ses racine(s) ainsi que $\lim_{x \to 0} f''(x)$.
+    \item Réalisez le tableau de variation de $f$ (avec valeurs numériques approchées).
+    \item Esquissez proprement le graphe de $f$ pour $x \le 2$.
+\end{enumerate}
+
+\emph{Résolution complète :}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Limite en $0^+$ :} En développant $f(x)$ :
+    \[
+        \lim_{x \to 0^+} f(x) = \frac{1}{2}\lim_{x \to 0^+} \bigl(x\ln(x)\bigr)^2 - \frac{1}{2}\lim_{x \to 0^+} \bigl(x^2\ln(x)\bigr) + \frac{1}{4}\lim_{x \to 0^+} x^2 = \frac{1}{2}(0)^2 - \frac{1}{2}(0) + \frac{1}{4}(0) = \boxed{0}.
+    \]
+    (De plus, comme le trinôme $u^2 - u + \frac{1}{2} = \left(u - \frac{1}{2}\right)^2 + \frac{1}{4} \ge \frac{1}{4} > 0$ ne s'annule jamais, $f$ ne possède \textbf{aucune racine} sur $]0, +\infty[$ !).
+    \item \textbf{Dérivée première $f'(x)$ (simplification remarquable !) :} Par la règle du produit :
+    \begin{align*}
+        f'(x) &= x\left(\ln^2(x) - \ln(x) + \frac{1}{2}\right) + \frac{x^2}{2}\left(2\ln(x)\cdot\frac{1}{x} - \frac{1}{x}\right) \\
+        &= x\ln^2(x) - \cancel{x\ln(x)} + \cancel{\frac{x}{2}} + \cancel{x\ln(x)} - \cancel{\frac{x}{2}} = \boxed{x\,\ln^2(x)}.
+    \end{align*}
+    \emph{Remarque :} La fonction $f(x)$ de Septembre 2026 est tout simplement la primitive (trouvée en Septembre 2025 Q3 !) de la fonction $x\ln^2(x)$ étudiée en Septembre 2025 Q1 !
+    \begin{itemize}
+        \item \textbf{Racine de $f'$ :} $f'(x) = x\ln^2(x) = 0 \iff \ln(x) = 0 \iff \boxed{x = 1}$.
+        \item \textbf{Attention au signe de $f'(x)$ :} Sur $]0, +\infty[$, on a $x > 0$ et $\ln^2(x) \ge 0$ (c'est un carré !). Donc $f'(x) \ge 0$ \textbf{partout} : $f'(x)$ s'annule en $x = 1$ \textbf{sans changer de signe} ! La fonction $f$ est donc \textbf{strictement croissante sur tout $]0, +\infty[$} et n'admet \textbf{aucun extremum local} !
+        \item \textbf{Limite de $f'$ en $0^+$ :} $\lim_{x \to 0^+} f'(x) = \lim_{x \to 0^+} \bigl(x^{1/2}\ln(x)\bigr)^2 = 0^2 = \boxed{0}$ (demi-tangente horizontale en $(0,0)$ !).
+    \end{itemize}
+    \item \textbf{Dérivée seconde $f''(x)$ :} Comme $f'(x) = x\ln^2(x)$, on retrouve le calcul de l'Étude 4 :
+    \[
+        \boxed{f''(x) = \ln^2(x) + 2\ln(x) = \ln(x)\bigl(\ln(x) + 2\bigr)}.
+    \]
+    \begin{itemize}
+        \item \textbf{Racines de $f''$ (deux points d'inflexion !) :} $f''(x) = 0 \iff \ln(x) = -2$ ou $\ln(x) = 0 \iff \boxed{x = e^{-2} \simeq 0,135}$ ou $\boxed{x = 1}$. Comme $f''(x)$ change de signe en chacun de ces deux points ($+$ avant $e^{-2}$, $-$ entre $e^{-2}$ et $1$, $+$ après $1$), la courbe possède \textbf{deux points d'inflexion}, dont celui en $x = 1$ est un \textbf{point d'inflexion à tangente horizontale} ($f'(1) = f''(1) = 0$).
+        \item \textbf{Limite de $f''$ en $0^+$ :} $\lim_{x \to 0^+} \ln(x)\bigl(\ln(x)+2\bigr) = (-\infty)(-\infty) = \boxed{+\infty}$.
+    \end{itemize}
+    \item \textbf{Valeurs remarquables et tableau de variations :}
+    \begin{itemize}
+        \item En $x = e^{-2} \simeq 0,135$ : $f'(e^{-2}) = 4e^{-2} \simeq 0,540$ et $f(e^{-2}) = \frac{e^{-4}}{2}\left(4 - (-2) + \frac{1}{2}\right) = \frac{13}{4}e^{-4} \simeq 3,25 \times (0,135)^2 \simeq \mathbf{0,059}$.
+        \item En $x = 1$ : $f'(1) = 0$, $f''(1) = 0$ et $f(1) = \frac{1}{2}\left(0 - 0 + \frac{1}{2}\right) = \dfrac{1}{4} = \mathbf{0,250}$.
+    \end{itemize}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|c||c|c|c|c|c|c|}
+    \hline
+    $x$ & $\text{limite } 0$ & & $e^{-2} \simeq 0,135$ & & $1$ & \\ \hline\hline
+    $f'(x)$ & $0$ & $+$ & $4e^{-2} \simeq 0,540$ & $+$ & $0$ & $+$ \\ \hline
+    $f''(x)$ & $+\infty$ & $+$ & $0$ & $-$ & $0$ & $+$ \\ \hline
+    $f(x)$ & $0$ & $\nearrow\;\cup$ & $\mathbf{\dfrac{13}{4}e^{-4} \simeq 0,059}$ (PI) & $\nearrow\;\cap$ & $\mathbf{\dfrac{1}{4} = 0,250}$ (PI tang. horiz.) & $\nearrow\;\cup$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \item \textbf{Esquisse graphique sur $]0, 2]$ :}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.05, >=Stealth]
+        \begin{axis}[
+            width=10.0cm, height=6.5cm,
+            axis lines=middle,
+            xmin=-0.1, xmax=2.15,
+            ymin=-0.05, ymax=0.65,
+            xtick={0.135, 1, 2},
+            xticklabels={$0{,}135$, $1$, $2$},
+            ytick={0.059, 0.250, 0.500, 0.575},
+            yticklabels={$0{,}059$, $0{,}250$, $0{,}500$, $0{,}575$},
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            grid=both,
+            grid style={gray!20},
+            samples=200
+        ]
+            \addplot[very thick, uclblue, domain=0.001:2.03] {0.5 * x^2 * ((ln(x))^2 - ln(x) + 0.5)};
+            \draw[thick, warnred, <->] (axis cs:0.65, 0.25) -- (axis cs:1.35, 0.25);
+            \fill[exorange] (axis cs:0.1353, 0.0595) circle (2.2pt) node[below right] {\footnotesize PI $(e^{-2};\; 0{,}059)$};
+            \fill[warnred] (axis cs:1, 0.25) circle (2.2pt) node[above left] {\footnotesize PI à tangente horizontale $(1;\; 0{,}25)$};
+            \fill[uclblue] (axis cs:2, 0.575) circle (2pt) node[left] {\footnotesize $(2;\; 0{,}575)$};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 4}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 4.\arabic* --}]
+    \item \textbf{(UCLouvain -- Juillet 2021, Q1 -- Étude complète)} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+    \[
+        f(x) = \ln\left(\frac{1}{\cos(x)}\right).
+    \]
+    \begin{enumerate}
+        \item Déterminer le domaine de définition $\D$ de $f$.
+        \item Préciser le domaine de dérivabilité et calculer $f'(x)$ ainsi que la dérivée seconde $f''(x)$.
+        \item Déterminer les minima et maxima locaux éventuels de $f$ ainsi que ses asymptotes.
+        \item Dresser le tableau de variations et de concavité sur $[-\pi, \pi[$, puis expliquer comment en déduire le graphe sur $[-4\pi, 4\pi]$ de $f(x)$ et de $\bar{f}(x) = \ln\left(\dfrac{1}{\cos^2(x)}\right)$.
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Juillet 2022, Q1 -- Étude complète)} Réaliser l'étude complète (domaine $\D$, dérivée première $f'$, dérivée seconde $f''$, extrema locaux, asymptotes, racines et tableau de variations sur $[-\pi, \pi]$) de la fonction :
+    \[
+        f(x) = \ln\left(\frac{1}{1 + \cos(x)}\right).
+    \]
+
+    \item \textbf{(UCLouvain -- Juillet 2023 -- Série 1, Q1 -- Étude complète)} On considère la fonction $f : \R \to \R$ définie par :
+    \[
+        f(x) = x^2\sin(x^2) + \cos(x^2).
+    \]
+    \begin{enumerate}
+        \item Obtenir la dérivée première $f'(x)$ et identifier tous les points qui pourraient être un minimum ou un maximum local.
+        \item Obtenir la dérivée seconde $f''(x)$.
+        \item Réaliser un tableau reprenant les zones de croissance et de décroissance ainsi que les extrema de $f$ sur $[0, 2\sqrt{\pi}]$.
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Juillet 2023 -- Série 2, Q1 -- Étude complète)} On considère la fonction $f : \R \to \R$ définie par :
+    \[
+        f(x) = 3\cos(x) - \cos^3(x).
+    \]
+    \begin{enumerate}
+        \item Obtenir $f'(x)$, identifier les candidats extrema locaux et trouver les racines de $f$.
+        \item Obtenir $f''(x)$ et ses racines.
+        \item Réaliser le tableau complet de variations et de concavité de $f$ sur $[0, 3\pi]$.
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2023, Q1 -- Étude complète)} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+    \[
+        f(x) = \frac{x}{\cos^2(x)}.
+    \]
+    Déterminer son domaine $\D$, sa dérivée première $f'(x)$, le tableau des valeurs de $f$ et $f'$ en $x \in \left\{0, \frac{\pi}{4}, \frac{\pi}{2}, \frac{3\pi}{4}, \pi\right\}$, et justifier pourquoi $f$ possède un minimum local sur $\left]\frac{3\pi}{4}, \pi\right[$.
+
+    \item \textbf{(UCLouvain -- Juillet 2026, Q1 -- Étude complète)} On considère la fonction $f : \D \subset \R \to \R$ définie par :
+    \[
+        f(x) = (1 - x^2)\ln(1 - x) + x.
+    \]
+    \textbf{Aide :} $\lim_{y \to 0^+} y\ln(y) = 0$, $\ln(2) \simeq 0,6931$ et $e^{-1/2} \simeq 0,6065$.
+    Déterminer $\D$, $\lim_{x \to 1} f(x)$, la dérivée première $f'(x)$ et ses deux racines $x_1, x_2$, la dérivée seconde $f''(x)$, puis dresser le tableau complet de variations et de concavité sur $[-1, 1[$.
+\end{enumerate}

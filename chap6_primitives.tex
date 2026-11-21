@@ -1,0 +1,377 @@
+% ============================================================================
+% CHAPITRE 6 : CALCUL INTÉGRAL ET PRIMITIVES
+% ============================================================================
+\chapter{Calcul Intégral et Primitives}
+
+La \textbf{Question 3} de l'examen d'admission d'Analyse à l'UCLouvain (notée typiquement sur $10$ points) consiste à calculer une \textbf{primitive} $\int f(x)\dd x$ (en Juillet et Septembre 2021, il y avait deux ou trois primitives au sein de la Question 3 ; depuis 2022, une question entière est dédiée à une primitive riche que les solutionnaires officiels résolvent systématiquement de $2$ à $6$ façons différentes !). Ce chapitre détaille toutes les techniques de primitivation au programme : primitives immédiates, intégration par substitution (changement de variable), intégration par parties (IPP), fractions rationnelles et primitives trigonométriques.
+
+% ----------------------------------------------------------------------------
+\section{Définition d'une primitive et tableau des primitives immédiates}
+% ----------------------------------------------------------------------------
+
+\subsection{Définition et unicité à une constante près}
+
+\begin{definition}[Primitive et intégrale indéfinie]
+Soit $f : I \to \R$ une fonction définie sur un intervalle $I \subset \R$. Une fonction $F : I \to \R$ est appelée une \textbf{primitive} de $f$ sur $I$ si $F$ est dérivable sur $I$ et a pour dérivée $f$ :
+\[
+    \boxed{\forall x \in I, \quad F'(x) = f(x)}.
+\]
+Sur un intervalle $I$, si $F(x)$ est une primitive de $f(x)$, alors \textbf{toutes les primitives} de $f$ sur $I$ sont de la forme $F(x) + C$ où $C \in \R$ est une constante réelle arbitraire (car la différence de deux primitives a une dérivée nulle sur l'intervalle $I$, donc est constante par le TAF). On note l'ensemble des primitives (ou \textbf{intégrale indéfinie}) :
+\[
+    \boxed{\int f(x)\dd x = F(x) + C \quad (C \in \R)}.
+\]
+\end{definition}
+
+\begin{astuce}[Le réflexe absolu : dériver sa primitive pour la vérifier !]
+Contrairement au calcul de dérivée qui est purement mécanique, le calcul d'une primitive demande de l'intuition. Mais vous disposez d'un filet de sécurité infaillible : \textbf{une fois votre primitive $F(x)$ trouvée, dérivez-la au brouillon !} Si $F'(x)$ redonne bien $f(x)$, vous êtes certain à $100\%$ d'avoir tous les points de la question !
+\end{astuce}
+
+\subsection{Tableau des primitives immédiates et quasi-immédiates (formes composées)}
+
+En lisant à l'envers le tableau des dérivées du Chapitre 3 (et la règle de dérivation des fonctions composées), on obtient le formulaire fondamental suivant :
+
+\begin{theoreme}[Formulaire des primitives immédiates et composées ($C \in \R$)]
+\begin{center}
+\renewcommand{\arraystretch}{1.65}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Forme élémentaire $\displaystyle\int f(x)\dd x$} & \textbf{Forme composée directe $\displaystyle\int f\bigl(u(x)\bigr)\,u'(x)\dd x$} \\
+\midrule
+$\displaystyle\int x^p\dd x = \frac{x^{p+1}}{p+1} + C \quad (p \neq -1)$ & $\displaystyle\int \bigl(u(x)\bigr)^p\,u'(x)\dd x = \frac{\bigl(u(x)\bigr)^{p+1}}{p+1} + C \quad (p \neq -1)$ \\
+$\displaystyle\int \frac{1}{x}\dd x = \ln(|x|) + C \quad (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{u(x)}\dd x = \ln\bigl(|u(x)|\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\sqrt{x}}\dd x = 2\sqrt{x} + C \quad (x > 0)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{u(x)}}\dd x = 2\sqrt{u(x)} + C \quad \left(\text{ou } \int \frac{u'}{2\sqrt{u}}\dd x = \sqrt{u} + C\right)$ \\
+$\displaystyle\int \frac{1}{x^2}\dd x = -\frac{1}{x} + C \quad (x \neq 0)$ & $\displaystyle\int \frac{u'(x)}{\bigl(u(x)\bigr)^2}\dd x = -\frac{1}{u(x)} + C$ \\
+$\displaystyle\int e^x\dd x = e^x + C$ & $\displaystyle\int u'(x)\,e^{u(x)}\dd x = e^{u(x)} + C$ \\
+$\displaystyle\int \cos(x)\dd x = \sin(x) + C$ & $\displaystyle\int u'(x)\,\cos\bigl(u(x)\bigr)\dd x = \sin\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \sin(x)\dd x = -\cos(x) + C$ & $\displaystyle\int u'(x)\,\sin\bigl(u(x)\bigr)\dd x = -\cos\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\cos^2(x)}\dd x = \int \bigl(1+\tan^2(x)\bigr)\dd x = \tan(x) + C$ & $\displaystyle\int \frac{u'(x)}{\cos^2(u(x))}\dd x = \tan\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\sin^2(x)}\dd x = \int \bigl(1+\cot^2(x)\bigr)\dd x = -\cot(x) + C$ & $\displaystyle\int \frac{u'(x)}{\sin^2(u(x))}\dd x = -\cot\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \frac{1}{1 + x^2}\dd x = \arctan(x) + C$ & $\displaystyle\int \frac{u'(x)}{1 + \bigl(u(x)\bigr)^2}\dd x = \arctan\bigl(u(x)\bigr) + C$ \\
+$\displaystyle\int \frac{1}{\sqrt{1 - x^2}}\dd x = \arcsin(x) + C \quad (|x| < 1)$ & $\displaystyle\int \frac{u'(x)}{\sqrt{1 - \bigl(u(x)\bigr)^2}}\dd x = \arcsin\bigl(u(x)\bigr) + C$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theoreme}
+
+% ----------------------------------------------------------------------------
+\section{Intégration par substitution (changement de variable)}
+% ----------------------------------------------------------------------------
+
+La méthode d'\textbf{intégration par substitution} (ou changement de variable) est la traduction intégrale de la règle de dérivation des fonctions composées $\bigl(F(u(x))\bigr)' = F'(u(x))\cdot u'(x) = f(u(x))\,u'(x)$.
+
+\begin{theoreme}[Règle d'intégration par substitution]
+Pour calculer une primitive de la forme $\displaystyle\int f\bigl(u(x)\bigr)\,u'(x)\dd x$ :
+\begin{enumerate}
+    \item On pose la nouvelle variable $\boxed{u = u(x)}$ et on calcule sa différentielle $\boxed{\mathrm{d}u = u'(x)\dd x}$.
+    \item On remplace toute l'expression en $x$ par une intégrale portant uniquement sur $u$ :
+    \[
+        \boxed{\int f\bigl(u(x)\bigr)\,u'(x)\dd x = \int f(u)\dd u = F(u) + C = F\bigl(u(x)\bigr) + C}.
+    \]
+    \item \emph{Variante inverse ($x = \varphi(u)$) :} Parfois (notamment pour éliminer une racine $\sqrt{a^2 - x^2}$ ou un dénominateur $(x^2+1)^5$), on pose $x = \varphi(u)$ (par ex. $x = a\sin u$ ou $x = \tan u$), on remplace $\mathrm{d}x = \varphi'(u)\dd u$, puis on revient à $x$ à la fin grâce à $u = \varphi^{-1}(x)$.
+\end{enumerate}
+\end{theoreme}
+
+\begin{exemple}[Cinq primitives d'annales résolues par substitution (2021--2026)]
+\textbf{1) UCLouvain -- Juillet 2021, Question 3b :} Calculer $\displaystyle\int \frac{\cos(x)}{1 + \sin^2(x)}\dd x$.\\
+\emph{Résolution :} On repère au numérateur $\cos(x)$, qui est exactement la dérivée de $\sin(x)$ ! Posons $u = \sin(x) \implies \mathrm{d}u = \cos(x)\dd x$ :
+\[
+    \int \frac{\cos(x)}{1 + \sin^2(x)}\dd x = \int \frac{1}{1 + u^2}\dd u = \arctan(u) + C = \boxed{\arctan\bigl(\sin(x)\bigr) + C}.
+\]
+
+\medskip
+\textbf{2) UCLouvain -- Septembre 2021, Question 3b (1\iere{} partie) :} Calculer $\displaystyle\int \frac{-2x}{\sqrt{1 - x^2}}\dd x$.\\
+\emph{Résolution :} Le numérateur $-2x$ est la dérivée du radicande $1 - x^2$. Posons $u = 1 - x^2 \implies \mathrm{d}u = -2x\dd x$ :
+\[
+    \int \frac{-2x}{\sqrt{1 - x^2}}\dd x = \int \frac{1}{\sqrt{u}}\dd u = 2\sqrt{u} + C = \boxed{2\sqrt{1 - x^2} + C}.
+\]
+
+\medskip
+\textbf{3) UCLouvain -- Septembre 2024, Question 3 (1\iere{} partie) et Septembre 2026, Question 3 (1\iere{} partie) :}
+\begin{itemize}
+    \item \textbf{Primitive de $\dfrac{1}{x\ln(x)}$ (Septembre 2024) :} On reconnaît $\frac{1/x}{\ln(x)} = \frac{u'(x)}{u(x)}$ avec $u = \ln(x) \implies \mathrm{d}u = \frac{1}{x}\dd x$ :
+    \[
+        \int \frac{1}{x\ln(x)}\dd x = \int \frac{1}{u}\dd u = \ln(|u|) + C = \boxed{\ln\bigl(|\ln(x)|\bigr) + C}.
+    \]
+    \item \textbf{Primitive de $\tan(x)$ (Septembre 2026 et Août 2023) :} Écrivons $\tan(x) = \dfrac{\sin(x)}{\cos(x)}$ et posons $u = \cos(x) \implies \mathrm{d}u = -\sin(x)\dd x$ :
+    \[
+        \int \tan(x)\dd x = \int \frac{\sin(x)}{\cos(x)}\dd x = -\int \frac{\mathrm{d}u}{u} = \boxed{-\ln\bigl(|\cos(x)|\bigr) + C}.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{4) UCLouvain -- Juillet 2026, Question 3 (Substitution polynomiale $u = x^2 + 1$) :}\\
+\emph{Énoncé :} Obtenir une primitive $g(x) = \displaystyle\int \frac{x^5}{(x^2 + 1)^5}\dd x$.\\
+\emph{Résolution (Méthode 1 du solutionnaire -- par substitution $u = x^2 + 1$) :}
+Séparons $x^5\dd x = x^4 \cdot (x\dd x)$ et posons $\boxed{u = x^2 + 1}$, ce qui donne $\mathrm{d}u = 2x\dd x \iff x\dd x = \frac{1}{2}\dd u$, et surtout $x^2 = u - 1 \implies x^4 = (u - 1)^2 = u^2 - 2u + 1$. L'intégrale se transforme en une simple somme de puissances de $u$ :
+\begin{align*}
+    g(x) &= \int \frac{(x^2)^2}{(x^2 + 1)^5}\,x\dd x = \frac{1}{2}\int \frac{(u - 1)^2}{u^5}\dd u = \frac{1}{2}\int \frac{u^2 - 2u + 1}{u^5}\dd u \\
+    &= \frac{1}{2}\int \left(u^{-3} - 2u^{-4} + u^{-5}\right)\dd u = \frac{1}{2}\left[\frac{u^{-2}}{-2} - 2\frac{u^{-3}}{-3} + \frac{u^{-4}}{-4}\right] + C_1 \\
+    &= -\frac{1}{4u^2} + \frac{1}{3u^3} - \frac{1}{8u^4} + C_1 = \boxed{-\frac{1}{4(x^2+1)^2} + \frac{1}{3(x^2+1)^3} - \frac{1}{8(x^2+1)^4} + C_1}.
+\end{align*}
+En mettant au même dénominateur $24u^4 = 24(x^2+1)^4$, on obtient la forme compacte :
+\[
+    g(x) = -\frac{6u^2 - 8u + 3}{24u^4} + C_1 = \boxed{-\frac{6x^4 + 4x^2 + 1}{24(x^2 + 1)^4} + C_1} \quad \left(\text{ou, avec } C_1 = \frac{1}{24} + C_2 : \;\; \boxed{\frac{x^6(x^2 + 4)}{24(x^2 + 1)^4} + C_2}\right).
+\]
+\emph{Note :} Le solutionnaire de Juillet 2026 présente également la substitution trigonométrique $x = \tan\theta \implies \mathrm{d}x = \frac{1}{\cos^2\theta}\dd\theta$ et $x^2+1 = \frac{1}{\cos^2\theta}$, qui transforme l'intégrale en $\int \sin^5\theta\cos^3\theta\dd\theta = \int \sin^5\theta(1-\sin^2\theta)\cos\theta\dd\theta = \frac{\sin^6\theta}{6} - \frac{\sin^8\theta}{8} + C_2$, où $\sin^2\theta = \frac{x^2}{x^2+1}$ !
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Intégration par parties (IPP)}
+% ----------------------------------------------------------------------------
+
+Lorsque l'intégrande est un \textbf{produit de deux fonctions de natures différentes} (par exemple un polynôme fois un logarithme $x\ln^2(x)$, un polynôme fois un sinus/cosinus $x^2\cos(x)$, un polynôme fois une exponentielle $x^2 e^{-x}$, ou une fonction réciproque $\arcsin(x)$), et qu'aucune des deux n'est la dérivée d'une partie de l'autre, la méthode reine est l'\textbf{intégration par parties}.
+
+\begin{theoreme}[Formule d'intégration par parties (IPP)]
+En intégrant la formule de dérivation d'un produit $\bigl(u(x)v(x)\bigr)' = u'(x)v(x) + u(x)v'(x)$, on obtient pour toutes fonctions dérivables $u(x)$ et $v(x)$ :
+\[
+    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x} \qquad \text{notée en différentielles :} \qquad \boxed{\int u\dd v = u\,v - \int v\dd u}.
+\]
+Pour une intégrale définie entre $a$ et $b$ :
+\[
+    \boxed{\int_a^b u(x)\,v'(x)\dd x = \Bigl[u(x)\,v(x)\Bigr]_a^b - \int_a^b v(x)\,u'(x)\dd x}.
+\]
+\end{theoreme}
+
+\begin{astuce}[Comment choisir qui est $u$ (à dériver) et qui est $\mathrm{d}v = v'\dd x$ (à intégrer) ? La règle ALPES !]
+Le but de l'intégration par parties est que la nouvelle intégrale $\int v\dd u = \int v(x)u'(x)\dd x$ soit \textbf{plus simple} que l'intégrale de départ $\int u(x)v'(x)\dd x$. Pour choisir quelle fonction poser égale à $u(x)$ (celle qu'on va \textbf{dériver}), suivez l'ordre de priorité mnémotechnique \textbf{A -- L -- P -- E -- S} :
+\begin{enumerate}
+    \item \textbf{A}rc ($\arcsin, \arccos, \arctan$) : leur dérivée est algébrique ($\frac{1}{\sqrt{1-x^2}}, \frac{1}{1+x^2}$), il faut donc toujours les dériver ($u$) !
+    \item \textbf{L}ogarithme ($\ln(x), \ln^2(x)$) : sa dérivée est $\frac{1}{x}$, on le choisit donc toujours comme $u(x)$ face à un polynôme ! (Exemple clé à connaître : $\displaystyle\int \ln(x)\dd x = x\ln(x) - \int x\cdot\frac{1}{x}\dd x = \boxed{x\ln(x) - x + C}$).
+    \item \textbf{P}olynôme ($x, x^2, \dots$) : face à une exponentielle ou à un sinus/cosinus (mais pas face à $\ln$ ou $\arcsin$ !), on dérive le polynôme ($u = x^n$) pour faire baisser son degré jusqu'à $0$.
+    \item \textbf{E}xponentielle ($e^{ax}$) et \textbf{S}inus/Cosinus ($\sin, \cos$) : faciles à intégrer ($\mathrm{d}v$), et si les deux sont présents ensemble (comme $\int e^{2x}\cos(2x)\dd x$ en Juillet 2021 Q3f), deux IPP successives font réapparaître l'intégrale de départ $\mathcal{I}$ (\textbf{IPP cyclique}).
+\end{enumerate}
+\end{astuce}
+
+\begin{exemple}[Cinq primitives d'examen UCLouvain résolues par intégration par parties]
+\textbf{1) IPP avec $\arcsin(x)$ (UCLouvain -- Septembre 2021, Question 3b) :}\\
+\emph{Énoncé :} En utilisant la primitive $\displaystyle\int \frac{-2x}{\sqrt{1-x^2}}\dd x = 2\sqrt{1-x^2} + C$, calculer $\displaystyle\int \frac{x}{\sqrt{1-x^2}}\arcsin(x)\dd x$.\\
+\emph{Résolution :} Posons $u(x) = \arcsin(x)$ (qu'on dérive : $u'(x) = \frac{1}{\sqrt{1-x^2}}$) et $v'(x) = \frac{x}{\sqrt{1-x^2}}$ (dont une primitive est $v(x) = -\sqrt{1-x^2}$ d'après la première partie). La formule d'IPP donne :
+\begin{align*}
+    \int \frac{x}{\sqrt{1-x^2}}\arcsin(x)\dd x &= -\sqrt{1-x^2}\,\arcsin(x) - \int \bigl(-\sqrt{1-x^2}\bigr)\frac{1}{\sqrt{1-x^2}}\dd x \\
+    &= -\sqrt{1-x^2}\,\arcsin(x) + \int 1\dd x = \boxed{x - \sqrt{1-x^2}\,\arcsin(x) + C}.
+\end{align*}
+
+\medskip
+\textbf{2) IPP avec fonction trigonométrique (UCLouvain -- Août 2023, Question 3) :}\\
+\emph{Énoncé :} Obtenir la primitive $g(x) = \displaystyle\int \frac{x}{\cos^2(x)}\dd x$.\\
+\emph{Résolution :} On reconnaît le produit du polynôme $u(x) = x$ (donc $\mathrm{d}u = \mathrm{d}x$) par $\mathrm{d}v = \frac{1}{\cos^2(x)}\dd x$, dont la primitive est immédiate : $v(x) = \tan(x)$. Par intégration par parties :
+\[
+    g(x) = x\tan(x) - \int \tan(x)\dd x = x\tan(x) - \int \frac{\sin(x)}{\cos(x)}\dd x = \boxed{x\tan(x) + \ln\bigl(|\cos(x)|\bigr) + C}.
+\]
+
+\medskip
+\textbf{3) Double IPP vs substitution (UCLouvain -- Juillet 2023 -- Série 2, Question 4) :}\\
+\emph{Énoncé :} Obtenir la primitive $g(x) = \displaystyle\int \Bigl(x^2\cos(x) - x\cos(x^2)\Bigr)\dd x$.\\
+\emph{Résolution :} Séparons en deux intégrales :
+\begin{itemize}
+    \item Pour $\displaystyle\int x\cos(x^2)\dd x$, surtout pas d'IPP ! Comme $2x$ est la dérivée de $x^2$, on procède par \textbf{substitution} $u = x^2 \implies x\dd x = \frac{1}{2}\dd u$ :
+    \[
+        \int x\cos(x^2)\dd x = \frac{1}{2}\int \cos(u)\dd u = \frac{1}{2}\sin(x^2).
+    \]
+    \item Pour $\displaystyle\int x^2\cos(x)\dd x$, on effectue \textbf{deux intégrations par parties successives} pour abaisser le degré de $x^2$ :
+    \begin{itemize}
+        \item 1\iere{} IPP ($u = x^2 \implies \mathrm{d}u = 2x\dd x$ ; $\mathrm{d}v = \cos(x)\dd x \implies v = \sin(x)$) :
+        \[
+            \int x^2\cos(x)\dd x = x^2\sin(x) - 2\int x\sin(x)\dd x.
+        \]
+        \item 2\ieme{} IPP sur $\int x\sin(x)\dd x$ ($u = x \implies \mathrm{d}u = \mathrm{d}x$ ; $\mathrm{d}v = \sin(x)\dd x \implies v = -\cos(x)$) :
+        \[
+            \int x\sin(x)\dd x = -x\cos(x) - \int \bigl(-\cos(x)\bigr)\dd x = -x\cos(x) + \sin(x).
+        \]
+    \end{itemize}
+    En rassemblant les deux parties :
+    \[
+        \boxed{g(x) = x^2\sin(x) + 2x\cos(x) - 2\sin(x) - \frac{1}{2}\sin(x^2) + C}.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{4) Combinaison substitution + IPP avec logarithmes (UCLouvain -- Septembre 2024, Question 3) :}\\
+\emph{Énoncé :} Obtenir la primitive $g(x) = \displaystyle\int \left(\frac{1}{x\ln(x)} - \frac{\ln(x)}{x^2}\right)\dd x$.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item La première intégrale vaut $\displaystyle\int \frac{1}{x\ln(x)}\dd x = \ln\bigl(|\ln(x)|\bigr)$ (par substitution $u = \ln(x)$).
+    \item Pour la seconde intégrale $\displaystyle\int \frac{\ln(x)}{x^2}\dd x$, appliquons l'\textbf{IPP} en dérivant le logarithme ($u = \ln(x) \implies \mathrm{d}u = \frac{1}{x}\dd x$) et en intégrant la puissance ($\mathrm{d}v = \frac{1}{x^2}\dd x \implies v = -\frac{1}{x}$) :
+    \[
+        \int \frac{\ln(x)}{x^2}\dd x = -\frac{\ln(x)}{x} - \int \left(-\frac{1}{x}\right)\frac{1}{x}\dd x = -\frac{\ln(x)}{x} + \int \frac{1}{x^2}\dd x = -\frac{\ln(x)}{x} - \frac{1}{x} = -\frac{\ln(x) + 1}{x}.
+    \]
+    En soustrayant ce résultat à la première primitive, le signe $-$ devient $+$ :
+    \[
+        \boxed{g(x) = \ln\bigl(|\ln(x)|\bigr) + \frac{\ln(x) + 1}{x} + C}.
+    \]
+\end{itemize}
+
+\medskip
+\textbf{5) Double IPP sur un logarithme au carré (UCLouvain -- Septembre 2025, Question 3) :}\\
+\emph{Énoncé :} Obtenir une primitive $g(x) = \displaystyle\int x\,\ln^2(x)\dd x$.\\
+\emph{Résolution :} Suivons la règle ALPES en dérivant le logarithme et en intégrant $x$ :
+\begin{itemize}
+    \item \textbf{1\iere{} IPP :} Posons $u = \ln^2(x) \implies \mathrm{d}u = 2\ln(x)\frac{1}{x}\dd x$, et $\mathrm{d}v = x\dd x \implies v = \frac{x^2}{2}$ :
+    \[
+        g(x) = \frac{x^2}{2}\ln^2(x) - \int \frac{x^2}{2} \cdot \frac{2\ln(x)}{x}\dd x = \frac{x^2}{2}\ln^2(x) - \int x\ln(x)\dd x.
+    \]
+    \item \textbf{2\ieme{} IPP sur $\displaystyle\int x\ln(x)\dd x$ :} Posons $u = \ln(x) \implies \mathrm{d}u = \frac{1}{x}\dd x$, et $\mathrm{d}v = x\dd x \implies v = \frac{x^2}{2}$ :
+    \[
+        \int x\ln(x)\dd x = \frac{x^2}{2}\ln(x) - \int \frac{x^2}{2}\cdot\frac{1}{x}\dd x = \frac{x^2}{2}\ln(x) - \frac{1}{2}\int x\dd x = \frac{x^2}{2}\ln(x) - \frac{x^2}{4}.
+    \]
+\end{itemize}
+En remplaçant et en factorisant par $\frac{x^2}{2}$, on retrouve la fonction étudiée en Septembre 2026 Q1 :
+\[
+    \boxed{g(x) = \frac{x^2}{2}\left(\ln^2(x) - \ln(x) + \frac{1}{2}\right) + C}.
+\]
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Fractions rationnelles et primitives trigonométriques}
+% ----------------------------------------------------------------------------
+
+\subsection{Décomposition en éléments simples de $\dfrac{1}{1 - y^2}$ et fractions rationnelles}
+
+Une identité algébrique très fréquemment utilisée aux examens de l'UCLouvain (Juillet 2021 Q3c, Septembre 2021 Q3c, Septembre 2026 Q3 -- où elle est même rappelée dans l'Aide !) est la \textbf{décomposition en fractions simples} de $\dfrac{2}{1 - t^2}$ (ou $\dfrac{2}{y^2 - 1}$) :
+
+\begin{theoreme}[Primitives de $\dfrac{1}{1 - t^2}$ et de $\dfrac{1}{y^2 - 1}$ par décomposition en éléments simples]
+Puisque $1 - t^2 = (1 - t)(1 + t)$, on a l'identité algébrique fondamentale :
+\[
+    \boxed{\frac{1}{1 - t^2} = \frac{1}{2}\left(\frac{1}{1 - t} + \frac{1}{1 + t}\right)} \qquad \text{et} \qquad \boxed{\frac{1}{y^2 - 1} = \frac{1}{2}\left(\frac{1}{y - 1} - \frac{1}{y + 1}\right)}.
+\]
+En intégrant terme à terme (attention au signe $-$ provenant de la dérivée de $1 - t$ !) :
+\[
+    \boxed{\int \frac{1}{1 - t^2}\dd t = \frac{1}{2}\ln(|1+t|) - \frac{1}{2}\ln(|1-t|) + C = \frac{1}{2}\ln\left(\left|\frac{1 + t}{1 - t}\right|\right) + C},
+\]
+\[
+    \boxed{\int \frac{2}{y^2 - 1}\dd y = \int \left(\frac{1}{y-1} - \frac{1}{y+1}\right)\dd y = \ln\left(\left|\frac{y - 1}{y + 1}\right|\right) + C}.
+\]
+\end{theoreme}
+
+\subsection{Les 4 techniques classiques pour les primitives trigonométriques}
+
+\begin{theoreme}[Techniques d'intégration des expressions trigonométriques]
+\begin{enumerate}
+    \item \textbf{Présence d'une puissance impaire de $\sin(x)$ ou de $\cos(x)$ :}
+    Si l'intégrande contient $\sin^{2k+1}(x)$ (comme $\frac{\sin^3(x)}{1+\cos(x)}$ en \textbf{Juillet 2022, Q3}), on isole un facteur $\sin(x)\dd x = -\mathrm{d}(\cos x)$ et on remplace le reste $\sin^{2k}(x) = \bigl(1 - \cos^2(x)\bigr)^k$ en posant $\boxed{u = \cos(x)}$.\\
+    Symétriquement, pour $\cos^{2k+1}(x)$, on isole $\cos(x)\dd x = \mathrm{d}(\sin x)$, on remplace $\cos^{2k}(x) = \bigl(1 - \sin^2(x)\bigr)^k$ et on pose $\boxed{u = \sin(x)}$.
+    \item \textbf{Puissances paires $\sin^2(x)$ ou $\cos^2(x)$ : linéarisation par les formules de Carnot !}
+    (Juillet 2021 Q3f et Juillet 2024 Q3) :
+    \[
+        \boxed{\cos^2(x) = \frac{1 + \cos(2x)}{2} \implies \int \cos^2(x)\dd x = \frac{x}{2} + \frac{\sin(2x)}{4} + C},
+    \]
+    \[
+        \boxed{\sin^2(x) = \frac{1 - \cos(2x)}{2} \implies \int \sin^2(x)\dd x = \frac{x}{2} - \frac{\sin(2x)}{4} + C}.
+    \]
+    \item \textbf{Dénominateur en $1 + \cos(x)$ ou $1 - \cos(x)$ : formule de l'angle demi ou binôme conjugué :}
+    (Septembre 2022 Q3) : On utilise $1 + \cos(x) = 2\cos^2\left(\frac{x}{2}\right)$ (de primitive $\tan\left(\frac{x}{2}\right)$), ou l'on divise/factorise par $1+\cos(x)$ grâce à $\cos^2(x) - 1 = (\cos x + 1)(\cos x - 1)$.
+    \item \textbf{Primitive de $\dfrac{1}{\cos(x)}$ ou de $\dfrac{1}{\sin(u)}$ (Juillet 2021 Q3c et Septembre 2026 Q3) :}
+    On multiplie numérateur et dénominateur par $\cos(x)$ (resp. par $\sin(u)$) pour utiliser $\cos^2(x) = 1 - \sin^2(x)$ (resp. $\sin^2(u) = 1 - \cos^2(u)$) et se ramener à $\int \frac{\mathrm{d}t}{1 - t^2}$ :
+    \[
+        \int \frac{1}{\cos(x)}\dd x = \int \frac{\cos(x)}{1 - \sin^2(x)}\dd x \stackrel{t=\sin x}{=} \int \frac{\mathrm{d}t}{1 - t^2} = \boxed{\frac{1}{2}\ln\left(\frac{1 + \sin(x)}{1 - \sin(x)}\right) + C},
+    \]
+    \[
+        \int \frac{1}{\sin(u)}\dd u = \int \frac{\sin(u)}{1 - \cos^2(u)}\dd u \stackrel{t=\cos u}{=} -\int \frac{\mathrm{d}t}{1 - t^2} = \boxed{\frac{1}{2}\ln\left(\frac{1 - \cos(u)}{1 + \cos(u)}\right) + C = \ln\left(\left|\tan\left(\frac{u}{2}\right)\right|\right) + C}.
+    \]
+\end{enumerate}
+\end{theoreme}
+
+\begin{exemple}[Quatre primitives trigonométriques d'annales UCLouvain (2022--2026)]
+\textbf{1) UCLouvain -- Juillet 2022, Question 3 :} Calculer $I = \displaystyle\int \frac{\sin^3(x)}{1 + \cos(x)}\dd x$.\\
+\emph{Résolution :} Isolons $\sin(x)\dd x$ et écrivons $\sin^2(x) = 1 - \cos^2(x) = \bigl(1 - \cos(x)\bigr)\bigl(1 + \cos(x)\bigr)$. Le dénominateur $1 + \cos(x)$ se simplifie immédiatement !
+\begin{align*}
+    I &= \int \frac{\bigl(1 - \cos^2(x)\bigr)\sin(x)}{1 + \cos(x)}\dd x = \int \bigl(1 - \cos(x)\bigr)\sin(x)\dd x \\
+    &= \int \sin(x)\dd x - \int \cos(x)\sin(x)\dd x = \boxed{-\cos(x) + \frac{1}{2}\cos^2(x) + C_1} \quad \left(\text{ou } -\cos(x) - \frac{1}{2}\sin^2(x) + C_2\right).
+\end{align*}
+
+\medskip
+\textbf{2) UCLouvain -- Septembre 2022, Question 3 :} Calculer $g(x) = \displaystyle\int \frac{\cos^2(x)}{1 + \cos(x)}\dd x$.\\
+\emph{Résolution (Méthode 1 du solutionnaire -- Ajout et retrait de $1$ au numérateur) :}
+Faisons apparaître $\cos^2(x) - 1 = (\cos x + 1)(\cos x - 1)$ au numérateur :
+\begin{align*}
+    g(x) &= \int \frac{\cos^2(x) - 1 + 1}{1 + \cos(x)}\dd x = \int \frac{(\cos x + 1)(\cos x - 1)}{1 + \cos(x)}\dd x + \int \frac{1}{1 + \cos(x)}\dd x \\
+    &= \int \bigl(\cos(x) - 1\bigr)\dd x + \int \frac{1}{2\cos^2(x/2)}\dd x = \boxed{\sin(x) - x + \tan\left(\frac{x}{2}\right) + C},
+\end{align*}
+où nous avons utilisé la formule de Carnot $1 + \cos(x) = 2\cos^2\left(\frac{x}{2}\right)$ et posé $s = \frac{x}{2} \implies \mathrm{d}s = \frac{1}{2}\dd x$, d'où $\int \frac{\mathrm{d}x}{2\cos^2(x/2)} = \int \frac{\mathrm{d}s}{\cos^2(s)} = \tan(s) = \tan\left(\frac{x}{2}\right)$.
+
+\medskip
+\textbf{3) UCLouvain -- Juillet 2025, Question 3 :} Calculer $g(x) = \displaystyle\int \frac{1}{1 + \sin(2x)}\dd x$.\\
+\emph{Rappel de l'énoncé :} $\sin(2x) = 2\sin(x)\cos(x) = \dfrac{2\tan(x)}{1 + \tan^2(x)}$.\\
+\emph{Résolution (présentons 3 des 4 méthodes officielles !) :}
+\begin{itemize}
+    \item \emph{Méthode 1 (Avec l'aide en $\tan(x)$) :} En remplaçant $\sin(2x) = \frac{2\tan x}{1+\tan^2 x}$ et en utilisant $1 + \tan^2(x) = \frac{1}{\cos^2(x)}$ :
+    \[
+        g(x) = \int \frac{1}{1 + \dfrac{2\tan x}{1+\tan^2 x}}\dd x = \int \frac{1 + \tan^2(x)}{1 + 2\tan(x) + \tan^2(x)}\dd x = \int \frac{\dfrac{1}{\cos^2(x)}}{\bigl(1 + \tan(x)\bigr)^2}\dd x.
+    \]
+    En posant $u = 1 + \tan(x) \implies \mathrm{d}u = \frac{1}{\cos^2(x)}\dd x$, on obtient $\displaystyle\int \frac{\mathrm{d}u}{u^2} = -\frac{1}{u} + C = \boxed{-\frac{1}{1 + \tan(x)} + C}$.
+    \item \emph{Méthode 2 (Multiplication par le conjugué $1 - \sin(2x)$) :} Comme $(1+\sin 2x)(1-\sin 2x) = 1 - \sin^2(2x) = \cos^2(2x)$ :
+    \[
+        g(x) = \int \frac{1 - \sin(2x)}{\cos^2(2x)}\dd x = \int \frac{1}{\cos^2(2x)}\dd x - \int \frac{\sin(2x)}{\cos^2(2x)}\dd x = \boxed{\frac{1}{2}\tan(2x) - \frac{1}{2\cos(2x)} + C_3 = \frac{\sin(2x) - 1}{2\cos(2x)} + C_3}.
+    \]
+    \item \emph{Méthode 3 (Factorisation de $1 + \sin(2x) = (\cos x + \sin x)^2$) :} Comme $(\cos x + \sin x)^2 = 2\cos^2\left(x - \frac{\pi}{4}\right)$, on a directement $g(x) = \frac{1}{2}\tan\left(x - \frac{\pi}{4}\right) + C_4 = -\frac{\cos(x)}{\cos(x)+\sin(x)} + C$.
+\end{itemize}
+
+\medskip
+\textbf{4) UCLouvain -- Septembre 2026, Question 3 :} Calculer $g(x) = \displaystyle\int \left(\tan(x) - \frac{\sin(x)}{\sin(\cos(x))}\right)\dd x$.\\
+\textbf{Aide :} $\dfrac{2}{1 - t^2} = \dfrac{1}{1 - t} + \dfrac{1}{1 + t}$.\\
+\emph{Résolution :}
+\begin{itemize}
+    \item La primitive du premier terme est $\displaystyle\int \tan(x)\dd x = -\ln\bigl(|\cos(x)|\bigr)$.
+    \item Pour le second terme $I_2 = \displaystyle\int \frac{\sin(x)}{\sin(\cos(x))}\dd x$, effectuons une première substitution $\boxed{u = \cos(x)} \implies \mathrm{d}u = -\sin(x)\dd x$ :
+    \[
+        I_2 = -\int \frac{\mathrm{d}u}{\sin(u)} = -\int \frac{\sin(u)}{\sin^2(u)}\dd u = -\int \frac{\sin(u)}{1 - \cos^2(u)}\dd u.
+    \]
+    Effectuons alors une seconde substitution $\boxed{t = \cos(u) = \cos(\cos(x))} \implies \mathrm{d}t = -\sin(u)\dd u$. Grâce à l'aide de l'énoncé :
+    \[
+        I_2 = \int \frac{\mathrm{d}t}{1 - t^2} = \frac{1}{2}\int \left(\frac{1}{1 - t} + \frac{1}{1 + t}\right)\dd t = \frac{1}{2}\ln\left(\left|\frac{1 + t}{1 - t}\right|\right) = \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right).
+    \]
+    En soustrayant $I_2$ au premier terme (ou en utilisant la variante de l'angle demi $\int \frac{\mathrm{d}u}{\sin(u)} = \ln\bigl(|\tan(u/2)|\bigr)$) :
+    \[
+        \boxed{g(x) = -\ln\bigl(|\cos(x)|\bigr) - \frac{1}{2}\ln\left(\left|\frac{1 + \cos(\cos(x))}{1 - \cos(\cos(x))}\right|\right) + C = -\ln\bigl(|\cos(x)|\bigr) + \ln\left(\left|\tan\left(\frac{\cos(x)}{2}\right)\right|\right) + C'}.
+    \]
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 6}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 6.\arabic* --}]
+    \item \textbf{(Primitives par substitution directe)} Calculer les primitives suivantes :
+    \begin{enumerate}
+        \item $\displaystyle\int \frac{e^x}{1 + e^{2x}}\dd x$
+        \item $\displaystyle\int \frac{\ln^3(x)}{x}\dd x$
+        \item $\displaystyle\int \frac{x}{\sqrt{4 - x^2}}\dd x$ \quad et \quad $\displaystyle\int \frac{1}{\sqrt{4 - x^2}}\dd x$
+        \item $\displaystyle\int \frac{\cos(\ln(x))}{x}\dd x$
+    \end{enumerate}
+
+    \item \textbf{(UCLouvain -- Septembre 2021, Q3c -- Substitution exponentielle et fractions simples)} Déterminer une primitive de la fonction :
+    \[
+        f(x) = \frac{2e^x}{(e^x)^2 - 1},
+    \]
+    en précisant sa condition d'existence.
+
+    \item \textbf{(Primitives par intégration par parties)} Calculer les primitives suivantes :
+    \begin{enumerate}
+        \item $\displaystyle\int \arctan(x)\dd x$
+        \item $\displaystyle\int \arcsin(x)\dd x$
+        \item $\displaystyle\int (2x + 1)\,e^{-x}\dd x$
+        \item $\displaystyle\int x^2\ln(x)\dd x$
+    \end{enumerate}
+
+    \item \textbf{(IPP cyclique -- Inspiré de Juillet 2021, Q3f)} En effectuant deux intégrations par parties successives, calculer les primitives suivantes :
+    \begin{enumerate}
+        \item $I_1 = \displaystyle\int e^x\cos(x)\dd x$
+        \item $I_2 = \displaystyle\int e^{2x}\sin(x)\dd x$
+    \end{enumerate}
+
+    \item \textbf{(Primitives trigonométriques)} Calculer les primitives suivantes :
+    \begin{enumerate}
+        \item $\displaystyle\int \sin^3(x)\cos^2(x)\dd x$
+        \item $\displaystyle\int \sin^2(x)\cos^2(x)\dd x$
+        \item $\displaystyle\int \tan^2(x)\dd x$ \quad et \quad $\displaystyle\int \tan^3(x)\dd x$
+    \end{enumerate}
+
+    \item \textbf{(Défi multi-méthodes -- Inspiré de Juillet 2026, Q3)} Calculer la primitive :
+    \[
+        \int \frac{x^3}{(x^2 + 1)^3}\dd x
+    \]
+    par deux méthodes différentes : (a) par le changement de variable $u = x^2 + 1$, et (b) par intégration par parties en écrivant $\dfrac{x^3}{(x^2+1)^3} = x^2 \cdot \dfrac{x}{(x^2+1)^3}$. Vérifier que les deux résultats ne diffèrent que d'une constante.
+\end{enumerate}

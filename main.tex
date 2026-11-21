@@ -1,0 +1,299 @@
+\documentclass[11pt,a4paper,oneside]{book}
+
+% ============================================================================
+% PACKAGES
+% ============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt]{geometry}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{icomma}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{angles,quotes,calc,positioning,arrows.meta,patterns,decorations.pathreplacing,babel}
+
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% ============================================================================
+% COULEURS & STYLE UCLOUVAIN
+% ============================================================================
+\definecolor{uclblue}{RGB}{0, 53, 107}
+\definecolor{ucllightblue}{RGB}{235, 243, 250}
+\definecolor{uclaccent}{RGB}{0, 114, 188}
+\definecolor{defgreen}{RGB}{20, 110, 60}
+\definecolor{deflightgreen}{RGB}{238, 248, 242}
+\definecolor{exorange}{RGB}{180, 85, 0}
+\definecolor{exlightorange}{RGB}{253, 246, 238}
+\definecolor{warnred}{RGB}{170, 30, 30}
+\definecolor{warnlightred}{RGB}{253, 240, 240}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uclblue,
+    urlcolor=uclaccent,
+    citecolor=uclblue,
+    pdftitle={Syllabus d'Analyse - Examen d'entrée Ingénieur Civil UCLouvain},
+    pdfauthor={Jean-François Remacle et Pierre Schaus (Prompt Engineers) & IA}
+}
+
+% ============================================================================
+% BOÎTES PÉDAGOGIQUES (TCOLORBOX)
+% ============================================================================
+\newtcolorbox{theoreme}[1][]{
+    enhanced,
+    breakable,
+    colback=ucllightblue,
+    colframe=uclblue,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt
+}
+
+\newtcolorbox{definition}[1][]{
+    enhanced,
+    breakable,
+    colback=deflightgreen,
+    colframe=defgreen,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt
+}
+
+\newtcolorbox{exemple}[1][]{
+    enhanced,
+    breakable,
+    colback=exlightorange,
+    colframe=exorange,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt
+}
+
+\newtcolorbox{attention}[1][Attention]{
+    enhanced,
+    breakable,
+    colback=warnlightred,
+    colframe=warnred,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt
+}
+
+\newtcolorbox{astuce}[1][Astuce \& Méthode]{
+    enhanced,
+    breakable,
+    colback=gray!8,
+    colframe=darkgray,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt
+}
+
+% ============================================================================
+% MISE EN PAGE & EN-TÊTES
+% ============================================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlist[itemize]{topsep=3pt,itemsep=2pt}
+\setlist[enumerate]{topsep=4pt,itemsep=4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{uclblue}{\nouppercase{\leftmark}}}
+\fancyhead[R]{\small\textcolor{darkgray}{Analyse Mathématique -- UCLouvain}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{uclblue}}
+  {\filright\large\textsc{\chaptertitlename}\ \thechapter}
+  {1ex}
+  {\titlerule\vspace{1.2ex}\filright}
+  [\vspace{1ex}\titlerule]
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{uclblue}}
+  {\thesection}{0.8em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{uclaccent}}
+  {\thesubsection}{0.7em}{}
+
+% ============================================================================
+% COMMANDES MATHÉMATIQUES
+% ============================================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\dd}{\,\mathrm{d}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cotg}{cotg}
+\DeclareMathOperator{\tg}{tg}
+
+% ============================================================================
+% DOCUMENT
+% ============================================================================
+\begin{document}
+
+% ----------------------------------------------------------------------------
+% PAGE DE TITRE
+% ----------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{0.8cm}
+    {\Large \textsc{Université catholique de Louvain (UCLouvain)}}\\[0.3cm]
+    {\large \textsc{École Polytechnique de Louvain (EPL)}}\\[1.3cm]
+
+    \begin{tcolorbox}[colback=ucllightblue,colframe=uclblue,arc=5pt,boxrule=1.5pt,top=15pt,bottom=15pt]
+        \centering
+        {\huge\bfseries\color{uclblue} Syllabus d'Analyse\\ Mathématique}\\[0.4cm]
+        {\Large\color{uclaccent} Préparation à l'examen d'admission\\ aux études d'ingénieur civil}
+    \end{tcolorbox}
+
+    \vspace{0.7cm}
+
+    % Illustration centrale : courbe, tangente, extremum et aire intégrale
+    \begin{tikzpicture}[scale=1.1, >=Stealth]
+        \begin{axis}[
+            width=11.5cm, height=7.2cm,
+            axis lines=middle,
+            xmin=-0.4, xmax=4.4,
+            ymin=-0.4, ymax=2.5,
+            xtick={0.5, 1.5708, 3.5},
+            xticklabels={$a$, $x^*$, $b$},
+            ytick={0},
+            xlabel={$x$},
+            ylabel={$y$},
+            samples=120,
+            domain=0:4.1,
+            clip=false
+        ]
+            % Aire sous la courbe entre a=0.5 et b=3.5
+            \addplot[fill=uclaccent!18, draw=none, domain=0.5:3.5] {1.1 + 0.8*sin(deg(x)) - 0.12*x^2 + 0.25*x} \closedcycle;
+            
+            % Courbe principale f(x)
+            \addplot[very thick, uclblue, domain=0:4.1] {1.1 + 0.8*sin(deg(x)) - 0.12*x^2 + 0.25*x} node[pos=0.92, above right] {$y = f(x)$};
+
+            % Tangente horizontale au maximum local
+            \draw[thick, warnred, dashed] (axis cs:0.65, 1.999) -- (axis cs:2.55, 1.999) node[right] {\small $f'(x^*) = 0$};
+            \fill[warnred] (axis cs:1.68, 1.999) circle (2.2pt) node[above] {\small Maximum local};
+
+            % Tangente en un point
+            \draw[thick, defgreen] (axis cs:0.05, 1.1525) -- (axis cs:1.25, 2.4125) node[above left] {\small Tangente $y = f(x_0) + f'(x_0)(x-x_0)$};
+            \fill[defgreen] (axis cs:0.5, 1.625) circle (2pt);
+
+            % Bornes d'intégration
+            \draw[dashed, uclblue] (axis cs:0.5, 0) -- (axis cs:0.5, 1.625);
+            \draw[dashed, uclblue] (axis cs:3.5, 0) -- (axis cs:3.5, 1.222);
+
+            % Étiquette de l'intégrale
+            \node[uclblue] at (axis cs:2.1, 0.75) {\large $\displaystyle \int_a^b f(x)\,\mathrm{d}x$};
+        \end{axis}
+    \end{tikzpicture}
+
+    \vfill
+
+    {\large \textbf{Direction artistique \& \emph{« Prompt Engineering »} :}}\\[0.2cm]
+    {\Large \textbf{L'équipe de l'examen d'entrée de l'EPL}}\\[0.15cm]
+    {\large \textbf{Jean-François Remacle} et \textbf{Pierre Schaus}}\\[0.3cm]
+    {\normalsize \emph{Rédigé à la sueur des GPU par l'Intelligence Artificielle,\\ sous la supervision bienveillante (et quelques prompts bien sentis) de ses humains.}}
+
+    \vspace{0.5cm}
+    {\small \textbf{Sources fournies à l'IA :}\\
+    Le référentiel de mathématiques de 5\ieme{} et 6\ieme{} secondaire de la Fédération Wallonie-Bruxelles\\
+    ainsi que l'intégralité des annales et solutionnaires officiels d'Analyse de l'UCLouvain (2021--2026).}\\[0.4cm]
+    {\normalsize Édition 2026--2027}
+\end{titlepage}
+
+% ----------------------------------------------------------------------------
+% AVANT-PROPOS ET CONSEILS MÉTHODOLOGIQUES
+% ----------------------------------------------------------------------------
+\chapter*{Avant-propos et conseils méthodologiques}
+\addcontentsline{toc}{chapter}{Avant-propos et conseils méthodologiques}
+\markboth{Avant-propos}{Avant-propos}
+
+Ce syllabus a été conçu pour accompagner les étudiantes et étudiants qui préparent l'épreuve d'\textbf{analyse mathématique} de l'examen spécial d'admission aux études d'ingénieur civil à l'\textbf{UCLouvain} (École Polytechnique de Louvain -- EPL). Il est pensé pour être pédagogique, progressif, rigoureux et directement accessible à toute personne ayant suivi le cours de mathématiques de 5\ieme{} et 6\ieme{} secondaire en Communauté française de Belgique (Fédération Wallonie-Bruxelles, en particulier l'option mathématiques 6h/semaine, ou 4h avec un investissement personnel complémentaire).
+
+\section*{Origine, auteurs et sources du document}
+
+\begin{theoreme}[« Prompt Engineers », IA et sources du document]
+\begin{itemize}
+    \item \textbf{\emph{Prompt Engineers} en chef :} Les professeurs \textbf{Jean-François Remacle} et \textbf{Pierre Schaus} (UCLouvain -- EPL), qui ont initié cette collection de syllabus ouverts et fourni les annales, solutionnaires et directives pédagogiques.
+    \item \textbf{Auteur exécutant (Intelligence Artificielle) :} Dans le même esprit que le syllabus de Trigonométrie et de Géométrie, la rédaction détaillée, la structuration \LaTeX{}, le tracé des figures TikZ/PGFPlots et la mise au net des corrigés multi-méthodes ont été réalisés avec l'aide de l'intelligence artificielle.
+    \item \textbf{Annales et solutionnaires officiels d'Analyse (UCLouvain 2021--2026) :} Ce syllabus intègre et explique en détail l'ensemble des questions posées aux sessions de \textbf{juillet et septembre de 2021 à 2026} à l'examen d'admission de l'UCLouvain. Nous tenons à remercier chaleureusement l'équipe des enseignantes et enseignants responsables de l'épreuve d'Analyse à l'EPL pour la richesse pédagogique de leurs questionnaires et de leurs solutionnaires officiels (qui proposent systématiquement plusieurs méthodes de résolution, des astuces de vérification et des commentaires formateurs).
+\end{itemize}
+\end{theoreme}
+
+\section*{Structure type de l'épreuve d'Analyse à l'UCLouvain}
+
+L'examen d'admission d'Analyse à l'EPL se déroule \textbf{sans calculatrice} (ni téléphone ou montre connectée) et repose sur une structure très claire et régulière qu'il est essentiel de bien connaître pour organiser ses révisions :
+\begin{enumerate}
+    \item \textbf{Question 1 : Étude complète d'une fonction $f : \D \subset \R \to \R$ (Chapitres 1 à 4)} : détermination du domaine de définition $\D$ et des racines, limites aux bords ou asymptotes (verticales, horizontales, obliques), calcul et factorisation de la dérivée première $f'(x)$ et de la dérivée seconde $f''(x)$, tableau complet des variations et de la concavité (avec valeurs exactes et valeurs numériques approchées grâce aux aides fournies dans l'énoncé), et esquisse soignée du graphe sur un quadrillage chiffré.
+    \item \textbf{Question 2 : Problème d'optimisation appliquée (Chapitre 5)} : mise en équation d'un problème concret d'ingénierie, de physique ou d'économie (isolation thermique, boîte métallique, drone-lanceur, solide de révolution minimal, plus court chemin sable/route, train de nuit, panneau solaire et loi de Planck/Wien, pharmacocinétique de la caféine, tournoi des « legendgénieurs », propulseur spatial, transport maritime, enclos agricole), réduction à une fonction d'une seule variable par élimination des contraintes, recherche de l'extremum par annulation de la dérivée et justification rigoureuse qu'il s'agit bien d'un maximum ou d'un minimum.
+    \item \textbf{Question 3 : Calcul d'une primitive $\int f(x)\dd x$ (Chapitre 6)} : recherche d'une primitive combinant reconnaissance de dérivées composées, changements de variable (substitution), intégration par parties (parfois double ou cyclique), identités trigonométriques ou décomposition en fractions simples.
+    \item \textbf{Questions 4 et 5 : Limites, volumes de révolution, inégalités intégrales et théorèmes fondamentaux (Chapitres 2, 3 et 7)} :
+    \begin{itemize}
+        \item Calcul de limites indéterminées ($\frac{0}{0}, \frac{\infty}{\infty}, 0\cdot\infty$) via la \textbf{règle de L'Hospital}, la mise en évidence du terme dominant ou les limites trigonométriques fondamentales.
+        \item Calcul du \textbf{volume d'un solide de révolution} $V = \pi \int_a^b [R(x)]^2\dd x$ (pièce mécanique, tore/anneau, œuf fossilisé).
+        \item Démonstration d'\textbf{inégalités fonctionnelles} par intégration d'encadrements sur $[1, x]$ ou $[0, x]$, ou par étude du signe de la dérivée d'une différence.
+        \item Questions de \textbf{théorie et de raisonnement} mobilisant la définition de la limite ($\varepsilon$-$M$), la continuité et la dérivabilité en un point, le \textbf{théorème des valeurs intermédiaires (TVI)}, le \textbf{théorème de Rolle}, le \textbf{théorème des accroissements finis (TAF)}, les équations différentielles élémentaires ou l'étude d'une fonction réciproque (comme la fonction de Lambert $W_0$).
+    \end{itemize}
+\end{enumerate}
+
+\section*{Conventions de notation et règles d'or pour le jour de l'examen}
+
+\begin{itemize}
+    \item \textbf{Notations officielles :} La fonction exponentielle de base $e \approx 2,718$ est notée $e^x$ ou $\exp(x)$. Le logarithme népérien (en base $e$) est exclusivement noté $\ln(x)$ (défini sur $\R_0^+ = \,]0, +\infty[$). Pour les fonctions trigonométriques et le logarithme, $\sin^2(x)$, $\cos^3(x)$ ou $\ln^2(x)$ désignent respectivement $(\sin(x))^2$, $(\cos(x))^3$ et $(\ln(x))^2$.
+    \item \textbf{Cadre « Réponse finale » et cadre « Développement » :} Lorsqu'une question comporte un petit cadre pour la réponse finale et un grand cadre pour le développement, \textbf{les deux doivent impérativement être remplis}. Une réponse finale parachutée sans raisonnement, ou un long développement sans réponse finale clairement reportée dans le cadre prévu, entraîne une perte importante de points.
+    \item \textbf{Calcul littéral avant le calcul numérique :} Dans les problèmes d'optimisation (Question 2), gardez les lettres ($C, V, H, \alpha, \beta, f_0\dots$) le plus longtemps possible ! Dérivez l'expression littérale et ne remplacez par les valeurs numériques qu'à la toute dernière ligne : cela évite les erreurs de calcul, révèle des simplifications spectaculaires (souvent certaines constantes s'éliminent d'elles-mêmes !) et permet au correcteur de suivre parfaitement votre démarche.
+    \item \textbf{Vérification systématique :} En analyse, vous avez l'immense avantage de pouvoir \textbf{vérifier vous-même vos résultats} : dérivez toujours au brouillon la primitive que vous venez de trouver à la Question 3 pour vérifier qu'elle redonne l'intégrande, et contrôlez la cohérence entre le signe de $f'(x)$, les limites aux bords et les valeurs de $f(x)$ dans votre tableau de variations de la Question 1 !
+\end{itemize}
+
+\tableofcontents
+
+% ----------------------------------------------------------------------------
+% CHAPITRES
+% ----------------------------------------------------------------------------
+\input{chap1_fonctions}
+\input{chap2_limites}
+\input{chap3_derivees}
+\input{chap4_etude_fonctions}
+\input{chap5_optimisation}
+\input{chap6_primitives}
+\input{chap7_integrales_volumes}
+\input{chap8_formulaire}
+\input{annexe_logique}
+\input{chap9_correctifs}
+
+\end{document}

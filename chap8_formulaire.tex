@@ -1,0 +1,442 @@
+% ============================================================================
+% CHAPITRE 8 : FORMULAIRE SYNTHÉTIQUE ET AIDE-MÉMOIRE (VERSION IMPRIMABLE 4 PAGES)
+% ============================================================================
+\cleardoublepage
+\newgeometry{top=1.3cm,bottom=1.4cm,left=1.4cm,right=1.4cm}
+\refstepcounter{chapter}
+\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}Formulaire Synthétique et Aide-Mémoire (Imprimable -- 4 pages)}
+\chaptermark{Formulaire Synthétique et Aide-Mémoire}
+
+% ============================================================================
+% PAGE 1/4 : FONCTIONS, DOMAINES, LIMITES ET ASYMPTOTES (1 PAGE A4 IMPRIMABLE)
+% ============================================================================
+\thispagestyle{plain}
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Fonctions, Domaines, Limites et Asymptotes}
+
+\begin{center}
+    {\LARGE\bfseries\color{uclblue} Fonctions, Domaines, Limites et Asymptotes}\\[2pt]
+    {\small\color{darkgray} Examen d'entrée Ingénieur Civil -- UCLouvain (Fiche récapitulative d'Analyse 1/4)}
+    \vspace{2pt}
+    \hrule height 1pt
+\end{center}
+\vspace{-6pt}
+
+{\fontsize{9.4pt}{11.4pt}\selectfont
+\setlength{\columnsep}{18pt}
+\begin{multicols}{2}
+
+\noindent{\large\bfseries\color{uclblue} 1. Conditions d'Existence (Domaine $\D$)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Quotient :} $\dfrac{N(x)}{D(x)} \implies \mathbf{D(x) \neq 0}$\\
+    $\tan(u) \implies u \neq \frac{\pi}{2} + k\pi$, \quad $\cot(u) \implies u \neq k\pi$
+    \item \textbf{Racine paire :} $\sqrt[2n]{u(x)} \implies \mathbf{u(x) \ge 0}$ \quad ($\frac{1}{\sqrt{u(x)}} \implies u(x) > 0$)
+    \item \textbf{Logarithme :} $\ln\bigl(u(x)\bigr) \implies \mathbf{u(x) > 0}$
+    \item \textbf{Cyclométriques :} $\arcsin(u), \arccos(u) \implies \mathbf{-1 \le u(x) \le 1}$
+    \item \textbf{Équation irrationnelle :} $\sqrt{A(x)} = B(x) \iff B(x) \ge 0 \text{ et } A(x) = B^2(x)$
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 2. Symétries et Périodicité}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Fonction paire ($\D$ sym.) :} $f(-x) = f(x)$ (axe $Oy$).\\
+    Si $f$ est paire : $f'$ est impaire, $f''$ est paire, $\int_{-a}^a f(x)\dd x = 2\int_0^a f(x)\dd x$.
+    \item \textbf{Fonction impaire ($\D$ sym.) :} $f(-x) = -f(x)$ (centre $O$).\\
+    Si $f$ est impaire : $f'$ est paire, $f''$ est impaire, $\int_{-a}^a f(x)\dd x = 0$.
+    \item \textbf{Périodique de période $T > 0$ :} $f(x+T) = f(x)$.\\
+    $\sin(\omega x), \cos(\omega x) \to T = \frac{2\pi}{\omega}$ ; \; $\tan(\omega x), \sin^2(\omega x), \cos^2(\omega x) \to T = \frac{\pi}{\omega}$.
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 3. Logarithme $\ln(x)$ et Exponentielle $e^x$}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Réciprocité :} $y = e^x \iff x = \ln(y)$ \; ($x \in \R,\; y > 0$)\\
+    $\ln(e^x) = x \; (\forall x \in \R)$ \quad et \quad $e^{\ln(y)} = y \; (\forall y > 0)$
+    \item \textbf{Valeurs clés :} $\ln(1) = 0$, \; $\ln(e) = 1$, \; $e^0 = 1$, \; $e > 0$ ($\forall x, e^x > 0$)\\
+    $e \approx 2,718$, \; $e^{-1} \approx 0,368$, \; $e^{-2} \approx 0,135$, \; $\ln(2) \approx 0,693$
+    \item \textbf{Règles de $\ln$ ($a, b > 0$) :} $\ln(ab) = \ln a + \ln b$, \; $\ln\left(\frac{1}{a}\right) = -\ln a$,\\
+    $\ln\left(\frac{a}{b}\right) = \ln a - \ln b$, \; $\ln(a^p) = p\ln a$, \; $\ln(x^2) = 2\ln(|x|)$ ($x \neq 0$)
+    \item \textbf{Signe de $\ln(x)$ :} $<0$ sur $]0, 1[$, \; $=0$ en $x=1$, \; $>0$ sur $]1, +\infty[$
+    \item \textbf{Règles de $\exp$ :} $e^{a+b} = e^a e^b$, \; $e^{-a} = \frac{1}{e^a}$, \; $e^{a-b} = \frac{e^a}{e^b}$, \; $(e^a)^p = e^{ap}$
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 4. Fonction Réciproque $f^{-1}$ (ex: Lambert $W_0$)}
+Si $f : I \to J$ est continue et strictement monotone sur un intervalle $I$ :
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item $f^{-1} : J = f(I) \to I$ est continue et a le \textbf{même sens de variation} que $f$.
+    \item \textbf{Dérivée :} $\bigl(f^{-1}\bigr)'(y) = \dfrac{1}{f'\bigl(f^{-1}(y)\bigr)}$ \quad (existe ssi $f'(x) \neq 0$).
+\end{itemize}
+
+\columnbreak
+
+\noindent{\large\bfseries\color{uclblue} 5. Limites Fondamentales \& Croissances Comparées}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Définition ($\lim_{x \to +\infty} f(x) = c$) :}\\
+    $\forall \varepsilon > 0, \;\exists M \;\text{ tel que }\; x > M \implies |f(x) - c| \le \varepsilon$.
+    \item \textbf{Limites remarquables en $u \to 0$ :}
+    \[
+        \lim_{u \to 0} \frac{\sin(u)}{u} = 1, \qquad \lim_{u \to 0} \frac{\tan(u)}{u} = 1, \qquad \lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}
+    \]
+    \[
+        \lim_{u \to 0} \frac{e^u - 1}{u} = 1, \qquad \lim_{u \to 0} \frac{\ln(1+u)}{u} = 1
+    \]
+    \item \textbf{Croissances comparées ($\forall p > 0$) :} ($\exp \gg x^p \gg \ln$)
+    \[
+        \lim_{x \to +\infty} \frac{e^x}{x^p} = +\infty, \qquad \lim_{x \to +\infty} x^p e^{-x} = 0
+    \]
+    \[
+        \lim_{x \to +\infty} \frac{\ln(x)}{x^p} = 0, \qquad \lim_{y \to 0^+} y^p \ln(y) = 0
+    \]
+    \item \textbf{Fonction bornée ($|\sin u| \le 1$) :} Si $\lim v(x) = \pm\infty$, $\lim \dfrac{\sin(\dots)}{v(x)} = 0$.
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 6. Continuité et Théorème des Valeurs Intermédiaires}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Continuité en $a \in \D$ :} $\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = f(a)$.
+    \item \textbf{TVI / Bolzano :} Si $f$ est continue sur $[a, b]$ et $f(a)\cdot f(b) < 0$ (changement de signe), alors $\exists c \in \,]a, b[$ tel que $\mathbf{f(c) = 0}$ (unique si $f$ est strictement monotone).
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 7. Les Trois Types d'Asymptotes (AV, AH, AO)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Asymptote Verticale ($\text{AV} \equiv x = a$) :} $\lim_{x \to a^\pm} f(x) = \pm\infty$.
+    \item \textbf{Asymptote Horizontale ($\text{AH} \equiv y = b$) :} $\lim_{x \to \pm\infty} f(x) = b \in \R$.
+    \item \textbf{Asymptote Oblique ($\text{AO} \equiv y = mx + p$, $m \neq 0$) :}
+    \[
+        m = \lim_{x \to \pm\infty} \frac{f(x)}{x} \in \R_0, \qquad p = \lim_{x \to \pm\infty} \bigl(f(x) - mx\bigr) \in \R
+    \]
+    \emph{Note :} Une fonction périodique non constante n'a ni AH ni AO.
+\end{itemize}
+
+\end{multicols}
+}
+
+\newpage
+% ============================================================================
+% PAGE 2/4 : DÉRIVÉES, L'HOSPITAL, ROLLE, TAF ET ÉTUDE DE FONCTION (1 PAGE A4)
+% ============================================================================
+\thispagestyle{plain}
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Dérivées, Règle de L'Hospital, Rolle, TAF et Étude de Fonction}
+
+\begin{center}
+    {\LARGE\bfseries\color{uclblue} Dérivées, L'Hospital, Rolle, TAF et Étude de Fonction}\\[2pt]
+    {\small\color{darkgray} Examen d'entrée Ingénieur Civil -- UCLouvain (Fiche récapitulative d'Analyse 2/4)}
+    \vspace{2pt}
+    \hrule height 1pt
+\end{center}
+\vspace{-6pt}
+
+{\fontsize{9.3pt}{11.3pt}\selectfont
+\setlength{\columnsep}{18pt}
+\begin{multicols}{2}
+
+\noindent{\large\bfseries\color{uclblue} 1. Nombre Dérivé, Tangente et Règles Opératoires}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Définition :} $f'(a) = \lim_{x \to a} \dfrac{f(x) - f(a)}{x - a} = \lim_{h \to 0} \dfrac{f(a+h) - f(a)}{h}$
+    \item \textbf{Tangente en $x_0$ :} $T_{x_0} \equiv \mathbf{y = f(x_0) + f'(x_0)\,(x - x_0)}$
+    \item \textbf{Dérivable $\implies$ Continue} (mais réciproque fausse : $|x|$ ou $\sqrt{|x|}$ en $0$).
+    \item \textbf{Produit :} $(u\cdot v)' = u'v + uv'$
+    \item \textbf{Inverse \& Quotient :} $\left(\dfrac{1}{v}\right)' = -\dfrac{v'}{v^2}$, \qquad $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$
+    \item \textbf{Composée (Chaîne) :} $\Bigl(f\bigl(u(x)\bigr)\Bigr)' = f'\bigl(u(x)\bigr)\cdot u'(x)$
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 2. Tableau des Dérivées Composées}
+\begin{center}
+\vspace{-4pt}
+\renewcommand{\arraystretch}{1.42}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Fonction $f(u(x))$} & \textbf{Dérivée $\bigl(f(u(x))\bigr)'$} \\ \hline
+$\bigl(u(x)\bigr)^n \;\; (n \in \R)$ & $n\,\bigl(u(x)\bigr)^{n-1} \cdot u'(x)$ \\ \hline
+$\sqrt{u(x)}$ & $\dfrac{u'(x)}{2\sqrt{u(x)}}$ \\ \hline
+$e^{u(x)}$ \quad / \quad $a^{u(x)}$ & $u'(x)\,e^{u(x)}$ \quad / \quad $(\ln a)\,u'(x)\,a^{u(x)}$ \\ \hline
+$\ln\bigl(|u(x)|\bigr)$ & $\dfrac{u'(x)}{u(x)}$ \\ \hline
+$\sin\bigl(u(x)\bigr)$ \quad / \quad $\cos\bigl(u(x)\bigr)$ & $u'(x)\cos\bigl(u(x)\bigr)$ \quad / \quad $-u'(x)\sin\bigl(u(x)\bigr)$ \\ \hline
+$\tan\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{\cos^2(u(x))} = u'(x)\bigl(1 + \tan^2(u(x))\bigr)$ \\ \hline
+$\cot\bigl(u(x)\bigr)$ & $-\dfrac{u'(x)}{\sin^2(u(x))}$ \\ \hline
+$\arcsin\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{\sqrt{1 - u^2(x)}}$ \quad ($\arccos : \text{signe } -$) \\ \hline
+$\arctan\bigl(u(x)\bigr)$ & $\dfrac{u'(x)}{1 + u^2(x)}$ \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+\noindent{\large\bfseries\color{uclblue} 3. Règle de L'Hospital (Formes $\frac{0}{0}$ et $\frac{\infty}{\infty}$)}
+Si $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ est une F.I. $\left[\dfrac{0}{0}\right]$ ou $\left[\dfrac{\infty}{\infty}\right]$ et si $\lim_{x \to a} \dfrac{f'(x)}{g'(x)}$ existe :
+\[
+    \boxed{\lim_{x \to a} \frac{f(x)}{g(x)} \stackrel{\text{H}}{=} \lim_{x \to a} \frac{f'(x)}{g'(x)}}
+\]
+\emph{Astuces :} Simplifier l'expression avant de dériver (ex: $\ln(1+x)+\ln(1-x) = \ln(1-x^2)$) ; pour $[0\cdot\infty]$ comme $x\ln(x)$, écrire $\frac{\ln(x)}{1/x}$ ; pour $[u^v]$, écrire $e^{v\ln(u)}$.
+
+\columnbreak
+
+\noindent{\large\bfseries\color{uclblue} 4. Théorèmes de Rolle et des Accroissements Finis}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Théorème de Rolle :} Si $f : [a, b] \to \R$ est :
+    \begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=1pt]
+        \item \textbf{continue} sur l'intervalle fermé $[a, b]$,
+        \item \textbf{dérivable} sur l'intervalle ouvert $]a, b[$,
+        \item telle que $\mathbf{f(a) = f(b)}$,
+    \end{enumerate}
+    alors $\mathbf{\exists c \in \,]a, b[\; \text{ tel que } f'(c) = 0}$.
+    \item \textbf{Théorème des Accroissements Finis (TAF) :} Si $f$ est \textbf{continue sur $[a, b]$} et \textbf{dérivable sur $]a, b[$}, alors $\mathbf{\exists c \in \,]a, b[}$ tel que :
+    \[
+        \boxed{f'(c) = \frac{f(b) - f(a)}{b - a}}
+    \]
+    \item \textbf{Astuce en cascade :} Si $f(x_0) = f(x_1) = f(x_2)$, Rolle sur $[x_0, x_1]$ et $[x_1, x_2]$ donne deux zéros distincts $c_1 < x_1 < c_2$ de $f'$, puis Rolle appliqué à $f'$ sur $[c_1, c_2]$ donne $d \in \,]c_1, c_2[$ tel que $\mathbf{f''(d) = 0}$ !
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 5. Variations, Extrema, Concavité (Question 1)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Croissance / Décroissance :}
+    \[
+        f'(x) > 0 \implies f \text{ croissante } (\nearrow), \qquad f'(x) < 0 \implies f \text{ décroissante } (\searrow)
+    \]
+    \item \textbf{Extrema locaux (en un point intérieur $x^*$ où $f'(x^*) = 0$) :}
+    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+        \item $f'$ passe de $-$ à $+$ (ou $f''(x^*) > 0$) $\implies$ \textbf{Minimum local} ($\cup$)
+        \item $f'$ passe de $+$ à $-$ (ou $f''(x^*) < 0$) $\implies$ \textbf{Maximum local} ($\cap$)
+        \item $f'$ ne change pas de signe $\implies$ \textbf{Point d'inflexion à tangente horiz.}
+    \end{itemize}
+    \item \textbf{Concavité et Points d'Inflexion (PI) :}
+    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+        \item $f''(x) > 0 \implies$ Concavité positive / vers le haut ($\cup$, convexe)
+        \item $f''(x) < 0 \implies$ Concavité négative / vers le bas ($\cap$, concave)
+        \item $f''(x_0) = 0$ \textbf{en changeant de signe} $\implies$ \textbf{Point d'inflexion (PI)}
+    \end{itemize}
+    \item \textbf{Ordre logique officiel du tableau de variations :}\\
+    Ligne 1 : $x$ $\to$ Ligne 2 : $f'(x)$ $\to$ Ligne 3 : $f''(x)$ $\to$ Ligne 4 : $f(x)$ (avec valeurs exactes ET décimales approchées, flèches $\nearrow\searrow$, concavité $\cup\cap$).
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 6. Méthode d'Optimisation Appliquée (Question 2)}
+\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=1pt]
+    \item Identifier la fonction objectif à maximiser/minimiser et la contrainte.
+    \item Éliminer les variables liées pour avoir une fonction d'\textbf{une seule variable} $\Phi(x)$ (en gardant les constantes sous forme de lettres !).
+    \item Résoudre $\Phi'(x^*) = 0$ et vérifier le signe de $\Phi''(x^*)$ (ou le tableau de $\Phi'$).
+    \item Remplacer les valeurs numériques à la toute fin et vérifier les unités.
+\end{enumerate}
+
+\end{multicols}
+}
+
+\newpage
+% ============================================================================
+% PAGE 3/4 : PRIMITIVES ET TECHNIQUES D'INTÉGRATION (1 PAGE A4 IMPRIMABLE)
+% ============================================================================
+\thispagestyle{plain}
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Primitives et Techniques d'Intégration}
+
+\begin{center}
+    {\LARGE\bfseries\color{uclblue} Primitives et Techniques d'Intégration (Question 3)}\\[2pt]
+    {\small\color{darkgray} Examen d'entrée Ingénieur Civil -- UCLouvain (Fiche récapitulative d'Analyse 3/4)}
+    \vspace{2pt}
+    \hrule height 1pt
+\end{center}
+\vspace{-6pt}
+
+{\fontsize{9.3pt}{11.3pt}\selectfont
+\setlength{\columnsep}{18pt}
+\begin{multicols}{2}
+
+\noindent{\large\bfseries\color{uclblue} 1. Primitives Immédiates et Composées ($u = u(x)$)}
+\begin{center}
+\vspace{-4pt}
+\renewcommand{\arraystretch}{1.48}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Intégrale $\displaystyle\int f(u(x))u'(x)\dd x$} & \textbf{Primitive $F(u(x)) + C$} \\ \hline
+$\displaystyle\int u^p\,u'\dd x \quad (p \neq -1)$ & $\dfrac{u^{p+1}}{p+1} + C$ \\ \hline
+$\displaystyle\int \frac{u'}{u}\dd x$ & $\ln(|u|) + C$ \\ \hline
+$\displaystyle\int \frac{u'}{\sqrt{u}}\dd x$ \quad / \quad $\displaystyle\int \frac{u'}{u^2}\dd x$ & $2\sqrt{u} + C$ \quad / \quad $-\dfrac{1}{u} + C$ \\ \hline
+$\displaystyle\int u'\,e^u\dd x$ & $e^u + C$ \\ \hline
+$\displaystyle\int u'\cos(u)\dd x$ \quad / \quad $\displaystyle\int u'\sin(u)\dd x$ & $\sin(u) + C$ \quad / \quad $-\cos(u) + C$ \\ \hline
+$\displaystyle\int \frac{u'}{\cos^2(u)}\dd x = \int u'(1+\tan^2 u)\dd x$ & $\tan(u) + C$ \\ \hline
+$\displaystyle\int \frac{u'}{\sin^2(u)}\dd x = \int u'(1+\cot^2 u)\dd x$ & $-\cot(u) + C$ \\ \hline
+$\displaystyle\int \frac{u'}{1 + u^2}\dd x$ & $\arctan(u) + C$ \\ \hline
+$\displaystyle\int \frac{u'}{\sqrt{1 - u^2}}\dd x$ & $\arcsin(u) + C$ \\ \hline
+$\displaystyle\int \tan(x)\dd x$ \quad / \quad $\displaystyle\int \cot(x)\dd x$ & $-\ln(|\cos x|) + C$ \;/\; $\ln(|\sin x|) + C$ \\ \hline
+$\displaystyle\int \ln(x)\dd x$ & $x\ln(x) - x + C$ \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 2. Intégration par Substitution (Changement de Variable)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Principe :} Poser $\mathbf{u = u(x)}$ et remplacer $\mathbf{\mathrm{d}u = u'(x)\dd x}$ :
+    \[
+        \int f\bigl(u(x)\bigr)\,u'(x)\dd x = \int f(u)\dd u = F\bigl(u(x)\bigr) + C
+    \]
+    \item \textbf{Exemples types UCLouvain :}
+    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+        \item $\int \frac{\cos x}{1+\sin^2 x}\dd x$ : $u = \sin x \implies \arctan(\sin x) + C$
+        \item $\int \frac{1}{x\ln x}\dd x$ : $u = \ln x \implies \ln(|\ln x|) + C$
+        \item $\int \frac{x^5}{(x^2+1)^5}\dd x$ : $u = x^2+1, x\dd x = \frac{1}{2}\dd u, x^4 = (u-1)^2$
+        \item $\int \sqrt{a^2 - x^2}\dd x$ : $x = a\sin\theta, \mathrm{d}x = a\cos\theta\dd\theta \implies a^2\int \cos^2\theta\dd\theta$
+    \end{itemize}
+\end{itemize}
+
+\columnbreak
+
+\noindent{\large\bfseries\color{uclblue} 3. Intégration par Parties (IPP)}
+\[
+    \boxed{\int u(x)\,v'(x)\dd x = u(x)\,v(x) - \int v(x)\,u'(x)\dd x} \quad \left(\int u\dd v = uv - \int v\dd u\right)
+\]
+\begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=2pt]
+    \item \textbf{Priorité pour le choix de $u(x)$ (à dériver) -- Règle ALPES :}
+    \begin{enumerate}[leftmargin=1.4em, itemsep=1pt, topsep=1pt]
+        \item \textbf{A}rc ($\arcsin, \arccos, \arctan$) $\to$ toujours dériver !
+        \item \textbf{L}ogarithme ($\ln(x), \ln^2(x)$) $\to$ toujours dériver face à $x^n$ !
+        \item \textbf{P}olynôme ($x, x^2$) $\to$ dériver face à $e^{ax}, \sin(ax), \cos(ax), \frac{1}{\cos^2 x}$.
+        \item \textbf{E}xponentielle et \textbf{S}inus/Cosinus $\to$ intégrer ($\mathrm{d}v$) ; si produit $e^{ax}\cos(bx)$, faire \textbf{2 IPP cycliques} pour retrouver $\mathcal{I}$.
+    \end{enumerate}
+    \item \textbf{Exemples types UCLouvain :}
+    \begin{itemize}[leftmargin=1em, itemsep=1pt, topsep=1pt]
+        \item $\int \frac{x}{\cos^2 x}\dd x$ : $u=x, \mathrm{d}v=\frac{\mathrm{d}x}{\cos^2 x} \implies x\tan x + \ln(|\cos x|) + C$
+        \item $\int \frac{\ln x}{x^2}\dd x$ : $u=\ln x, \mathrm{d}v=\frac{\mathrm{d}x}{x^2} \implies -\frac{\ln x + 1}{x} + C$
+        \item $\int x\ln^2(x)\dd x$ : 2 IPP $\implies \frac{x^2}{2}\left(\ln^2(x) - \ln(x) + \frac{1}{2}\right) + C$
+    \end{itemize}
+\end{itemize}
+
+\vspace{3pt}
+\noindent{\large\bfseries\color{uclblue} 4. Fractions Simples et Primitives Trigonométriques}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Décomposition de $\dfrac{1}{1 - t^2}$ et $\dfrac{1}{y^2 - 1}$ :}
+    \[
+        \int \frac{\mathrm{d}t}{1 - t^2} = \frac{1}{2}\int \left(\frac{1}{1-t} + \frac{1}{1+t}\right)\dd t = \frac{1}{2}\ln\left(\left|\frac{1+t}{1-t}\right|\right) + C
+    \]
+    \[
+        \int \frac{2\dd y}{y^2 - 1} = \int \left(\frac{1}{y-1} - \frac{1}{y+1}\right)\dd y = \ln\left(\left|\frac{y-1}{y+1}\right|\right) + C
+    \]
+    \item \textbf{Puissance impaire de $\sin$ ou $\cos$ :}\\
+    Isoler $\sin(x)\dd x = -\mathrm{d}(\cos x)$ et remplacer $\sin^2(x) = 1 - \cos^2(x)$ (avec $u = \cos x$).
+    \item \textbf{Puissance paire $\sin^2(x)$ ou $\cos^2(x)$ (Carnot) :}
+    \[
+        \cos^2(x) = \frac{1 + \cos(2x)}{2}, \qquad \sin^2(x) = \frac{1 - \cos(2x)}{2}
+    \]
+    \item \textbf{Dénominateur $1 + \cos(x)$ ou $1 + \sin(2x)$ :}
+    \[
+        1 + \cos(x) = 2\cos^2\left(\frac{x}{2}\right), \qquad 1 + \sin(2x) = \bigl(\cos x + \sin x\bigr)^2
+    \]
+    \item \textbf{Primitives de $\dfrac{1}{\cos(x)}$ et $\dfrac{1}{\sin(u)}$ :}
+    \[
+        \int \frac{\mathrm{d}x}{\cos(x)} = \int \frac{\cos(x)\dd x}{1 - \sin^2(x)} = \frac{1}{2}\ln\left(\frac{1+\sin x}{1-\sin x}\right) + C
+    \]
+    \[
+        \int \frac{\mathrm{d}u}{\sin(u)} = \int \frac{\sin(u)\dd u}{1 - \cos^2(u)} = \frac{1}{2}\ln\left(\frac{1-\cos u}{1+\cos u}\right) + C = \ln\left(\left|\tan\frac{u}{2}\right|\right) + C
+    \]
+\end{itemize}
+
+\end{multicols}
+}
+
+\newpage
+% ============================================================================
+% PAGE 4/4 : INTÉGRALES DÉFINIES, INÉGALITÉS, AIRES ET VOLUMES (1 PAGE A4)
+% ============================================================================
+\thispagestyle{plain}
+\refstepcounter{section}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Intégrales Définies, Inégalités, Aires et Volumes de Révolution}
+
+\begin{center}
+    {\LARGE\bfseries\color{uclblue} Intégrales Définies, Inégalités, Aires et Volumes}\\[2pt]
+    {\small\color{darkgray} Examen d'entrée Ingénieur Civil -- UCLouvain (Fiche récapitulative d'Analyse 4/4)}
+    \vspace{2pt}
+    \hrule height 1pt
+\end{center}
+\vspace{-6pt}
+
+{\fontsize{9.4pt}{11.4pt}\selectfont
+\setlength{\columnsep}{18pt}
+\begin{multicols}{2}
+
+\noindent{\large\bfseries\color{uclblue} 1. Théorème Fondamental et Intégrale Définie}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Formule de Newton-Leibniz (pour $F'(x) = f(x)$) :}
+    \[
+        \boxed{\int_a^b f(x)\dd x = \Bigl[F(x)\Bigr]_a^b = F(b) - F(a)}
+    \]
+    \item \textbf{Dérivée par rapport à la borne supérieure $x$ :}
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}x}\left(\int_a^x f(s)\dd s\right) = f(x)
+    \]
+    \item \textbf{Valeur moyenne de $f$ sur $[a, b]$ :}
+    \[
+        \bar{f} = \frac{1}{b - a}\int_a^b f(t)\dd t
+    \]
+    \item \textbf{Changement de variable dans une intégrale définie :}\\
+    Si $u = u(x)$, penser à \textbf{changer aussi les bornes} ($x=a \to u=u(a)$ et $x=b \to u=u(b)$) :
+    \[
+        \int_a^b f\bigl(u(x)\bigr)\,u'(x)\dd x = \int_{u(a)}^{u(b)} f(u)\dd u
+    \]
+\end{itemize}
+
+\vspace{4pt}
+\noindent{\large\bfseries\color{uclblue} 2. Démonstration d'Inégalités Fonctionnelles}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Méthode 1 : Par intégration sur $[a, x]$ (avec $x \ge a$) :}
+    \[
+        \forall s \in [a, x], \;\; f'(s) \le g'(s) \implies \int_a^x f'(s)\dd s \le \int_a^x g'(s)\dd s
+    \]
+    \begin{itemize}[leftmargin=1em, itemsep=1.5pt, topsep=1pt]
+        \item \textbf{Inégalité de $\ln(x)$ ($\forall x > 0$) :} Pour $s \ge 1$, $\frac{1}{s^2} \le \frac{1}{s} \le 1$. En intégrant sur $[1, x]$ ($x \ge 1$, ou sur $[x, 1]$ si $0 < x \le 1$) :
+        \[
+            \boxed{1 - \frac{1}{x} \le \ln(x) \le x - 1 \quad (\forall x > 0)}
+        \]
+        \item \textbf{Inégalité de $e^x$ ($\forall x \ge 0$) :} Pour $s \ge 0$, $e^s \ge 1 \implies \int_0^x e^s\dd s \ge \int_0^x 1\dd s$ :
+        \[
+            \boxed{e^x \ge 1 + x \quad (\forall x \ge 0)} \implies e^y \ge \left(1 + \frac{y}{n}\right)^n \;\; (y > 0, n \in \N_0)
+        \]
+    \end{itemize}
+    \item \textbf{Méthode 2 : Par étude du signe de la dérivée :}\\
+    Pour montrer $f(x) \le g(x)$ sur $[a, +\infty[$, poser $\Delta(x) = g(x) - f(x)$, vérifier $\Delta(a) = 0$ et montrer $\Delta'(x) = g'(x) - f'(x) \ge 0$ pour tout $x \ge a$.
+\end{itemize}
+
+\columnbreak
+
+\noindent{\large\bfseries\color{uclblue} 3. Aires Planes et Volumes de Révolution}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Aire entre deux courbes sur $[a, b]$ :}
+    \[
+        \mathcal{A} = \int_a^b \bigl(y_{\text{haut}}(x) - y_{\text{bas}}(x)\bigr)\dd x
+    \]
+    \item \textbf{Volume d'un solide plein de révolution autour de $Ox$ :}\\
+    Rotation du profil de rayon $R(x) = |f(x)|$ pour $x \in [a, b]$ :
+    \[
+        \boxed{V = \pi \int_a^b \bigl(R(x)\bigr)^2\dd x = \pi \int_a^b \bigl(f(x)\bigr)^2\dd x}
+    \]
+    \item \textbf{Volume d'un solide creux (entre $y_+(x) \ge y_-(x) \ge 0$) :}
+    \[
+        \boxed{V = \pi \int_a^b \Bigl(\bigl(y_+(x)\bigr)^2 - \bigl(y_-(x)\bigr)^2\Bigr)\dd x}
+    \]
+    \item \textbf{Volumes classiques à connaître :}
+    \begin{itemize}[leftmargin=1em, itemsep=1.5pt, topsep=1pt]
+        \item Cylindre de rayon $R$ et hauteur $H$ : $V = \pi R^2 H$
+        \item Cône de rayon $R$ et hauteur $H$ : $V = \dfrac{1}{3}\pi R^2 H$
+        \item Sphère de rayon $R$ : $V = \dfrac{4}{3}\pi R^3$ \quad (Surface : $S = 4\pi R^2$)
+        \item Tore (anneau de rayon de tube $a$ à distance $R > a$) :\\
+        $V = (2\pi R)\cdot(\pi a^2) = 2\pi^2 R a^2$
+    \end{itemize}
+\end{itemize}
+
+\vspace{4pt}
+\noindent{\large\bfseries\color{uclblue} 4. Équations Différentielles \& Fonctions Liées}
+Reconnaître une dérivée composée pour intégrer directement :
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+    \item $f'(x) = -\bigl(f(x)\bigr)^2 \iff -\dfrac{f'(x)}{f^2(x)} = 1 \iff \left(\dfrac{1}{f(x)}\right)' = 1$\\
+    $\implies \dfrac{1}{f(x)} = x + C \implies f(x) = \dfrac{1}{x + C}$
+    \item $\dfrac{g'(x)}{g(x)} = f(x)f'(x) \iff \bigl(\ln g(x)\bigr)' = \left(\dfrac{1}{2}f^2(x)\right)'$\\
+    $\implies \ln\left(\dfrac{g(x)}{g(0)}\right) = \dfrac{1}{2}\bigl(f^2(x) - f^2(0)\bigr)$
+    \item $f''(x) = -f(x) \implies \bigl(f^2(x) + f'^2(x)\bigr)' = 2f'(x)\bigl(f(x) + f''(x)\bigr) = 0$\\
+    $\implies f^2(x) + f'^2(x) = k^2 = \text{constante}$
+\end{itemize}
+
+\end{multicols}
+}
+
+\restoregeometry

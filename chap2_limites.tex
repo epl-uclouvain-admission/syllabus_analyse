@@ -1,0 +1,384 @@
+% ============================================================================
+% CHAPITRE 2 : LIMITES, CONTINUITÉ ET ASYMPTOTES
+% ============================================================================
+\chapter{Limites, Continuité et Asymptotes}
+
+La notion de \textbf{limite} est la pierre angulaire de toute l'analyse : c'est elle qui permet de définir la continuité d'une courbe, ses asymptotes aux bords de son domaine, le nombre dérivé (Chapitre 3) et l'intégrale définie (Chapitre 7). À l'examen d'admission de l'UCLouvain, les limites interviennent à trois endroits clés : lors de l'étude de fonction (Question 1, pour le comportement aux bornes et les asymptotes), dans une question spécifique de calcul de limite indéterminée (Questions 3 à 5), et parfois dans une question théorique faisant appel à la définition formelle ou à la continuité.
+
+% ----------------------------------------------------------------------------
+\section{Définition et intuition de la limite d'une fonction}
+% ----------------------------------------------------------------------------
+
+\subsection{Limites finies et infinies : intuition et définitions rigoureuses}
+
+Intuitivement :
+\begin{itemize}
+    \item Dire que $\lim_{x \to a} f(x) = L \in \R$ signifie que l'on peut rendre l'image $f(x)$ aussi proche que l'on veut du nombre $L$, à condition de prendre $x$ suffisamment proche de $a$ (avec $x \neq a$).
+    \item Dire que $\lim_{x \to +\infty} f(x) = L \in \R$ signifie que l'écart $|f(x) - L|$ devient inférieur à n'importe quelle tolérance $\varepsilon > 0$ fixée à l'avance dès que $x$ dépasse un certain seuil $M$ suffisamment grand.
+\end{itemize}
+
+À l'examen d'entrée (comme en \textbf{Juillet 2021, Question 3d}), la définition formelle en $\varepsilon$ et $M$ est rappelée dans l'énoncé lorsqu'il est demandé de l'utiliser, mais savoir la manipuler avec aisance est un atout majeur.
+
+\begin{definition}[Définitions formelles de la limite ($\varepsilon$-$\delta$ et $\varepsilon$-$M$)]
+Soit $f : \D \subset \R \to \R$ une fonction réelle :
+\begin{enumerate}
+    \item \textbf{Limite finie en l'infini ($\lim_{x \to +\infty} f(x) = c \in \R$) :}
+    \[
+        \boxed{\forall \varepsilon > 0, \;\exists M \in \R \;\text{ tel que }\; \forall x \in \D : \quad x > M \implies \bigl|f(x) - c\bigr| \le \varepsilon}.
+    \]
+    \item \textbf{Limite finie en un réel ($\lim_{x \to a} f(x) = L \in \R$) :}
+    \[
+        \boxed{\forall \varepsilon > 0, \;\exists \delta > 0 \;\text{ tel que }\; \forall x \in \D : \quad 0 < |x - a| \le \delta \implies \bigl|f(x) - L\bigr| \le \varepsilon}.
+    \]
+    \item \textbf{Limite infinie en un réel ($\lim_{x \to a} f(x) = +\infty$) :}
+    \[
+        \forall A > 0, \;\exists \delta > 0 \;\text{ tel que }\; \forall x \in \D : \quad 0 < |x - a| \le \delta \implies f(x) \ge A.
+    \]
+\end{enumerate}
+\emph{Limite à gauche et limite à droite :} Si l'on impose en outre $x < a$ (resp. $x > a$), on obtient la \textbf{limite à gauche} notée $\lim_{x \to a^-} f(x)$ ou $\lim_{\substack{x \to a \\ x < a}} f(x)$ (resp. la \textbf{limite à droite} notée $\lim_{x \to a^+} f(x)$ ou $\lim_{\substack{x \to a \\ x > a}} f(x)$). Une fonction admet une limite en $a$ si et seulement si ses limites à gauche et à droite en $a$ existent et sont égales.
+\end{definition}
+
+\begin{exemple}[Application de la définition $\varepsilon$-$M$ : UCLouvain -- Juillet 2021, Question 3d]
+\emph{Énoncé :} Pour rappel, on dit que $\lim_{x \to \infty} f(x) = c$ si pour tout $\varepsilon > 0$, il existe un $M$ tel que $x > M \implies |f(x) - c| \le \varepsilon$. Soit $f$ la fonction définie sur $\R_0^+$ par $f(x) = \dfrac{1}{x}\sin(x^2)$.
+\begin{enumerate}[label=(\roman*)]
+    \item Sur base de la définition ci-dessus, démontrez que $\lim_{x \to \infty} f(x) = 0$.
+    \item \emph{Bonus :} Toujours sur base de la définition, démontrez \textbf{qu'il n'est pas vrai} que $\lim_{x \to \infty} f'(x) = 0$.
+\end{enumerate}
+
+\emph{Résolution :}
+\begin{enumerate}[label=(\roman*)]
+    \item Soit $\varepsilon > 0$ quelconque fixé. Nous cherchons un seuil $M > 0$ (dépendant de $\varepsilon$) tel que pour tout $x > M$, on ait $|f(x) - 0| \le \varepsilon$. Or, puisque $|\sin(u)| \le 1$ pour tout réel $u = x^2$, on a pour tout $x > 0$ :
+    \[
+        \bigl|f(x) - 0\bigr| = \left|\frac{1}{x}\sin(x^2)\right| = \frac{1}{x}\bigl|\sin(x^2)\bigr| \le \frac{1}{x} \cdot 1 = \frac{1}{x}.
+    \]
+    Pour que cette quantité soit majorée par $\varepsilon$, il suffit que $\frac{1}{x} \le \varepsilon \iff x \ge \frac{1}{\varepsilon}$. Posons donc $\boxed{M = \dfrac{1}{\varepsilon}}$. Dès lors, pour tout $x > M = \frac{1}{\varepsilon}$, on a bien $|f(x) - 0| \le \frac{1}{x} < \varepsilon$, ce qui démontre par la définition que $\lim_{x \to \infty} f(x) = 0$.
+    \item Calculons d'abord la dérivée $f'(x)$ par la règle du produit et de la fonction composée :
+    \[
+        f'(x) = -\frac{1}{x^2}\sin(x^2) + \frac{1}{x}\cdot 2x\cos(x^2) = 2\cos(x^2) - \frac{\sin(x^2)}{x^2}.
+    \]
+    Nier la définition « $\forall \varepsilon > 0, \exists M$ tel que $\forall x > M, |f'(x) - 0| \le \varepsilon$ » revient (par les règles de négation des quantificateurs, voir Annexe A) à montrer qu'\textbf{il existe un $\varepsilon > 0$ tel que, quel que soit le seuil $M$, on peut toujours trouver un $x > M$ vérifiant $|f'(x)| > \varepsilon$}.
+    Choisissons par exemple $\boxed{\varepsilon = 1}$. Quel que soit le nombre $M > 0$, considérons les points de la forme $x_k = \sqrt{2k\pi}$ avec $k \in \N_0$. En choisissant l'entier $k$ suffisamment grand (à savoir $k > \frac{M^2}{2\pi}$), on a bien $x_k > M$. Or, en ce point $x_k$, comme $x_k^2 = 2k\pi$, on a $\cos(2k\pi) = 1$ et $\sin(2k\pi) = 0$, d'où :
+    \[
+        f'(x_k) = 2\cos(2k\pi) - \frac{\sin(2k\pi)}{2k\pi} = 2 \cdot 1 - 0 = 2 > \varepsilon = 1.
+    \]
+    Il est donc impossible de trouver un seuil $M$ au-delà duquel $|f'(x)| \le 1$ : la dérivée $f'(x)$ oscille indéfiniment avec une amplitude proche de $2$ et ne tend pas vers $0$ !
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Calcul de limites et levée des formes indéterminées}
+% ----------------------------------------------------------------------------
+
+\subsection{Arithmétique des limites et les 7 formes indéterminées}
+
+Lorsque $\lim f(x)$ et $\lim g(x)$ existent, les règles habituelles de somme, produit, quotient et composition s'appliquent, y compris avec $\pm\infty$ lorsque le résultat n'est pas ambigu :
+\begin{itemize}
+    \item $(+\infty) + (+\infty) = +\infty$, \quad $(+\infty) \cdot (+\infty) = +\infty$, \quad $(+\infty) \cdot (-\infty) = -\infty$.
+    \item $\dfrac{c}{\pm\infty} = 0$ (pour toute constante $c \in \R$).
+    \item $\dfrac{c}{0^+} = +\infty$ si $c > 0$ (et $-\infty$ si $c < 0$) ; \quad $\dfrac{c}{0^-} = -\infty$ si $c > 0$ (et $+\infty$ si $c < 0$).
+\end{itemize}
+
+En revanche, sept combinaisons ne permettent pas de conclure directement et nécessitent une transformation algébrique ou analytique :
+
+\begin{attention}[Les 7 formes indéterminées (F.I.) à reconnaître immédiatement]
+\begin{enumerate}
+    \item \textbf{Les deux formes indéterminées principales (quotients) :}
+    \[
+        \boxed{\text{F.I. } \left[\frac{0}{0}\right]} \qquad \text{et} \qquad \boxed{\text{F.I. } \left[\frac{\infty}{\infty}\right]}.
+    \]
+    \item \textbf{Le produit et la différence indéterminés} (qui se ramènent à $\left[\frac{0}{0}\right]$ ou $\left[\frac{\infty}{\infty}\right]$ par mise au même dénominateur, factorisation ou passage à l'inverse $u \cdot v = \frac{u}{1/v}$) :
+    \[
+        \boxed{\text{F.I. } \bigl[0 \cdot \infty\bigr]} \qquad \text{et} \qquad \boxed{\text{F.I. } \bigl[(+\infty) - (+\infty)\bigr]}.
+    \]
+    \item \textbf{Les trois formes indéterminées exponentielles} (qui se lèvent en écrivant $u(x)^{v(x)} = e^{v(x)\ln(u(x))}$, ce qui ramène l'exposant à une forme $[0 \cdot \infty]$) :
+    \[
+        \boxed{\text{F.I. } \bigl[1^\infty\bigr]}, \qquad \boxed{\text{F.I. } \bigl[0^0\bigr]} \qquad \text{et} \qquad \boxed{\text{F.I. } \bigl[\infty^0\bigr]}.
+    \]
+\end{enumerate}
+\emph{Faux amis (ce ne sont PAS des formes indéterminées !) :} $\frac{0}{\infty} = 0$, $\frac{\infty}{0^+} = \infty$, $0^{+\infty} = 0$, $(+\infty)^{+\infty} = +\infty$, et $(+\infty) + (+\infty) = +\infty$.
+\end{attention}
+
+\subsection{Boîte à outils pour lever une indétermination (avant L'Hospital)}
+
+Au Chapitre 3, nous étudierons la célèbre \textbf{règle de L'Hospital} ($\lim \frac{f(x)}{g(x)} = \lim \frac{f'(x)}{g'(x)}$ pour les formes $\frac{0}{0}$ et $\frac{\infty}{\infty}$). Toutefois, comme le rappelle explicitement le solutionnaire de \textbf{Septembre 2022 (Question 5)}, la règle de L'Hospital seule ne suffit pas toujours (parfois elle tourne en boucle ou complique inutilement les expressions !). Il faut donc maîtriser les cinq techniques directes suivantes :
+
+\begin{theoreme}[Les 5 techniques fondamentales de calcul de limites]
+\begin{enumerate}
+    \item \textbf{Factorisation et simplification en $x \to a$ (forme $\frac{0}{0}$ polynomiale ou rationnelle) :} Si un polynôme $P(x)$ s'annule en $x = a$, il est divisible par $(x - a)$ (loi du reste / tableau de Horner). On factorise $(x-a)$ au numérateur et au dénominateur, puis on simplifie par $(x-a) \neq 0$.
+    \item \textbf{Multiplication par le binôme conjugué (racines carrées, formes $\frac{0}{0}$ ou $\infty - \infty$) :} On utilise l'identité remarquable $(\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B$ :
+    \[
+        \sqrt{A(x)} - \sqrt{B(x)} = \frac{A(x) - B(x)}{\sqrt{A(x)} + \sqrt{B(x)}}.
+    \]
+    \item \textbf{Mise en évidence du terme dominant en $x \to \pm\infty$ :}
+    \begin{itemize}
+        \item En $x \to \pm\infty$, un polynôme se comporte comme son \textbf{monôme de plus haut degré} :
+        \[
+            \lim_{x \to \pm\infty} \bigl(a_n x^n + a_{n-1}x^{n-1} + \dots + a_0\bigr) = \lim_{x \to \pm\infty} a_n x^n.
+        \]
+        \item Une fraction rationnelle $\dfrac{a_n x^n + \dots + a_0}{b_m x^m + \dots + b_0}$ a la même limite en $\pm\infty$ que le quotient de ses termes de plus haut degré $\dfrac{a_n x^n}{b_m x^m}$.
+        \item Plus généralement, lorsqu'un terme grandit vers l'infini (comme $\ln(x)$) à côté d'un terme borné (comme $\sin(x)$), on met le \textbf{terme dominant en évidence} !
+    \end{itemize}
+    \item \textbf{Théorème des gendarmes (ou d'encadrement) et produit « borné $\times$ tend vers $0$ » :}
+    \begin{itemize}
+        \item Si $g(x) \le f(x) \le h(x)$ au voisinage de $a$ (ou de $+\infty$) et si $\lim g(x) = \lim h(x) = L$, alors $\lim f(x) = L$.
+        \item En particulier, si $b(x)$ est une fonction \textbf{bornée} (par exemple $|\sin(\dots)| \le 1$ ou $|\cos(\dots)| \le 1$) et si $\lim u(x) = 0$, alors :
+        \[
+            \boxed{\lim \bigl(u(x) \cdot b(x)\bigr) = 0} \qquad \text{et} \qquad \text{si } \lim v(x) = \pm\infty, \quad \boxed{\lim \frac{b(x)}{v(x)} = 0}.
+        \]
+    \end{itemize}
+    \item \textbf{Limites fondamentales et croissances comparées (puissances, $\ln$, $\exp$, $\sin$) :}
+    \begin{itemize}
+        \item \textbf{En $u \to 0$ :}
+        \[
+            \boxed{\lim_{u \to 0} \frac{\sin(u)}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{\tan(u)}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{1 - \cos(u)}{u^2} = \frac{1}{2}}, \quad \boxed{\lim_{u \to 0} \frac{e^u - 1}{u} = 1}, \quad \boxed{\lim_{u \to 0} \frac{\ln(1+u)}{u} = 1}.
+        \]
+        \item \textbf{Croissances comparées (« l'exponentielle l'emporte sur les puissances, qui l'emportent sur le logarithme ») pour tout $p > 0$ :}
+        \[
+            \boxed{\lim_{x \to +\infty} \frac{e^x}{x^p} = +\infty}, \quad \boxed{\lim_{x \to +\infty} x^p e^{-x} = 0}, \quad \boxed{\lim_{x \to +\infty} \frac{\ln(x)}{x^p} = 0}, \quad \boxed{\lim_{y \to 0^+} y^p \ln(y) = 0}.
+        \]
+    \end{itemize}
+\end{enumerate}
+\end{theoreme}
+
+\begin{exemple}[Questions d'examen UCLouvain sur les limites par factorisation et croissances comparées]
+\textbf{1) UCLouvain -- Septembre 2022, Question 5 (Termes bornés vs logarithme) :}\\
+\emph{Énoncé :} Calculer la limite suivante :
+\[
+    L = \lim_{x \to +\infty} \frac{\ln(x) + \sin(x)}{\ln(x^2) + \sin(x^2)}.
+\]
+\emph{Résolution :} \textbf{Attention au piège de la règle de L'Hospital !} Si vous dérivez numérateur et dénominateur, vous obtenez $\frac{\frac{1}{x} + \cos(x)}{\frac{2}{x} + 2x\cos(x^2)}$, expression qui oscille violemment et n'admet même pas de limite en $+\infty$ !
+La bonne méthode consiste à utiliser la propriété $\ln(x^2) = 2\ln(x)$ (pour $x > 0$) et à \textbf{mettre en évidence le terme dominant $\ln(x)$} au numérateur et au dénominateur :
+\[
+    L = \lim_{x \to +\infty} \frac{\ln(x) + \sin(x)}{2\ln(x) + \sin(x^2)} = \lim_{x \to +\infty} \frac{\cancel{\ln(x)}\left(1 + \dfrac{\sin(x)}{\ln(x)}\right)}{\cancel{\ln(x)}\left(2 + \dfrac{\sin(x^2)}{\ln(x)}\right)} = \lim_{x \to +\infty} \frac{1 + \dfrac{\sin(x)}{\ln(x)}}{2 + \dfrac{\sin(x^2)}{\ln(x)}}.
+\]
+Or, les fonctions $\sin(x)$ et $\sin(x^2)$ sont bornées entre $-1$ et $1$, tandis que $\lim_{x \to +\infty} \ln(x) = +\infty$. Par le théorème des gendarmes ($-\frac{1}{\ln x} \le \frac{\sin(\dots)}{\ln x} \le \frac{1}{\ln x}$), on a :
+\[
+    \lim_{x \to +\infty} \frac{\sin(x)}{\ln(x)} = 0 \qquad \text{et} \qquad \lim_{x \to +\infty} \frac{\sin(x^2)}{\ln(x)} = 0 \implies L = \frac{1 + 0}{2 + 0} = \boxed{\frac{1}{2}}.
+\]
+
+\medskip
+\textbf{2) UCLouvain -- Juillet 2026, Question 1b (et Septembre 2026, Question 1a) :}\\
+\emph{Énoncé (Juillet 2026, Q1b) :} Soit $f(x) = (1 - x^2)\ln(1 - x) + x$ sur $\D = \,]-\infty, 1[$. Obtenir $\lim_{x \to 1} f(x)$ en utilisant l'aide $\lim_{y \to 0^+} y\ln(y) = 0$.\\
+\emph{Résolution :} Lorsque $x \to 1^-$, $(1-x^2) \to 0$ et $\ln(1-x) \to -\infty$ : c'est une forme indéterminée $[0 \cdot (-\infty)]$. Factorisons $1 - x^2 = (1+x)(1-x)$ et posons le changement de variable $y = 1 - x$ (de sorte que $y \to 0^+$ lorsque $x \to 1^-$) :
+\[
+    \lim_{x \to 1^-} f(x) = \lim_{x \to 1^-} \bigl[(1+x)(1-x)\ln(1-x) + x\bigr] = \left(\lim_{x \to 1^-} (1+x)\right) \cdot \left(\lim_{y \to 0^+} y\ln(y)\right) + 1 = 2 \cdot 0 + 1 = \boxed{1}.
+\]
+
+\medskip
+\textbf{3) UCLouvain -- Septembre 2025, Question 1a (et Septembre 2026, Question 1a) :}\\
+\emph{Énoncé :} Pour $f(x) = x\ln^2(x)$ définie sur $\D = \,]0, +\infty[$, calculer $\lim_{x \to 0^+} x\ln^2(x)$ à l'aide de $\lim_{y \to 0^+} y^p\ln(y) = 0$ pour $p > 0$.\\
+\emph{Résolution :} C'est une forme indéterminée $[0 \cdot (+\infty)]$. Pour faire apparaître un carré parfait du type $\bigl(x^p\ln(x)\bigr)^2$, écrivons $x = (\sqrt{x})^2 = (x^{1/2})^2$ :
+\[
+    \lim_{x \to 0^+} x\ln^2(x) = \lim_{x \to 0^+} \Bigl(x^{1/2}\ln(x)\Bigr)^2 = \left(\lim_{x \to 0^+} x^{1/2}\ln(x)\right)^2 = 0^2 = \boxed{0} \quad \left(\text{avec } p = \frac{1}{2} > 0\right).
+\]
+\emph{De même en Septembre 2026 (Q1a)} pour $f(x) = \frac{x^2}{2}\left(\ln^2(x) - \ln(x) + \frac{1}{2}\right)$ : en distribuant $x^2$, on obtient $\frac{1}{2}\bigl(x\ln(x)\bigr)^2 - \frac{1}{2}\bigl(x^2\ln(x)\bigr) + \frac{x^2}{4}$, dont chaque terme tend vers $0$ en $x \to 0^+$ (en appliquant l'aide avec $p=1$ et $p=2$).
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Continuité, prolongement et théorème des valeurs intermédiaires}
+% ----------------------------------------------------------------------------
+
+\subsection{Continuité en un point et sur un intervalle}
+
+\begin{definition}[Fonction continue en un point $a \in \D$ et sur un intervalle]
+Soit $f : \D \subset \R \to \R$ et soit $a \in \D$ :
+\begin{enumerate}
+    \item On dit que $f$ est \textbf{continue en $a$} si $f$ est définie en $a$ et si sa limite en $a$ existe et est égale à $f(a)$ :
+    \[
+        \boxed{f \text{ est continue en } a \iff \lim_{x \to a} f(x) = f(a) \iff \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = f(a)}.
+    \]
+    \item On dit que $f$ est \textbf{continue sur un intervalle $I \subset \D$} si elle est continue en tout point $a \in I$ (aux bornes éventuelles d'un intervalle fermé $[a, b]$, la continuité s'entend à droite en $a$ et à gauche en $b$).
+    \item \textbf{Prolongement par continuité :} Si $f$ n'est pas définie en un point $a \notin \D$, mais que $\lim_{x \to a} f(x) = L \in \R$ existe et est finie, on peut \textbf{prolonger $f$ par continuité en $a$} en posant $\tilde{f}(a) = L$ et $\tilde{f}(x) = f(x)$ pour $x \in \D$.
+\end{enumerate}
+\end{definition}
+
+Toutes les fonctions usuelles (polynômes, fractions rationnelles, racines, $\sin, \cos, \tan, \arcsin, \arccos, \arctan, \ln, \exp$) ainsi que leurs sommes, produits, quotients et composées sont \textbf{continues sur tout intervalle inclus dans leur domaine de définition}.
+
+\begin{exemple}[Continuité et discontinuités aux examens UCLouvain (Juillet 2022 Q6 et Juillet 2025 Q4)]
+\textbf{1) Paramètre de continuité (UCLouvain -- Juillet 2022, Question 6) :}\\
+\emph{Énoncé :} Soit $f : \R \to \R$ définie par $f(2\pi) = a$ et $f(x) = \dfrac{1 - \cos^2(x)}{(e^x - e^{2\pi})^2}$ si $x \neq 2\pi$. Sachant que $f$ est continue sur $\R$, déterminer la valeur de $a$.\\
+\emph{Résolution :} Par définition de la continuité en $x = 2\pi$, il faut et il suffit que $a = f(2\pi) = \lim_{x \to 2\pi} f(x)$. Utilisons $\sin^2(x) = 1 - \cos^2(x)$ pour réécrire $f(x)$ comme le carré d'un quotient :
+\[
+    a = \lim_{x \to 2\pi} \frac{\sin^2(x)}{(e^x - e^{2\pi})^2} = \left(\lim_{x \to 2\pi} \frac{\sin(x)}{e^x - e^{2\pi}}\right)^2.
+\]
+Posons $u = x - 2\pi \to 0$ (ou appliquons la règle de L'Hospital au quotient intérieur de forme $\frac{0}{0}$) : comme $\sin(2\pi + u) = \sin(u)$ et $e^{2\pi+u} - e^{2\pi} = e^{2\pi}(e^u - 1)$, il vient :
+\[
+    \lim_{x \to 2\pi} \frac{\sin(x)}{e^x - e^{2\pi}} = \lim_{u \to 0} \left(\frac{1}{e^{2\pi}} \cdot \frac{\sin(u)}{u} \cdot \frac{u}{e^u - 1}\right) = \frac{1}{e^{2\pi}} \cdot 1 \cdot 1 = e^{-2\pi} \implies \boxed{a = \bigl(e^{-2\pi}\bigr)^2 = e^{-4\pi}}.
+\]
+
+\medskip
+\textbf{2) Discontinuités par « saut » (UCLouvain -- Juillet 2025, Question 4) :}\\
+\emph{Énoncé :} Soit $f : \R \to \R$ la fonction qui prend la représentation décimale de $x$, retire $1$ à la première décimale après la virgule si celle-ci est non nulle, et ne la change pas si elle est nulle (par exemple $f(3,14159) = 3,04159$, $f(1,01234) = 1,01234$, $f(-1,25) = -1,15$). Quelles sont les valeurs de $x \in \,]-2, 2[$ où $f$ n'est pas continue ? Sur $]-2, 2[$, $f$ est-elle croissante ?\\
+\emph{Résolution :} Analysons l'expression explicite de $f(x)$ sur les sous-intervalles de $]0, 2[$ :
+\begin{itemize}
+    \item Sur $[0; 0,1[$, la première décimale est $0$, donc elle ne change pas : $f(x) = x$. Lorsque $x \to 0,1^-$, on a $\lim_{x \to 0,1^-} f(x) = 0,1$.
+    \item En revanche, sur $[0,1; 1[$, la première décimale est dans $\{1, \dots, 9\}$, donc on lui retire $1$, ce qui revient à soustraire $0,1$ : $f(x) = x - 0,1$. En particulier, $f(0,1) = 0,0 \neq \lim_{x \to 0,1^-} f(x) = 0,1$ ! Il y a donc un \textbf{saut de discontinuité} en $x = 0,1$.
+    \item En $x = 1,0$ : pour $x \to 1,0^-$ (par ex. $0,999\dots$), $f(x) = x - 0,1 \to 0,9$, tandis que sur $[1,0; 1,1[$ la première décimale redevient $0$, donc $f(x) = x$ et $f(1,0) = 1,0 \neq 0,9$ : discontinuité en $x = 1,0$, puis de nouveau en $x = 1,1$ (où $f(1,1) = 1,0$ alors que $\lim_{x \to 1,1^-} f(x) = 1,1$).
+\end{itemize}
+Par symétrie impaire pour les nombres négatifs ($f(-x) = -f(x)$), les $6$ points de discontinuité dans $]-2, 2[$ sont :
+\[
+    \boxed{x \in \bigl\{-1,1 \;;\; -1,0 \;;\; -0,1 \;;\; 0,1 \;;\; 1,0 \;;\; 1,1\bigr\}}.
+\]
+De plus, $f$ \textbf{n'est pas croissante} sur $]-2, 2[$ à cause de la chute brutale en $x = 0,1$ : par exemple, pour $x_1 = 0,09 < x_2 = 0,1$, on a $f(0,09) = 0,09 > f(0,1) = 0,0$, ce qui fournit un contre-exemple immédiat.
+\end{exemple}
+
+\subsection{Le théorème des valeurs intermédiaires (TVI / Bolzano)}
+
+\begin{theoreme}[Théorème des valeurs intermédiaires (TVI) et théorème de Bolzano]
+Soit $f : [a, b] \to \R$ une fonction \textbf{continue} sur l'intervalle fermé borné $[a, b]$.
+\begin{enumerate}
+    \item \textbf{Énoncé général (TVI) :} Pour tout nombre réel $k$ compris entre $f(a)$ et $f(b)$, il existe \textbf{au moins un} réel $c \in [a, b]$ tel que $f(c) = k$.
+    \item \textbf{Cas particulier des racines (Théorème de Bolzano) :} Si $f$ est continue sur $[a, b]$ et si $f(a)$ et $f(b)$ sont de \textbf{signes strictement opposés} ($f(a) \cdot f(b) < 0$), alors l'équation $f(x) = 0$ possède \textbf{au moins une racine} $c \in \,]a, b[$.
+    \item \textbf{Unicité (Corollaire de la bijection) :} Si de plus $f$ est \textbf{strictement monotone} (strictement croissante ou strictement décroissante) sur $[a, b]$, alors cette racine $c \in \,]a, b[$ est \textbf{unique}.
+\end{enumerate}
+\end{theoreme}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05, >=Stealth]
+    \draw[->, thick, gray] (-0.5,0) -- (6.2,0) node[right, black] {$x$};
+    \draw[->, thick, gray] (0,-1.6) -- (0,2.4) node[above, black] {$y$};
+
+    % Courbe continue changeant de signe
+    \draw[very thick, uclblue, domain=0.7:5.3, samples=100] plot (\x, {0.16*(\x-3)^3 + 0.35*(\x-3) + 0.25}) node[right] {$y = f(x)$};
+
+    % Point a (f(a) < 0)
+    \coordinate (A) at (1.0, -1.73);
+    \draw[dashed, warnred] (1.0, 0) node[above, black] {$a$} -- (1.0, -1.73) -- (0, -1.73) node[left] {$f(a) < 0$};
+    \fill[warnred] (1.0, -1.73) circle (2pt);
+
+    % Point b (f(b) > 0)
+    \coordinate (B) at (5.0, 2.23);
+    \draw[dashed, defgreen] (5.0, 0) node[below, black] {$b$} -- (5.0, 2.23) -- (0, 2.23) node[left] {$f(b) > 0$};
+    \fill[defgreen] (5.0, 2.23) circle (2pt);
+
+    % Racine c
+    \fill[exorange] (2.435, 0) circle (2.4pt) node[above left] {$c \in \,]a,b[$};
+    \node[below right, exorange, font=\small\bfseries] at (2.435, -0.05) {$f(c) = 0$};
+\end{tikzpicture}
+\end{center}
+
+\begin{astuce}[Quand utiliser le TVI à l'examen d'entrée ?]
+Le théorème des valeurs intermédiaires est l'outil idéal dans trois situations récurrentes à l'examen :
+\begin{enumerate}
+    \item \textbf{En Question 1 (Étude de fonction) :} Lorsqu'on ne peut pas résoudre algébriquement $f(x) = 0$ ou $f'(x) = 0$ (par exemple pour $f'(x) = \frac{1 + 2x\tan x}{\cos^2 x}$ en Septembre 2023 Q1c, ou $g(x) = 2(\tan(x)(1-x^2)-x)$ en Septembre 2024 Q1c, ou $f(x) = (1-x^2)\ln(1-x)+x$ en Juillet 2026 Q1e), le constat que $f$ (ou $f'$) est continue sur un intervalle $[\alpha, \beta]$ sans asymptote et \textbf{change de signe} entre $\alpha$ et $\beta$ permet d'affirmer rigoureusement l'existence d'une racine ou d'un extremum dans $]\alpha, \beta[$.
+    \item \textbf{Appliqué à la dérivée $f'$ :} Pour prouver que $f'$ possède au moins deux racines distinctes (comme en Septembre 2022 Q6 ou Septembre 2025 Q4), on peut calculer $f'$ en trois points $a < b < c$ et montrer que $f'(a) > 0$, $f'(b) < 0$ et $f'(c) > 0$ : par continuité de $f'$, le TVI garantit une première racine de $f'$ dans $]a, b[$ et une seconde dans $]b, c[$.
+    \item \textbf{Pour prouver qu'une fonction continue qui ne s'annule jamais garde un signe constant} (Septembre 2024 Q5b).
+\end{enumerate}
+\end{astuce}
+
+% ----------------------------------------------------------------------------
+\section{Les asymptotes au graphe d'une fonction (AV, AH, AO)}
+% ----------------------------------------------------------------------------
+
+Une \textbf{asymptote} est une droite dont la courbe représentative de $f$ s'approche indéfiniment lorsque $x$ tend vers un bord fini de son domaine ou lorsque $x$ tend vers $\pm\infty$. On distingue trois types d'asymptotes.
+
+\begin{theoreme}[Recherche systématique des asymptotes (AV, AH, AO)]
+Soit $f : \D \subset \R \to \R$ une fonction réelle :
+\begin{enumerate}
+    \item \textbf{Asymptote verticale (AV) d'équation $\boxed{x = a}$ :}
+    On cherche les asymptotes verticales aux \textbf{points finis $a$ exclus du domaine $\D$} (points d'annulation d'un dénominateur ou d'un logarithme) ou aux bornes ouvertes de $\D$. La droite verticale d'équation $x = a$ est une asymptote verticale au graphe de $f$ si \textbf{au moins l'une} des limites à gauche ou à droite de $f$ en $a$ est infinie :
+    \[
+        \lim_{x \to a^-} f(x) = \pm\infty \qquad \text{ou} \qquad \lim_{x \to a^+} f(x) = \pm\infty.
+    \]
+    \item \textbf{Asymptote horizontale (AH) d'équation $\boxed{y = b}$ en $+\infty$ (et/ou en $-\infty$) :}
+    Lorsque le domaine $\D$ s'étend jusqu'à $+\infty$ (ou $-\infty$), la droite horizontale d'équation $y = b$ ($b \in \R$) est asymptote horizontale au graphe de $f$ en $+\infty$ (resp. en $-\infty$) si :
+    \[
+        \lim_{x \to +\infty} f(x) = b \in \R \qquad \bigl(\text{resp. } \lim_{x \to -\infty} f(x) = b \in \R\bigr).
+    \]
+    \item \textbf{Asymptote oblique (AO) d'équation $\boxed{y = mx + p}$ (avec $m \neq 0$) en $+\infty$ (et/ou en $-\infty$) :}
+    Si $\lim_{x \to +\infty} f(x) = \pm\infty$ (il n'y a donc pas d'AH en $+\infty$), on cherche une éventuelle asymptote oblique $y = mx + p$ en $+\infty$ grâce aux \textbf{formules de Cauchy} en deux étapes :
+    \[
+        \boxed{\text{Étape 1 : } m = \lim_{x \to +\infty} \frac{f(x)}{x}} \quad (\text{si } m \in \R_0), \qquad \text{puis} \qquad \boxed{\text{Étape 2 : } p = \lim_{x \to +\infty} \bigl(f(x) - mx\bigr)} \quad (\text{si } p \in \R).
+    \]
+    (On procède de même séparément en $x \to -\infty$ si le domaine s'étend vers $-\infty$).
+\end{enumerate}
+\end{theoreme}
+
+\begin{attention}[Trois remarques cruciales sur les asymptotes à l'examen]
+\begin{enumerate}
+    \item \textbf{Une fonction périodique non constante n'admet JAMAIS d'asymptote horizontale ni d'asymptote oblique !} (UCLouvain -- Juillet 2021, Q1e). En effet, ses oscillations se répètent à l'identique à chaque période $T$, de sorte qu'elle ne peut jamais converger vers une droite en $\pm\infty$. En revanche, elle peut posséder \textbf{une infinité d'asymptotes verticales} périodiquement espacées (comme $x = \frac{\pi}{2} + k\pi$, $k \in \Z$).
+    \item \textbf{Incompatibilité AH / AO d'un même côté :} En $+\infty$, le graphe d'une fonction ne peut pas avoir à la fois une AH et une AO (car l'AH correspond au cas $m=0$ dans $y = mx+p$). Par contre, une fonction peut très bien avoir une AH en $-\infty$ et une AO en $+\infty$ (par exemple $f(x) = x + \sqrt{x^2+1}$).
+    \item \textbf{N'écrivez jamais « $\text{AV} = 0$ » ou « $\text{AO} = x$ » !} Une asymptote est une \textbf{droite} : sa réponse doit toujours être donnée sous la forme d'une \textbf{équation cartésienne de droite} : $\text{AV} \equiv x = a$, $\text{AH} \equiv y = b$, $\text{AO} \equiv y = mx + p$.
+\end{enumerate}
+\end{attention}
+
+\begin{exemple}[Recherche complète des asymptotes : UCLouvain -- Septembre 2021, Question 1d]
+\emph{Énoncé :} Soit la fonction $f(x) = x + 2\ln\left(1 + \dfrac{1}{x}\right)$, dont le domaine de définition est $\D = \,]-\infty, -1[ \;\cup\; ]0, +\infty[$. Donner l'équation de chacune des asymptotes éventuelles de $f$.
+
+\emph{Résolution :}
+\begin{enumerate}
+    \item \textbf{Asymptotes verticales (aux bornes finies ouvertes $x = -1$ et $x = 0$ de $\D$) :}
+    \begin{itemize}
+        \item En $x \to 0^+$ (à droite de $0$, puisque $f$ n'est pas définie sur $[-1, 0]$) : $\frac{1}{x} \to +\infty$, donc $1 + \frac{1}{x} \to +\infty$ et $\ln\left(1+\frac{1}{x}\right) \to +\infty$, d'où :
+        \[
+            \lim_{x \to 0^+} \left(x + 2\ln\left(1 + \frac{1}{x}\right)\right) = 0 + 2(+\infty) = +\infty \implies \boxed{\text{AV}_1 \equiv x = 0}.
+        \]
+        \item En $x \to -1^-$ (à gauche de $-1$, c'est-à-dire $x < -1$, donc $\frac{1}{x} > -1$ et $1 + \frac{1}{x} \to 0^+$) : $\ln\left(1+\frac{1}{x}\right) \to \ln(0^+) = -\infty$, d'où :
+        \[
+            \lim_{x \to -1^-} \left(x + 2\ln\left(1 + \frac{1}{x}\right)\right) = -1 + 2(-\infty) = -\infty \implies \boxed{\text{AV}_2 \equiv x = -1}.
+        \]
+    \end{itemize}
+    \item \textbf{Asymptotes horizontales ou obliques en $x \to +\infty$ et en $x \to -\infty$ :}
+    Lorsque $x \to \pm\infty$, on a $\frac{1}{x} \to 0$, donc $\ln\left(1 + \frac{1}{x}\right) \to \ln(1) = 0$. Dès lors :
+    \begin{itemize}
+        \item $\lim_{x \to \pm\infty} f(x) = \lim_{x \to \pm\infty} (x + 0) = \pm\infty$ : il n'y a \textbf{pas d'asymptote horizontale}.
+        \item \emph{Astuce directe pour l'asymptote oblique :} Comme $f(x) = x + 2\ln\left(1+\frac{1}{x}\right)$ est déjà écrite sous la forme $\underbrace{m x + p}_{= x} + \underbrace{\varepsilon(x)}_{= 2\ln(1+1/x)}$ où $\lim_{x \to \pm\infty} \varepsilon(x) = 2\ln(1) = 0$, on lit instantanément l'équation de l'asymptote oblique $y = x$ !
+        \item \emph{Vérification par les formules de Cauchy :}
+        \[
+            m = \lim_{x \to \pm\infty} \frac{f(x)}{x} = \lim_{x \to \pm\infty} \left(1 + \frac{2\ln(1 + 1/x)}{x}\right) = 1 + \frac{0}{\pm\infty} = 1,
+        \]
+        \[
+            p = \lim_{x \to \pm\infty} \bigl(f(x) - 1\cdot x\bigr) = \lim_{x \to \pm\infty} 2\ln\left(1 + \frac{1}{x}\right) = 2\ln(1) = 0.
+        \]
+        La fonction admet donc la même asymptote oblique en $+\infty$ et en $-\infty$ : $\boxed{\text{AO} \equiv y = x \quad (\text{en } +\infty \text{ et en } -\infty)}$.
+    \end{itemize}
+\end{enumerate}
+\end{exemple}
+
+% ----------------------------------------------------------------------------
+\section{Exercices du Chapitre 2}
+% ----------------------------------------------------------------------------
+
+\emph{Les corrigés détaillés de tous ces exercices se trouvent au Chapitre 9, en fin d'ouvrage.}
+
+\begin{enumerate}[label=\textbf{Exercice 2.\arabic* --}]
+    \item \textbf{(Calculs de limites sans la règle de L'Hospital)} Calculer les limites suivantes en utilisant les factorisations, binômes conjugués, termes dominants ou limites fondamentales :
+    \begin{enumerate}
+        \item $\displaystyle \lim_{x \to 2} \frac{x^3 - 8}{x^2 - 3x + 2}$
+        \item $\displaystyle \lim_{x \to 0} \frac{\sqrt{1 + 2x} - \sqrt{1 - 2x}}{x}$
+        \item $\displaystyle \lim_{x \to +\infty} \left(\sqrt{x^2 + 4x + 1} - x\right)$
+        \item $\displaystyle \lim_{x \to +\infty} \frac{3\ln(x^3) - 2\cos(x^2)}{2\ln(x) + 5\sin(x)}$
+    \end{enumerate}
+
+    \item \textbf{(Limites trigonométriques et exponentielles -- Annales UCLouvain)} Calculer les limites suivantes :
+    \begin{enumerate}
+        \item $\displaystyle \lim_{x \to 0} \frac{x\bigl(\exp(\sin(x)) - 1\bigr)}{\sin^2(x)}$ \quad \textbf{(Juillet 2021, Q3e)}
+        \item $\displaystyle \lim_{x \to 0} \frac{\sin(x^2)}{x\tan(x)}$ \quad \textbf{(Juillet 2025, Q5)}
+        \item $\displaystyle \lim_{x \to 0^+} x\,\ln\bigl(\sin(x)\bigr)$
+    \end{enumerate}
+
+    \item \textbf{(Définition formelle de la limite $\varepsilon$-$M$)} En utilisant la définition formelle $\forall \varepsilon > 0, \exists M > 0$ tel que $x > M \implies |f(x) - c| \le \varepsilon$, démontrer que :
+    \begin{enumerate}
+        \item $\displaystyle \lim_{x \to +\infty} \frac{2x + \cos(x)}{x} = 2$
+        \item $\displaystyle \lim_{x \to +\infty} \frac{\ln(x) + 3}{\ln(x)} = 1$
+    \end{enumerate}
+
+    \item \textbf{(Continuité et prolongement par continuité)} Déterminer la valeur des paramètres réels $a$ et $b$ pour que la fonction $f : \R \to \R$ définie par :
+    \[
+        f(x) = \begin{cases}
+            \dfrac{\sin(3x)}{x} & \text{si } x < 0, \\
+            a & \text{si } x = 0, \\
+            \sqrt{1 + bx} + 2 & \text{si } x > 0,
+        \end{cases}
+    \]
+    soit continue en $x = 0$.
+
+    \item \textbf{(Recherche complète d'asymptotes)} Déterminer le domaine de définition et les équations de toutes les asymptotes (AV, AH, AO) des fonctions suivantes :
+    \begin{enumerate}
+        \item $f_1(x) = \dfrac{2x^2 - 3x + 5}{x - 2}$
+        \item $f_2(x) = \sqrt{x^2 + 2x}$
+        \item $f_3(x) = \dfrac{e^x - 1}{e^x + 1}$
+    \end{enumerate}
+
+    \item \textbf{(Application du théorème des valeurs intermédiaires)} Démontrer que l'équation $\cos(x) = x$ possède une et une seule solution réelle $x^* \in \R$, et que cette solution appartient à l'intervalle $\left]0, \dfrac{\pi}{2}\right[$.
+\end{enumerate}
